@@ -128,7 +128,7 @@ function render(data, isRefreshing) {
       ${dismissedPRs.map(pr => `<li class="pr-item pr-item-dismissed">
         <span class="dot">${getIcon('dot-fill', 10, '#8b949e')}</span>
         <div class="pr-info">
-          <div class="pr-title"><a href="${pr.url}" target="_blank">${escHtml(pr.title)}</a></div>
+          <div class="pr-title"><a href="${pr.url}" target="_blank" title="${escHtml(pr.title)}">${escHtml(pr.title)}</a></div>
           <div class="pr-meta">${pr.repo}#${pr.number}</div>
         </div>
         <button class="restore-btn" data-url="${escHtml(pr.url)}">Restore</button>
@@ -152,7 +152,7 @@ function render(data, isRefreshing) {
         return `<li class="pr-item">
           <span class="dot">${getIcon('dot-fill', 10, color)}</span>
           <div class="pr-info">
-            <div class="pr-title"><a href="${pr.url}" target="_blank">${escHtml(pr.title)}</a></div>
+            <div class="pr-title"><a href="${pr.url}" target="_blank" title="${escHtml(pr.title)}">${escHtml(pr.title)}</a></div>
             <div class="pr-meta">${pr.repo}#${pr.number}${waitingOn.length ? ' · Waiting on: ' + waitingOn.join(', ') : ''}</div>
           </div>
           <span class="pr-time">${timeAgo(pr.lastEventAt)}</span>
