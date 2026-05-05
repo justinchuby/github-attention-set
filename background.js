@@ -93,6 +93,15 @@ async function pollAndCompute() {
     }
   } catch (e) {
     console.error('Attention Set poll error:', e);
+    // Store error for popup to display
+    const errorMsg = e.message || 'Unknown error';
+    let errorType = 'network';
+    if (errorMsg.includes('401') || errorMsg.includes('403')) {
+      errorType = 'auth';
+    } else if (errorMsg.includes('500') || errorMsg.includes('502') || errorMsg.includes('503')) {
+      errorType = 'server';
+    }
+    chrome.storage.local.set({ lastError: { type: errorType, message: errorMsg, at: Date.now() } });
   }
 }
 

@@ -1,3 +1,14 @@
+
+function renderError(error) {
+  if (!error) return '';
+  const msgs = {
+    auth: '⚠️ Token expired or invalid. <a href="#" id="go-settings">Update in settings</a>',
+    server: '⚠️ GitHub is unreachable. Showing cached data.',
+    network: '⚠️ Network error. Showing cached data.'
+  };
+  return `<div class="error-banner">${msgs[error.type] || msgs.network}</div>`;
+}
+
 // GitHub Attention Set — Popup
 import { getIcon } from './icons.js';
 
@@ -37,6 +48,7 @@ chrome.storage.sync.get({ token: '', username: '' }, (settings) => {
 
   // Try cached data first
   chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed', 'repoFilterMode', 'repoFilterList'], (cached) => {
+    window.__lastError = cached.lastError || null;
     if (cached && cached.results) {
       render(cached, false);
       const btn = document.getElementById('refresh');
@@ -201,6 +213,7 @@ function render(data, isRefreshing) {
       <h1>🐙 Attention Set</h1>
       <button class="refresh-btn" id="refresh">${isRefreshing ? getIcon('sync', 12) : getIcon('sync', 12) + ' Refresh'}</button>
     </div>
+    ${window.__lastError ? `<div class="error-banner">${window.__lastError.type === "auth" ? "⚠️ Token expired or invalid. Update in settings." : "⚠️ GitHub unreachable. Showing cached data."}</div>` : ""}
     <div class="summary">${summaryText}</div>
     ${prListHtml}
     ${dismissedSection}
