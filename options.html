@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GitHub Attention Set — Settings</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      color: #24292f;
+    }
+    h1 { font-size: 20px; margin-bottom: 20px; }
+    label { display: block; font-size: 13px; font-weight: 600; margin-top: 16px; margin-bottom: 4px; }
+    input[type="text"], input[type="number"], input[type="password"] {
+      width: 100%; padding: 8px; border: 1px solid #d0d7de; border-radius: 6px; font-size: 14px;
+    }
+    .hint { font-size: 12px; color: #57606a; margin-top: 4px; }
+    .row { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
+    button { padding: 8px 16px; background: #2da44e; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
+    button:hover { background: #2c974b; }
+    .saved { color: #2da44e; font-size: 13px; margin-left: 8px; display: none; }
+  </style>
+</head>
+<body>
+  <h1>🦀 GitHub Attention Set Settings</h1>
+
+  <label for="token">GitHub Personal Access Token</label>
+  <input type="password" id="token" placeholder="ghp_...">
+  <div class="hint">Needs <code>repo</code> scope. <a href="https://github.com/settings/tokens/new?scopes=repo&description=GitHub+Attention+Set" target="_blank">Create one</a></div>
+
+  <label for="debounce">Debounce time (minutes)</label>
+  <input type="number" id="debounce" min="1" max="60" value="10">
+  <div class="hint">Wait this long before implicit signals flip attention.</div>
+
+  <label for="poll">Poll interval (minutes)</label>
+  <input type="number" id="poll" min="1" max="30" value="2">
+  <div class="hint">How often to check GitHub for updates.</div>
+
+  <div class="row">
+    <input type="checkbox" id="notifications" checked>
+    <label for="notifications" style="margin:0;font-weight:normal;">Enable desktop notifications</label>
+  </div>
+
+  <div class="row" style="margin-top:24px;">
+    <button id="save">Save Settings</button>
+    <span class="saved" id="saved">✓ Saved!</span>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

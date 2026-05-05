@@ -1,0 +1,65 @@
+/* GitHub Attention Set — Content Styles */
+
+.gas-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 8px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.gas-red { background-color: #d73a49; }
+.gas-green { background-color: #28a745; }
+.gas-yellow { background-color: #dbab09; }
+
+.gas-detail-banner {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin: 4px 0 8px 0;
+  display: inline-block;
+}
+
+.gas-banner-red {
+  color: #d73a49;
+  background-color: rgba(215, 58, 73, 0.1);
+}
+
+.gas-banner-green {
+  color: #28a745;
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+.gas-banner-yellow {
+  color: #dbab09;
+  background-color: rgba(219, 171, 9, 0.1);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .gas-banner-red { color: #f85149; background-color: rgba(248, 81, 73, 0.1); }
+  .gas-banner-green { color: #3fb950; background-color: rgba(63, 185, 80, 0.1); }
+  .gas-banner-yellow { color: #d29922; background-color: rgba(210, 153, 34, 0.1); }
+}
+
+/* GitHub dark theme class-based */
+[data-color-mode="dark"] .gas-banner-red,
+[data-dark-theme] .gas-banner-red {
+  color: #f85149;
+  background-color: rgba(248, 81, 73, 0.1);
+}
+
+[data-color-mode="dark"] .gas-banner-green,
+[data-dark-theme] .gas-banner-green {
+  color: #3fb950;
+  background-color: rgba(63, 185, 80, 0.1);
+}
+
+[data-color-mode="dark"] .gas-banner-yellow,
+[data-dark-theme] .gas-banner-yellow {
+  color: #d29922;
+  background-color: rgba(210, 153, 34, 0.1);
+}
