@@ -36,7 +36,7 @@ chrome.storage.sync.get({ token: '', username: '' }, (settings) => {
   }
 
   // Try cached data first
-  chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed'], (cached) => {
+  chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed', 'repoFilterMode', 'repoFilterList'], (cached) => {
     if (cached && cached.results) {
       render(cached, false);
       const btn = document.getElementById('refresh');
@@ -83,14 +83,48 @@ function restorePR(prUrl) {
   });
 }
 
+function groupByRepo(prs) {
+  const map = new Map();
+  for (const pr of prs) {
+    if (!map.has(pr.repo)) map.set(pr.repo, []);
+    map.get(pr.repo).push(pr);
+  }
+  // Sort PRs within each group by lastEventAt desc
+  const groups = [];
+  for (const [repo, repoPrs] of map) {
+    repoPrs.sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
+    const latestEvent = repoPrs[0]?.lastEventAt || 0;
+    groups.push({ repo, prs: repoPrs, latestEvent });
+  }
+  // Sort groups by latest event desc
+  groups.sort((a, b) => b.latestEvent - a.latestEvent);
+  return groups;
+}
+
+function applyRepoFilter(results, mode, repoListStr) {
+  if (!mode || mode === 'all' || !repoListStr.trim()) return results;
+  const repos = new Set(repoListStr.split('\n').map(r => r.trim().toLowerCase()).filter(Boolean));
+  if (repos.size === 0) return results;
+  if (mode === 'include') return results.filter(r => repos.has(r.repo.toLowerCase()));
+  if (mode === 'exclude') return results.filter(r => !repos.has(r.repo.toLowerCase()));
+  return results;
+}
+
 function render(data, isRefreshing) {
   if (!data || !data.results) {
     showSpinner();
     return;
   }
 
-  const { results, username } = data;
+  const { username } = data;
+  let { results } = data;
   const dismissed = data.dismissed || {};
+
+  // Apply repo filter
+  const filterData = data.repoFilterMode ? data : {};
+  const filterMode = filterData.repoFilterMode || 'all';
+  const filterList = filterData.repoFilterList || '';
+  results = applyRepoFilter(results, filterMode, filterList);
 
   // Filter out dismissed PRs (unless they have new events)
   const activePRs = results.filter(pr => {
@@ -120,6 +154,9 @@ function render(data, isRefreshing) {
     ? `${count} PR${count > 1 ? 's' : ''} need${count === 1 ? 's' : ''} your attention`
     : 'All clear! No PRs waiting on you.';
 
+  // Group by repo
+  const repoGroups = groupByRepo(sorted);
+
   const dismissedSection = dismissedPRs.length > 0 ? `
     <div class="dismissed-toggle" id="dismissed-toggle">
       ${dismissedPRs.length} dismissed <svg width="12" height="12" viewBox="0 0 16 16" style="vertical-align:middle"><path fill="currentColor" d="M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z"></path></svg>
@@ -136,30 +173,36 @@ function render(data, isRefreshing) {
     </ul>
   ` : '';
 
+  const prListHtml = sorted.length === 0 ? '<div class="empty">No open PRs found.</div>' : repoGroups.map(group => `
+    <div class="repo-group">
+      <div class="repo-group-title">${escHtml(group.repo)} (${group.prs.length})</div>
+      <ul class="pr-list">
+        ${group.prs.map(pr => {
+          const color = pr.myStatus === 'red' ? '#d73a49' : pr.myStatus === 'yellow' ? '#dbab09' : '#28a745';
+          const waitingOn = Object.entries(pr.attentionSet || {})
+            .filter(([u, s]) => s === 'red' && !isBot(u))
+            .map(([u]) => u === username ? `<strong>@${escHtml(u)}</strong>` : `@${escHtml(u)}`);
+          return `<li class="pr-item">
+            <span class="dot">${getIcon('dot-fill', 10, color)}</span>
+            <div class="pr-info">
+              <div class="pr-title"><a href="${pr.url}" target="_blank" title="${escHtml(pr.title)}">${escHtml(pr.title)}</a></div>
+              <div class="pr-meta">#${pr.number}${waitingOn.length ? ' · Waiting on: ' + waitingOn.join(', ') : ''}</div>
+            </div>
+            <span class="pr-time">${timeAgo(pr.lastEventAt)}</span>
+            <button class="dismiss-btn" data-url="${escHtml(pr.url)}" data-event-at="${pr.lastEventAt || 0}" title="Dismiss">${getIcon('x', 14)}</button>
+          </li>`;
+        }).join('')}
+      </ul>
+    </div>
+  `).join('');
+
   app.innerHTML = `
     <div class="header">
       <h1>🐙 Attention Set</h1>
       <button class="refresh-btn" id="refresh">${isRefreshing ? getIcon('sync', 12) : getIcon('sync', 12) + ' Refresh'}</button>
     </div>
     <div class="summary">${summaryText}</div>
-    ${sorted.length === 0 ? '<div class="empty">No open PRs found.</div>' : `
-    <ul class="pr-list">
-      ${sorted.map(pr => {
-        const color = pr.myStatus === 'red' ? '#d73a49' : pr.myStatus === 'yellow' ? '#dbab09' : '#28a745';
-        const waitingOn = Object.entries(pr.attentionSet || {})
-          .filter(([u, s]) => s === 'red' && !isBot(u))
-          .map(([u]) => u === username ? `<strong>@${escHtml(u)}</strong>` : `@${escHtml(u)}`);
-        return `<li class="pr-item">
-          <span class="dot">${getIcon('dot-fill', 10, color)}</span>
-          <div class="pr-info">
-            <div class="pr-title"><a href="${pr.url}" target="_blank" title="${escHtml(pr.title)}">${escHtml(pr.title)}</a></div>
-            <div class="pr-meta">${pr.repo}#${pr.number}${waitingOn.length ? ' · Waiting on: ' + waitingOn.join(', ') : ''}</div>
-          </div>
-          <span class="pr-time">${timeAgo(pr.lastEventAt)}</span>
-          <button class="dismiss-btn" data-url="${escHtml(pr.url)}" data-event-at="${pr.lastEventAt || 0}" title="Dismiss">${getIcon('x', 14)}</button>
-        </li>`;
-      }).join('')}
-    </ul>`}
+    ${prListHtml}
     ${dismissedSection}
   `;
 

@@ -31,3 +31,26 @@ saveBtn.onclick = () => {
     });
   });
 };
+
+// Repo Filter
+const filterAllEl = document.getElementById('filter-all');
+const filterIncludeEl = document.getElementById('filter-include');
+const filterExcludeEl = document.getElementById('filter-exclude');
+const repoListEl = document.getElementById('repoList');
+const saveFilterBtn = document.getElementById('saveFilter');
+const savedFilterEl = document.getElementById('savedFilter');
+
+chrome.storage.local.get({ repoFilterMode: 'all', repoFilterList: '' }, (s) => {
+  if (s.repoFilterMode === 'include') filterIncludeEl.checked = true;
+  else if (s.repoFilterMode === 'exclude') filterExcludeEl.checked = true;
+  else filterAllEl.checked = true;
+  repoListEl.value = s.repoFilterList;
+});
+
+saveFilterBtn.onclick = () => {
+  const mode = filterIncludeEl.checked ? 'include' : filterExcludeEl.checked ? 'exclude' : 'all';
+  chrome.storage.local.set({ repoFilterMode: mode, repoFilterList: repoListEl.value }, () => {
+    savedFilterEl.style.display = 'inline';
+    setTimeout(() => savedFilterEl.style.display = 'none', 2000);
+  });
+};

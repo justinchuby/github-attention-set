@@ -71,9 +71,13 @@ async function pollAndCompute() {
 
     await chrome.storage.local.set({ results, username, lastPoll: Date.now() });
 
+    // Apply repo filter
+    const { repoFilterMode, repoFilterList } = await new Promise(r => chrome.storage.local.get({ repoFilterMode: 'all', repoFilterList: '' }, r));
+    const filteredResults = applyRepoFilter(results, repoFilterMode, repoFilterList);
+
     // Subtract dismissed PRs from badge count
     const dismissed = (await chrome.storage.local.get('dismissed')).dismissed || {};
-    const needsAttention = results.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
+    const needsAttention = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
     setBadge(needsAttention);
     
     // Cleanup: remove dismissed entries for PRs that are no longer open
@@ -175,6 +179,15 @@ function computeAttentionSet(timeline, me, author, debounceMin, now = Date.now()
   return { set: setObj, myStatus };
 }
 
+function applyRepoFilter(results, mode, repoListStr) {
+  if (!mode || mode === 'all' || !repoListStr.trim()) return results;
+  const repos = new Set(repoListStr.split('\n').map(r => r.trim().toLowerCase()).filter(Boolean));
+  if (repos.size === 0) return results;
+  if (mode === 'include') return results.filter(r => repos.has(r.repo.toLowerCase()));
+  if (mode === 'exclude') return results.filter(r => !repos.has(r.repo.toLowerCase()));
+  return results;
+}
+
 function setBadge(count) {
   if (count > 0) {
     chrome.action.setBadgeText({ text: String(count) });
@@ -191,7 +204,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
   if (msg.type === 'getData') {
-    chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed'], sendResponse);
+    chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed', 'repoFilterMode', 'repoFilterList'], sendResponse);
     return true;
   }
 });
