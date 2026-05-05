@@ -49,6 +49,7 @@ chrome.storage.local.get({ token: '', username: '' }, (settings) => {
   // Try cached data first
   chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed', 'repoFilterMode', 'repoFilterList'], (cached) => {
     window.__lastError = cached.lastError || null;
+    window.__groupByRepo = cached.groupByRepo !== false;
     if (cached && cached.results) {
       render(cached, false);
       const btn = document.getElementById('refresh');
@@ -168,7 +169,7 @@ function render(data, isRefreshing) {
 
   // Group by repo per status section
   const needsAttentionGroups = groupByRepo(needsAttention);
-  const othersGroups = groupByRepo(others);
+  const othersGroups = window.__groupByRepo ? groupByRepo(others) : [{ repo: '', prs: others }];
 
   const dismissedSection = dismissedPRs.length > 0 ? `
     <div class="dismissed-toggle" id="dismissed-toggle">

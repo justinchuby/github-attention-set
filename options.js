@@ -8,7 +8,7 @@ const saveBtn = document.getElementById('save');
 const savedEl = document.getElementById('saved');
 
 // Load
-chrome.storage.local.get({ token: '', debounceMinutes: 10, pollMinutes: 2, notifications: true }, (s) => {
+chrome.storage.local.get({ token: '', debounceMinutes: 10, pollMinutes: 2, notifications: true, groupByRepo: true }, (s) => {
   tokenEl.value = s.token;
   debounceEl.value = s.debounceMinutes;
   pollEl.value = s.pollMinutes;
