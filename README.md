@@ -1,37 +1,80 @@
 # GitHub Attention Set
 
-A Chrome extension that brings Google Critique's "Attention Set" concept to GitHub — see at a glance which PRs are waiting on you.
+> Know whose turn it is on every PR — inspired by Google's Critique
+
+![Screenshot](screenshot.png)
+
+## What is Attention Set?
+
+Code review is turn-based. At any point, someone is blocking progress — either the author needs to address feedback, or a reviewer needs to respond. **Attention Set tells you whose turn it is.**
+
+Google's internal code review tool (Critique) has had this concept for years. GitHub doesn't. This extension brings it to GitHub.
+
+## How It Works
+
+The extension monitors PR activity and computes who currently needs to act:
+
+| Event | Who enters the attention set |
+|---|---|
+| Reviewer submits a review | Author |
+| Someone leaves a comment (debounced, default 10 min) | Author |
+| Author re-requests review | Reviewer |
+| Author replies to a comment (debounced) | Reviewer |
+| @mention someone | That person |
+
+**Leaving the attention set:** You leave automatically once you take action (reply, review, push, etc.).
+
+**Filtering:** Bot accounts and org/team mentions are automatically excluded.
 
 ## Features
 
-- 🔴🟢🟡 Signal dots on PR list pages showing what needs your attention
-- Status banner on PR detail pages
-- Popup with a quick summary of all your PRs
-- Badge count on the extension icon
-- Automatic dark/light mode support
-- Configurable debounce time and poll interval
+- 🔴 Badge shows count of PRs needing your attention
+- Popup grouped by status: **Needs your attention** / **Waiting on others**
+- Optional group by repo
+- Dismiss PRs (auto-restores on new activity)
+- Relative timestamps
+- Repo filter (show only / hide specific repos)
+- Dark mode support
+- All data stays local — nothing synced to Google servers
 
-## Attention Set Logic
+## Install
 
-**You enter the attention set when:**
-| Event | Who enters |
-|---|---|
-| Someone submits a review | PR Author |
-| Reviewer comments (after debounce) | PR Author |
-| Author re-requests review | Reviewer |
-| Author replies to comment (after debounce) | Reviewer |
-| @mention | Mentioned person |
+**Chrome Web Store:** [Coming soon](#)
 
-**You leave when:** you take action (comment, review, push, re-request review).
+**Manual (development):**
+
+```bash
+git clone https://github.com/justinchuby/github-attention-set.git
+cd github-attention-set
+npm install
+```
+
+Then load as unpacked extension in `chrome://extensions` (enable Developer mode).
 
 ## Setup
 
-1. Load as unpacked extension in `chrome://extensions`
-2. Click extension icon → Open Settings
-3. Enter a GitHub PAT with `repo` scope
-4. Done! The extension polls every 2 minutes by default.
+1. Create a fine-grained Personal Access Token at [github.com/settings/personal-access-tokens/new](https://github.com/settings/personal-access-tokens/new)
+2. Grant permissions:
+   - **Pull requests** → Read
+   - **Issues** → Read
+3. Open the extension options and paste your token
 
-## Requirements
+## Privacy
 
-- GitHub Personal Access Token with `repo` scope
-- Chrome/Chromium with Manifest V3 support
+- Token stored in `chrome.storage.local` only (never synced to Google)
+- All GitHub API calls made over HTTPS
+- No data sent to any third party
+- No analytics or tracking of any kind
+
+## Development
+
+```bash
+npm install
+npm test
+```
+
+Load the extension as unpacked in `chrome://extensions` with Developer mode enabled.
+
+## License
+
+MIT
