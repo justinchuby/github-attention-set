@@ -39,6 +39,8 @@ chrome.storage.sync.get({ token: '', username: '' }, (settings) => {
   chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed'], (cached) => {
     if (cached && cached.results) {
       render(cached, false);
+      const btn = document.getElementById('refresh');
+      if (btn) { btn.innerHTML = '<span class="spinner">' + getIcon('sync', 12) + '</span>'; btn.disabled = true; }
       chrome.runtime.sendMessage({ type: 'refresh' }, () => {
         chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
           if (fresh && fresh.results) render(fresh, false);
