@@ -61,7 +61,10 @@
     .repo-group { margin-bottom: 12px; }
     .repo-group-title { font-size: 11px; font-weight: 700; color: #57606a; margin-bottom: 4px; padding: 4px 0; }
     @media (prefers-color-scheme: dark) { .repo-group-title { color: #8b949e; } }
-    .status-section-title { font-size: 13px; font-weight: 600; margin: 12px 0 6px 0; display: flex; align-items: center; gap: 6px; }
+    .status-section-title { font-size: 13px; font-weight: 600; margin: 12px 0 6px 0; padding: 4px 8px; border-radius: 4px; display: flex; align-items: center; gap: 6px; }
+    .status-section-title.attention { background: #fff1f0; color: #cf222e; }
+    .status-section-title.others { background: #f0fff4; color: #1a7f37; }
+    @media (prefers-color-scheme: dark) { .status-section-title.attention { background: #3d1114; color: #f85149; } .status-section-title.others { background: #0d2818; color: #3fb950; } }
   </style>
 </head>
 <body>
