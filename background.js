@@ -119,9 +119,8 @@ function isBot(login, userObj) {
   if (knownBots.includes(login.toLowerCase())) return true;
   // Filter numeric-only "usernames" (likely parsing errors)
   if (/^\d+$/.test(login)) return true;
-  // Filter known orgs/libraries that get mentioned
-  const knownOrgs = ['testing-library', 'onnx', 'microsoft', 'pytorch', 'google'];
-  if (knownOrgs.includes(login.toLowerCase())) return true;
+  // Filter non-User types (orgs, mannequins, etc.)
+  if (userObj && userObj.type && userObj.type !== 'User') return true;
   return false;
 }
 
