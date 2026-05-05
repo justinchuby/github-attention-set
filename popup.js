@@ -49,7 +49,7 @@ chrome.storage.local.get({ token: '', username: '' }, (settings) => {
   // Try cached data first
   chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed', 'repoFilterMode', 'repoFilterList'], (cached) => {
     window.__lastError = cached.lastError || null;
-    window.__groupByRepo = cached.groupByRepo !== false;
+    window.__groupByRepo = cached.groupByRepo === true;
     if (cached && cached.results) {
       render(cached, false);
       const btn = document.getElementById('refresh');
