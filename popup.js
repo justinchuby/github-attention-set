@@ -2,7 +2,12 @@
 
 const app = document.getElementById('app');
 
-chrome.storage.sync.get({ token: '' }, (settings) => {
+function isBot(login) {
+  if (!login) return false;
+  return login.includes('[bot]');
+}
+
+chrome.storage.sync.get({ token: '', username: '' }, (settings) => {
   if (!settings.token) {
     app.innerHTML = `<div class="no-token">
       <p>No GitHub token configured.</p>
@@ -12,12 +17,33 @@ chrome.storage.sync.get({ token: '' }, (settings) => {
     return;
   }
 
-  chrome.runtime.sendMessage({ type: 'getData' }, render);
+  // Try cached data first
+  chrome.storage.local.get(['results', 'username', 'lastPoll'], (cached) => {
+    if (cached && cached.results) {
+      render(cached, false);
+      // Background refresh
+      chrome.runtime.sendMessage({ type: 'refresh' }, () => {
+        chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
+          if (fresh && fresh.results) render(fresh, false);
+        });
+      });
+    } else {
+      // No cache — show spinner
+      showSpinner();
+      chrome.runtime.sendMessage({ type: 'refresh' }, () => {
+        chrome.runtime.sendMessage({ type: 'getData' }, (data) => render(data, false));
+      });
+    }
+  });
 });
 
-function render(data) {
+function showSpinner() {
+  app.innerHTML = '<div class="empty"><span class="spinner">↻</span> Loading...</div>';
+}
+
+function render(data, isRefreshing) {
   if (!data || !data.results) {
-    app.innerHTML = '<div class="empty">Loading...</div>';
+    showSpinner();
     return;
   }
 
@@ -34,15 +60,15 @@ function render(data) {
   app.innerHTML = `
     <div class="header">
       <h1>🦀 Attention Set</h1>
-      <button class="refresh-btn" id="refresh">↻ Refresh</button>
+      <button class="refresh-btn" id="refresh">${isRefreshing ? '<span class="spinner">↻</span>' : '↻ Refresh'}</button>
     </div>
     <div class="summary">${summaryText}</div>
     ${sorted.length === 0 ? '<div class="empty">No open PRs found.</div>' : `
     <ul class="pr-list">
       ${sorted.map(pr => {
         const waitingOn = Object.entries(pr.attentionSet || {})
-          .filter(([_, s]) => s === 'red')
-          .map(([u]) => `@${u}`);
+          .filter(([u, s]) => s === 'red' && !isBot(u))
+          .map(([u]) => u === username ? `<strong>@${escHtml(u)}</strong>` : `@${escHtml(u)}`);
         return `<li class="pr-item">
           <span class="dot dot-${pr.myStatus}"></span>
           <div class="pr-info">
@@ -55,8 +81,12 @@ function render(data) {
   `;
 
   document.getElementById('refresh').onclick = () => {
+    // Show spinner on button
+    const btn = document.getElementById('refresh');
+    btn.innerHTML = '<span class="spinner">↻</span>';
+    btn.disabled = true;
     chrome.runtime.sendMessage({ type: 'refresh' }, () => {
-      chrome.runtime.sendMessage({ type: 'getData' }, render);
+      chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => render(fresh, false));
     });
   };
 }

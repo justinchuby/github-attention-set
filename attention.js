@@ -1,5 +1,15 @@
 // Core attention set computation — pure function, no Chrome API dependency.
 
+/**
+ * Returns true if the user should be considered a bot.
+ */
+export function isBot(login, userObj) {
+  if (!login) return false;
+  if (login.includes('[bot]')) return true;
+  if (userObj && userObj.type === 'Bot') return true;
+  return false;
+}
+
 export function computeAttentionSet(timeline, me, author, debounceMin, now = Date.now()) {
   const set = new Map(); // user -> { status: 'red'|'yellow', since: timestamp }
   const debounceMs = debounceMin * 60 * 1000;
@@ -71,7 +81,9 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
 
   const setObj = {};
   for (const [user, info] of set) {
-    setObj[user] = info.status;
+    if (!isBot(user)) {
+      setObj[user] = info.status;
+    }
   }
 
   return { set: setObj, myStatus };

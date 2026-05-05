@@ -74,9 +74,13 @@ async function pollAndCompute() {
   }
 }
 
-// computeAttentionSet is now in attention.js (extracted for testability).
-// In the Chrome extension context, we inline it here since service workers
-// don't support ES modules. For tests, import from attention.js.
+function isBot(login, userObj) {
+  if (!login) return false;
+  if (login.includes('[bot]')) return true;
+  if (userObj && userObj.type === 'Bot') return true;
+  return false;
+}
+
 function computeAttentionSet(timeline, me, author, debounceMin, now = Date.now()) {
   const set = new Map();
   const debounceMs = debounceMin * 60 * 1000;
@@ -141,7 +145,9 @@ function computeAttentionSet(timeline, me, author, debounceMin, now = Date.now()
 
   const setObj = {};
   for (const [user, info] of set) {
-    setObj[user] = info.status;
+    if (!isBot(user)) {
+      setObj[user] = info.status;
+    }
   }
 
   return { set: setObj, myStatus };

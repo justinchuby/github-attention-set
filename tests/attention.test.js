@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { computeAttentionSet } from '../attention.js';
+import { computeAttentionSet, isBot } from '../attention.js';
 
 const DEBOUNCE_MIN = 10;
 const DEBOUNCE_MS = DEBOUNCE_MIN * 60 * 1000;
@@ -154,5 +154,35 @@ describe('computeAttentionSet', () => {
       expect(result.set[author]).toBeUndefined();
       expect(result.myStatus).toBe('green');
     });
+  });
+});
+
+describe('isBot', () => {
+  it('detects [bot] suffix', () => {
+    expect(isBot('github-actions[bot]')).toBe(true);
+    expect(isBot('dependabot[bot]')).toBe(true);
+    expect(isBot('renovate[bot]')).toBe(true);
+  });
+
+  it('detects Bot type from user object', () => {
+    expect(isBot('some-app', { type: 'Bot' })).toBe(true);
+  });
+
+  it('does not flag regular users', () => {
+    expect(isBot('alice')).toBe(false);
+    expect(isBot('bob', { type: 'User' })).toBe(false);
+  });
+});
+
+describe('computeAttentionSet bot filtering', () => {
+  const NOW = Date.now();
+  it('filters bots from attention set output', () => {
+    const timeline = [
+      { event: 'review_requested', actor: { login: 'alice' }, requested_reviewer: { login: 'github-actions[bot]' }, created_at: new Date(NOW - 60000).toISOString() },
+      { event: 'review_requested', actor: { login: 'alice' }, requested_reviewer: { login: 'bob' }, created_at: new Date(NOW - 60000).toISOString() },
+    ];
+    const result = computeAttentionSet(timeline, 'bob', 'alice', 10, NOW);
+    expect(result.set['github-actions[bot]']).toBeUndefined();
+    expect(result.set['bob']).toBe('red');
   });
 });
