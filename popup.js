@@ -166,8 +166,9 @@ function render(data, isRefreshing) {
     ? `${count} PR${count > 1 ? 's' : ''} need${count === 1 ? 's' : ''} your attention`
     : 'All clear! No PRs waiting on you.';
 
-  // Group by repo
-  const repoGroups = groupByRepo(sorted);
+  // Group by repo per status section
+  const needsAttentionGroups = groupByRepo(needsAttention);
+  const othersGroups = groupByRepo(others);
 
   const dismissedSection = dismissedPRs.length > 0 ? `
     <div class="dismissed-toggle" id="dismissed-toggle">
@@ -185,28 +186,44 @@ function render(data, isRefreshing) {
     </ul>
   ` : '';
 
-  const prListHtml = sorted.length === 0 ? '<div class="empty">No open PRs found.</div>' : repoGroups.map(group => `
-    <div class="repo-group">
-      <div class="repo-group-title">${escHtml(group.repo)} (${group.prs.length})</div>
-      <ul class="pr-list">
-        ${group.prs.map(pr => {
-          const color = pr.myStatus === 'red' ? '#d73a49' : pr.myStatus === 'yellow' ? '#dbab09' : '#28a745';
-          const waitingOn = Object.entries(pr.attentionSet || {})
-            .filter(([u, s]) => s === 'red' && !isBot(u))
-            .map(([u]) => u === username ? `<strong>@${escHtml(u)}</strong>` : `@${escHtml(u)}`);
-          return `<li class="pr-item">
-            <span class="dot">${getIcon('dot-fill', 10, color)}</span>
-            <div class="pr-info">
-              <div class="pr-title"><a href="${pr.url}" target="_blank" title="${escHtml(pr.title)}">${escHtml(pr.title)}</a></div>
-              <div class="pr-meta">#${pr.number}${waitingOn.length ? ' · Waiting on: ' + waitingOn.join(', ') : ''}</div>
-            </div>
-            <span class="pr-time">${timeAgo(pr.lastEventAt)}</span>
-            <button class="dismiss-btn" data-url="${escHtml(pr.url)}" data-event-at="${pr.lastEventAt || 0}" title="Dismiss">${getIcon('x', 14)}</button>
-          </li>`;
-        }).join('')}
-      </ul>
-    </div>
-  `).join('');
+  function renderRepoGroups(groups) {
+    return groups.map(group => `
+      <div class="repo-group">
+        <div class="repo-group-title">${escHtml(group.repo)} (${group.prs.length})</div>
+        <ul class="pr-list">
+          ${group.prs.map(pr => {
+            const color = pr.myStatus === 'red' ? '#d73a49' : pr.myStatus === 'yellow' ? '#dbab09' : '#28a745';
+            const waitingOn = Object.entries(pr.attentionSet || {})
+              .filter(([u, s]) => s === 'red' && !isBot(u))
+              .map(([u]) => u === username ? `<strong>@${escHtml(u)}</strong>` : `@${escHtml(u)}`);
+            return `<li class="pr-item">
+              <span class="dot">${getIcon('dot-fill', 10, color)}</span>
+              <div class="pr-info">
+                <div class="pr-title"><a href="${pr.url}" target="_blank" title="${escHtml(pr.title)}">${escHtml(pr.title)}</a></div>
+                <div class="pr-meta">#${pr.number}${waitingOn.length ? ' · Waiting on: ' + waitingOn.join(', ') : ''}</div>
+              </div>
+              <span class="pr-time">${timeAgo(pr.lastEventAt)}</span>
+              <button class="dismiss-btn" data-url="${escHtml(pr.url)}" data-event-at="${pr.lastEventAt || 0}" title="Dismiss">${getIcon('x', 14)}</button>
+            </li>`;
+          }).join('')}
+        </ul>
+      </div>
+    `).join('');
+  }
+
+  let prListHtml = '';
+  if (activePRs.length === 0) {
+    prListHtml = '<div class="empty">No open PRs found.</div>';
+  } else {
+    if (needsAttention.length > 0) {
+      prListHtml += `<div class="status-section-title">🔴 Needs your attention (${needsAttention.length})</div>`;
+      prListHtml += renderRepoGroups(needsAttentionGroups);
+    }
+    if (others.length > 0) {
+      prListHtml += `<div class="status-section-title">✅ Waiting on others (${others.length})</div>`;
+      prListHtml += renderRepoGroups(othersGroups);
+    }
+  }
 
   app.innerHTML = `
     <div class="header">
