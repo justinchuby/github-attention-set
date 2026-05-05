@@ -47,7 +47,7 @@ chrome.storage.local.get({ token: '', username: '' }, (settings) => {
   }
 
   // Try cached data first
-  chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed', 'repoFilterMode', 'repoFilterList'], (cached) => {
+  chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed', 'repoFilterMode', 'repoFilterList', 'groupByRepo'], (cached) => {
     window.__lastError = cached.lastError || null;
     window.__groupByRepo = cached.groupByRepo === true;
     if (cached && cached.results) {
@@ -168,7 +168,7 @@ function render(data, isRefreshing) {
     : 'All clear! No PRs waiting on you.';
 
   // Group by repo per status section
-  const needsAttentionGroups = groupByRepo(needsAttention);
+  const needsAttentionGroups = window.__groupByRepo ? groupByRepo(needsAttention) : [{ repo: "", prs: needsAttention }];
   const othersGroups = window.__groupByRepo ? groupByRepo(others) : [{ repo: '', prs: others }];
 
   const dismissedSection = dismissedPRs.length > 0 ? `
