@@ -36,7 +36,7 @@ function isBot(login) {
   return login.includes('[bot]');
 }
 
-chrome.storage.sync.get({ token: '', username: '' }, (settings) => {
+chrome.storage.local.get({ token: '', username: '' }, (settings) => {
   if (!settings.token) {
     app.innerHTML = `<div class="no-token">
       <p>No GitHub token configured.</p>

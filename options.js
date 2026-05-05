@@ -8,7 +8,7 @@ const saveBtn = document.getElementById('save');
 const savedEl = document.getElementById('saved');
 
 // Load
-chrome.storage.sync.get({ token: '', debounceMinutes: 10, pollMinutes: 2, notifications: true }, (s) => {
+chrome.storage.local.get({ token: '', debounceMinutes: 10, pollMinutes: 2, notifications: true }, (s) => {
   tokenEl.value = s.token;
   debounceEl.value = s.debounceMinutes;
   pollEl.value = s.pollMinutes;
@@ -22,7 +22,7 @@ saveBtn.onclick = () => {
     pollMinutes: parseInt(pollEl.value) || 2,
     notifications: notifEl.checked,
   };
-  chrome.storage.sync.set(settings, () => {
+  chrome.storage.local.set(settings, () => {
     savedEl.style.display = 'inline';
     setTimeout(() => savedEl.style.display = 'none', 2000);
     // Update alarm interval

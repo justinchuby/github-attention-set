@@ -16,7 +16,7 @@ pollAndCompute();
 
 async function getSettings() {
   const defaults = { token: '', debounceMinutes: DEFAULT_DEBOUNCE, pollMinutes: DEFAULT_POLL_INTERVAL, notifications: true };
-  return new Promise(r => chrome.storage.sync.get(defaults, r));
+  return new Promise(r => chrome.storage.local.get(defaults, r));
 }
 
 async function ghFetch(path, token) {
