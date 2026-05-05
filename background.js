@@ -96,6 +96,10 @@ function isBot(login, userObj) {
   if (!login) return false;
   if (login.includes('[bot]')) return true;
   if (userObj && userObj.type === 'Bot') return true;
+  if (userObj && userObj.type === 'Organization') return true;
+  // Known bots without [bot] suffix
+  const knownBots = ['copilot', 'dependabot', 'renovate', 'github-actions', 'codecov', 'stale'];
+  if (knownBots.includes(login.toLowerCase())) return true;
   return false;
 }
 

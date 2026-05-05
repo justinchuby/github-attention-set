@@ -7,6 +7,10 @@ export function isBot(login, userObj) {
   if (!login) return false;
   if (login.includes('[bot]')) return true;
   if (userObj && userObj.type === 'Bot') return true;
+  if (userObj && userObj.type === 'Organization') return true;
+  // Known bots without [bot] suffix
+  const knownBots = ['copilot', 'dependabot', 'renovate', 'github-actions', 'codecov', 'stale'];
+  if (knownBots.includes(login.toLowerCase())) return true;
   return false;
 }
 
@@ -27,10 +31,13 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
       }
       case 'review_requested': {
         // Author re-requests review → reviewer enters
-        const reviewer = event.requested_reviewer?.login;
-        if (reviewer) {
-          set.delete(actor); // author leaves
-          set.set(reviewer, { status: 'red', since: ts });
+        const reviewer = event.requested_reviewer?.login || event.requested_team?.name;
+        if (reviewer && !isBot(reviewer, event.requested_reviewer)) {
+          // Skip org/team names (they have no .login on requested_team)
+          if (event.requested_reviewer && !event.requested_team) {
+            set.delete(actor); // author leaves
+            set.set(reviewer, { status: 'red', since: ts });
+          }
         }
         break;
       }
