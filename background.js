@@ -104,6 +104,11 @@ function isBot(login, userObj) {
   // Known bots without [bot] suffix
   const knownBots = ['copilot', 'dependabot', 'renovate', 'github-actions', 'codecov', 'stale'];
   if (knownBots.includes(login.toLowerCase())) return true;
+  // Filter numeric-only "usernames" (likely parsing errors)
+  if (/^\d+$/.test(login)) return true;
+  // Filter known orgs/libraries that get mentioned
+  const knownOrgs = ['testing-library', 'onnx', 'microsoft', 'pytorch', 'google'];
+  if (knownOrgs.includes(login.toLowerCase())) return true;
   return false;
 }
 
