@@ -53,7 +53,7 @@ chrome.storage.local.get({ token: '', username: '' }, (settings) => {
     if (cached && cached.results) {
       render(cached, false);
       const btn = document.getElementById('refresh');
-      if (btn) { btn.innerHTML = '<span class="spinner">' + getIcon('sync', 12) + '</span>'; btn.disabled = true; }
+      if (btn) { btn.innerHTML = '<span class="spinner">' + getIcon('sync', 12) + '</span> Refresh'; btn.disabled = true; }
       chrome.runtime.sendMessage({ type: 'refresh' }, () => {
         chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
           if (fresh && fresh.results) render(fresh, false);
@@ -229,7 +229,8 @@ function render(data, isRefreshing) {
   app.innerHTML = `
     <div class="header">
       <h1><img src="icons/icon48.png" width="18" height="18" style="vertical-align:middle;margin-right:6px">Attention Set</h1>
-      <button class="refresh-btn" id="refresh">${isRefreshing ? getIcon('sync', 12) : getIcon('sync', 12) + ' Refresh'}</button>
+      <button class="refresh-btn" id="refresh">${getIcon('sync', 12)} Refresh</button>
+      <button class="settings-btn" id="open-settings" title="Settings">${getIcon('gear', 14)}</button>
     </div>
     ${window.__lastError ? `<div class="error-banner">${window.__lastError.type === "auth" ? "⚠️ Token expired or invalid. Update in settings." : "⚠️ GitHub unreachable. Showing cached data."}</div>` : ""}
     <div class="summary">${summaryText}</div>
@@ -238,6 +239,7 @@ function render(data, isRefreshing) {
   `;
 
   // Refresh button
+  document.getElementById('open-settings').onclick = () => { chrome.runtime.openOptionsPage(); };
   document.getElementById('refresh').onclick = () => {
     const btn = document.getElementById('refresh');
     btn.innerHTML = getIcon('sync', 12);
