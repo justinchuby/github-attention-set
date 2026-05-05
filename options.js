@@ -13,6 +13,7 @@ chrome.storage.local.get({ token: '', debounceMinutes: 10, pollMinutes: 2, notif
   debounceEl.value = s.debounceMinutes;
   pollEl.value = s.pollMinutes;
   notifEl.checked = s.notifications;
+  document.getElementById('groupByRepo').checked = s.groupByRepo === true;
 });
 
 saveBtn.onclick = () => {
@@ -21,6 +22,7 @@ saveBtn.onclick = () => {
     debounceMinutes: parseInt(debounceEl.value) || 10,
     pollMinutes: parseInt(pollEl.value) || 2,
     notifications: notifEl.checked,
+    groupByRepo: document.getElementById('groupByRepo').checked,
   };
   chrome.storage.local.set(settings, () => {
     savedEl.style.display = 'inline';
