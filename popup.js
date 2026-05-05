@@ -136,7 +136,7 @@ function render(data, isRefreshing) {
 
   app.innerHTML = `
     <div class="header">
-      <h1>🦀 Attention Set</h1>
+      <h1>🐙 Attention Set</h1>
       <button class="refresh-btn" id="refresh">${isRefreshing ? getIcon('sync', 12) : getIcon('sync', 12) + ' Refresh'}</button>
     </div>
     <div class="summary">${summaryText}</div>
