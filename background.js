@@ -71,8 +71,18 @@ async function pollAndCompute() {
 
     await chrome.storage.local.set({ results, username, lastPoll: Date.now() });
 
-    const needsAttention = results.filter(r => r.myStatus === 'red').length;
+    // Subtract dismissed PRs from badge count
+    const dismissed = (await chrome.storage.local.get('dismissed')).dismissed || {};
+    const needsAttention = results.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
     setBadge(needsAttention);
+    
+    // Cleanup: remove dismissed entries for PRs that are no longer open
+    const openUrls = new Set(results.map(r => r.url));
+    const cleanedDismissed = {};
+    for (const [url, entry] of Object.entries(dismissed)) {
+      if (openUrls.has(url)) cleanedDismissed[url] = entry; // keep only open PRs
+    }
+    chrome.storage.local.set({ dismissed: cleanedDismissed });
 
     if (settings.notifications && needsAttention > 0) {
       // Only notify on increase — simple approach
