@@ -49,6 +49,10 @@ async function pollAndCompute() {
       } catch { timeline = []; }
 
       const attention = computeAttentionSet(timeline, username, pr.user.login, settings.debounceMinutes);
+      // Debug: log timeline for PRs still showing user in attention set
+      if (attention.myStatus === 'red') {
+        console.log(`[AttentionSet Debug] ${pr.url} still red. Timeline events:`, timeline.map(e => ({ event: e.event, actor: e.actor?.login || e.user?.login, state: e.state, at: e.created_at || e.submitted_at })).slice(-5));
+      }
       // Compute lastEventAt from timeline
       let lastEventAt = 0;
       for (const event of timeline) {
