@@ -49,6 +49,13 @@ async function pollAndCompute() {
       } catch { timeline = []; }
 
       const attention = computeAttentionSet(timeline, username, pr.user.login, settings.debounceMinutes);
+      // Compute lastEventAt from timeline
+      let lastEventAt = 0;
+      for (const event of timeline) {
+        const ts = new Date(event.created_at || event.submitted_at || 0).getTime();
+        if (ts > lastEventAt) lastEventAt = ts;
+      }
+
       results.push({
         id: pr.id,
         number,
@@ -58,6 +65,7 @@ async function pollAndCompute() {
         author: pr.user.login,
         attentionSet: attention.set,
         myStatus: attention.myStatus, // 'red' | 'green' | 'yellow'
+        lastEventAt,
       });
     }
 
@@ -169,7 +177,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
   if (msg.type === 'getData') {
-    chrome.storage.local.get(['results', 'username', 'lastPoll'], sendResponse);
+    chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed'], sendResponse);
     return true;
   }
 });
