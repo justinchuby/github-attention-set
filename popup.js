@@ -217,18 +217,18 @@ function render(data, isRefreshing) {
     prListHtml = '<div class="empty">No open PRs found.</div>';
   } else {
     if (needsAttention.length > 0) {
-      prListHtml += `<div class="status-section-title">🔴 Needs your attention (${needsAttention.length})</div>`;
+      prListHtml += `<div class="status-section-title">Needs your attention (${needsAttention.length})</div>`;
       prListHtml += renderRepoGroups(needsAttentionGroups);
     }
     if (others.length > 0) {
-      prListHtml += `<div class="status-section-title">✅ Waiting on others (${others.length})</div>`;
+      prListHtml += `<div class="status-section-title">Waiting on others (${others.length})</div>`;
       prListHtml += renderRepoGroups(othersGroups);
     }
   }
 
   app.innerHTML = `
     <div class="header">
-      <h1>🐙 Attention Set</h1>
+      <h1>Attention Set</h1>
       <button class="refresh-btn" id="refresh">${isRefreshing ? getIcon('sync', 12) : getIcon('sync', 12) + ' Refresh'}</button>
     </div>
     ${window.__lastError ? `<div class="error-banner">${window.__lastError.type === "auth" ? "⚠️ Token expired or invalid. Update in settings." : "⚠️ GitHub unreachable. Showing cached data."}</div>` : ""}
