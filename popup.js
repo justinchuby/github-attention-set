@@ -228,7 +228,7 @@ function render(data, isRefreshing) {
 
   app.innerHTML = `
     <div class="header">
-      <h1>Attention Set</h1>
+      <h1><img src="icons/icon48.png" width="18" height="18" style="vertical-align:middle;margin-right:6px">Attention Set</h1>
       <button class="refresh-btn" id="refresh">${isRefreshing ? getIcon('sync', 12) : getIcon('sync', 12) + ' Refresh'}</button>
     </div>
     ${window.__lastError ? `<div class="error-banner">${window.__lastError.type === "auth" ? "⚠️ Token expired or invalid. Update in settings." : "⚠️ GitHub unreachable. Showing cached data."}</div>` : ""}
