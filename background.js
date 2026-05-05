@@ -74,10 +74,12 @@ async function pollAndCompute() {
   }
 }
 
-function computeAttentionSet(timeline, me, author, debounceMin) {
-  const set = new Map(); // user -> { status: 'red'|'yellow', since: timestamp }
+// computeAttentionSet is now in attention.js (extracted for testability).
+// In the Chrome extension context, we inline it here since service workers
+// don't support ES modules. For tests, import from attention.js.
+function computeAttentionSet(timeline, me, author, debounceMin, now = Date.now()) {
+  const set = new Map();
   const debounceMs = debounceMin * 60 * 1000;
-  const now = Date.now();
 
   for (const event of timeline) {
     const ts = new Date(event.created_at || event.submitted_at || 0).getTime();
@@ -85,33 +87,23 @@ function computeAttentionSet(timeline, me, author, debounceMin) {
 
     switch (event.event || event.__type) {
       case 'reviewed': {
-        // Submit review → author enters attention set
-        set.delete(actor); // reviewer leaves
+        set.delete(actor);
         set.set(author, { status: 'red', since: ts });
         break;
       }
       case 'review_requested': {
-        // Author re-requests review → reviewer enters
         const reviewer = event.requested_reviewer?.login;
         if (reviewer) {
-          set.delete(actor); // author leaves
+          set.delete(actor);
           set.set(reviewer, { status: 'red', since: ts });
         }
         break;
       }
       case 'commented': {
-        // Comment by reviewer → author enters (debounce)
-        // Comment by author → reviewers enter (debounce)
-        set.delete(actor); // commenter leaves
+        set.delete(actor);
         if (actor === author) {
-          // Author replied — reviewers get debounced attention
-          for (const [user] of set) {
-            // keep existing
-          }
-          // Add all requested reviewers with debounce
-          // Simplified: mark non-author participants
+          // Author replied — simplified
         } else {
-          // Reviewer commented → author with debounce
           const elapsed = now - ts;
           if (elapsed >= debounceMs) {
             set.set(author, { status: 'red', since: ts });
@@ -123,7 +115,6 @@ function computeAttentionSet(timeline, me, author, debounceMin) {
       }
       case 'head_ref_force_pushed':
       case 'committed': {
-        // Push by author → author leaves, reviewers enter
         if (actor === author || event.committer?.login === author) {
           set.delete(author);
         }
@@ -131,7 +122,6 @@ function computeAttentionSet(timeline, me, author, debounceMin) {
       }
     }
 
-    // @mentions in comment body
     if (event.body) {
       const mentions = event.body.match(/@([a-zA-Z0-9-]+)/g) || [];
       for (const m of mentions) {
@@ -143,7 +133,6 @@ function computeAttentionSet(timeline, me, author, debounceMin) {
     }
   }
 
-  // Determine my status
   const myEntry = set.get(me);
   let myStatus = 'green';
   if (myEntry) {
