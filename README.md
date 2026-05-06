@@ -75,6 +75,11 @@ npm test
 
 Load the extension as unpacked in `chrome://extensions` with Developer mode enabled.
 
+## References
+
+- [Google's Critique: Chapter 19 — Software Engineering at Google](https://abseil.io/resources/swe-book/html/ch19.html#:~:text=The%20attention%20set%20comprises%20the%20set%20of%20people%20on%20which%20a%20change%20is%20currently%20blocked.) — Original concept of the Attention Set
+- [Gerrit Code Review — Attention Set](https://gerrit-review.googlesource.com/Documentation/user-attention-set.html) — Open-source implementation in Gerrit
+
 ## License
 
 MIT
