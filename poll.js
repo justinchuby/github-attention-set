@@ -1,5 +1,6 @@
 // Poll logic — pure module, no Chrome API dependency.
 // Input: settings + fetcher. Output: results + badge count.
+// Supports multiple tokens: polls each token concurrently and merges results.
 
 import { computeAttentionSet, isBot } from './attention.js';
 
@@ -15,25 +16,29 @@ async function ghFetch(path, token, fetcher = fetch) {
 }
 
 /**
- * Core poll logic: fetch PRs, compute attention sets, return results.
- * @param {object} settings - { token, debounceMinutes, pollMinutes, notifications }
- * @param {object} opts - { fetcher, repoFilterMode, repoFilterList, dismissed }
- * @returns {{ results, username, needsAttention, filteredResults, error? }}
+ * Migrate old storage format to new tokens array.
  */
-export async function poll(settings, opts = {}) {
-  const { fetcher = fetch, repoFilterMode = 'all', repoFilterList = '', dismissed = {} } = opts;
-
-  if (!settings.token) {
-    return { results: [], username: null, needsAttention: 0, filteredResults: [], error: null };
+export function migrateTokens(stored) {
+  if (stored.tokens && Array.isArray(stored.tokens) && stored.tokens.length > 0) {
+    return stored.tokens;
   }
+  if (stored.token) {
+    return [{ name: 'Default', token: stored.token }];
+  }
+  return [];
+}
 
-  const user = await ghFetch('/user', settings.token, fetcher);
+/**
+ * Poll a single token: fetch user, PRs, timelines, compute attention sets.
+ * Returns { results, username }
+ */
+async function pollSingleToken(tokenEntry, settings, fetcher) {
+  const { token, name } = tokenEntry;
+  const user = await ghFetch('/user', token, fetcher);
   const username = user.login;
 
-  // Get open PRs involving us
-  const prs = await ghFetch(`/search/issues?q=involves:${username}+is:pr+is:open&per_page=50`, settings.token, fetcher);
+  const prs = await ghFetch(`/search/issues?q=involves:${username}+is:pr+is:open&per_page=50`, token, fetcher);
 
-  // Fetch timelines in parallel (batches of 6)
   const CONCURRENCY = 6;
   const items = prs.items || [];
   const results = [];
@@ -46,7 +51,7 @@ export async function poll(settings, opts = {}) {
 
       let timeline;
       try {
-        timeline = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100`, settings.token, fetcher);
+        timeline = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100`, token, fetcher);
       } catch { timeline = []; }
 
       const attention = computeAttentionSet(timeline, username, pr.user.login, settings.debounceMinutes);
@@ -67,18 +72,57 @@ export async function poll(settings, opts = {}) {
         attentionSet: attention.set,
         myStatus: attention.myStatus,
         lastEventAt,
+        account: name || username,
       };
     }));
     results.push(...batchResults);
   }
 
+  return { results, username };
+}
+
+/**
+ * Core poll logic: fetch PRs for all tokens, merge, deduplicate, return results.
+ * @param {object} settings - { token?, tokens?, debounceMinutes, pollMinutes, notifications }
+ * @param {object} opts - { fetcher, repoFilterMode, repoFilterList, dismissed }
+ * @returns {{ results, username, usernames, needsAttention, filteredResults, error? }}
+ */
+export async function poll(settings, opts = {}) {
+  const { fetcher = fetch, repoFilterMode = 'all', repoFilterList = '', dismissed = {} } = opts;
+
+  // Resolve tokens array (backward compat)
+  const tokens = migrateTokens(settings);
+  if (tokens.length === 0) {
+    return { results: [], username: null, usernames: [], needsAttention: 0, filteredResults: [], error: null };
+  }
+
+  // Poll all tokens concurrently
+  const tokenResults = await Promise.all(
+    tokens.map(entry => pollSingleToken(entry, settings, fetcher))
+  );
+
+  // Merge and deduplicate by PR URL (first occurrence wins — keeps attention from first token that sees it)
+  const seen = new Set();
+  const mergedResults = [];
+  const usernames = [];
+
+  for (const { results, username } of tokenResults) {
+    if (!usernames.includes(username)) usernames.push(username);
+    for (const pr of results) {
+      if (!seen.has(pr.url)) {
+        seen.add(pr.url);
+        mergedResults.push(pr);
+      }
+    }
+  }
+
   // Apply repo filter
-  const filteredResults = applyRepoFilter(results, repoFilterMode, repoFilterList);
+  const filteredResults = applyRepoFilter(mergedResults, repoFilterMode, repoFilterList);
 
   // Badge count: red status and not dismissed
   const needsAttention = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
 
-  return { results, username, needsAttention, filteredResults, error: null };
+  return { results: mergedResults, username: usernames[0] || null, usernames, needsAttention, filteredResults, error: null };
 }
 
 export function applyRepoFilter(results, mode, repoListStr) {

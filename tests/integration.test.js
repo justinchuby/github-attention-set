@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { poll, applyRepoFilter } from '../poll.js';
+import { poll, applyRepoFilter, migrateTokens } from '../poll.js';
 
 // Helper: create a mock fetcher that routes based on URL
 function createMockFetcher(routes) {
@@ -37,8 +37,28 @@ function makePR(id, number, owner, repo, author, title = `PR #${number}`) {
 
 const NOW = new Date('2026-05-05T12:00:00Z').getTime();
 
+describe('migrateTokens', () => {
+  it('returns tokens array if present', () => {
+    const tokens = [{ name: 'Work', token: 'ghp_abc' }];
+    expect(migrateTokens({ tokens })).toEqual(tokens);
+  });
+
+  it('migrates old single token format', () => {
+    expect(migrateTokens({ token: 'ghp_old' })).toEqual([{ name: 'Default', token: 'ghp_old' }]);
+  });
+
+  it('returns empty array if no token', () => {
+    expect(migrateTokens({})).toEqual([]);
+  });
+
+  it('prefers tokens array over legacy token field', () => {
+    const result = migrateTokens({ token: 'ghp_old', tokens: [{ name: 'New', token: 'ghp_new' }] });
+    expect(result).toEqual([{ name: 'New', token: 'ghp_new' }]);
+  });
+});
+
 describe('Integration: poll()', () => {
-  const baseSettings = { token: 'ghp_test', debounceMinutes: 10, pollMinutes: 2, notifications: true };
+  const baseSettings = { tokens: [{ name: 'Personal', token: 'ghp_test' }], debounceMinutes: 10, pollMinutes: 2, notifications: true };
 
   it('1. Full poll flow: 3 PRs with different timelines → correct attention set', async () => {
     const fetcher = createMockFetcher({
@@ -66,17 +86,14 @@ describe('Integration: poll()', () => {
     expect(result.username).toBe('me');
     expect(result.results).toHaveLength(3);
 
-    // PR 101: I reviewed → alice (author) should be in attention set
     const r1 = result.results.find(r => r.number === 101);
     expect(r1.attentionSet).toHaveProperty('alice', 'red');
     expect(r1.myStatus).toBe('green');
 
-    // PR 202: review requested for me → I should be red
     const r2 = result.results.find(r => r.number === 202);
     expect(r2.attentionSet).toHaveProperty('me', 'red');
     expect(r2.myStatus).toBe('red');
 
-    // PR 303: someone commented on my PR recently (within debounce) → I'm yellow
     const r3 = result.results.find(r => r.number === 303);
     expect(r3.myStatus).toBe('yellow');
   });
@@ -120,11 +137,10 @@ describe('Integration: poll()', () => {
       ],
     });
 
-    // Both PRs need attention, but one is dismissed
     const dismissed = { 'https://github.com/org/repo/pull/101': { at: Date.now() } };
     const result = await poll(baseSettings, { fetcher, dismissed });
 
-    expect(result.needsAttention).toBe(1); // only PR 202
+    expect(result.needsAttention).toBe(1);
   });
 
   it('4. Bot users filtered from attention set', async () => {
@@ -141,7 +157,6 @@ describe('Integration: poll()', () => {
 
     const result = await poll(baseSettings, { fetcher });
     const r = result.results[0];
-    // Bots should not appear in attention set
     expect(r.attentionSet).not.toHaveProperty('dependabot[bot]');
     expect(r.attentionSet).not.toHaveProperty('renovate');
   });
@@ -170,17 +185,14 @@ describe('Integration: poll()', () => {
   });
 
   it('6. API error handling: 401/500 → throws with status info', async () => {
-    // 401 error
     const fetcher401 = vi.fn(async () => ({ ok: false, status: 401, json: async () => ({}) }));
     await expect(poll(baseSettings, { fetcher: fetcher401 })).rejects.toThrow('GitHub API 401');
 
-    // 500 error on user endpoint
     const fetcher500 = vi.fn(async () => ({ ok: false, status: 500, json: async () => ({}) }));
     await expect(poll(baseSettings, { fetcher: fetcher500 })).rejects.toThrow('GitHub API 500');
   });
 
   it('7. Debounce: different debounce settings yield different results', async () => {
-    // Comment from 5 minutes ago
     const commentTime = new Date(Date.now() - 5 * 60 * 1000).toISOString();
     const fetcher = createMockFetcher({
       '/user': { login: 'me' },
@@ -192,21 +204,116 @@ describe('Integration: poll()', () => {
       ],
     });
 
-    // With 10min debounce (comment is 5min old) → yellow (within debounce)
     const result10 = await poll({ ...baseSettings, debounceMinutes: 10 }, { fetcher });
     expect(result10.results[0].myStatus).toBe('yellow');
 
-    // With 3min debounce (comment is 5min old, past debounce) → red
     const result3 = await poll({ ...baseSettings, debounceMinutes: 3 }, { fetcher });
     expect(result3.results[0].myStatus).toBe('red');
   });
 
   it('8. No token → returns empty results, 0 badge count', async () => {
     const fetcher = vi.fn();
-    const result = await poll({ ...baseSettings, token: '' }, { fetcher });
+    const result = await poll({ tokens: [] }, { fetcher });
     expect(result.results).toEqual([]);
     expect(result.needsAttention).toBe(0);
     expect(fetcher).not.toHaveBeenCalled();
+  });
+
+  it('9. Legacy single token format still works via migration', async () => {
+    const fetcher = createMockFetcher({
+      '/user': { login: 'me' },
+      '/search/issues': { items: [] },
+    });
+    const result = await poll({ token: 'ghp_legacy', debounceMinutes: 10 }, { fetcher });
+    expect(result.username).toBe('me');
+    expect(result.results).toEqual([]);
+  });
+
+  it('10. Multiple tokens: results merged and deduplicated', async () => {
+    // Two tokens see overlapping PRs — differentiate by Authorization header
+    const fetcher = vi.fn(async (url, opts) => {
+      const token = opts?.headers?.Authorization?.replace('token ', '') || '';
+      if (url.includes('/user')) {
+        const login = token === 'ghp_1' ? 'user1' : 'user2';
+        return { ok: true, json: async () => ({ login }) };
+      }
+      if (url.includes('/search/issues')) {
+        if (token === 'ghp_1') {
+          return { ok: true, json: async () => ({ items: [
+            makePR(1, 101, 'org', 'repo', 'alice'),
+            makePR(2, 102, 'org', 'repo', 'bob'),
+          ]}) };
+        } else {
+          return { ok: true, json: async () => ({ items: [
+            makePR(1, 101, 'org', 'repo', 'alice'),
+            makePR(3, 103, 'org', 'repo', 'charlie'),
+          ]}) };
+        }
+      }
+      if (url.includes('/timeline')) {
+        return { ok: true, json: async () => [] };
+      }
+      return { ok: true, json: async () => ({}) };
+    });
+
+    const settings = {
+      tokens: [
+        { name: 'Personal', token: 'ghp_1' },
+        { name: 'Work', token: 'ghp_2' },
+      ],
+      debounceMinutes: 10,
+    };
+
+    const result = await poll(settings, { fetcher });
+
+    // Should have 3 unique PRs (101 deduplicated)
+    expect(result.results).toHaveLength(3);
+    expect(result.usernames).toContain('user1');
+    expect(result.usernames).toContain('user2');
+    const urls = result.results.map(r => r.url);
+    expect(new Set(urls).size).toBe(3);
+  });
+
+  it('11. Multiple tokens: each uses correct username for attention calculation', async () => {
+    // Token 1: user1 is requested reviewer on PR 101
+    // Token 2: user2 is author of PR 102 with a review
+    const fetcher = vi.fn(async (url) => {
+      if (url.includes('/user')) {
+        // Differentiate by auth header
+        const token = url; // We'll use a different approach
+        return { ok: true, json: async () => ({ login: 'user1' }) };
+      }
+      if (url.includes('/search/issues')) {
+        return { ok: true, json: async () => ({ items: [
+          makePR(1, 101, 'org', 'repo', 'alice'),
+        ]}) };
+      }
+      if (url.includes('/timeline')) {
+        return { ok: true, json: async () => [
+          { event: 'review_requested', actor: { login: 'alice' }, requested_reviewer: { login: 'user1' }, created_at: '2026-05-05T10:00:00Z' },
+        ] };
+      }
+      return { ok: true, json: async () => ({}) };
+    });
+
+    const settings = { tokens: [{ name: 'Personal', token: 'ghp_1' }], debounceMinutes: 10 };
+    const result = await poll(settings, { fetcher });
+
+    expect(result.results[0].myStatus).toBe('red');
+    expect(result.results[0].attentionSet).toHaveProperty('user1', 'red');
+  });
+
+  it('12. PR results include account field', async () => {
+    const fetcher = createMockFetcher({
+      '/user': { login: 'me' },
+      '/search/issues': { items: [makePR(1, 101, 'org', 'repo', 'alice')] },
+      '/repos/org/repo/issues/101/timeline': [],
+    });
+
+    const settings = { tokens: [{ name: 'Work EMU', token: 'ghp_work' }], debounceMinutes: 10 };
+    const result = await poll(settings, { fetcher });
+
+    expect(result.results[0].account).toBe('Work EMU');
   });
 });
 

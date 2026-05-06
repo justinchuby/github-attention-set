@@ -36,8 +36,9 @@ function isBot(login) {
   return login.includes('[bot]');
 }
 
-chrome.storage.local.get({ token: '', username: '' }, (settings) => {
-  if (!settings.token) {
+chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) => {
+  const hasToken = (settings.tokens && settings.tokens.length > 0) || settings.token;
+  if (!hasToken) {
     app.innerHTML = `<div class="no-token">
       <p>No GitHub token configured.</p>
       <p><a href="#" id="open-options">Open Settings</a></p>
@@ -203,7 +204,7 @@ function render(data, isRefreshing) {
               <span class="dot">${getIcon('dot-fill', 10, color)}</span>
               <div class="pr-info">
                 <div class="pr-title"><a href="${pr.url}" target="_blank" title="${escHtml(pr.title)}">${escHtml(pr.title)}</a></div>
-                <div class="pr-meta">${group.repo ? "" : pr.repo}#${pr.number}${waitingOn.length ? ' · Waiting on: ' + waitingOn.join(', ') : ''}</div>
+                <div class="pr-meta">${group.repo ? "" : pr.repo}#${pr.number}${pr.account ? ' · <span style="color:#8b949e">' + escHtml(pr.account) + '</span>' : ''}${waitingOn.length ? ' · Waiting on: ' + waitingOn.join(', ') : ''}</div>
               </div>
               <span class="pr-time">${timeAgo(pr.lastEventAt)}</span>
               <button class="dismiss-btn" data-url="${escHtml(pr.url)}" data-event-at="${pr.lastEventAt || 0}" title="Dismiss">${getIcon('x', 14)}</button>

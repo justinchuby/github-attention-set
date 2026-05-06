@@ -12,6 +12,7 @@
       color: #24292f;
     }
     h1 { font-size: 20px; margin-bottom: 20px; }
+    h2 { font-size: 16px; margin-top: 20px; }
     label { display: block; font-size: 13px; font-weight: 600; margin-top: 16px; margin-bottom: 4px; }
     input[type="text"], input[type="number"], input[type="password"] {
       width: 100%; padding: 8px; border: 1px solid #d0d7de; border-radius: 6px; font-size: 14px;
@@ -21,14 +22,24 @@
     button { padding: 8px 16px; background: #2da44e; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
     button:hover { background: #2c974b; }
     .saved { color: #2da44e; font-size: 13px; margin-left: 8px; display: none; }
+    .token-entry { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+    .token-entry input[type="text"] { width: 120px; flex-shrink: 0; }
+    .token-entry input[type="password"] { flex: 1; }
+    .token-remove { background: none; border: none; color: #d73a49; cursor: pointer; font-size: 18px; padding: 4px 8px; line-height: 1; }
+    .token-remove:hover { background: #fff1f0; border-radius: 4px; }
+    #add-token { background: #f6f8fa; color: #24292f; border: 1px solid #d0d7de; margin-top: 8px; }
+    #add-token:hover { background: #eaeef2; }
   </style>
 </head>
 <body>
   <h1><img src="icons/icon48.png" width="24" height="24" style="vertical-align:middle;margin-right:8px">GitHub Attention Set Settings</h1>
 
-  <label for="token">GitHub Personal Access Token</label>
-  <input type="password" id="token" placeholder="ghp_...">
-  <div class="hint"><a href="https://github.com/settings/personal-access-tokens/new" target="_blank">Create a fine-grained PAT</a> with these permissions:<br><strong>Repository access:</strong> All repositories<br><strong>Permissions:</strong> Pull requests → Read, Issues → Read</div>
+  <h2>GitHub Tokens</h2>
+  <div class="hint" style="margin-bottom:12px;">Add one or more GitHub Personal Access Tokens. Results from all tokens are merged.<br>
+    <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">Create a fine-grained PAT</a> with: <strong>Pull requests → Read, Issues → Read</strong>
+  </div>
+  <div id="token-list"></div>
+  <button id="add-token">+ Add token</button>
 
   <label for="debounce">Debounce time (minutes)</label>
   <input type="number" id="debounce" min="1" max="60" value="10">
@@ -53,7 +64,7 @@
 
   <hr style="margin-top:32px;border:none;border-top:1px solid #d0d7de;">
 
-  <h2 style="font-size:16px;margin-top:20px;">Repository Filter</h2>
+  <h2>Repository Filter</h2>
   <div class="hint" style="margin-bottom:8px;">Filter which repositories appear in your attention set.</div>
 
   <div style="margin-bottom:12px;">
