@@ -77,6 +77,7 @@ function dismissPR(prUrl, lastEventAt) {
     const dismissed = data.dismissed || {};
     dismissed[prUrl] = { prUrl, dismissedAt: Date.now(), lastEventAt: lastEventAt || 0 };
     chrome.storage.local.set({ dismissed }, () => {
+      chrome.runtime.sendMessage({ type: 'updateBadge' });
       chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
         if (fresh && fresh.results) render(fresh, false);
       });
@@ -89,6 +90,7 @@ function restorePR(prUrl) {
     const dismissed = data.dismissed || {};
     delete dismissed[prUrl];
     chrome.storage.local.set({ dismissed }, () => {
+      chrome.runtime.sendMessage({ type: 'updateBadge' });
       chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
         if (fresh && fresh.results) render(fresh, false);
       });

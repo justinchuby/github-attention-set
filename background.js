@@ -216,6 +216,15 @@ function setBadge(count) {
 
 // Listen for messages from popup/content
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (msg.type === 'updateBadge') {
+    chrome.storage.local.get(['results', 'dismissed'], (data) => {
+      const results = data.results || [];
+      const dismissed = data.dismissed || {};
+      const count = results.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
+      setBadge(count);
+    });
+    return;
+  }
   if (msg.type === 'refresh') {
     pollAndCompute().then(() => sendResponse({ ok: true }));
     return true;
