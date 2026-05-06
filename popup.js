@@ -244,10 +244,13 @@ function render(data, isRefreshing) {
   document.getElementById('open-settings').onclick = () => { chrome.runtime.openOptionsPage(); };
   document.getElementById('refresh').onclick = () => {
     const btn = document.getElementById('refresh');
-    btn.innerHTML = getIcon('sync', 12);
+    btn.innerHTML = '<span class="spinner">' + getIcon('sync', 12) + '</span> Refresh';
     btn.disabled = true;
     chrome.runtime.sendMessage({ type: 'refresh' }, () => {
-      chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => render(fresh, false));
+      chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
+        if (fresh && fresh.results) render(fresh, false);
+        else { btn.innerHTML = getIcon('sync', 12) + ' Refresh'; btn.disabled = false; }
+      });
     });
   };
 
