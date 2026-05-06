@@ -1,16 +1,6 @@
-
-function renderError(error) {
-  if (!error) return '';
-  const msgs = {
-    auth: '⚠️ Token expired or invalid. <a href="#" id="go-settings">Update in settings</a>',
-    server: '⚠️ GitHub is unreachable. Showing cached data.',
-    network: '⚠️ Network error. Showing cached data.'
-  };
-  return `<div class="error-banner">${msgs[error.type] || msgs.network}</div>`;
-}
-
 // GitHub Attention Set — Popup
 import { getIcon } from './icons.js';
+import { h } from './dom.js';
 
 function timeAgo(dateStringOrMs) {
   if (!dateStringOrMs) return '';
@@ -36,25 +26,40 @@ function isBot(login) {
   return login.includes('[bot]');
 }
 
+/** Parse an HTML string into DOM nodes (for icon SVGs from getIcon) */
+function htmlToNodes(htmlStr) {
+  const t = document.createElement('template');
+  t.innerHTML = htmlStr;
+  return t.content;
+}
+
 chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) => {
   const hasToken = (settings.tokens && settings.tokens.length > 0) || settings.token;
   if (!hasToken) {
-    app.innerHTML = `<div class="no-token">
-      <p>No GitHub token configured.</p>
-      <p><a href="#" id="open-options">Open Settings</a></p>
-    </div>`;
+    app.textContent = '';
+    const noToken = h('div', { class: 'no-token' }, [
+      h('p', null, 'No GitHub token configured.'),
+      h('p', null, h('a', { href: '#', id: 'open-options' }, 'Open Settings'))
+    ]);
+    app.appendChild(noToken);
     document.getElementById('open-options').onclick = () => chrome.runtime.openOptionsPage();
     return;
   }
 
-  // Try cached data first
   chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed', 'repoFilterMode', 'repoFilterList', 'groupByRepo'], (cached) => {
     window.__lastError = cached.lastError || null;
     window.__groupByRepo = cached.groupByRepo === true;
     if (cached && cached.results) {
       render(cached, false);
       const btn = document.getElementById('refresh');
-      if (btn) { btn.innerHTML = '<span class="spinner">' + getIcon('sync', 12) + '</span> Refresh'; btn.disabled = true; }
+      if (btn) {
+        btn.textContent = '';
+        const spinner = h('span', { class: 'spinner' });
+        spinner.appendChild(htmlToNodes(getIcon('sync', 12)));
+        btn.appendChild(spinner);
+        btn.append(' Refresh');
+        btn.disabled = true;
+      }
       chrome.runtime.sendMessage({ type: 'refresh' }, () => {
         chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
           if (fresh && fresh.results) render(fresh, false);
@@ -70,7 +75,11 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
 });
 
 function showSpinner() {
-  app.innerHTML = `<div class="empty">${getIcon('sync', 14)} Loading...</div>`;
+  app.textContent = '';
+  const empty = h('div', { class: 'empty' });
+  empty.appendChild(htmlToNodes(getIcon('sync', 14)));
+  empty.append(' Loading...');
+  app.appendChild(empty);
 }
 
 function dismissPR(prUrl, lastEventAt) {
@@ -105,14 +114,12 @@ function groupByRepo(prs) {
     if (!map.has(pr.repo)) map.set(pr.repo, []);
     map.get(pr.repo).push(pr);
   }
-  // Sort PRs within each group by lastEventAt desc
   const groups = [];
   for (const [repo, repoPrs] of map) {
     repoPrs.sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
     const latestEvent = repoPrs[0]?.lastEventAt || 0;
     groups.push({ repo, prs: repoPrs, latestEvent });
   }
-  // Sort groups by latest event desc
   groups.sort((a, b) => b.latestEvent - a.latestEvent);
   return groups;
 }
@@ -126,6 +133,97 @@ function applyRepoFilter(results, mode, repoListStr) {
   return results;
 }
 
+function renderPRItem(pr, username, showRepo) {
+  const color = pr.myStatus === 'red' ? '#d73a49' : pr.myStatus === 'yellow' ? '#dbab09' : '#28a745';
+  const waitingOn = Object.entries(pr.attentionSet || {})
+    .filter(([u, s]) => s === 'red' && !isBot(u))
+    .map(([u]) => u);
+
+  const metaParts = [];
+  if (showRepo) metaParts.push(pr.repo);
+  metaParts.push(`#${pr.number}`);
+
+  const metaChildren = [showRepo ? `${pr.repo}#${pr.number}` : `#${pr.number}`];
+  if (pr.account) {
+    metaChildren.push(' · ');
+    metaChildren.push(h('span', { style: { color: '#8b949e' } }, pr.account));
+  }
+  if (waitingOn.length) {
+    metaChildren.push(' · Waiting on: ');
+    waitingOn.forEach((u, i) => {
+      if (i > 0) metaChildren.push(', ');
+      if (u === username) {
+        metaChildren.push(h('strong', null, `@${u}`));
+      } else {
+        metaChildren.push(`@${u}`);
+      }
+    });
+  }
+
+  const dot = h('span', { class: 'dot' });
+  dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, color)));
+
+  const dismissBtn = h('button', {
+    class: 'dismiss-btn',
+    title: 'Dismiss',
+    'data-url': pr.url,
+    'data-event-at': String(pr.lastEventAt || 0)
+  });
+  dismissBtn.appendChild(htmlToNodes(getIcon('x', 14)));
+  dismissBtn.onclick = (e) => {
+    e.stopPropagation();
+    dismissPR(pr.url, pr.lastEventAt || 0);
+  };
+
+  return h('li', { class: 'pr-item' }, [
+    dot,
+    h('div', { class: 'pr-info' }, [
+      h('div', { class: 'pr-title' }, h('a', { href: pr.url, target: '_blank', title: pr.title }, pr.title)),
+      h('div', { class: 'pr-meta' }, metaChildren)
+    ]),
+    h('span', { class: 'pr-time' }, timeAgo(pr.lastEventAt)),
+    dismissBtn
+  ]);
+}
+
+function renderDismissedItem(pr) {
+  const dot = h('span', { class: 'dot' });
+  dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, '#8b949e')));
+
+  const restoreBtn = h('button', { class: 'restore-btn', 'data-url': pr.url }, 'Restore');
+  restoreBtn.onclick = (e) => {
+    e.stopPropagation();
+    restorePR(pr.url);
+  };
+
+  return h('li', { class: 'pr-item pr-item-dismissed' }, [
+    dot,
+    h('div', { class: 'pr-info' }, [
+      h('div', { class: 'pr-title' }, h('a', { href: pr.url, target: '_blank', title: pr.title }, pr.title)),
+      h('div', { class: 'pr-meta' }, `${pr.repo}#${pr.number}`)
+    ]),
+    restoreBtn
+  ]);
+}
+
+function renderRepoGroups(groups, username) {
+  const frag = document.createDocumentFragment();
+  for (const group of groups) {
+    const showRepo = !group.repo; // show repo in meta if not grouped
+    const groupDiv = h('div', { class: 'repo-group' });
+    if (group.repo) {
+      groupDiv.appendChild(h('div', { class: 'repo-group-title' }, `${group.repo} (${group.prs.length})`));
+    }
+    const ul = h('ul', { class: 'pr-list' });
+    for (const pr of group.prs) {
+      ul.appendChild(renderPRItem(pr, username, showRepo));
+    }
+    groupDiv.appendChild(ul);
+    frag.appendChild(groupDiv);
+  }
+  return frag;
+}
+
 function render(data, isRefreshing) {
   if (!data || !data.results) {
     showSpinner();
@@ -136,21 +234,15 @@ function render(data, isRefreshing) {
   let { results } = data;
   const dismissed = data.dismissed || {};
 
-  // Apply repo filter
   const filterData = data.repoFilterMode ? data : {};
   const filterMode = filterData.repoFilterMode || 'all';
   const filterList = filterData.repoFilterList || '';
   results = applyRepoFilter(results, filterMode, filterList);
 
-  // Filter out dismissed PRs (unless they have new events)
   const activePRs = results.filter(pr => {
     const d = dismissed[pr.url];
     if (!d) return true;
-    // If there's a newer event since dismiss, auto-restore
-    if (pr.lastEventAt && pr.lastEventAt > d.lastEventAt) {
-      // Will be cleaned up on next storage write
-      return true;
-    }
+    if (pr.lastEventAt && pr.lastEventAt > d.lastEventAt) return true;
     return false;
   });
 
@@ -163,124 +255,100 @@ function render(data, isRefreshing) {
 
   const needsAttention = activePRs.filter(r => r.myStatus === 'red');
   const others = activePRs.filter(r => r.myStatus !== 'red');
-  const sorted = [...needsAttention, ...others];
 
-  const count = needsAttention.length;
-  const summaryText = count > 0
-    ? `${count} PR${count > 1 ? 's' : ''} need${count === 1 ? 's' : ''} your attention`
-    : 'All clear! No PRs waiting on you.';
-
-  // Group by repo per status section
   const needsAttentionGroups = window.__groupByRepo ? groupByRepo(needsAttention) : [{ repo: "", prs: needsAttention }];
   const othersGroups = window.__groupByRepo ? groupByRepo(others) : [{ repo: '', prs: others }];
 
-  const dismissedSection = dismissedPRs.length > 0 ? `
-    <div class="dismissed-toggle" id="dismissed-toggle">
-      ${dismissedPRs.length} dismissed <svg width="12" height="12" viewBox="0 0 16 16" style="vertical-align:middle"><path fill="currentColor" d="M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z"></path></svg>
-    </div>
-    <ul class="pr-list dismissed-list" id="dismissed-list" style="display:none;">
-      ${dismissedPRs.map(pr => `<li class="pr-item pr-item-dismissed">
-        <span class="dot">${getIcon('dot-fill', 10, '#8b949e')}</span>
-        <div class="pr-info">
-          <div class="pr-title"><a href="${pr.url}" target="_blank" title="${escHtml(pr.title)}">${escHtml(pr.title)}</a></div>
-          <div class="pr-meta">${pr.repo}#${pr.number}</div>
-        </div>
-        <button class="restore-btn" data-url="${escHtml(pr.url)}">Restore</button>
-      </li>`).join('')}
-    </ul>
-  ` : '';
+  // Build header
+  const refreshBtn = h('button', { class: 'refresh-btn', id: 'refresh' });
+  refreshBtn.appendChild(htmlToNodes(getIcon('sync', 12)));
+  refreshBtn.append(' Refresh');
 
-  function renderRepoGroups(groups) {
-    return groups.map(group => `
-      <div class="repo-group">
-        ${group.repo ? `<div class="repo-group-title">${escHtml(group.repo)} (${group.prs.length})</div>` : ""}
-        <ul class="pr-list">
-          ${group.prs.map(pr => {
-            const color = pr.myStatus === 'red' ? '#d73a49' : pr.myStatus === 'yellow' ? '#dbab09' : '#28a745';
-            const waitingOn = Object.entries(pr.attentionSet || {})
-              .filter(([u, s]) => s === 'red' && !isBot(u))
-              .map(([u]) => u === username ? `<strong>@${escHtml(u)}</strong>` : `@${escHtml(u)}`);
-            return `<li class="pr-item">
-              <span class="dot">${getIcon('dot-fill', 10, color)}</span>
-              <div class="pr-info">
-                <div class="pr-title"><a href="${pr.url}" target="_blank" title="${escHtml(pr.title)}">${escHtml(pr.title)}</a></div>
-                <div class="pr-meta">${group.repo ? "" : pr.repo}#${pr.number}${pr.account ? ' · <span style="color:#8b949e">' + escHtml(pr.account) + '</span>' : ''}${waitingOn.length ? ' · Waiting on: ' + waitingOn.join(', ') : ''}</div>
-              </div>
-              <span class="pr-time">${timeAgo(pr.lastEventAt)}</span>
-              <button class="dismiss-btn" data-url="${escHtml(pr.url)}" data-event-at="${pr.lastEventAt || 0}" title="Dismiss">${getIcon('x', 14)}</button>
-            </li>`;
-          }).join('')}
-        </ul>
-      </div>
-    `).join('');
+  const settingsBtn = h('button', { class: 'settings-btn', id: 'open-settings', title: 'Settings' });
+  settingsBtn.appendChild(htmlToNodes(getIcon('gear', 14)));
+
+  const headerImg = h('img', { src: 'icons/icon48.png', width: '18', height: '18', style: { verticalAlign: 'middle', marginRight: '6px' } });
+  const header = h('div', { class: 'header' }, [
+    h('h1', null, [headerImg, 'Attention Set']),
+    refreshBtn,
+    settingsBtn
+  ]);
+
+  app.textContent = '';
+  app.appendChild(header);
+
+  // Error banner
+  if (window.__lastError) {
+    const msg = window.__lastError.type === 'auth'
+      ? '⚠️ Token expired or invalid. Update in settings.'
+      : '⚠️ GitHub unreachable. Showing cached data.';
+    app.appendChild(h('div', { class: 'error-banner' }, msg));
   }
 
-  let prListHtml = '';
+  // PR lists
   if (activePRs.length === 0) {
-    prListHtml = '<div class="empty">No open PRs found.</div>';
+    app.appendChild(h('div', { class: 'empty' }, 'No open PRs found.'));
   } else {
     if (needsAttention.length > 0) {
-      prListHtml += `<div class="status-section-title attention">Needs your attention (${needsAttention.length})</div>`;
-      prListHtml += renderRepoGroups(needsAttentionGroups);
+      app.appendChild(h('div', { class: 'status-section-title attention' }, `Needs your attention (${needsAttention.length})`));
+      app.appendChild(renderRepoGroups(needsAttentionGroups, username));
     }
     if (others.length > 0) {
-      prListHtml += `<div class="status-section-title others">Waiting on others (${others.length})</div>`;
-      prListHtml += renderRepoGroups(othersGroups);
+      app.appendChild(h('div', { class: 'status-section-title others' }, `Waiting on others (${others.length})`));
+      app.appendChild(renderRepoGroups(othersGroups, username));
     }
   }
 
-  app.innerHTML = `
-    <div class="header">
-      <h1><img src="icons/icon48.png" width="18" height="18" style="vertical-align:middle;margin-right:6px">Attention Set</h1>
-      <button class="refresh-btn" id="refresh">${getIcon('sync', 12)} Refresh</button>
-      <button class="settings-btn" id="open-settings" title="Settings">${getIcon('gear', 14)}</button>
-    </div>
-    ${window.__lastError ? `<div class="error-banner">${window.__lastError.type === "auth" ? "⚠️ Token expired or invalid. Update in settings." : "⚠️ GitHub unreachable. Showing cached data."}</div>` : ""}
-    
-    ${prListHtml}
-    ${dismissedSection}
-  `;
+  // Dismissed section
+  if (dismissedPRs.length > 0) {
+    const chevronSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    chevronSvg.setAttribute('width', '12');
+    chevronSvg.setAttribute('height', '12');
+    chevronSvg.setAttribute('viewBox', '0 0 16 16');
+    chevronSvg.style.verticalAlign = 'middle';
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('fill', 'currentColor');
+    path.setAttribute('d', 'M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z');
+    chevronSvg.appendChild(path);
 
-  // Refresh button
-  document.getElementById('open-settings').onclick = () => { chrome.runtime.openOptionsPage(); };
+    const toggle = h('div', { class: 'dismissed-toggle', id: 'dismissed-toggle' }, [
+      `${dismissedPRs.length} dismissed `,
+      chevronSvg
+    ]);
+
+    const dismissedList = h('ul', { class: 'pr-list dismissed-list', id: 'dismissed-list', style: { display: 'none' } });
+    for (const pr of dismissedPRs) {
+      dismissedList.appendChild(renderDismissedItem(pr));
+    }
+
+    toggle.onclick = () => {
+      dismissedList.style.display = dismissedList.style.display === 'none' ? 'block' : 'none';
+    };
+
+    app.appendChild(toggle);
+    app.appendChild(dismissedList);
+  }
+
+  // Bind header buttons
+  document.getElementById('open-settings').onclick = () => chrome.runtime.openOptionsPage();
   document.getElementById('refresh').onclick = () => {
     const btn = document.getElementById('refresh');
-    btn.innerHTML = '<span class="spinner">' + getIcon('sync', 12) + '</span> Refresh';
+    btn.textContent = '';
+    const spinner = h('span', { class: 'spinner' });
+    spinner.appendChild(htmlToNodes(getIcon('sync', 12)));
+    btn.appendChild(spinner);
+    btn.append(' Refresh');
     btn.disabled = true;
     chrome.runtime.sendMessage({ type: 'refresh' }, () => {
       chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
         if (fresh && fresh.results) render(fresh, false);
-        else { btn.innerHTML = getIcon('sync', 12) + ' Refresh'; btn.disabled = false; }
+        else {
+          btn.textContent = '';
+          btn.appendChild(htmlToNodes(getIcon('sync', 12)));
+          btn.append(' Refresh');
+          btn.disabled = false;
+        }
       });
     });
   };
-
-  // Dismiss buttons
-  document.querySelectorAll('.dismiss-btn').forEach(btn => {
-    btn.onclick = (e) => {
-      e.stopPropagation();
-      dismissPR(btn.dataset.url, parseInt(btn.dataset.eventAt) || 0);
-    };
-  });
-
-  // Dismissed toggle
-  const toggle = document.getElementById('dismissed-toggle');
-  if (toggle) {
-    toggle.onclick = () => {
-      const list = document.getElementById('dismissed-list');
-      list.style.display = list.style.display === 'none' ? 'block' : 'none';
-    };
-  }
-
-  // Restore buttons
-  document.querySelectorAll('.restore-btn').forEach(btn => {
-    btn.onclick = (e) => {
-      e.stopPropagation();
-      restorePR(btn.dataset.url);
-    };
-  });
-}
-
-function escHtml(s) {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }

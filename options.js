@@ -1,4 +1,5 @@
 // GitHub Attention Set — Options
+import { h } from './dom.js';
 
 const debounceEl = document.getElementById('debounce');
 const pollEl = document.getElementById('poll');
@@ -12,44 +13,47 @@ const addTokenBtn = document.getElementById('add-token');
 let tokens = [];
 
 function renderTokenList() {
-  tokenListEl.innerHTML = '';
+  tokenListEl.textContent = '';
   tokens.forEach((entry, i) => {
-    const div = document.createElement('div');
-    div.className = 'token-entry';
-    div.innerHTML = `
-      <input type="text" value="${escHtml(entry.name)}" placeholder="Label (e.g. Personal)" data-idx="${i}" data-field="name">
-      <input type="password" value="${escHtml(entry.token)}" placeholder="ghp_... or github_pat_..." data-idx="${i}" data-field="token">
-      <button class="token-remove" data-idx="${i}" title="Remove">✕</button>
-    `;
-    tokenListEl.appendChild(div);
-  });
+    const nameInput = h('input', {
+      type: 'text',
+      value: entry.name,
+      placeholder: 'Label (e.g. Personal)',
+      'data-idx': String(i),
+      'data-field': 'name'
+    });
+    nameInput.oninput = () => { tokens[i].name = nameInput.value; };
 
-  // Bind events
-  tokenListEl.querySelectorAll('input').forEach(inp => {
-    inp.oninput = () => {
-      const idx = parseInt(inp.dataset.idx);
-      tokens[idx][inp.dataset.field] = inp.value;
-    };
-  });
-  tokenListEl.querySelectorAll('.token-remove').forEach(btn => {
-    btn.onclick = () => {
-      tokens.splice(parseInt(btn.dataset.idx), 1);
+    const tokenInput = h('input', {
+      type: 'password',
+      value: entry.token,
+      placeholder: 'ghp_... or github_pat_...',
+      'data-idx': String(i),
+      'data-field': 'token'
+    });
+    tokenInput.oninput = () => { tokens[i].token = tokenInput.value; };
+
+    const removeBtn = h('button', {
+      class: 'token-remove',
+      'data-idx': String(i),
+      title: 'Remove'
+    }, '✕');
+    removeBtn.onclick = () => {
+      tokens.splice(i, 1);
       renderTokenList();
     };
+
+    const div = h('div', { class: 'token-entry' }, [nameInput, tokenInput, removeBtn]);
+    tokenListEl.appendChild(div);
   });
 }
 
 addTokenBtn.onclick = () => {
   tokens.push({ name: '', token: '' });
   renderTokenList();
-  // Focus the new name input
   const inputs = tokenListEl.querySelectorAll('input[data-field="name"]');
   if (inputs.length) inputs[inputs.length - 1].focus();
 };
-
-function escHtml(s) {
-  return (s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
 
 // --- Migrate old format ---
 function migrateTokens(stored) {
@@ -71,11 +75,10 @@ chrome.storage.local.get({ token: '', tokens: null, debounceMinutes: 10, pollMin
 
 // --- Save ---
 saveBtn.onclick = () => {
-  // Filter out empty tokens
   const validTokens = tokens.filter(t => t.token.trim());
   const settings = {
     tokens: validTokens,
-    token: '', // clear legacy field
+    token: '',
     debounceMinutes: parseInt(debounceEl.value) || 10,
     pollMinutes: parseInt(pollEl.value) || 2,
     notifications: notifEl.checked,
