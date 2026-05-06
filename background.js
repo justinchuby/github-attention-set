@@ -36,21 +36,7 @@ async function pollAndCompute() {
     const username = user.login;
 
     // Get open PRs involving us
-    // Use notifications API to respect unsubscribe
-    let prs;
-    try {
-      const notifications = await ghFetch('/notifications?all=false&participating=true&per_page=50', settings.token);
-      const prNotifs = notifications.filter(n => n.subject.type === 'PullRequest' && n.reason !== 'subscribed');
-      // Also include PRs where user is directly involved (author, reviewer, mentioned)
-      const searchResults = await ghFetch(`/search/issues?q=involves:${username}+is:pr+is:open&per_page=50`, settings.token);
-      const notifUrls = new Set(prNotifs.map(n => n.subject.url));
-      // Keep PR if it's in notifications OR user is author
-      const searchPRs = (searchResults.items || searchResults);
-      prs = { items: searchPRs.filter(pr => notifUrls.has(pr.pull_request?.url || pr.url) || pr.user?.login === username) };
-    } catch {
-      // Fallback to search only
-      prs = await ghFetch(`/search/issues?q=involves:${username}+is:pr+is:open&per_page=50`, settings.token);
-    }
+    const prs = await ghFetch(`/search/issues?q=involves:${username}+is:pr+is:open&per_page=50`, settings.token);
 
     const results = [];
     for (const pr of prs.items) {
