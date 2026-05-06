@@ -38,39 +38,43 @@ async function pollAndCompute() {
     // Get open PRs involving us
     const prs = await ghFetch(`/search/issues?q=involves:${username}+is:pr+is:open&per_page=50`, settings.token);
 
+    // Fetch timelines in parallel (batches of 6 to respect rate limits)
+    const CONCURRENCY = 6;
+    const items = prs.items || [];
     const results = [];
-    for (const pr of prs.items) {
-      const [owner, repo] = pr.repository_url.replace('https://api.github.com/repos/', '').split('/');
-      const number = pr.number;
 
-      let timeline;
-      try {
-        timeline = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100`, settings.token);
-      } catch { timeline = []; }
+    for (let i = 0; i < items.length; i += CONCURRENCY) {
+      const batch = items.slice(i, i + CONCURRENCY);
+      const batchResults = await Promise.all(batch.map(async (pr) => {
+        const [owner, repo] = pr.repository_url.replace('https://api.github.com/repos/', '').split('/');
+        const number = pr.number;
 
-      const attention = computeAttentionSet(timeline, username, pr.user.login, settings.debounceMinutes);
-      // Debug: log timeline for PRs still showing user in attention set
-      if (attention.myStatus === 'red') {
-        console.log(`[AttentionSet Debug] ${pr.url} still red. Timeline events:`, timeline.map(e => ({ event: e.event, actor: e.actor?.login || e.user?.login, state: e.state, at: e.created_at || e.submitted_at })).slice(-5));
-      }
-      // Compute lastEventAt from timeline
-      let lastEventAt = 0;
-      for (const event of timeline) {
-        const ts = new Date(event.created_at || event.submitted_at || 0).getTime();
-        if (ts > lastEventAt) lastEventAt = ts;
-      }
+        let timeline;
+        try {
+          timeline = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100`, settings.token);
+        } catch { timeline = []; }
 
-      results.push({
-        id: pr.id,
-        number,
-        title: pr.title,
-        url: pr.html_url,
-        repo: `${owner}/${repo}`,
-        author: pr.user.login,
-        attentionSet: attention.set,
-        myStatus: attention.myStatus, // 'red' | 'green' | 'yellow'
-        lastEventAt,
-      });
+        const attention = computeAttentionSet(timeline, username, pr.user.login, settings.debounceMinutes);
+
+        let lastEventAt = 0;
+        for (const event of timeline) {
+          const ts = new Date(event.created_at || event.submitted_at || 0).getTime();
+          if (ts > lastEventAt) lastEventAt = ts;
+        }
+
+        return {
+          id: pr.id,
+          number,
+          title: pr.title,
+          url: pr.html_url,
+          repo: `${owner}/${repo}`,
+          author: pr.user.login,
+          attentionSet: attention.set,
+          myStatus: attention.myStatus,
+          lastEventAt,
+        };
+      }));
+      results.push(...batchResults);
     }
 
     await chrome.storage.local.set({ results, username, lastPoll: Date.now() });
