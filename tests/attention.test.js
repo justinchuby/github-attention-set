@@ -47,6 +47,7 @@ describe('computeAttentionSet', () => {
   // 4. Single comment + past debounce → flips (author red)
   it('comment past debounce time → author turns red', () => {
     const timeline = [
+      { event: "reviewed", actor: { login: "reviewer" }, user: { login: "reviewer" }, state: "commented", submitted_at: "2024-01-01T00:00:00Z" },
       { event: 'commented', actor: { login: reviewer }, created_at: minutesAgo(15, NOW), body: 'LGTM with nits' },
     ];
     const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);
@@ -57,6 +58,7 @@ describe('computeAttentionSet', () => {
   // 5. Single comment + within debounce → yellow (not flipped)
   it('comment within debounce time → author stays yellow', () => {
     const timeline = [
+      { event: "reviewed", actor: { login: "reviewer" }, user: { login: "reviewer" }, state: "commented", submitted_at: "2024-01-01T00:00:00Z" },
       { event: 'commented', actor: { login: reviewer }, created_at: minutesAgo(5, NOW), body: 'Minor issue' },
     ];
     const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);
@@ -119,6 +121,7 @@ describe('computeAttentionSet', () => {
 
     it('reviewer and author are the same person', () => {
       const timeline = [
+      { event: "reviewed", actor: { login: "reviewer" }, user: { login: "reviewer" }, state: "commented", submitted_at: "2024-01-01T00:00:00Z" },
         { event: 'review_requested', actor: { login: 'alice' }, requested_reviewer: { login: 'alice' }, created_at: minutesAgo(5, NOW) },
       ];
       const result = computeAttentionSet(timeline, 'alice', 'alice', DEBOUNCE_MIN, NOW);
@@ -129,6 +132,7 @@ describe('computeAttentionSet', () => {
     it('debounce boundary — exactly at debounce time', () => {
       const exactlyAtBoundary = new Date(NOW - DEBOUNCE_MS).toISOString();
       const timeline = [
+      { event: "reviewed", actor: { login: "reviewer" }, user: { login: "reviewer" }, state: "commented", submitted_at: "2024-01-01T00:00:00Z" },
         { event: 'commented', actor: { login: reviewer }, created_at: exactlyAtBoundary, body: 'comment' },
       ];
       const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);
@@ -139,6 +143,7 @@ describe('computeAttentionSet', () => {
     it('debounce boundary — 1ms before debounce', () => {
       const justBefore = new Date(NOW - DEBOUNCE_MS + 1).toISOString();
       const timeline = [
+      { event: "reviewed", actor: { login: "reviewer" }, user: { login: "reviewer" }, state: "commented", submitted_at: "2024-01-01T00:00:00Z" },
         { event: 'commented', actor: { login: reviewer }, created_at: justBefore, body: 'comment' },
       ];
       const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);

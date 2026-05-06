@@ -85,6 +85,12 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
 
   // Determine my status
   const myEntry = set.get(me);
+  // Post-processing: if author is in set but PR never reviewed, ball is with reviewers
+  const hasBeenReviewed = timeline.some(e => (e.event || e.__type) === "reviewed");
+  if (!hasBeenReviewed && set.has(author)) {
+    set.delete(author);
+  }
+
   let myStatus = 'green';
   if (myEntry) {
     myStatus = myEntry.status;
