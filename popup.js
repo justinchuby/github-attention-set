@@ -219,11 +219,11 @@ function render(data, isRefreshing) {
     prListHtml = '<div class="empty">No open PRs found.</div>';
   } else {
     if (needsAttention.length > 0) {
-      prListHtml += `<div class="status-section-title attention">Needs your attention</div>`;
+      prListHtml += `<div class="status-section-title attention">${needsAttention.length} PRs need your attention</div>`;
       prListHtml += renderRepoGroups(needsAttentionGroups);
     }
     if (others.length > 0) {
-      prListHtml += `<div class="status-section-title others">Waiting on others</div>`;
+      prListHtml += `<div class="status-section-title others">Waiting on others (${others.length})</div>`;
       prListHtml += renderRepoGroups(othersGroups);
     }
   }
@@ -235,7 +235,7 @@ function render(data, isRefreshing) {
       <button class="settings-btn" id="open-settings" title="Settings">${getIcon('gear', 14)}</button>
     </div>
     ${window.__lastError ? `<div class="error-banner">${window.__lastError.type === "auth" ? "⚠️ Token expired or invalid. Update in settings." : "⚠️ GitHub unreachable. Showing cached data."}</div>` : ""}
-    <div class="summary">${summaryText}</div>
+    
     ${prListHtml}
     ${dismissedSection}
   `;
