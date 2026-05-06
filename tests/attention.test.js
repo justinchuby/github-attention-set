@@ -191,3 +191,43 @@ describe('computeAttentionSet bot filtering', () => {
     expect(result.set['bob']).toBe('red');
   });
 });
+
+  it('bot comments (codecov) do not affect attention set', () => {
+    const timeline = [
+      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_team: { name: 'some-team' }, created_at: '2024-01-01T00:00:00Z' },
+      { event: 'commented', actor: { login: 'codecov[bot]', type: 'Bot' }, user: { login: 'codecov[bot]', type: 'Bot' }, created_at: '2024-01-01T00:01:00Z' },
+    ];
+    const result = computeAttentionSet(timeline, 'author', 'author', 10, new Date('2024-01-02').getTime());
+    expect(result.myStatus).toBe('green');
+  });
+
+  it('review_requested with team only removes author, does not add team', () => {
+    const timeline = [
+      { event: 'reviewed', actor: { login: 'reviewer', type: 'User' }, user: { login: 'reviewer' }, state: 'commented', submitted_at: '2024-01-01T00:00:00Z' },
+      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_team: { name: 'sig-approvers' }, created_at: '2024-01-01T01:00:00Z' },
+    ];
+    const result = computeAttentionSet(timeline, 'author', 'author', 10, new Date('2024-01-02').getTime());
+    expect(result.myStatus).toBe('green');
+    expect(result.set).not.toHaveProperty('sig-approvers');
+  });
+
+  it('review_requested with individual reviewer adds reviewer to attention set', () => {
+    const timeline = [
+      { event: 'reviewed', actor: { login: 'old-reviewer', type: 'User' }, user: { login: 'old-reviewer' }, state: 'commented', submitted_at: '2024-01-01T00:00:00Z' },
+      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_reviewer: { login: 'new-reviewer', type: 'User' }, created_at: '2024-01-01T01:00:00Z' },
+    ];
+    const result = computeAttentionSet(timeline, 'author', 'author', 10, new Date('2024-01-02').getTime());
+    expect(result.myStatus).toBe('green');
+    expect(result.set).toHaveProperty('new-reviewer');
+  });
+
+  it('author not in attention set when only bots commented and no human review', () => {
+    const timeline = [
+      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_reviewer: { login: 'reviewer', type: 'User' }, created_at: '2024-01-01T00:00:00Z' },
+      { event: 'commented', actor: { login: 'github-actions[bot]', type: 'Bot' }, user: { login: 'github-actions[bot]', type: 'Bot' }, created_at: '2024-01-01T00:05:00Z' },
+      { event: 'commented', actor: { login: 'codecov[bot]', type: 'Bot' }, user: { login: 'codecov[bot]', type: 'Bot' }, created_at: '2024-01-01T00:06:00Z' },
+    ];
+    const result = computeAttentionSet(timeline, 'author', 'author', 10, new Date('2024-01-02').getTime());
+    expect(result.myStatus).toBe('green');
+    expect(result.set).toHaveProperty('reviewer');
+  });
