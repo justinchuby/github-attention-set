@@ -44,6 +44,8 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         break;
       }
       case 'commented': {
+        // Skip bot comments entirely
+        if (isBot(actor, event.actor || event.user)) break;
         // Comment by someone → they leave attention set
         set.delete(actor);
         if (actor === author) {
