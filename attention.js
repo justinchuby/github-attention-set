@@ -34,14 +34,12 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         break;
       }
       case 'review_requested': {
-        // Author re-requests review → reviewer enters
-        const reviewer = event.requested_reviewer?.login || event.requested_team?.name;
+        // Author requests review → author leaves attention set
+        set.delete(actor);
+        // Add reviewer to attention set (only if individual, not team/org)
+        const reviewer = event.requested_reviewer?.login;
         if (reviewer && !isBot(reviewer, event.requested_reviewer)) {
-          // Skip org/team names (they have no .login on requested_team)
-          if (event.requested_reviewer && !event.requested_team) {
-            set.delete(actor); // author leaves
-            set.set(reviewer, { status: 'red', since: ts });
-          }
+          set.set(reviewer, { status: 'red', since: ts });
         }
         break;
       }
