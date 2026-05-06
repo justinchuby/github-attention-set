@@ -39,7 +39,7 @@ The extension monitors PR activity and computes who currently needs to act:
 
 ## Install
 
-**Chrome Web Store:** [Coming soon](#)
+**Chrome Web Store:** [Install GitHub Attention Set](https://chrome.google.com/webstore/detail/gkimnedgjndjblnobajlecmndgjhkjfl)
 
 **Manual (development):**
 
