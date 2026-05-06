@@ -192,7 +192,7 @@ function render(data, isRefreshing) {
   function renderRepoGroups(groups) {
     return groups.map(group => `
       <div class="repo-group">
-        <div class="repo-group-title">${escHtml(group.repo)} (${group.prs.length})</div>
+        ${group.repo ? `<div class="repo-group-title">${escHtml(group.repo)} (${group.prs.length})</div>` : ""}
         <ul class="pr-list">
           ${group.prs.map(pr => {
             const color = pr.myStatus === 'red' ? '#d73a49' : pr.myStatus === 'yellow' ? '#dbab09' : '#28a745';
