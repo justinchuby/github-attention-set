@@ -219,7 +219,7 @@ function render(data, isRefreshing) {
     prListHtml = '<div class="empty">No open PRs found.</div>';
   } else {
     if (needsAttention.length > 0) {
-      prListHtml += `<div class="status-section-title attention">${needsAttention.length} PRs need your attention</div>`;
+      prListHtml += `<div class="status-section-title attention">Needs your attention (${needsAttention.length})</div>`;
       prListHtml += renderRepoGroups(needsAttentionGroups);
     }
     if (others.length > 0) {
