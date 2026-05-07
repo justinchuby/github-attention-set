@@ -76,8 +76,39 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
       case 'auto_rebase_enabled':
       case 'merged':
       case 'closed': {
-        // PR approved/merged/closed → everyone leaves attention set
+        // PR auto-merge/merged/closed → everyone leaves attention set
         set.clear();
+        break;
+      }
+      case 'review_request_removed': {
+        // Reviewer removed from PR → they leave attention set
+        const removed = event.requested_reviewer?.login;
+        if (removed) set.delete(removed);
+        break;
+      }
+      case 'review_dismissed': {
+        // Review dismissed → that review no longer counts, author leaves set
+        set.delete(author);
+        break;
+      }
+      case 'convert_to_draft': {
+        // PR converted to draft → not ready for review, clear set
+        set.clear();
+        break;
+      }
+      case 'ready_for_review': {
+        // Draft → ready → author leaves, reviewers should look
+        set.delete(author);
+        break;
+      }
+      case 'auto_merge_disabled': {
+        // Auto merge turned off → author needs to merge manually
+        set.set(author, { status: 'red', since: ts });
+        break;
+      }
+      case 'reopened': {
+        // PR reopened → author leaves (waiting for reviewers again)
+        set.delete(author);
         break;
       }
     }
