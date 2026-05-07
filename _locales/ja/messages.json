@@ -1,49 +1,155 @@
 {
-  "extName": { "message": "GitHub Attention Set" },
-  "extDescription": { "message": "どのPRに対応が必要か確認——Google CritiqueのAttention SetをGitHubで。" },
-  "needsAttention": { "message": "対応が必要" },
-  "waitingOnOthers": { "message": "他の人を待機中" },
-  "refresh": { "message": "更新" },
-  "dismiss": { "message": "非表示" },
-  "restore": { "message": "復元" },
-  "dismissed": { "message": "非表示済み" },
-  "loading": { "message": "読み込み中..." },
-  "noToken": { "message": "トークンが未設定です。" },
-  "goToSettings": { "message": "設定へ" },
-  "noPRs": { "message": "オープンなPRはありません。" },
-  "allClear": { "message": "すべて完了！対応待ちのPRはありません。" },
-  "waitingOn": { "message": "待機中：" },
-  "settings": { "message": "設定" },
-  "stateReview": { "message": "レビュー" },
-  "stateFix": { "message": "修正" },
-  "stateRespond": { "message": "返信" },
-  "stateMerge": { "message": "マージ" },
-  "stateMerging": { "message": "マージ中" },
-  "stateStuck": { "message": "停滞" },
-  "stateDraft": { "message": "下書き" },
-  "optTitle": { "message": "GitHub Attention Set 設定" },
-  "optTokenLabel": { "message": "GitHub個人アクセストークン" },
-  "optTokenHint": { "message": "Fine-grained PATを作成（権限：Pull requests → Read、Issues → Read）" },
-  "optAddToken": { "message": "+ トークンを追加" },
-  "optSave": { "message": "設定を保存" },
-  "optSaved": { "message": "✓ 保存しました！" },
-  "optDebounce": { "message": "デバウンス時間（分）" },
-  "optDebounceHint": { "message": "この時間経過後に暗黙のシグナルが注意状態を切り替えます。" },
-  "optPoll": { "message": "ポーリング間隔（分）" },
-  "optPollHint": { "message": "GitHubの更新を確認する頻度。" },
-  "optNotifications": { "message": "デスクトップ通知を有効にする" },
-  "optGroupByRepo": { "message": "リポジトリごとにPRをグループ化" },
-  "optRepoFilter": { "message": "リポジトリフィルター" },
-  "optFilterAll": { "message": "すべて表示（デフォルト）" },
-  "optFilterInclude": { "message": "これらのリポジトリのみ表示" },
-  "optFilterExclude": { "message": "これらのリポジトリを非表示" },
-  "optRepoPlaceholder": { "message": "owner/repo（1行に1つ）" },
-  "optRepoLabel": { "message": "リポジトリ（1行に1つ、形式：owner/repo）" },
-  "optSaveFilter": { "message": "フィルターを保存" },
-  "optFilterHint": { "message": "注意セットに表示するリポジトリをフィルタリング。" },
-  "optReportBug": { "message": "バグ報告・機能リクエスト" },
-  "tokenName": { "message": "名前" },
-  "tokenValue": { "message": "トークン" },
-  "openSettings": { "message": "設定を開く" },
-  "tokenHintFull": { "message": "1つ以上のGitHub個人アクセストークンを追加。全トークンの結果が統合されます。" }
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "どのPRに対応が必要か確認——Google CritiqueのAttention SetをGitHubで。"
+  },
+  "needsAttention": {
+    "message": "対応が必要"
+  },
+  "waitingOnOthers": {
+    "message": "他の人を待機中"
+  },
+  "refresh": {
+    "message": "更新"
+  },
+  "dismiss": {
+    "message": "非表示"
+  },
+  "restore": {
+    "message": "復元"
+  },
+  "dismissed": {
+    "message": "非表示済み"
+  },
+  "loading": {
+    "message": "読み込み中..."
+  },
+  "noToken": {
+    "message": "トークンが未設定です。"
+  },
+  "goToSettings": {
+    "message": "設定へ"
+  },
+  "noPRs": {
+    "message": "オープンなPRはありません。"
+  },
+  "allClear": {
+    "message": "すべて完了！対応待ちのPRはありません。"
+  },
+  "waitingOn": {
+    "message": "待機中："
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "stateReview": {
+    "message": "レビュー"
+  },
+  "stateFix": {
+    "message": "修正"
+  },
+  "stateRespond": {
+    "message": "返信"
+  },
+  "stateMerge": {
+    "message": "マージ"
+  },
+  "stateMerging": {
+    "message": "マージ中"
+  },
+  "stateStuck": {
+    "message": "停滞"
+  },
+  "stateDraft": {
+    "message": "下書き"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set 設定"
+  },
+  "optTokenLabel": {
+    "message": "GitHub個人アクセストークン"
+  },
+  "optTokenHint": {
+    "message": "Fine-grained PATを作成（権限：Pull requests → Read、Issues → Read）"
+  },
+  "optAddToken": {
+    "message": "+ トークンを追加"
+  },
+  "optSave": {
+    "message": "設定を保存"
+  },
+  "optSaved": {
+    "message": "✓ 保存しました！"
+  },
+  "optDebounce": {
+    "message": "デバウンス時間（分）"
+  },
+  "optDebounceHint": {
+    "message": "この時間経過後に暗黙のシグナルが注意状態を切り替えます。"
+  },
+  "optPoll": {
+    "message": "ポーリング間隔（分）"
+  },
+  "optPollHint": {
+    "message": "GitHubの更新を確認する頻度。"
+  },
+  "optNotifications": {
+    "message": "デスクトップ通知を有効にする"
+  },
+  "optGroupByRepo": {
+    "message": "リポジトリごとにPRをグループ化"
+  },
+  "optRepoFilter": {
+    "message": "リポジトリフィルター"
+  },
+  "optFilterAll": {
+    "message": "すべて表示（デフォルト）"
+  },
+  "optFilterInclude": {
+    "message": "これらのリポジトリのみ表示"
+  },
+  "optFilterExclude": {
+    "message": "これらのリポジトリを非表示"
+  },
+  "optRepoPlaceholder": {
+    "message": "owner/repo（1行に1つ）"
+  },
+  "optRepoLabel": {
+    "message": "リポジトリ（1行に1つ、形式：owner/repo）"
+  },
+  "optSaveFilter": {
+    "message": "フィルターを保存"
+  },
+  "optFilterHint": {
+    "message": "注意セットに表示するリポジトリをフィルタリング。"
+  },
+  "optReportBug": {
+    "message": "バグ報告・機能リクエスト"
+  },
+  "tokenName": {
+    "message": "名前"
+  },
+  "tokenValue": {
+    "message": "トークン"
+  },
+  "openSettings": {
+    "message": "設定を開く"
+  },
+  "tokenHintFull": {
+    "message": "1つ以上のGitHub個人アクセストークンを追加。全トークンの結果が統合されます。"
+  },
+  "optLanguage": {
+    "message": "言語"
+  },
+  "optLanguageHint": {
+    "message": "この拡張機能の表示言語を選択します。"
+  },
+  "optLanguageAuto": {
+    "message": "自動（ブラウザに従う）"
+  },
+  "optLanguageSaved": {
+    "message": "言語を保存しました。変更を反映するにはポップアップを開き直してください。"
+  }
 }

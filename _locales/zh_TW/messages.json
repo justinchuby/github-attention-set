@@ -1,49 +1,155 @@
 {
-  "extName": { "message": "GitHub Attention Set" },
-  "extDescription": { "message": "查看哪些PR需要你的關注——類似Google Critique的Attention Set，適用於GitHub。" },
-  "needsAttention": { "message": "需要你的關注" },
-  "waitingOnOthers": { "message": "等待他人" },
-  "refresh": { "message": "重新整理" },
-  "dismiss": { "message": "忽略" },
-  "restore": { "message": "恢復" },
-  "dismissed": { "message": "已忽略" },
-  "loading": { "message": "載入中..." },
-  "noToken": { "message": "尚未設定Token。" },
-  "goToSettings": { "message": "前往設定" },
-  "noPRs": { "message": "未找到開啟的PR。" },
-  "allClear": { "message": "全部完成！沒有需要你處理的PR。" },
-  "waitingOn": { "message": "等待：" },
-  "settings": { "message": "設定" },
-  "stateReview": { "message": "待審查" },
-  "stateFix": { "message": "待修復" },
-  "stateRespond": { "message": "待回覆" },
-  "stateMerge": { "message": "待合併" },
-  "stateMerging": { "message": "合併中" },
-  "stateStuck": { "message": "卡住" },
-  "stateDraft": { "message": "草稿" },
-  "optTitle": { "message": "GitHub Attention Set 設定" },
-  "optTokenLabel": { "message": "GitHub 個人存取權杖" },
-  "optTokenHint": { "message": "建立細粒度PAT，權限：Pull requests → 讀取，Issues → 讀取" },
-  "optAddToken": { "message": "+ 新增權杖" },
-  "optSave": { "message": "儲存設定" },
-  "optSaved": { "message": "✓ 已儲存！" },
-  "optDebounce": { "message": "防抖時間（分鐘）" },
-  "optDebounceHint": { "message": "等待此時間後隱式信號才會翻轉注意力狀態。" },
-  "optPoll": { "message": "輪詢間隔（分鐘）" },
-  "optPollHint": { "message": "檢查GitHub更新的頻率。" },
-  "optNotifications": { "message": "啟用桌面通知" },
-  "optGroupByRepo": { "message": "按儲存庫分組PR" },
-  "optRepoFilter": { "message": "儲存庫篩選器" },
-  "optFilterAll": { "message": "顯示全部（預設）" },
-  "optFilterInclude": { "message": "僅顯示這些儲存庫" },
-  "optFilterExclude": { "message": "隱藏這些儲存庫" },
-  "optRepoPlaceholder": { "message": "owner/repo（每行一個）" },
-  "optRepoLabel": { "message": "儲存庫（每行一個，格式：owner/repo）" },
-  "optSaveFilter": { "message": "儲存篩選器" },
-  "optFilterHint": { "message": "篩選哪些儲存庫出現在你的關注集中。" },
-  "optReportBug": { "message": "回報錯誤或請求功能" },
-  "tokenName": { "message": "名稱" },
-  "tokenValue": { "message": "權杖" },
-  "openSettings": { "message": "開啟設定" },
-  "tokenHintFull": { "message": "新增一個或多個GitHub個人存取權杖。所有權杖的結果將被合併。" }
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "查看哪些PR需要你的關注——類似Google Critique的Attention Set，適用於GitHub。"
+  },
+  "needsAttention": {
+    "message": "需要你的關注"
+  },
+  "waitingOnOthers": {
+    "message": "等待他人"
+  },
+  "refresh": {
+    "message": "重新整理"
+  },
+  "dismiss": {
+    "message": "忽略"
+  },
+  "restore": {
+    "message": "恢復"
+  },
+  "dismissed": {
+    "message": "已忽略"
+  },
+  "loading": {
+    "message": "載入中..."
+  },
+  "noToken": {
+    "message": "尚未設定Token。"
+  },
+  "goToSettings": {
+    "message": "前往設定"
+  },
+  "noPRs": {
+    "message": "未找到開啟的PR。"
+  },
+  "allClear": {
+    "message": "全部完成！沒有需要你處理的PR。"
+  },
+  "waitingOn": {
+    "message": "等待："
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "stateReview": {
+    "message": "待審查"
+  },
+  "stateFix": {
+    "message": "待修復"
+  },
+  "stateRespond": {
+    "message": "待回覆"
+  },
+  "stateMerge": {
+    "message": "待合併"
+  },
+  "stateMerging": {
+    "message": "合併中"
+  },
+  "stateStuck": {
+    "message": "卡住"
+  },
+  "stateDraft": {
+    "message": "草稿"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set 設定"
+  },
+  "optTokenLabel": {
+    "message": "GitHub 個人存取權杖"
+  },
+  "optTokenHint": {
+    "message": "建立細粒度PAT，權限：Pull requests → 讀取，Issues → 讀取"
+  },
+  "optAddToken": {
+    "message": "+ 新增權杖"
+  },
+  "optSave": {
+    "message": "儲存設定"
+  },
+  "optSaved": {
+    "message": "✓ 已儲存！"
+  },
+  "optDebounce": {
+    "message": "防抖時間（分鐘）"
+  },
+  "optDebounceHint": {
+    "message": "等待此時間後隱式信號才會翻轉注意力狀態。"
+  },
+  "optPoll": {
+    "message": "輪詢間隔（分鐘）"
+  },
+  "optPollHint": {
+    "message": "檢查GitHub更新的頻率。"
+  },
+  "optNotifications": {
+    "message": "啟用桌面通知"
+  },
+  "optGroupByRepo": {
+    "message": "按儲存庫分組PR"
+  },
+  "optRepoFilter": {
+    "message": "儲存庫篩選器"
+  },
+  "optFilterAll": {
+    "message": "顯示全部（預設）"
+  },
+  "optFilterInclude": {
+    "message": "僅顯示這些儲存庫"
+  },
+  "optFilterExclude": {
+    "message": "隱藏這些儲存庫"
+  },
+  "optRepoPlaceholder": {
+    "message": "owner/repo（每行一個）"
+  },
+  "optRepoLabel": {
+    "message": "儲存庫（每行一個，格式：owner/repo）"
+  },
+  "optSaveFilter": {
+    "message": "儲存篩選器"
+  },
+  "optFilterHint": {
+    "message": "篩選哪些儲存庫出現在你的關注集中。"
+  },
+  "optReportBug": {
+    "message": "回報錯誤或請求功能"
+  },
+  "tokenName": {
+    "message": "名稱"
+  },
+  "tokenValue": {
+    "message": "權杖"
+  },
+  "openSettings": {
+    "message": "開啟設定"
+  },
+  "tokenHintFull": {
+    "message": "新增一個或多個GitHub個人存取權杖。所有權杖的結果將被合併。"
+  },
+  "optLanguage": {
+    "message": "語言"
+  },
+  "optLanguageHint": {
+    "message": "選擇此擴充功能的顯示語言。"
+  },
+  "optLanguageAuto": {
+    "message": "自動（跟隨瀏覽器）"
+  },
+  "optLanguageSaved": {
+    "message": "語言已儲存。請重新開啟彈窗以使變更生效。"
+  }
 }

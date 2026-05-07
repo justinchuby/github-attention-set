@@ -1,49 +1,155 @@
 {
-  "extName": { "message": "GitHub Attention Set" },
-  "extDescription": { "message": "Lihat PR mana yang butuh perhatianmu — seperti Attention Set Google Critique untuk GitHub." },
-  "needsAttention": { "message": "Butuh perhatianmu" },
-  "waitingOnOthers": { "message": "Menunggu orang lain" },
-  "refresh": { "message": "Muat ulang" },
-  "dismiss": { "message": "Sembunyikan" },
-  "restore": { "message": "Pulihkan" },
-  "dismissed": { "message": "disembunyikan" },
-  "loading": { "message": "Memuat..." },
-  "noToken": { "message": "Token belum dikonfigurasi." },
-  "goToSettings": { "message": "Buka pengaturan" },
-  "noPRs": { "message": "Tidak ada PR yang terbuka." },
-  "allClear": { "message": "Semua beres! Tidak ada PR yang menunggu kamu." },
-  "waitingOn": { "message": "Menunggu:" },
-  "settings": { "message": "Pengaturan" },
-  "stateReview": { "message": "Review" },
-  "stateFix": { "message": "Perbaiki" },
-  "stateRespond": { "message": "Balas" },
-  "stateMerge": { "message": "Merge" },
-  "stateMerging": { "message": "Sedang merge" },
-  "stateStuck": { "message": "Macet" },
-  "stateDraft": { "message": "Draf" },
-  "optTitle": { "message": "Pengaturan GitHub Attention Set" },
-  "optTokenLabel": { "message": "Token Akses Personal GitHub" },
-  "optTokenHint": { "message": "Buat fine-grained PAT dengan izin: Pull requests → Read, Issues → Read" },
-  "optAddToken": { "message": "+ Tambah token" },
-  "optSave": { "message": "Simpan pengaturan" },
-  "optSaved": { "message": "✓ Tersimpan!" },
-  "optDebounce": { "message": "Waktu debounce (menit)" },
-  "optDebounceHint": { "message": "Tunggu selama ini sebelum sinyal implisit mengubah status perhatian." },
-  "optPoll": { "message": "Interval polling (menit)" },
-  "optPollHint": { "message": "Seberapa sering memeriksa pembaruan GitHub." },
-  "optNotifications": { "message": "Aktifkan notifikasi desktop" },
-  "optGroupByRepo": { "message": "Kelompokkan PR berdasarkan repository" },
-  "optRepoFilter": { "message": "Filter repository" },
-  "optFilterAll": { "message": "Tampilkan semua (default)" },
-  "optFilterInclude": { "message": "Hanya tampilkan repo ini" },
-  "optFilterExclude": { "message": "Sembunyikan repo ini" },
-  "optRepoPlaceholder": { "message": "owner/repo (satu per baris)" },
-  "optRepoLabel": { "message": "Repository (satu per baris, format: owner/repo)" },
-  "optSaveFilter": { "message": "Simpan filter" },
-  "optFilterHint": { "message": "Filter repository mana yang muncul di attention set." },
-  "optReportBug": { "message": "Laporkan bug atau minta fitur" },
-  "tokenName": { "message": "Nama" },
-  "tokenValue": { "message": "Token" },
-  "openSettings": { "message": "Buka pengaturan" },
-  "tokenHintFull": { "message": "Tambahkan satu atau lebih token akses personal GitHub. Hasil dari semua token akan digabungkan." }
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "Lihat PR mana yang butuh perhatianmu — seperti Attention Set Google Critique untuk GitHub."
+  },
+  "needsAttention": {
+    "message": "Butuh perhatianmu"
+  },
+  "waitingOnOthers": {
+    "message": "Menunggu orang lain"
+  },
+  "refresh": {
+    "message": "Muat ulang"
+  },
+  "dismiss": {
+    "message": "Sembunyikan"
+  },
+  "restore": {
+    "message": "Pulihkan"
+  },
+  "dismissed": {
+    "message": "disembunyikan"
+  },
+  "loading": {
+    "message": "Memuat..."
+  },
+  "noToken": {
+    "message": "Token belum dikonfigurasi."
+  },
+  "goToSettings": {
+    "message": "Buka pengaturan"
+  },
+  "noPRs": {
+    "message": "Tidak ada PR yang terbuka."
+  },
+  "allClear": {
+    "message": "Semua beres! Tidak ada PR yang menunggu kamu."
+  },
+  "waitingOn": {
+    "message": "Menunggu:"
+  },
+  "settings": {
+    "message": "Pengaturan"
+  },
+  "stateReview": {
+    "message": "Review"
+  },
+  "stateFix": {
+    "message": "Perbaiki"
+  },
+  "stateRespond": {
+    "message": "Balas"
+  },
+  "stateMerge": {
+    "message": "Merge"
+  },
+  "stateMerging": {
+    "message": "Merging"
+  },
+  "stateStuck": {
+    "message": "Macet"
+  },
+  "stateDraft": {
+    "message": "Draf"
+  },
+  "optTitle": {
+    "message": "Pengaturan GitHub Attention Set"
+  },
+  "optTokenLabel": {
+    "message": "Token Akses Personal GitHub"
+  },
+  "optTokenHint": {
+    "message": "Buat fine-grained PAT dengan izin: Pull requests → Read, Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ Tambah token"
+  },
+  "optSave": {
+    "message": "Simpan pengaturan"
+  },
+  "optSaved": {
+    "message": "✓ Tersimpan!"
+  },
+  "optDebounce": {
+    "message": "Waktu debounce (menit)"
+  },
+  "optDebounceHint": {
+    "message": "Tunggu selama ini sebelum sinyal implisit mengubah status perhatian."
+  },
+  "optPoll": {
+    "message": "Interval polling (menit)"
+  },
+  "optPollHint": {
+    "message": "Seberapa sering memeriksa pembaruan GitHub."
+  },
+  "optNotifications": {
+    "message": "Aktifkan notifikasi desktop"
+  },
+  "optGroupByRepo": {
+    "message": "Kelompokkan PR berdasarkan repository"
+  },
+  "optRepoFilter": {
+    "message": "Filter repository"
+  },
+  "optFilterAll": {
+    "message": "Tampilkan semua (default)"
+  },
+  "optFilterInclude": {
+    "message": "Hanya tampilkan repo ini"
+  },
+  "optFilterExclude": {
+    "message": "Sembunyikan repo ini"
+  },
+  "optRepoPlaceholder": {
+    "message": "owner/repo (satu per baris)"
+  },
+  "optRepoLabel": {
+    "message": "Repository (satu per baris, format: owner/repo)"
+  },
+  "optSaveFilter": {
+    "message": "Simpan filter"
+  },
+  "optFilterHint": {
+    "message": "Filter repository mana yang muncul di attention set."
+  },
+  "optReportBug": {
+    "message": "Laporkan bug atau minta fitur"
+  },
+  "tokenName": {
+    "message": "Nama"
+  },
+  "tokenValue": {
+    "message": "Token"
+  },
+  "openSettings": {
+    "message": "Buka pengaturan"
+  },
+  "tokenHintFull": {
+    "message": "Tambahkan satu atau lebih token akses personal GitHub. Hasil dari semua token akan digabungkan."
+  },
+  "optLanguage": {
+    "message": "Bahasa"
+  },
+  "optLanguageHint": {
+    "message": "Pilih bahasa tampilan untuk ekstensi ini."
+  },
+  "optLanguageAuto": {
+    "message": "Otomatis (ikuti browser)"
+  },
+  "optLanguageSaved": {
+    "message": "Bahasa disimpan. Silakan buka ulang popup untuk menerapkan."
+  }
 }

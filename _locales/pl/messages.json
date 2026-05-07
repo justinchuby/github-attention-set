@@ -1,53 +1,155 @@
 {
-  "extName": { "message": "GitHub Attention Set" },
-  "extDescription": { "message": "Sprawdź, które PR-y wymagają Twojej uwagi — jak Attention Set z Google Critique dla GitHuba." },
-  "needsAttention": { "message": "Wymaga Twojej uwagi" },
-  "waitingOnOthers": { "message": "Czeka na innych" },
-  "refresh": { "message": "Odśwież" },
-  "dismiss": { "message": "Odrzuć" },
-  "restore": { "message": "Przywróć" },
-  "dismissed": { "message": "odrzucone" },
-  "loading": { "message": "Ładowanie..." },
-  "noToken": { "message": "Brak skonfigurowanego tokena." },
-  "goToSettings": { "message": "Przejdź do ustawień" },
-  "noPRs": { "message": "Nie znaleziono otwartych PR-ów." },
-  "allClear": { "message": "Wszystko czyste! Żaden PR na Ciebie nie czeka." },
-  "waitingOn": { "message": "Czeka na:" },
-  "settings": { "message": "Ustawienia" },
-  "stateReview": { "message": "Przegląd" },
-  "stateFix": { "message": "Napraw" },
-  "stateRespond": { "message": "Odpowiedz" },
-  "stateMerge": { "message": "Scal" },
-  "stateMerging": { "message": "Scalanie..." },
-  "stateStuck": { "message": "Zablokowane" },
-  "stateDraft": { "message": "Szkic" },
-  "optTitle": { "message": "GitHub Attention Set Ustawienia" },
-  "optTokenLabel": { "message": "Osobiste tokeny dostępu GitHub" },
-  "optTokenHint": { "message": "Utwórz token PAT z uprawnieniami: Pull requests → Read, Issues → Read" },
-  "optAddToken": { "message": "+ Dodaj token" },
-  "optSave": { "message": "Zapisz ustawienia" },
-  "optSaved": { "message": "✓ Zapisano!" },
-  "optDebounce": { "message": "Czas opóźnienia (minuty)" },
-  "optDebounceHint": { "message": "Czekaj tak długo, zanim niejawne sygnały zmienią uwagę." },
-  "optPoll": { "message": "Interwał odpytywania (minuty)" },
-  "optPollHint": { "message": "Jak często sprawdzać GitHub w poszukiwaniu aktualizacji." },
-  "optNotifications": { "message": "Włącz powiadomienia na pulpicie" },
-  "optGroupByRepo": { "message": "Grupuj PR-y według repozytorium" },
-  "optRepoFilter": { "message": "Filtr repozytoriów" },
-  "optFilterAll": { "message": "Pokaż wszystkie (domyślnie)" },
-  "optFilterInclude": { "message": "Pokaż tylko te repozytoria" },
-  "optFilterExclude": { "message": "Ukryj te repozytoria" },
-  "optRepoPlaceholder": { "message": "właściciel/repo (jedno na linię)" },
-  "optRepoLabel": { "message": "Repozytoria (jedno na linię, format: właściciel/repo)" },
-  "optSaveFilter": { "message": "Zapisz filtr" },
-  "optFilterHint": { "message": "Filtruj, które repozytoria pojawiają się w zestawie uwagi." },
-  "optReportBug": { "message": "Zgłoś błąd lub zaproponuj funkcję" },
-  "tokenName": { "message": "Nazwa" },
-  "tokenValue": { "message": "Token" },
-  "openSettings": { "message": "Otwórz ustawienia" },
-  "tokenHintFull": { "message": "Dodaj jeden lub więcej tokenów dostępu GitHub. Wyniki ze wszystkich tokenów są łączone." },
-  "optLanguage": { "message": "Język" },
-  "optLanguageHint": { "message": "Wybierz język wyświetlania tego rozszerzenia." },
-  "optLanguageAuto": { "message": "Automatyczny (zgodnie z przeglądarką)" },
-  "optLanguageSaved": { "message": "Język zapisany. Otwórz ponownie popup, aby zmiany weszły w życie." }
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "Sprawdź, które PR-y wymagają Twojej uwagi — jak Attention Set z Google Critique dla GitHuba."
+  },
+  "needsAttention": {
+    "message": "Wymaga Twojej uwagi"
+  },
+  "waitingOnOthers": {
+    "message": "Czeka na innych"
+  },
+  "refresh": {
+    "message": "Odśwież"
+  },
+  "dismiss": {
+    "message": "Odrzuć"
+  },
+  "restore": {
+    "message": "Przywróć"
+  },
+  "dismissed": {
+    "message": "odrzucone"
+  },
+  "loading": {
+    "message": "Ładowanie..."
+  },
+  "noToken": {
+    "message": "Brak skonfigurowanego tokena."
+  },
+  "goToSettings": {
+    "message": "Przejdź do ustawień"
+  },
+  "noPRs": {
+    "message": "Nie znaleziono otwartych PR-ów."
+  },
+  "allClear": {
+    "message": "Wszystko czyste! Żaden PR na Ciebie nie czeka."
+  },
+  "waitingOn": {
+    "message": "Czeka na:"
+  },
+  "settings": {
+    "message": "Ustawienia"
+  },
+  "stateReview": {
+    "message": "Przegląd"
+  },
+  "stateFix": {
+    "message": "Napraw"
+  },
+  "stateRespond": {
+    "message": "Odpowdz"
+  },
+  "stateMerge": {
+    "message": "Scal"
+  },
+  "stateMerging": {
+    "message": "Scalanie"
+  },
+  "stateStuck": {
+    "message": "Zablok."
+  },
+  "stateDraft": {
+    "message": "Szkic"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set Ustawienia"
+  },
+  "optTokenLabel": {
+    "message": "Osobiste tokeny dostępu GitHub"
+  },
+  "optTokenHint": {
+    "message": "Utwórz token PAT z uprawnieniami: Pull requests → Read, Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ Dodaj token"
+  },
+  "optSave": {
+    "message": "Zapisz ustawienia"
+  },
+  "optSaved": {
+    "message": "✓ Zapisano!"
+  },
+  "optDebounce": {
+    "message": "Czas opóźnienia (minuty)"
+  },
+  "optDebounceHint": {
+    "message": "Czekaj tak długo, zanim niejawne sygnały zmienią uwagę."
+  },
+  "optPoll": {
+    "message": "Interwał odpytywania (minuty)"
+  },
+  "optPollHint": {
+    "message": "Jak często sprawdzać GitHub w poszukiwaniu aktualizacji."
+  },
+  "optNotifications": {
+    "message": "Włącz powiadomienia na pulpicie"
+  },
+  "optGroupByRepo": {
+    "message": "Grupuj PR-y według repozytorium"
+  },
+  "optRepoFilter": {
+    "message": "Filtr repozytoriów"
+  },
+  "optFilterAll": {
+    "message": "Pokaż wszystkie (domyślnie)"
+  },
+  "optFilterInclude": {
+    "message": "Pokaż tylko te repozytoria"
+  },
+  "optFilterExclude": {
+    "message": "Ukryj te repozytoria"
+  },
+  "optRepoPlaceholder": {
+    "message": "właściciel/repo (jedno na linię)"
+  },
+  "optRepoLabel": {
+    "message": "Repozytoria (jedno na linię, format: właściciel/repo)"
+  },
+  "optSaveFilter": {
+    "message": "Zapisz filtr"
+  },
+  "optFilterHint": {
+    "message": "Filtruj, które repozytoria pojawiają się w zestawie uwagi."
+  },
+  "optReportBug": {
+    "message": "Zgłoś błąd lub zaproponuj funkcję"
+  },
+  "tokenName": {
+    "message": "Nazwa"
+  },
+  "tokenValue": {
+    "message": "Token"
+  },
+  "openSettings": {
+    "message": "Otwórz ustawienia"
+  },
+  "tokenHintFull": {
+    "message": "Dodaj jeden lub więcej tokenów dostępu GitHub. Wyniki ze wszystkich tokenów są łączone."
+  },
+  "optLanguage": {
+    "message": "Język"
+  },
+  "optLanguageHint": {
+    "message": "Wybierz język wyświetlania tego rozszerzenia."
+  },
+  "optLanguageAuto": {
+    "message": "Automatyczny (zgodnie z przeglądarką)"
+  },
+  "optLanguageSaved": {
+    "message": "Język zapisany. Otwórz ponownie popup, aby zmiany weszły w życie."
+  }
 }

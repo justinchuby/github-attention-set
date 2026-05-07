@@ -1,53 +1,155 @@
 {
-  "extName": { "message": "GitHub Attention Set" },
-  "extDescription": { "message": "Nézd meg, mely PR-ek igénylik a figyelmedet — mint a Google Critique Attention Set a GitHubhoz." },
-  "needsAttention": { "message": "Figyelmet igényel" },
-  "waitingOnOthers": { "message": "Másokra vár" },
-  "refresh": { "message": "Frissítés" },
-  "dismiss": { "message": "Elvetés" },
-  "restore": { "message": "Visszaállítás" },
-  "dismissed": { "message": "elvetve" },
-  "loading": { "message": "Betöltés..." },
-  "noToken": { "message": "Nincs token beállítva." },
-  "goToSettings": { "message": "Beállítások megnyitása" },
-  "noPRs": { "message": "Nem található nyitott PR." },
-  "allClear": { "message": "Minden rendben! Nincs rád váró PR." },
-  "waitingOn": { "message": "Várakozás:" },
-  "settings": { "message": "Beállítások" },
-  "stateReview": { "message": "Áttekintés" },
-  "stateFix": { "message": "Javítás" },
-  "stateRespond": { "message": "Válasz" },
-  "stateMerge": { "message": "Egyesítés" },
-  "stateMerging": { "message": "Egyesítés..." },
-  "stateStuck": { "message": "Elakadt" },
-  "stateDraft": { "message": "Vázlat" },
-  "optTitle": { "message": "GitHub Attention Set Beállítások" },
-  "optTokenLabel": { "message": "GitHub személyes hozzáférési tokenek" },
-  "optTokenHint": { "message": "Hozz létre egy finomhangolt PAT-ot jogosultságokkal: Pull requests → Read, Issues → Read" },
-  "optAddToken": { "message": "+ Token hozzáadása" },
-  "optSave": { "message": "Beállítások mentése" },
-  "optSaved": { "message": "✓ Mentve!" },
-  "optDebounce": { "message": "Késleltetési idő (perc)" },
-  "optDebounceHint": { "message": "Ennyi ideig várjon, mielőtt az implicit jelek átfordítják a figyelmet." },
-  "optPoll": { "message": "Lekérdezési időköz (perc)" },
-  "optPollHint": { "message": "Milyen gyakran ellenőrizze a GitHubot frissítésekért." },
-  "optNotifications": { "message": "Asztali értesítések engedélyezése" },
-  "optGroupByRepo": { "message": "PR-ek csoportosítása tároló szerint" },
-  "optRepoFilter": { "message": "Tároló szűrő" },
-  "optFilterAll": { "message": "Összes megjelenítése (alapértelmezett)" },
-  "optFilterInclude": { "message": "Csak ezeket a tárolókat jelenítse meg" },
-  "optFilterExclude": { "message": "Ezeket a tárolókat rejtse el" },
-  "optRepoPlaceholder": { "message": "tulajdonos/tároló (soronként egy)" },
-  "optRepoLabel": { "message": "Tárolók (soronként egy, formátum: tulajdonos/tároló)" },
-  "optSaveFilter": { "message": "Szűrő mentése" },
-  "optFilterHint": { "message": "Szűrd, mely tárolók jelenjenek meg a figyelemkészletedben." },
-  "optReportBug": { "message": "Hiba bejelentése vagy funkció kérése" },
-  "tokenName": { "message": "Név" },
-  "tokenValue": { "message": "Token" },
-  "openSettings": { "message": "Beállítások megnyitása" },
-  "tokenHintFull": { "message": "Adj hozzá egy vagy több GitHub hozzáférési tokent. Az összes token eredményei egyesítve jelennek meg." },
-  "optLanguage": { "message": "Nyelv" },
-  "optLanguageHint": { "message": "Válaszd ki a bővítmény megjelenítési nyelvét." },
-  "optLanguageAuto": { "message": "Automatikus (böngésző követése)" },
-  "optLanguageSaved": { "message": "Nyelv mentve. Nyisd újra a felugró ablakot a módosítások érvénybe lépéséhez." }
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "Nézd meg, mely PR-ek igénylik a figyelmedet — mint a Google Critique Attention Set a GitHubhoz."
+  },
+  "needsAttention": {
+    "message": "Figyelmet igényel"
+  },
+  "waitingOnOthers": {
+    "message": "Másokra vár"
+  },
+  "refresh": {
+    "message": "Frissítés"
+  },
+  "dismiss": {
+    "message": "Elvetés"
+  },
+  "restore": {
+    "message": "Visszaállítás"
+  },
+  "dismissed": {
+    "message": "elvetve"
+  },
+  "loading": {
+    "message": "Betöltés..."
+  },
+  "noToken": {
+    "message": "Nincs token beállítva."
+  },
+  "goToSettings": {
+    "message": "Beállítások megnyitása"
+  },
+  "noPRs": {
+    "message": "Nem található nyitott PR."
+  },
+  "allClear": {
+    "message": "Minden rendben! Nincs rád váró PR."
+  },
+  "waitingOn": {
+    "message": "Várakozás:"
+  },
+  "settings": {
+    "message": "Beállítások"
+  },
+  "stateReview": {
+    "message": "Átnézés"
+  },
+  "stateFix": {
+    "message": "Javítás"
+  },
+  "stateRespond": {
+    "message": "Válasz"
+  },
+  "stateMerge": {
+    "message": "Merge"
+  },
+  "stateMerging": {
+    "message": "Merging"
+  },
+  "stateStuck": {
+    "message": "Elakadt"
+  },
+  "stateDraft": {
+    "message": "Vázlat"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set Beállítások"
+  },
+  "optTokenLabel": {
+    "message": "GitHub személyes hozzáférési tokenek"
+  },
+  "optTokenHint": {
+    "message": "Hozz létre egy finomhangolt PAT-ot jogosultságokkal: Pull requests → Read, Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ Token hozzáadása"
+  },
+  "optSave": {
+    "message": "Beállítások mentése"
+  },
+  "optSaved": {
+    "message": "✓ Mentve!"
+  },
+  "optDebounce": {
+    "message": "Késleltetési idő (perc)"
+  },
+  "optDebounceHint": {
+    "message": "Ennyi ideig várjon, mielőtt az implicit jelek átfordítják a figyelmet."
+  },
+  "optPoll": {
+    "message": "Lekérdezési időköz (perc)"
+  },
+  "optPollHint": {
+    "message": "Milyen gyakran ellenőrizze a GitHubot frissítésekért."
+  },
+  "optNotifications": {
+    "message": "Asztali értesítések engedélyezése"
+  },
+  "optGroupByRepo": {
+    "message": "PR-ek csoportosítása tároló szerint"
+  },
+  "optRepoFilter": {
+    "message": "Tároló szűrő"
+  },
+  "optFilterAll": {
+    "message": "Összes megjelenítése (alapértelmezett)"
+  },
+  "optFilterInclude": {
+    "message": "Csak ezeket a tárolókat jelenítse meg"
+  },
+  "optFilterExclude": {
+    "message": "Ezeket a tárolókat rejtse el"
+  },
+  "optRepoPlaceholder": {
+    "message": "tulajdonos/tároló (soronként egy)"
+  },
+  "optRepoLabel": {
+    "message": "Tárolók (soronként egy, formátum: tulajdonos/tároló)"
+  },
+  "optSaveFilter": {
+    "message": "Szűrő mentése"
+  },
+  "optFilterHint": {
+    "message": "Szűrd, mely tárolók jelenjenek meg a figyelemkészletedben."
+  },
+  "optReportBug": {
+    "message": "Hiba bejelentése vagy funkció kérése"
+  },
+  "tokenName": {
+    "message": "Név"
+  },
+  "tokenValue": {
+    "message": "Token"
+  },
+  "openSettings": {
+    "message": "Beállítások megnyitása"
+  },
+  "tokenHintFull": {
+    "message": "Adj hozzá egy vagy több GitHub hozzáférési tokent. Az összes token eredményei egyesítve jelennek meg."
+  },
+  "optLanguage": {
+    "message": "Nyelv"
+  },
+  "optLanguageHint": {
+    "message": "Válaszd ki a bővítmény megjelenítési nyelvét."
+  },
+  "optLanguageAuto": {
+    "message": "Automatikus (böngésző követése)"
+  },
+  "optLanguageSaved": {
+    "message": "Nyelv mentve. Nyisd újra a felugró ablakot a módosítások érvénybe lépéséhez."
+  }
 }

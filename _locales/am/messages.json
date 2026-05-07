@@ -1,53 +1,155 @@
 {
-  "extName": { "message": "GitHub Attention Set" },
-  "extDescription": { "message": "የትኞቹ PR-ዎች ትኩረትዎን እንደሚፈልጉ ይመልከቱ — እንደ Google Critique Attention Set ለ GitHub።" },
-  "needsAttention": { "message": "ትኩረትዎን ይፈልጋል" },
-  "waitingOnOthers": { "message": "ሌሎችን በመጠበቅ ላይ" },
-  "refresh": { "message": "አድስ" },
-  "dismiss": { "message": "አሰናብት" },
-  "restore": { "message": "መልስ" },
-  "dismissed": { "message": "ተሰናብቷል" },
-  "loading": { "message": "በመጫን ላይ..." },
-  "noToken": { "message": "ምንም ቶከን አልተዋቀረም።" },
-  "goToSettings": { "message": "ወደ ቅንብሮች ሂድ" },
-  "noPRs": { "message": "ክፍት PR-ዎች አልተገኙም።" },
-  "allClear": { "message": "ሁሉም ጥሩ ነው! ምንም PR እርስዎን አይጠብቅም።" },
-  "waitingOn": { "message": "በመጠበቅ ላይ:" },
-  "settings": { "message": "ቅንብሮች" },
-  "stateReview": { "message": "ገምግም" },
-  "stateFix": { "message": "አስተካክል" },
-  "stateRespond": { "message": "መልስ ስጥ" },
-  "stateMerge": { "message": "አዋህድ" },
-  "stateMerging": { "message": "በማዋሃድ ላይ..." },
-  "stateStuck": { "message": "ተጣብቋል" },
-  "stateDraft": { "message": "ረቂቅ" },
-  "optTitle": { "message": "GitHub Attention Set ቅንብሮች" },
-  "optTokenLabel": { "message": "የ GitHub ግላዊ መዳረሻ ቶከኖች" },
-  "optTokenHint": { "message": "ዝርዝር PAT ይፍጠሩ ፈቃዶች: Pull requests → Read, Issues → Read" },
-  "optAddToken": { "message": "+ ቶከን ጨምር" },
-  "optSave": { "message": "ቅንብሮችን አስቀምጥ" },
-  "optSaved": { "message": "✓ ተቀምጧል!" },
-  "optDebounce": { "message": "የመዘግየት ጊዜ (ደቂቃዎች)" },
-  "optDebounceHint": { "message": "ግልጽ ያልሆኑ ምልክቶች ትኩረትን ከመቀየራቸው በፊት ይህን ያህል ይጠብቁ።" },
-  "optPoll": { "message": "የፖል ክፍተት (ደቂቃዎች)" },
-  "optPollHint": { "message": "ለዝማኔዎች GitHub ምን ያህል ጊዜ ይፈተሻል።" },
-  "optNotifications": { "message": "የዴስክቶፕ ማሳወቂያዎችን አንቃ" },
-  "optGroupByRepo": { "message": "PR-ዎችን በማከማቻ ቡድን" },
-  "optRepoFilter": { "message": "የማከማቻ ማጣሪያ" },
-  "optFilterAll": { "message": "ሁሉንም አሳይ (ነባሪ)" },
-  "optFilterInclude": { "message": "እነዚህን ማከማቻዎች ብቻ አሳይ" },
-  "optFilterExclude": { "message": "እነዚህን ማከማቻዎች ደብቅ" },
-  "optRepoPlaceholder": { "message": "ባለቤት/ማከማቻ (በአንድ መስመር አንድ)" },
-  "optRepoLabel": { "message": "ማከማቻዎች (በአንድ መስመር አንድ፣ ቅርጸት: ባለቤት/ማከማቻ)" },
-  "optSaveFilter": { "message": "ማጣሪያ አስቀምጥ" },
-  "optFilterHint": { "message": "የትኞቹ ማከማቻዎች በትኩረት ስብስብዎ ውስጥ እንደሚታዩ አጣራ።" },
-  "optReportBug": { "message": "ስህተት ሪፖርት ያድርጉ ወይም ባህሪ ይጠይቁ" },
-  "tokenName": { "message": "ስም" },
-  "tokenValue": { "message": "ቶከን" },
-  "openSettings": { "message": "ቅንብሮችን ክፈት" },
-  "tokenHintFull": { "message": "አንድ ወይም ከዚያ በላይ የ GitHub መዳረሻ ቶከኖች ይጨምሩ። ከሁሉም ቶከኖች ውጤቶች ይዋሃዳሉ።" },
-  "optLanguage": { "message": "ቋንቋ" },
-  "optLanguageHint": { "message": "ለዚህ ቅጥያ የማሳያ ቋንቋ ይምረጡ።" },
-  "optLanguageAuto": { "message": "ራስ-ሰር (አሳሹን ይከተል)" },
-  "optLanguageSaved": { "message": "ቋንቋ ተቀምጧል። ለውጦቹ እንዲሠሩ popup-ውን እንደገና ይክፈቱ።" }
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "የትኞቹ PR-ዎች ትኩረትዎን እንደሚፈልጉ ይመልከቱ — እንደ Google Critique Attention Set ለ GitHub።"
+  },
+  "needsAttention": {
+    "message": "ትኩረትዎን ይፈልጋል"
+  },
+  "waitingOnOthers": {
+    "message": "ሌሎችን በመጠበቅ ላይ"
+  },
+  "refresh": {
+    "message": "አድስ"
+  },
+  "dismiss": {
+    "message": "አሰናብት"
+  },
+  "restore": {
+    "message": "መልስ"
+  },
+  "dismissed": {
+    "message": "ተሰናብቷል"
+  },
+  "loading": {
+    "message": "በመጫን ላይ..."
+  },
+  "noToken": {
+    "message": "ምንም ቶከን አልተዋቀረም።"
+  },
+  "goToSettings": {
+    "message": "ወደ ቅንብሮች ሂድ"
+  },
+  "noPRs": {
+    "message": "ክፍት PR-ዎች አልተገኙም።"
+  },
+  "allClear": {
+    "message": "ሁሉም ጥሩ ነው! ምንም PR እርስዎን አይጠብቅም።"
+  },
+  "waitingOn": {
+    "message": "በመጠበቅ ላይ:"
+  },
+  "settings": {
+    "message": "ቅንብሮች"
+  },
+  "stateReview": {
+    "message": "ገምግም"
+  },
+  "stateFix": {
+    "message": "አስተካክል"
+  },
+  "stateRespond": {
+    "message": "መልስ ስጥ"
+  },
+  "stateMerge": {
+    "message": "አዋህድ"
+  },
+  "stateMerging": {
+    "message": "ማዋሃድ..."
+  },
+  "stateStuck": {
+    "message": "ተጣብቋል"
+  },
+  "stateDraft": {
+    "message": "ረቂቅ"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set ቅንብሮች"
+  },
+  "optTokenLabel": {
+    "message": "የ GitHub ግላዊ መዳረሻ ቶከኖች"
+  },
+  "optTokenHint": {
+    "message": "ዝርዝር PAT ይፍጠሩ ፈቃዶች: Pull requests → Read, Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ ቶከን ጨምር"
+  },
+  "optSave": {
+    "message": "ቅንብሮችን አስቀምጥ"
+  },
+  "optSaved": {
+    "message": "✓ ተቀምጧል!"
+  },
+  "optDebounce": {
+    "message": "የመዘግየት ጊዜ (ደቂቃዎች)"
+  },
+  "optDebounceHint": {
+    "message": "ግልጽ ያልሆኑ ምልክቶች ትኩረትን ከመቀየራቸው በፊት ይህን ያህል ይጠብቁ።"
+  },
+  "optPoll": {
+    "message": "የፖል ክፍተት (ደቂቃዎች)"
+  },
+  "optPollHint": {
+    "message": "ለዝማኔዎች GitHub ምን ያህል ጊዜ ይፈተሻል።"
+  },
+  "optNotifications": {
+    "message": "የዴስክቶፕ ማሳወቂያዎችን አንቃ"
+  },
+  "optGroupByRepo": {
+    "message": "PR-ዎችን በማከማቻ ቡድን"
+  },
+  "optRepoFilter": {
+    "message": "የማከማቻ ማጣሪያ"
+  },
+  "optFilterAll": {
+    "message": "ሁሉንም አሳይ (ነባሪ)"
+  },
+  "optFilterInclude": {
+    "message": "እነዚህን ማከማቻዎች ብቻ አሳይ"
+  },
+  "optFilterExclude": {
+    "message": "እነዚህን ማከማቻዎች ደብቅ"
+  },
+  "optRepoPlaceholder": {
+    "message": "ባለቤት/ማከማቻ (በአንድ መስመር አንድ)"
+  },
+  "optRepoLabel": {
+    "message": "ማከማቻዎች (በአንድ መስመር አንድ፣ ቅርጸት: ባለቤት/ማከማቻ)"
+  },
+  "optSaveFilter": {
+    "message": "ማጣሪያ አስቀምጥ"
+  },
+  "optFilterHint": {
+    "message": "የትኞቹ ማከማቻዎች በትኩረት ስብስብዎ ውስጥ እንደሚታዩ አጣራ።"
+  },
+  "optReportBug": {
+    "message": "ስህተት ሪፖርት ያድርጉ ወይም ባህሪ ይጠይቁ"
+  },
+  "tokenName": {
+    "message": "ስም"
+  },
+  "tokenValue": {
+    "message": "ቶከን"
+  },
+  "openSettings": {
+    "message": "ቅንብሮችን ክፈት"
+  },
+  "tokenHintFull": {
+    "message": "አንድ ወይም ከዚያ በላይ የ GitHub መዳረሻ ቶከኖች ይጨምሩ። ከሁሉም ቶከኖች ውጤቶች ይዋሃዳሉ።"
+  },
+  "optLanguage": {
+    "message": "ቋንቋ"
+  },
+  "optLanguageHint": {
+    "message": "ለዚህ ቅጥያ የማሳያ ቋንቋ ይምረጡ።"
+  },
+  "optLanguageAuto": {
+    "message": "ራስ-ሰር (አሳሹን ይከተል)"
+  },
+  "optLanguageSaved": {
+    "message": "ቋንቋ ተቀምጧል። ለውጦቹ እንዲሠሩ popup-ውን እንደገና ይክፈቱ።"
+  }
 }

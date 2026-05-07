@@ -1,49 +1,155 @@
 {
-  "extName": { "message": "GitHub Attention Set" },
-  "extDescription": { "message": "어떤 PR에 대응이 필요한지 확인 — Google Critique의 Attention Set을 GitHub에서." },
-  "needsAttention": { "message": "대응 필요" },
-  "waitingOnOthers": { "message": "다른 사람 대기 중" },
-  "refresh": { "message": "새로고침" },
-  "dismiss": { "message": "숨기기" },
-  "restore": { "message": "복원" },
-  "dismissed": { "message": "숨김" },
-  "loading": { "message": "로딩 중..." },
-  "noToken": { "message": "토큰이 설정되지 않았습니다." },
-  "goToSettings": { "message": "설정으로 이동" },
-  "noPRs": { "message": "열린 PR이 없습니다." },
-  "allClear": { "message": "모두 완료! 대기 중인 PR이 없습니다." },
-  "waitingOn": { "message": "대기 중:" },
-  "settings": { "message": "설정" },
-  "stateReview": { "message": "리뷰" },
-  "stateFix": { "message": "수정" },
-  "stateRespond": { "message": "답변" },
-  "stateMerge": { "message": "병합" },
-  "stateMerging": { "message": "병합 중" },
-  "stateStuck": { "message": "정체" },
-  "stateDraft": { "message": "초안" },
-  "optTitle": { "message": "GitHub Attention Set 설정" },
-  "optTokenLabel": { "message": "GitHub 개인 액세스 토큰" },
-  "optTokenHint": { "message": "Fine-grained PAT 생성 (권한: Pull requests → Read, Issues → Read)" },
-  "optAddToken": { "message": "+ 토큰 추가" },
-  "optSave": { "message": "설정 저장" },
-  "optSaved": { "message": "✓ 저장됨!" },
-  "optDebounce": { "message": "디바운스 시간 (분)" },
-  "optDebounceHint": { "message": "이 시간이 지난 후 암시적 신호가 주의 상태를 전환합니다." },
-  "optPoll": { "message": "폴링 간격 (분)" },
-  "optPollHint": { "message": "GitHub 업데이트 확인 주기." },
-  "optNotifications": { "message": "데스크톱 알림 활성화" },
-  "optGroupByRepo": { "message": "저장소별 PR 그룹화" },
-  "optRepoFilter": { "message": "저장소 필터" },
-  "optFilterAll": { "message": "모두 표시 (기본)" },
-  "optFilterInclude": { "message": "이 저장소만 표시" },
-  "optFilterExclude": { "message": "이 저장소 숨기기" },
-  "optRepoPlaceholder": { "message": "owner/repo (한 줄에 하나)" },
-  "optRepoLabel": { "message": "저장소 (한 줄에 하나, 형식: owner/repo)" },
-  "optSaveFilter": { "message": "필터 저장" },
-  "optFilterHint": { "message": "어텐션 세트에 표시할 저장소를 필터링합니다." },
-  "optReportBug": { "message": "버그 신고 또는 기능 요청" },
-  "tokenName": { "message": "이름" },
-  "tokenValue": { "message": "토큰" },
-  "openSettings": { "message": "설정 열기" },
-  "tokenHintFull": { "message": "하나 이상의 GitHub 개인 액세스 토큰을 추가하세요. 모든 토큰의 결과가 통합됩니다." }
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "어떤 PR에 대응이 필요한지 확인 — Google Critique의 Attention Set을 GitHub에서."
+  },
+  "needsAttention": {
+    "message": "대응 필요"
+  },
+  "waitingOnOthers": {
+    "message": "다른 사람 대기 중"
+  },
+  "refresh": {
+    "message": "새로고침"
+  },
+  "dismiss": {
+    "message": "숨기기"
+  },
+  "restore": {
+    "message": "복원"
+  },
+  "dismissed": {
+    "message": "숨김"
+  },
+  "loading": {
+    "message": "로딩 중..."
+  },
+  "noToken": {
+    "message": "토큰이 설정되지 않았습니다."
+  },
+  "goToSettings": {
+    "message": "설정으로 이동"
+  },
+  "noPRs": {
+    "message": "열린 PR이 없습니다."
+  },
+  "allClear": {
+    "message": "모두 완료! 대기 중인 PR이 없습니다."
+  },
+  "waitingOn": {
+    "message": "대기 중:"
+  },
+  "settings": {
+    "message": "설정"
+  },
+  "stateReview": {
+    "message": "리뷰"
+  },
+  "stateFix": {
+    "message": "수정"
+  },
+  "stateRespond": {
+    "message": "답변"
+  },
+  "stateMerge": {
+    "message": "병합"
+  },
+  "stateMerging": {
+    "message": "병합 중"
+  },
+  "stateStuck": {
+    "message": "정체"
+  },
+  "stateDraft": {
+    "message": "초안"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set 설정"
+  },
+  "optTokenLabel": {
+    "message": "GitHub 개인 액세스 토큰"
+  },
+  "optTokenHint": {
+    "message": "Fine-grained PAT 생성 (권한: Pull requests → Read, Issues → Read)"
+  },
+  "optAddToken": {
+    "message": "+ 토큰 추가"
+  },
+  "optSave": {
+    "message": "설정 저장"
+  },
+  "optSaved": {
+    "message": "✓ 저장됨!"
+  },
+  "optDebounce": {
+    "message": "디바운스 시간 (분)"
+  },
+  "optDebounceHint": {
+    "message": "이 시간이 지난 후 암시적 신호가 주의 상태를 전환합니다."
+  },
+  "optPoll": {
+    "message": "폴링 간격 (분)"
+  },
+  "optPollHint": {
+    "message": "GitHub 업데이트 확인 주기."
+  },
+  "optNotifications": {
+    "message": "데스크톱 알림 활성화"
+  },
+  "optGroupByRepo": {
+    "message": "저장소별 PR 그룹화"
+  },
+  "optRepoFilter": {
+    "message": "저장소 필터"
+  },
+  "optFilterAll": {
+    "message": "모두 표시 (기본)"
+  },
+  "optFilterInclude": {
+    "message": "이 저장소만 표시"
+  },
+  "optFilterExclude": {
+    "message": "이 저장소 숨기기"
+  },
+  "optRepoPlaceholder": {
+    "message": "owner/repo (한 줄에 하나)"
+  },
+  "optRepoLabel": {
+    "message": "저장소 (한 줄에 하나, 형식: owner/repo)"
+  },
+  "optSaveFilter": {
+    "message": "필터 저장"
+  },
+  "optFilterHint": {
+    "message": "어텐션 세트에 표시할 저장소를 필터링합니다."
+  },
+  "optReportBug": {
+    "message": "버그 신고 또는 기능 요청"
+  },
+  "tokenName": {
+    "message": "이름"
+  },
+  "tokenValue": {
+    "message": "토큰"
+  },
+  "openSettings": {
+    "message": "설정 열기"
+  },
+  "tokenHintFull": {
+    "message": "하나 이상의 GitHub 개인 액세스 토큰을 추가하세요. 모든 토큰의 결과가 통합됩니다."
+  },
+  "optLanguage": {
+    "message": "언어"
+  },
+  "optLanguageHint": {
+    "message": "이 확장 프로그램의 표시 언어를 선택합니다."
+  },
+  "optLanguageAuto": {
+    "message": "자동 (브라우저 따라가기)"
+  },
+  "optLanguageSaved": {
+    "message": "언어가 저장되었습니다. 변경 사항을 적용하려면 팝업을 다시 열어주세요."
+  }
 }

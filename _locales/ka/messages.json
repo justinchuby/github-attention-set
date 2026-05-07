@@ -1,53 +1,155 @@
 {
-  "extName": { "message": "GitHub Attention Set" },
-  "extDescription": { "message": "ნახეთ რომელი PR-ები საჭიროებს თქვენს ყურადღებას — როგორც Google Critique-ის Attention Set GitHub-ისთვის." },
-  "needsAttention": { "message": "საჭიროებს თქვენს ყურადღებას" },
-  "waitingOnOthers": { "message": "სხვებს ელოდება" },
-  "refresh": { "message": "განახლება" },
-  "dismiss": { "message": "უარყოფა" },
-  "restore": { "message": "აღდგენა" },
-  "dismissed": { "message": "უარყოფილი" },
-  "loading": { "message": "იტვირთება..." },
-  "noToken": { "message": "ტოკენი არ არის კონფიგურირებული." },
-  "goToSettings": { "message": "პარამეტრებზე გადასვლა" },
-  "noPRs": { "message": "ღია PR-ები ვერ მოიძებნა." },
-  "allClear": { "message": "ყველაფერი წესრიგშია! არცერთი PR არ გელოდებათ." },
-  "waitingOn": { "message": "ელოდება:" },
-  "settings": { "message": "პარამეტრები" },
-  "stateReview": { "message": "განხილვა" },
-  "stateFix": { "message": "გასწორება" },
-  "stateRespond": { "message": "პასუხი" },
-  "stateMerge": { "message": "შერწყმა" },
-  "stateMerging": { "message": "შერწყმა..." },
-  "stateStuck": { "message": "გაჭედილი" },
-  "stateDraft": { "message": "მონახაზი" },
-  "optTitle": { "message": "GitHub Attention Set პარამეტრები" },
-  "optTokenLabel": { "message": "GitHub პერსონალური წვდომის ტოკენები" },
-  "optTokenHint": { "message": "შექმენით დეტალური PAT უფლებებით: Pull requests → Read, Issues → Read" },
-  "optAddToken": { "message": "+ ტოკენის დამატება" },
-  "optSave": { "message": "პარამეტრების შენახვა" },
-  "optSaved": { "message": "✓ შენახულია!" },
-  "optDebounce": { "message": "დაყოვნების დრო (წუთები)" },
-  "optDebounceHint": { "message": "დაელოდეთ ამდენ ხანს, სანამ იმპლიციტური სიგნალები შეცვლის ყურადღებას." },
-  "optPoll": { "message": "გამოკითხვის ინტერვალი (წუთები)" },
-  "optPollHint": { "message": "რამდენად ხშირად შეამოწმოს GitHub განახლებებისთვის." },
-  "optNotifications": { "message": "დესკტოპ შეტყობინებების ჩართვა" },
-  "optGroupByRepo": { "message": "PR-ების დაჯგუფება რეპოზიტორიის მიხედვით" },
-  "optRepoFilter": { "message": "რეპოზიტორიის ფილტრი" },
-  "optFilterAll": { "message": "ყველას ჩვენება (ნაგულისხმევი)" },
-  "optFilterInclude": { "message": "მხოლოდ ამ რეპოზიტორიების ჩვენება" },
-  "optFilterExclude": { "message": "ამ რეპოზიტორიების დამალვა" },
-  "optRepoPlaceholder": { "message": "მფლობელი/რეპო (თითო ხაზზე)" },
-  "optRepoLabel": { "message": "რეპოზიტორიები (თითო ხაზზე, ფორმატი: მფლობელი/რეპო)" },
-  "optSaveFilter": { "message": "ფილტრის შენახვა" },
-  "optFilterHint": { "message": "გაფილტრეთ რომელი რეპოზიტორიები გამოჩნდეს თქვენს ყურადღების ნაკრებში." },
-  "optReportBug": { "message": "შეცდომის შეტყობინება ან ფუნქციის მოთხოვნა" },
-  "tokenName": { "message": "სახელი" },
-  "tokenValue": { "message": "ტოკენი" },
-  "openSettings": { "message": "პარამეტრების გახსნა" },
-  "tokenHintFull": { "message": "დაამატეთ ერთი ან მეტი GitHub წვდომის ტოკენი. ყველა ტოკენის შედეგები გაერთიანებულია." },
-  "optLanguage": { "message": "ენა" },
-  "optLanguageHint": { "message": "აირჩიეთ ამ გაფართოების ჩვენების ენა." },
-  "optLanguageAuto": { "message": "ავტომატური (ბრაუზერის მიყოლა)" },
-  "optLanguageSaved": { "message": "ენა შენახულია. გახსენით popup ხელახლა ცვლილებების ასამოქმედებლად." }
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "ნახეთ რომელი PR-ები საჭიროებს თქვენს ყურადღებას — როგორც Google Critique-ის Attention Set GitHub-ისთვის."
+  },
+  "needsAttention": {
+    "message": "საჭიროებს თქვენს ყურადღებას"
+  },
+  "waitingOnOthers": {
+    "message": "სხვებს ელოდება"
+  },
+  "refresh": {
+    "message": "განახლება"
+  },
+  "dismiss": {
+    "message": "უარყოფა"
+  },
+  "restore": {
+    "message": "აღდგენა"
+  },
+  "dismissed": {
+    "message": "უარყოფილი"
+  },
+  "loading": {
+    "message": "იტვირთება..."
+  },
+  "noToken": {
+    "message": "ტოკენი არ არის კონფიგურირებული."
+  },
+  "goToSettings": {
+    "message": "პარამეტრებზე გადასვლა"
+  },
+  "noPRs": {
+    "message": "ღია PR-ები ვერ მოიძებნა."
+  },
+  "allClear": {
+    "message": "ყველაფერი წესრიგშია! არცერთი PR არ გელოდებათ."
+  },
+  "waitingOn": {
+    "message": "ელოდება:"
+  },
+  "settings": {
+    "message": "პარამეტრები"
+  },
+  "stateReview": {
+    "message": "განხილვა"
+  },
+  "stateFix": {
+    "message": "გასწორე"
+  },
+  "stateRespond": {
+    "message": "პასუხი"
+  },
+  "stateMerge": {
+    "message": "შერწყმა"
+  },
+  "stateMerging": {
+    "message": "შერწყმა"
+  },
+  "stateStuck": {
+    "message": "გაჭედილი"
+  },
+  "stateDraft": {
+    "message": "მონახაზი"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set პარამეტრები"
+  },
+  "optTokenLabel": {
+    "message": "GitHub პერსონალური წვდომის ტოკენები"
+  },
+  "optTokenHint": {
+    "message": "შექმენით დეტალური PAT უფლებებით: Pull requests → Read, Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ ტოკენის დამატება"
+  },
+  "optSave": {
+    "message": "პარამეტრების შენახვა"
+  },
+  "optSaved": {
+    "message": "✓ შენახულია!"
+  },
+  "optDebounce": {
+    "message": "დაყოვნების დრო (წუთები)"
+  },
+  "optDebounceHint": {
+    "message": "დაელოდეთ ამდენ ხანს, სანამ იმპლიციტური სიგნალები შეცვლის ყურადღებას."
+  },
+  "optPoll": {
+    "message": "გამოკითხვის ინტერვალი (წუთები)"
+  },
+  "optPollHint": {
+    "message": "რამდენად ხშირად შეამოწმოს GitHub განახლებებისთვის."
+  },
+  "optNotifications": {
+    "message": "დესკტოპ შეტყობინებების ჩართვა"
+  },
+  "optGroupByRepo": {
+    "message": "PR-ების დაჯგუფება რეპოზიტორიის მიხედვით"
+  },
+  "optRepoFilter": {
+    "message": "რეპოზიტორიის ფილტრი"
+  },
+  "optFilterAll": {
+    "message": "ყველას ჩვენება (ნაგულისხმევი)"
+  },
+  "optFilterInclude": {
+    "message": "მხოლოდ ამ რეპოზიტორიების ჩვენება"
+  },
+  "optFilterExclude": {
+    "message": "ამ რეპოზიტორიების დამალვა"
+  },
+  "optRepoPlaceholder": {
+    "message": "მფლობელი/რეპო (თითო ხაზზე)"
+  },
+  "optRepoLabel": {
+    "message": "რეპოზიტორიები (თითო ხაზზე, ფორმატი: მფლობელი/რეპო)"
+  },
+  "optSaveFilter": {
+    "message": "ფილტრის შენახვა"
+  },
+  "optFilterHint": {
+    "message": "გაფილტრეთ რომელი რეპოზიტორიები გამოჩნდეს თქვენს ყურადღების ნაკრებში."
+  },
+  "optReportBug": {
+    "message": "შეცდომის შეტყობინება ან ფუნქციის მოთხოვნა"
+  },
+  "tokenName": {
+    "message": "სახელი"
+  },
+  "tokenValue": {
+    "message": "ტოკენი"
+  },
+  "openSettings": {
+    "message": "პარამეტრების გახსნა"
+  },
+  "tokenHintFull": {
+    "message": "დაამატეთ ერთი ან მეტი GitHub წვდომის ტოკენი. ყველა ტოკენის შედეგები გაერთიანებულია."
+  },
+  "optLanguage": {
+    "message": "ენა"
+  },
+  "optLanguageHint": {
+    "message": "აირჩიეთ ამ გაფართოების ჩვენების ენა."
+  },
+  "optLanguageAuto": {
+    "message": "ავტომატური (ბრაუზერის მიყოლა)"
+  },
+  "optLanguageSaved": {
+    "message": "ენა შენახულია. გახსენით popup ხელახლა ცვლილებების ასამოქმედებლად."
+  }
 }

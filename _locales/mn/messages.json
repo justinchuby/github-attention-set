@@ -51,13 +51,13 @@
     "message": "ᠵᠠᠰᠠᠬᠤ"
   },
   "stateRespond": {
-    "message": "ᠬᠠᠷᠢᠭᠤᠯᠬᠤ"
+    "message": "Хариулах"
   },
   "stateMerge": {
-    "message": "ᠨᠢᠭᠡᠳᠬᠡᠬᠦ"
+    "message": "Нэгтгэх"
   },
   "stateMerging": {
-    "message": "ᠨᠢᠭᠡᠳᠬᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ"
+    "message": "Нэгтгэж"
   },
   "stateStuck": {
     "message": "ᠭᠠᠴᠠᠭᠰᠠᠨ"
@@ -133,5 +133,23 @@
   },
   "optLanguageSaved": {
     "message": "ᠬᠡᠯᠡ ᠬᠠᠳᠠᠭᠠᠯᠠᠭᠳᠠᠯ᠎ᠠ!"
+  },
+  "openSettings": {
+    "message": "Тохиргоо нээх"
+  },
+  "optDebounceHint": {
+    "message": "Далд дохио анхаарал шилжүүлэхийн өмнөх хүлээх хугацаа."
+  },
+  "optFilterHint": {
+    "message": "Анхаарлын жагсаалтад харагдах репо шүүх."
+  },
+  "optPollHint": {
+    "message": "GitHub-ээс шинэчлэл шалгах давтамж."
+  },
+  "optRepoLabel": {
+    "message": "Репо (мөр тус бүрд нэг, owner/repo)"
+  },
+  "tokenHintFull": {
+    "message": "Нэг буюу олон GitHub PAT нэмнэ. Бүх токены үр дүн нэгтгэгдэнэ."
   }
 }

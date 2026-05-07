@@ -1,49 +1,155 @@
 {
-  "extName": { "message": "GitHub Attention Set" },
-  "extDescription": { "message": "Sehen Sie, welche PRs Ihre Aufmerksamkeit brauchen — wie Googles Critique Attention Set für GitHub." },
-  "needsAttention": { "message": "Braucht Ihre Aufmerksamkeit" },
-  "waitingOnOthers": { "message": "Warten auf andere" },
-  "refresh": { "message": "Aktualisieren" },
-  "dismiss": { "message": "Ausblenden" },
-  "restore": { "message": "Wiederherstellen" },
-  "dismissed": { "message": "ausgeblendet" },
-  "loading": { "message": "Laden..." },
-  "noToken": { "message": "Kein Token konfiguriert." },
-  "goToSettings": { "message": "Zu Einstellungen" },
-  "noPRs": { "message": "Keine offenen PRs gefunden." },
-  "allClear": { "message": "Alles erledigt! Keine PRs warten auf Sie." },
-  "waitingOn": { "message": "Wartet auf:" },
-  "settings": { "message": "Einstellungen" },
-  "stateReview": { "message": "Review" },
-  "stateFix": { "message": "Beheben" },
-  "stateRespond": { "message": "Antworten" },
-  "stateMerge": { "message": "Mergen" },
-  "stateMerging": { "message": "Wird gemergt" },
-  "stateStuck": { "message": "Blockiert" },
-  "stateDraft": { "message": "Entwurf" },
-  "optTitle": { "message": "GitHub Attention Set Einstellungen" },
-  "optTokenLabel": { "message": "Persönliche GitHub-Zugangstokens" },
-  "optTokenHint": { "message": "Erstellen Sie ein Fine-grained PAT mit: Pull requests → Read, Issues → Read" },
-  "optAddToken": { "message": "+ Token hinzufügen" },
-  "optSave": { "message": "Einstellungen speichern" },
-  "optSaved": { "message": "✓ Gespeichert!" },
-  "optDebounce": { "message": "Debounce-Zeit (Minuten)" },
-  "optDebounceHint": { "message": "So lange warten, bevor implizite Signale den Aufmerksamkeitsstatus ändern." },
-  "optPoll": { "message": "Abfrageintervall (Minuten)" },
-  "optPollHint": { "message": "Wie oft GitHub auf Updates geprüft wird." },
-  "optNotifications": { "message": "Desktop-Benachrichtigungen aktivieren" },
-  "optGroupByRepo": { "message": "PRs nach Repository gruppieren" },
-  "optRepoFilter": { "message": "Repository-Filter" },
-  "optFilterAll": { "message": "Alle anzeigen (Standard)" },
-  "optFilterInclude": { "message": "Nur diese Repos anzeigen" },
-  "optFilterExclude": { "message": "Diese Repos ausblenden" },
-  "optRepoPlaceholder": { "message": "owner/repo (eins pro Zeile)" },
-  "optRepoLabel": { "message": "Repositories (eins pro Zeile, Format: owner/repo)" },
-  "optSaveFilter": { "message": "Filter speichern" },
-  "optFilterHint": { "message": "Filtern Sie, welche Repositories im Attention Set angezeigt werden." },
-  "optReportBug": { "message": "Bug melden oder Feature anfragen" },
-  "tokenName": { "message": "Name" },
-  "tokenValue": { "message": "Token" },
-  "openSettings": { "message": "Einstellungen öffnen" },
-  "tokenHintFull": { "message": "Fügen Sie ein oder mehrere persönliche GitHub-Zugangstokens hinzu. Ergebnisse aller Tokens werden zusammengeführt." }
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "Sehen Sie, welche PRs Ihre Aufmerksamkeit brauchen — wie Googles Critique Attention Set für GitHub."
+  },
+  "needsAttention": {
+    "message": "Braucht Ihre Aufmerksamkeit"
+  },
+  "waitingOnOthers": {
+    "message": "Warten auf andere"
+  },
+  "refresh": {
+    "message": "Aktualisieren"
+  },
+  "dismiss": {
+    "message": "Ausblenden"
+  },
+  "restore": {
+    "message": "Wiederherstellen"
+  },
+  "dismissed": {
+    "message": "ausgeblendet"
+  },
+  "loading": {
+    "message": "Laden..."
+  },
+  "noToken": {
+    "message": "Kein Token konfiguriert."
+  },
+  "goToSettings": {
+    "message": "Zu Einstellungen"
+  },
+  "noPRs": {
+    "message": "Keine offenen PRs gefunden."
+  },
+  "allClear": {
+    "message": "Alles erledigt! Keine PRs warten auf Sie."
+  },
+  "waitingOn": {
+    "message": "Wartet auf:"
+  },
+  "settings": {
+    "message": "Einstellungen"
+  },
+  "stateReview": {
+    "message": "Review"
+  },
+  "stateFix": {
+    "message": "Beheben"
+  },
+  "stateRespond": {
+    "message": "Antwort"
+  },
+  "stateMerge": {
+    "message": "Mergen"
+  },
+  "stateMerging": {
+    "message": "Merging"
+  },
+  "stateStuck": {
+    "message": "Blockrt"
+  },
+  "stateDraft": {
+    "message": "Entwurf"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set Einstellungen"
+  },
+  "optTokenLabel": {
+    "message": "Persönliche GitHub-Zugangstokens"
+  },
+  "optTokenHint": {
+    "message": "Erstellen Sie ein Fine-grained PAT mit: Pull requests → Read, Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ Token hinzufügen"
+  },
+  "optSave": {
+    "message": "Einstellungen speichern"
+  },
+  "optSaved": {
+    "message": "✓ Gespeichert!"
+  },
+  "optDebounce": {
+    "message": "Debounce-Zeit (Minuten)"
+  },
+  "optDebounceHint": {
+    "message": "So lange warten, bevor implizite Signale den Aufmerksamkeitsstatus ändern."
+  },
+  "optPoll": {
+    "message": "Abfrageintervall (Minuten)"
+  },
+  "optPollHint": {
+    "message": "Wie oft GitHub auf Updates geprüft wird."
+  },
+  "optNotifications": {
+    "message": "Desktop-Benachrichtigungen aktivieren"
+  },
+  "optGroupByRepo": {
+    "message": "PRs nach Repository gruppieren"
+  },
+  "optRepoFilter": {
+    "message": "Repository-Filter"
+  },
+  "optFilterAll": {
+    "message": "Alle anzeigen (Standard)"
+  },
+  "optFilterInclude": {
+    "message": "Nur diese Repos anzeigen"
+  },
+  "optFilterExclude": {
+    "message": "Diese Repos ausblenden"
+  },
+  "optRepoPlaceholder": {
+    "message": "owner/repo (eins pro Zeile)"
+  },
+  "optRepoLabel": {
+    "message": "Repositories (eins pro Zeile, Format: owner/repo)"
+  },
+  "optSaveFilter": {
+    "message": "Filter speichern"
+  },
+  "optFilterHint": {
+    "message": "Filtern Sie, welche Repositories im Attention Set angezeigt werden."
+  },
+  "optReportBug": {
+    "message": "Bug melden oder Feature anfragen"
+  },
+  "tokenName": {
+    "message": "Name"
+  },
+  "tokenValue": {
+    "message": "Token"
+  },
+  "openSettings": {
+    "message": "Einstellungen öffnen"
+  },
+  "tokenHintFull": {
+    "message": "Fügen Sie ein oder mehrere persönliche GitHub-Zugangstokens hinzu. Ergebnisse aller Tokens werden zusammengeführt."
+  },
+  "optLanguage": {
+    "message": "Sprache"
+  },
+  "optLanguageHint": {
+    "message": "Anzeigesprache für diese Erweiterung wählen."
+  },
+  "optLanguageAuto": {
+    "message": "Auto (Browser folgen)"
+  },
+  "optLanguageSaved": {
+    "message": "Sprache gespeichert. Bitte Popup erneut öffnen."
+  }
 }

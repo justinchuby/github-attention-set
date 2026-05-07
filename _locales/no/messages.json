@@ -1,53 +1,155 @@
 {
-  "extName": { "message": "GitHub Attention Set" },
-  "extDescription": { "message": "Se hvilke PR-er som trenger oppmerksomheten din — som Google Critiques Attention Set for GitHub." },
-  "needsAttention": { "message": "Trenger oppmerksomheten din" },
-  "waitingOnOthers": { "message": "Venter på andre" },
-  "refresh": { "message": "Oppdater" },
-  "dismiss": { "message": "Avvis" },
-  "restore": { "message": "Gjenopprett" },
-  "dismissed": { "message": "avvist" },
-  "loading": { "message": "Laster..." },
-  "noToken": { "message": "Ingen token konfigurert." },
-  "goToSettings": { "message": "Gå til innstillinger" },
-  "noPRs": { "message": "Ingen åpne PR-er funnet." },
-  "allClear": { "message": "Alt klart! Ingen PR-er venter på deg." },
-  "waitingOn": { "message": "Venter på:" },
-  "settings": { "message": "Innstillinger" },
-  "stateReview": { "message": "Gjennomgå" },
-  "stateFix": { "message": "Fiks" },
-  "stateRespond": { "message": "Svar" },
-  "stateMerge": { "message": "Slå sammen" },
-  "stateMerging": { "message": "Slår sammen..." },
-  "stateStuck": { "message": "Fastlåst" },
-  "stateDraft": { "message": "Utkast" },
-  "optTitle": { "message": "GitHub Attention Set Innstillinger" },
-  "optTokenLabel": { "message": "GitHub personlige tilgangstokener" },
-  "optTokenHint": { "message": "Opprett en finkornet PAT med tillatelser: Pull requests → Read, Issues → Read" },
-  "optAddToken": { "message": "+ Legg til token" },
-  "optSave": { "message": "Lagre innstillinger" },
-  "optSaved": { "message": "✓ Lagret!" },
-  "optDebounce": { "message": "Forsinkelsestid (minutter)" },
-  "optDebounceHint": { "message": "Vent så lenge før implisitte signaler snur oppmerksomheten." },
-  "optPoll": { "message": "Pollintervall (minutter)" },
-  "optPollHint": { "message": "Hvor ofte GitHub skal sjekkes for oppdateringer." },
-  "optNotifications": { "message": "Aktiver skrivebordsvarsler" },
-  "optGroupByRepo": { "message": "Grupper PR-er etter repository" },
-  "optRepoFilter": { "message": "Repository-filter" },
-  "optFilterAll": { "message": "Vis alle (standard)" },
-  "optFilterInclude": { "message": "Vis bare disse repoene" },
-  "optFilterExclude": { "message": "Skjul disse repoene" },
-  "optRepoPlaceholder": { "message": "eier/repo (én per linje)" },
-  "optRepoLabel": { "message": "Repositorier (én per linje, format: eier/repo)" },
-  "optSaveFilter": { "message": "Lagre filter" },
-  "optFilterHint": { "message": "Filtrer hvilke repositorier som vises i oppmerksomhetssettet ditt." },
-  "optReportBug": { "message": "Rapporter en feil eller be om en funksjon" },
-  "tokenName": { "message": "Navn" },
-  "tokenValue": { "message": "Token" },
-  "openSettings": { "message": "Åpne innstillinger" },
-  "tokenHintFull": { "message": "Legg til én eller flere GitHub-tilgangstokener. Resultater fra alle tokener slås sammen." },
-  "optLanguage": { "message": "Språk" },
-  "optLanguageHint": { "message": "Velg visningsspråk for denne utvidelsen." },
-  "optLanguageAuto": { "message": "Automatisk (følg nettleseren)" },
-  "optLanguageSaved": { "message": "Språk lagret. Åpne popup-en på nytt for at endringene skal tre i kraft." }
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "Se hvilke PR-er som trenger oppmerksomheten din — som Google Critiques Attention Set for GitHub."
+  },
+  "needsAttention": {
+    "message": "Trenger oppmerksomheten din"
+  },
+  "waitingOnOthers": {
+    "message": "Venter på andre"
+  },
+  "refresh": {
+    "message": "Oppdater"
+  },
+  "dismiss": {
+    "message": "Avvis"
+  },
+  "restore": {
+    "message": "Gjenopprett"
+  },
+  "dismissed": {
+    "message": "avvist"
+  },
+  "loading": {
+    "message": "Laster..."
+  },
+  "noToken": {
+    "message": "Ingen token konfigurert."
+  },
+  "goToSettings": {
+    "message": "Gå til innstillinger"
+  },
+  "noPRs": {
+    "message": "Ingen åpne PR-er funnet."
+  },
+  "allClear": {
+    "message": "Alt klart! Ingen PR-er venter på deg."
+  },
+  "waitingOn": {
+    "message": "Venter på:"
+  },
+  "settings": {
+    "message": "Innstillinger"
+  },
+  "stateReview": {
+    "message": "Se over"
+  },
+  "stateFix": {
+    "message": "Fiks"
+  },
+  "stateRespond": {
+    "message": "Svar"
+  },
+  "stateMerge": {
+    "message": "Merge"
+  },
+  "stateMerging": {
+    "message": "Merger…"
+  },
+  "stateStuck": {
+    "message": "Fastlåst"
+  },
+  "stateDraft": {
+    "message": "Utkast"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set Innstillinger"
+  },
+  "optTokenLabel": {
+    "message": "GitHub personlige tilgangstokener"
+  },
+  "optTokenHint": {
+    "message": "Opprett en finkornet PAT med tillatelser: Pull requests → Read, Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ Legg til token"
+  },
+  "optSave": {
+    "message": "Lagre innstillinger"
+  },
+  "optSaved": {
+    "message": "✓ Lagret!"
+  },
+  "optDebounce": {
+    "message": "Forsinkelsestid (minutter)"
+  },
+  "optDebounceHint": {
+    "message": "Vent så lenge før implisitte signaler snur oppmerksomheten."
+  },
+  "optPoll": {
+    "message": "Pollintervall (minutter)"
+  },
+  "optPollHint": {
+    "message": "Hvor ofte GitHub skal sjekkes for oppdateringer."
+  },
+  "optNotifications": {
+    "message": "Aktiver skrivebordsvarsler"
+  },
+  "optGroupByRepo": {
+    "message": "Grupper PR-er etter repository"
+  },
+  "optRepoFilter": {
+    "message": "Repository-filter"
+  },
+  "optFilterAll": {
+    "message": "Vis alle (standard)"
+  },
+  "optFilterInclude": {
+    "message": "Vis bare disse repoene"
+  },
+  "optFilterExclude": {
+    "message": "Skjul disse repoene"
+  },
+  "optRepoPlaceholder": {
+    "message": "eier/repo (én per linje)"
+  },
+  "optRepoLabel": {
+    "message": "Repositorier (én per linje, format: eier/repo)"
+  },
+  "optSaveFilter": {
+    "message": "Lagre filter"
+  },
+  "optFilterHint": {
+    "message": "Filtrer hvilke repositorier som vises i oppmerksomhetssettet ditt."
+  },
+  "optReportBug": {
+    "message": "Rapporter en feil eller be om en funksjon"
+  },
+  "tokenName": {
+    "message": "Navn"
+  },
+  "tokenValue": {
+    "message": "Token"
+  },
+  "openSettings": {
+    "message": "Åpne innstillinger"
+  },
+  "tokenHintFull": {
+    "message": "Legg til én eller flere GitHub-tilgangstokener. Resultater fra alle tokener slås sammen."
+  },
+  "optLanguage": {
+    "message": "Språk"
+  },
+  "optLanguageHint": {
+    "message": "Velg visningsspråk for denne utvidelsen."
+  },
+  "optLanguageAuto": {
+    "message": "Automatisk (følg nettleseren)"
+  },
+  "optLanguageSaved": {
+    "message": "Språk lagret. Åpne popup-en på nytt for at endringene skal tre i kraft."
+  }
 }
