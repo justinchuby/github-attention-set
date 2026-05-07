@@ -269,19 +269,8 @@ function render(data, isRefreshing) {
   const filterList = filterData.repoFilterList || '';
   results = applyRepoFilter(results, filterMode, filterList);
 
-  const activePRs = results.filter(pr => {
-    const d = dismissed[pr.url];
-    if (!d) return true;
-    if (pr.lastEventAt && pr.lastEventAt > d.lastEventAt) return true;
-    return false;
-  });
-
-  const dismissedPRs = results.filter(pr => {
-    const d = dismissed[pr.url];
-    if (!d) return false;
-    if (pr.lastEventAt && pr.lastEventAt > d.lastEventAt) return false;
-    return true;
-  });
+  const activePRs = results.filter(pr => !dismissed[pr.url]);
+  const dismissedPRs = results.filter(pr => !!dismissed[pr.url]);
 
   const needsAttention = activePRs.filter(r => r.myStatus === 'red');
   const others = activePRs.filter(r => r.myStatus !== 'red');
