@@ -48,7 +48,7 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
   }
 
   chrome.storage.local.get(['results', 'username', 'lastPoll', 'repoFilterMode', 'repoFilterList', 'groupByRepo'], (localData) => {
-  chrome.storage.sync.get(['dismissed'], (syncData) => {
+  chrome.storage.local.get(['dismissed'], (syncData) => {
     const cached = { ...localData, ...syncData };
     window.__lastError = cached.lastError || null;
     window.__groupByRepo = cached.groupByRepo === true;
@@ -87,10 +87,10 @@ function showSpinner() {
 }
 
 function dismissPR(prUrl, lastEventAt) {
-  chrome.storage.sync.get(['dismissed'], (data) => {
+  chrome.storage.local.get(['dismissed'], (data) => {
     const dismissed = data.dismissed || {};
     dismissed[prUrl] = { prUrl, dismissedAt: Date.now(), lastEventAt: lastEventAt || 0 };
-    chrome.storage.sync.set({ dismissed }, () => {
+    chrome.storage.local.set({ dismissed }, () => {
       chrome.runtime.sendMessage({ type: 'updateBadge' });
       chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
         if (fresh && fresh.results) render(fresh, false);
@@ -100,10 +100,10 @@ function dismissPR(prUrl, lastEventAt) {
 }
 
 function restorePR(prUrl) {
-  chrome.storage.sync.get(['dismissed'], (data) => {
+  chrome.storage.local.get(['dismissed'], (data) => {
     const dismissed = data.dismissed || {};
     delete dismissed[prUrl];
-    chrome.storage.sync.set({ dismissed }, () => {
+    chrome.storage.local.set({ dismissed }, () => {
       chrome.runtime.sendMessage({ type: 'updateBadge' });
       chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
         if (fresh && fresh.results) render(fresh, false);

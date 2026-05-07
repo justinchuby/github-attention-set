@@ -121,7 +121,7 @@ async function pollAndCompute() {
     const filteredResults = applyRepoFilter(results, repoFilterMode, repoFilterList);
 
     // Subtract dismissed PRs from badge count
-    const dismissed = (await chrome.storage.sync.get('dismissed')).dismissed || {};
+    const dismissed = (await chrome.storage.local.get('dismissed')).dismissed || {};
     const needsAttention = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
     setBadge(needsAttention);
 
@@ -131,7 +131,7 @@ async function pollAndCompute() {
     for (const [url, entry] of Object.entries(dismissed)) {
       if (openUrls.has(url)) cleanedDismissed[url] = entry;
     }
-    chrome.storage.sync.set({ dismissed: cleanedDismissed });
+    chrome.storage.local.set({ dismissed: cleanedDismissed });
 
     // Clear any previous error
     chrome.storage.local.remove('lastError');
@@ -170,7 +170,7 @@ function setBadge(count) {
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type === 'updateBadge') {
     chrome.storage.local.get(['results'], (local) => {
-      chrome.storage.sync.get(['dismissed'], (synced) => {
+      chrome.storage.local.get(['dismissed'], (synced) => {
         const results = local.results || [];
         const dismissed = synced.dismissed || {};
         const count = results.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
@@ -185,7 +185,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   }
   if (msg.type === 'getData') {
     chrome.storage.local.get(['results', 'username', 'usernames', 'lastPoll', 'repoFilterMode', 'repoFilterList'], (local) => {
-      chrome.storage.sync.get(['dismissed'], (synced) => {
+      chrome.storage.local.get(['dismissed'], (synced) => {
         sendResponse({ ...local, ...synced });
       });
     });
