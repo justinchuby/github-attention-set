@@ -379,3 +379,35 @@ describe('isBot', () => {
     expect(isBot('12345')).toBe(true);
   });
 });
+
+  it('user requested to review shows REVIEWING reason even if PR is approved', () => {
+    const timeline = [
+      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_reviewer: { login: 'me', type: 'User' }, created_at: '2026-01-01T00:00:00Z' },
+      { event: 'reviewed', actor: { login: 'other-reviewer', type: 'User' }, user: { login: 'other-reviewer', type: 'User' }, state: 'approved', submitted_at: '2026-01-02T00:00:00Z' },
+    ];
+    const result = computeAttentionSet(timeline, 'me', 'author', 10, new Date('2026-01-03').getTime());
+    expect(result.myStatus).toBe('red');
+    expect(result.myReason).toBe('REVIEWING');
+  });
+
+  it('user who already reviewed does not get REVIEWING reason', () => {
+    const timeline = [
+      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_reviewer: { login: 'me', type: 'User' }, created_at: '2026-01-01T00:00:00Z' },
+      { event: 'reviewed', actor: { login: 'me', type: 'User' }, user: { login: 'me', type: 'User' }, state: 'commented', submitted_at: '2026-01-02T00:00:00Z' },
+      { event: 'reviewed', actor: { login: 'other', type: 'User' }, user: { login: 'other', type: 'User' }, state: 'approved', submitted_at: '2026-01-03T00:00:00Z' },
+    ];
+    const result = computeAttentionSet(timeline, 'me', 'author', 10, new Date('2026-01-04').getTime());
+    // me already reviewed, so reason follows prState not REVIEWING
+    expect(result.myReason).not.toBe('REVIEWING');
+  });
+
+  it('re-requested review after user already reviewed shows REVIEWING', () => {
+    const timeline = [
+      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_reviewer: { login: 'me', type: 'User' }, created_at: '2026-01-01T00:00:00Z' },
+      { event: 'reviewed', actor: { login: 'me', type: 'User' }, user: { login: 'me', type: 'User' }, state: 'commented', submitted_at: '2026-01-02T00:00:00Z' },
+      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_reviewer: { login: 'me', type: 'User' }, created_at: '2026-01-03T00:00:00Z' },
+    ];
+    const result = computeAttentionSet(timeline, 'me', 'author', 10, new Date('2026-01-04').getTime());
+    expect(result.myStatus).toBe('red');
+    expect(result.myReason).toBe('REVIEWING');
+  });

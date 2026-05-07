@@ -245,6 +245,16 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
     }
   }
 
+    // Add pending requested reviewers regardless of state (unless PR is done)
+  const terminalStates = new Set(['MERGED', 'CLOSED', 'DRAFT', 'MERGING']);
+  if (!terminalStates.has(prState)) {
+    for (const reviewer of requestedReviewers) {
+      if (!isBot(reviewer) && !set[reviewer]) {
+        set[reviewer] = 'red';
+      }
+    }
+  }
+
   // --- Step 3: Compute myStatus ---
   let myStatus = 'green';
   if (set[me]) {
