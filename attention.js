@@ -251,5 +251,27 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
     myStatus = set[me];
   }
 
-  return { set, myStatus, prState };
+    // Determine user's specific reason for being in attention set
+  let myReason = prState;
+  if (myStatus !== 'green') {
+    // Check if user was requested to review and hasn't submitted a review after that request
+    let wasRequestedToReview = false;
+    let lastReviewRequestTime = 0;
+    let lastMyReviewTime = 0;
+    for (const ev of timeline) {
+      const t = ev.event || ev.__type;
+      if (t === 'review_requested' && ev.requested_reviewer?.login === me) {
+        wasRequestedToReview = true;
+        lastReviewRequestTime = new Date(ev.created_at || 0).getTime();
+      }
+      if (t === 'reviewed' && (ev.actor?.login === me || ev.user?.login === me)) {
+        lastMyReviewTime = new Date(ev.submitted_at || ev.created_at || 0).getTime();
+      }
+    }
+    if (wasRequestedToReview && lastReviewRequestTime > lastMyReviewTime) {
+      myReason = 'REVIEWING';
+    }
+  }
+
+  return { set, myStatus, prState, myReason };
 }

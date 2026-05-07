@@ -157,7 +157,7 @@ function renderPRItem(pr, username, showRepo) {
     CLOSED: 'Closed',
   };
 
-  const stateLabel = stateLabels[pr.prState] || '';
+  const stateLabel = stateLabels[pr.myReason || pr.prState] || '';
   const metaChildren = [showRepo ? `${pr.repo}#${pr.number}` : `#${pr.number}`];
   // state badge rendered separately below
   if ((window.__multiAccount ? pr.account : null)) {
