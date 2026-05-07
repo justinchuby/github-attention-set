@@ -1,0 +1,155 @@
+{
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "看佗一個PR愛你注意——親像Google Critique个Attention Set"
+  },
+  "needsAttention": {
+    "message": "愛你看覓"
+  },
+  "waitingOnOthers": {
+    "message": "等別人"
+  },
+  "refresh": {
+    "message": "刷新"
+  },
+  "dismiss": {
+    "message": "莫管"
+  },
+  "restore": {
+    "message": "提轉來"
+  },
+  "dismissed": {
+    "message": "已忽略"
+  },
+  "loading": {
+    "message": "載入中……"
+  },
+  "noToken": {
+    "message": "猶未設token。"
+  },
+  "goToSettings": {
+    "message": "去設定"
+  },
+  "noPRs": {
+    "message": "無啥物愛看个。"
+  },
+  "allClear": {
+    "message": "攏好矣！無PR等你。"
+  },
+  "waitingOn": {
+    "message": "等："
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "stateReview": {
+    "message": "Review"
+  },
+  "stateFix": {
+    "message": "修"
+  },
+  "stateRespond": {
+    "message": "回覆"
+  },
+  "stateMerge": {
+    "message": "Merge"
+  },
+  "stateMerging": {
+    "message": "Merge中"
+  },
+  "stateStuck": {
+    "message": "擋著"
+  },
+  "stateDraft": {
+    "message": "草稿"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set 設定"
+  },
+  "optTokenLabel": {
+    "message": "GitHub Token"
+  },
+  "optTokenHint": {
+    "message": "建一個fine-grained PAT，權限選 Pull requests → Read，Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ 加Token"
+  },
+  "optSave": {
+    "message": "保存"
+  },
+  "optSaved": {
+    "message": "存好矣！"
+  },
+  "optDebounce": {
+    "message": "等偌久算（分鐘）"
+  },
+  "optPoll": {
+    "message": "偌久查一擺（分鐘）"
+  },
+  "optNotifications": {
+    "message": "開通知"
+  },
+  "optGroupByRepo": {
+    "message": "照Repo分"
+  },
+  "optRepoFilter": {
+    "message": "Repo篩選"
+  },
+  "optFilterAll": {
+    "message": "攏顯示"
+  },
+  "optFilterInclude": {
+    "message": "干焦顯示這寡"
+  },
+  "optFilterExclude": {
+    "message": "藏這寡"
+  },
+  "optRepoPlaceholder": {
+    "message": "owner/repo（一行一個）"
+  },
+  "optSaveFilter": {
+    "message": "存篩選"
+  },
+  "optReportBug": {
+    "message": "報Bug / 提建議"
+  },
+  "tokenName": {
+    "message": "名"
+  },
+  "tokenValue": {
+    "message": "Token"
+  },
+  "optLanguage": {
+    "message": "語言"
+  },
+  "optLanguageHint": {
+    "message": "選顯示語言"
+  },
+  "optLanguageAuto": {
+    "message": "自動（跟瀏覽器）"
+  },
+  "optLanguageSaved": {
+    "message": "選好矣！關了再開就看著。"
+  },
+  "optDebounceHint": {
+    "message": "評論了後等偌久"
+  },
+  "optPollHint": {
+    "message": "偌密查GitHub"
+  },
+  "optRepoLabel": {
+    "message": "Repo篩選設定"
+  },
+  "optFilterHint": {
+    "message": "owner/repo，一行一個"
+  },
+  "openSettings": {
+    "message": "去設定"
+  },
+  "tokenHintFull": {
+    "message": "建一個fine-grained PAT，權限選 Pull requests → Read，Issues → Read"
+  }
+}
