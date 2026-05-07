@@ -75,6 +75,7 @@ async function pollSingleToken(tokenEntry, debounceMinutes) {
         author: pr.user.login,
         attentionSet: attention.set,
         myStatus: attention.myStatus,
+          prState: attention.prState,
         lastEventAt,
         account: name || username,
       };

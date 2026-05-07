@@ -251,5 +251,5 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
     myStatus = set[me];
   }
 
-  return { set, myStatus };
+  return { set, myStatus, prState };
 }

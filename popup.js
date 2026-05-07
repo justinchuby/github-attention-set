@@ -35,6 +35,7 @@ function htmlToNodes(htmlStr) {
 
 chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) => {
   const hasToken = (settings.tokens && settings.tokens.length > 0) || settings.token;
+  window.__multiAccount = settings.tokens && settings.tokens.length > 1;
   if (!hasToken) {
     app.textContent = '';
     const noToken = h('div', { class: 'no-token' }, [
@@ -143,8 +144,23 @@ function renderPRItem(pr, username, showRepo) {
   if (showRepo) metaParts.push(pr.repo);
   metaParts.push(`#${pr.number}`);
 
+  
+  const stateLabels = {
+    DRAFT: 'Draft',
+    REVIEWING: 'In review',
+    CHANGES_REQUESTED: 'Changes requested',
+    COMMENTED: 'Feedback',
+    APPROVED_NO_AUTOMERGE: 'Approved',
+    MERGING: 'Merging',
+    STALLED_MERGE: 'Merge stalled',
+    MERGED: 'Merged',
+    CLOSED: 'Closed',
+  };
+
+  const stateLabel = stateLabels[pr.prState] || '';
   const metaChildren = [showRepo ? `${pr.repo}#${pr.number}` : `#${pr.number}`];
-  if (pr.account) {
+  if (stateLabel) { metaChildren.push(' · '); metaChildren.push(h('span', { style: { color: '#8b949e', fontStyle: 'italic' } }, stateLabel)); }
+  if ((window.__multiAccount ? pr.account : null)) {
     metaChildren.push(' · ');
     metaChildren.push(h('span', { style: { color: '#8b949e' } }, pr.account));
   }
