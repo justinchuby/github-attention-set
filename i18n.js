@@ -1,5 +1,6 @@
 // i18n wrapper — supports user-selected language override
 let overrideMessages = null;
+let fallbackMessages = null;
 
 export async function initI18n() {
   const { language } = await chrome.storage.local.get({ language: 'auto' });
@@ -10,11 +11,23 @@ export async function initI18n() {
       overrideMessages = await res.json();
     } catch { overrideMessages = null; }
   }
+  // Always load English as fallback
+  try {
+    const enUrl = chrome.runtime.getURL('_locales/en/messages.json');
+    const enRes = await fetch(enUrl);
+    fallbackMessages = await enRes.json();
+  } catch { fallbackMessages = null; }
 }
 
 export function msg(key) {
   if (overrideMessages && overrideMessages[key]) {
     return overrideMessages[key].message;
   }
-  return chrome.i18n.getMessage(key) || key;
+  const chromeMsg = chrome.i18n.getMessage(key);
+  if (chromeMsg) return chromeMsg;
+  // Fallback to English
+  if (fallbackMessages && fallbackMessages[key]) {
+    return fallbackMessages[key].message;
+  }
+  return key;
 }

@@ -111,9 +111,8 @@ chrome.storage.local.get({ language: 'auto' }, (s) => {
 
 languageEl.onchange = () => {
   chrome.storage.local.set({ language: languageEl.value }, () => {
-    savedEl.style.display = 'inline';
-    savedEl.textContent = '✓';
-    setTimeout(() => { savedEl.style.display = 'none'; savedEl.textContent = '✓ Saved!'; }, 3000);
+    // Reload page to apply new language immediately
+    location.reload();
   });
 };
 
