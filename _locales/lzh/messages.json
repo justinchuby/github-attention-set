@@ -1,0 +1,137 @@
+{
+  "extName": {
+    "message": "GitHub 注意集"
+  },
+  "extDescription": {
+    "message": "視何人當行——仿Google Critique之注意集"
+  },
+  "needsAttention": {
+    "message": "待君處之"
+  },
+  "waitingOnOthers": {
+    "message": "候彼人也"
+  },
+  "refresh": {
+    "message": "更新"
+  },
+  "dismiss": {
+    "message": "擱置"
+  },
+  "restore": {
+    "message": "復取"
+  },
+  "dismissed": {
+    "message": "已擱"
+  },
+  "loading": {
+    "message": "載入中……"
+  },
+  "noToken": {
+    "message": "未設令牌。"
+  },
+  "goToSettings": {
+    "message": "往設之"
+  },
+  "noPRs": {
+    "message": "無待議之請也。"
+  },
+  "allClear": {
+    "message": "萬事已畢，無所待矣。"
+  },
+  "waitingOn": {
+    "message": "候："
+  },
+  "settings": {
+    "message": "設置"
+  },
+  "stateReview": {
+    "message": "閱"
+  },
+  "stateFix": {
+    "message": "修"
+  },
+  "stateRespond": {
+    "message": "答"
+  },
+  "stateMerge": {
+    "message": "併"
+  },
+  "stateMerging": {
+    "message": "併中"
+  },
+  "stateStuck": {
+    "message": "阻"
+  },
+  "stateDraft": {
+    "message": "草"
+  },
+  "optTitle": {
+    "message": "GitHub 注意集 設置"
+  },
+  "optTokenLabel": {
+    "message": "GitHub 私人令牌"
+  },
+  "optTokenHint": {
+    "message": "創一細粒令牌，授 Pull requests → 閱，Issues → 閱"
+  },
+  "optAddToken": {
+    "message": "+ 增令牌"
+  },
+  "optSave": {
+    "message": "存"
+  },
+  "optSaved": {
+    "message": "已存！"
+  },
+  "optDebounce": {
+    "message": "延候（分）"
+  },
+  "optPoll": {
+    "message": "問頻（分）"
+  },
+  "optNotifications": {
+    "message": "啟通知"
+  },
+  "optGroupByRepo": {
+    "message": "按庫分列"
+  },
+  "optRepoFilter": {
+    "message": "庫之篩"
+  },
+  "optFilterAll": {
+    "message": "皆示"
+  },
+  "optFilterInclude": {
+    "message": "僅示此"
+  },
+  "optFilterExclude": {
+    "message": "隱此"
+  },
+  "optRepoPlaceholder": {
+    "message": "主/庫（每行一）"
+  },
+  "optSaveFilter": {
+    "message": "存篩"
+  },
+  "optReportBug": {
+    "message": "報瑕或求功"
+  },
+  "tokenName": {
+    "message": "名"
+  },
+  "tokenValue": {
+    "message": "令牌"
+  },
+  "optLanguage": {
+    "message": "言"
+  },
+  "optLanguageHint": {
+    "message": "擇顯示之言語"
+  },
+  "optLanguageAuto": {
+    "message": "自適（從瀏覽器）"
+  },
+  "optLanguageSaved": {
+    "message": "言已存！重啟窗見效。"
+  }
+}
