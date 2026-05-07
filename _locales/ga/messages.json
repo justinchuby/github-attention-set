@@ -1,0 +1,155 @@
+{
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "Féach cé na PRanna a dteastaíonn d'aird — cosúil le Attention Set Google Critique"
+  },
+  "needsAttention": {
+    "message": "D'aird ag teastáil"
+  },
+  "waitingOnOthers": {
+    "message": "Ag fanacht le daoine eile"
+  },
+  "refresh": {
+    "message": "Athnuaigh"
+  },
+  "dismiss": {
+    "message": "Déan neamhaird"
+  },
+  "restore": {
+    "message": "Cuir ar ais"
+  },
+  "dismissed": {
+    "message": "curtha ar leataobh"
+  },
+  "loading": {
+    "message": "Ag lódáil..."
+  },
+  "noToken": {
+    "message": "Níl token socraithe."
+  },
+  "goToSettings": {
+    "message": "Téigh go socruithe"
+  },
+  "noPRs": {
+    "message": "Níl aon PR oscailte."
+  },
+  "allClear": {
+    "message": "Glan! Níl aon PR ag fanacht leat."
+  },
+  "waitingOn": {
+    "message": "Ag fanacht le:"
+  },
+  "settings": {
+    "message": "Socruithe"
+  },
+  "stateReview": {
+    "message": "Athbhr."
+  },
+  "stateFix": {
+    "message": "Ceartaigh"
+  },
+  "stateRespond": {
+    "message": "Freagair"
+  },
+  "stateMerge": {
+    "message": "Cumaisc"
+  },
+  "stateMerging": {
+    "message": "Ag cum."
+  },
+  "stateStuck": {
+    "message": "Stuck"
+  },
+  "stateDraft": {
+    "message": "Dréacht"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set Socruithe"
+  },
+  "optTokenLabel": {
+    "message": "Comharthaí Rochtana GitHub"
+  },
+  "optTokenHint": {
+    "message": "Cruthaigh PAT mín-ghráinneach: Pull requests → Read, Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ Cuir token leis"
+  },
+  "optSave": {
+    "message": "Sábháil"
+  },
+  "optSaved": {
+    "message": "Sábháilte!"
+  },
+  "optDebounce": {
+    "message": "Moill (nóim.)"
+  },
+  "optPoll": {
+    "message": "Eatramh vótála (nóim.)"
+  },
+  "optNotifications": {
+    "message": "Cumasaigh fógraí"
+  },
+  "optGroupByRepo": {
+    "message": "Grúpáil de réir repo"
+  },
+  "optRepoFilter": {
+    "message": "Scagaire Repo"
+  },
+  "optFilterAll": {
+    "message": "Taispeáin gach"
+  },
+  "optFilterInclude": {
+    "message": "Na cinn seo amháin"
+  },
+  "optFilterExclude": {
+    "message": "Folaigh na cinn seo"
+  },
+  "optRepoPlaceholder": {
+    "message": "owner/repo (ceann in aghaidh líne)"
+  },
+  "optSaveFilter": {
+    "message": "Sábháil scagaire"
+  },
+  "optReportBug": {
+    "message": "Tuairiscigh fabht nó iarr gné"
+  },
+  "tokenName": {
+    "message": "Ainm"
+  },
+  "tokenValue": {
+    "message": "Token"
+  },
+  "optLanguage": {
+    "message": "Teanga"
+  },
+  "optLanguageHint": {
+    "message": "Roghnaigh teanga taispeána"
+  },
+  "optLanguageAuto": {
+    "message": "Uathoibríoch (lean brabhsálaí)"
+  },
+  "optLanguageSaved": {
+    "message": "Teanga sábháilte! Athoscail popup."
+  },
+  "optDebounceHint": {
+    "message": "Fad fanachta tar éis tráchta"
+  },
+  "optPollHint": {
+    "message": "Cé chomh minic a sheiceáiltear GitHub"
+  },
+  "optRepoLabel": {
+    "message": "Socruithe scagaire repo"
+  },
+  "optFilterHint": {
+    "message": "owner/repo, ceann in aghaidh líne"
+  },
+  "openSettings": {
+    "message": "Téigh go socruithe"
+  },
+  "tokenHintFull": {
+    "message": "Cruthaigh PAT mín-ghráinneach: Pull requests → Read, Issues → Read"
+  }
+}
