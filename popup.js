@@ -147,12 +147,12 @@ function renderPRItem(pr, username, showRepo) {
   
   const stateLabels = {
     DRAFT: 'Draft',
-    REVIEWING: 'Review needed',
-    CHANGES_REQUESTED: 'Address feedback',
-    COMMENTED: 'Respond to review',
-    APPROVED_NO_AUTOMERGE: 'Ready to merge',
-    MERGING: 'Merging...',
-    STALLED_MERGE: 'Check CI',
+    REVIEWING: 'Review',
+    CHANGES_REQUESTED: 'Fix',
+    COMMENTED: 'Respond',
+    APPROVED_NO_AUTOMERGE: 'Merge',
+    MERGING: 'Merging',
+    STALLED_MERGE: 'Stuck',
     MERGED: 'Merged',
     CLOSED: 'Closed',
   };
