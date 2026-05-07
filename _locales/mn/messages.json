@@ -1,0 +1,137 @@
+{
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "Таны анхаарал шаардагдаж буй PR-уудыг харуулна — Google Critique-ийн Attention Set шиг."
+  },
+  "needsAttention": {
+    "message": "Таны анхаарал хэрэгтэй"
+  },
+  "waitingOnOthers": {
+    "message": "Бусдыг хүлээж байна"
+  },
+  "refresh": {
+    "message": "Шинэчлэх"
+  },
+  "dismiss": {
+    "message": "Хаах"
+  },
+  "restore": {
+    "message": "Сэргээх"
+  },
+  "dismissed": {
+    "message": "хаагдсан"
+  },
+  "loading": {
+    "message": "Ачааллаж байна..."
+  },
+  "noToken": {
+    "message": "Токен тохируулаагүй байна."
+  },
+  "goToSettings": {
+    "message": "Тохиргоо руу очих"
+  },
+  "noPRs": {
+    "message": "Нээлттэй PR олдсонгүй."
+  },
+  "allClear": {
+    "message": "Бүгд дууссан! Таныг хүлээж буй PR байхгүй."
+  },
+  "waitingOn": {
+    "message": "Хүлээж байна:"
+  },
+  "settings": {
+    "message": "Тохиргоо"
+  },
+  "stateReview": {
+    "message": "Шалгах"
+  },
+  "stateFix": {
+    "message": "Засах"
+  },
+  "stateRespond": {
+    "message": "Хариулах"
+  },
+  "stateMerge": {
+    "message": "Нэгтгэх"
+  },
+  "stateMerging": {
+    "message": "Нэгтгэж байна"
+  },
+  "stateStuck": {
+    "message": "Гацсан"
+  },
+  "stateDraft": {
+    "message": "Ноорог"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set Тохиргоо"
+  },
+  "optTokenLabel": {
+    "message": "GitHub хувийн хандалтын токенууд"
+  },
+  "optTokenHint": {
+    "message": "Fine-grained PAT үүсгэнэ үү: Pull requests → Read, Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ Токен нэмэх"
+  },
+  "optSave": {
+    "message": "Хадгалах"
+  },
+  "optSaved": {
+    "message": "Хадгалагдлаа!"
+  },
+  "optDebounce": {
+    "message": "Хүлээх хугацаа (минут)"
+  },
+  "optPoll": {
+    "message": "Шалгах давтамж (минут)"
+  },
+  "optNotifications": {
+    "message": "Мэдэгдэл идэвхжүүлэх"
+  },
+  "optGroupByRepo": {
+    "message": "Репозитороор бүлэглэх"
+  },
+  "optRepoFilter": {
+    "message": "Репозиторын шүүлтүүр"
+  },
+  "optFilterAll": {
+    "message": "Бүгдийг харуулах"
+  },
+  "optFilterInclude": {
+    "message": "Зөвхөн эдгээрийг харуулах"
+  },
+  "optFilterExclude": {
+    "message": "Эдгээрийг нуух"
+  },
+  "optRepoPlaceholder": {
+    "message": "owner/repo (мөр бүрт нэг)"
+  },
+  "optSaveFilter": {
+    "message": "Шүүлтүүр хадгалах"
+  },
+  "optReportBug": {
+    "message": "Алдаа мэдэгдэх эсвэл хүсэлт гаргах"
+  },
+  "tokenName": {
+    "message": "Нэр"
+  },
+  "tokenValue": {
+    "message": "Токен"
+  },
+  "optLanguage": {
+    "message": "Хэл"
+  },
+  "optLanguageHint": {
+    "message": "Хэл сонгох (popup дахин нээхэд хүчин төгөлдөр болно)"
+  },
+  "optLanguageAuto": {
+    "message": "Автомат (хөтчийн хэл)"
+  },
+  "optLanguageSaved": {
+    "message": "Хэл хадгалагдлаа! Popup дахин нээнэ үү."
+  }
+}
