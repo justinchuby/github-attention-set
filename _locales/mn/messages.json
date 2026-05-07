@@ -51,13 +51,13 @@
     "message": "ᠵᠠᠰᠠᠬᠤ"
   },
   "stateRespond": {
-    "message": "ᠬᠠᠷᠢᠭᠤᠯᠬᠤ"
+    "message": "ᠬᠠᠷᠢᠭᠤ"
   },
   "stateMerge": {
-    "message": "ᠨᠢᠭᠡᠳᠬᠡᠬᠦ"
+    "message": "ᠨᠢᠭᠡᠳᠬᠡ"
   },
   "stateMerging": {
-    "message": "ᠨᠢᠭᠡᠳᠬᠡᠵᠦ"
+    "message": "ᠨᠢᠭᠡᠳᠬᠡ…"
   },
   "stateStuck": {
     "message": "ᠭᠠᠴᠠᠭᠰᠠᠨ"
