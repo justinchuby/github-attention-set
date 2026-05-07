@@ -60,7 +60,7 @@
     "message": "Merge緊"
   },
   "stateStuck": {
-    "message": "塞咗"
+    "message": "阻塞"
   },
   "stateDraft": {
     "message": "草稿"
@@ -81,7 +81,7 @@
     "message": "儲存"
   },
   "optSaved": {
-    "message": "儲咗！"
+    "message": "存好喇！"
   },
   "optDebounce": {
     "message": "等幾耐先算（分鐘）"
