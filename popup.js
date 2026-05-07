@@ -164,14 +164,16 @@ function renderPRItem(pr, username, showRepo) {
     metaChildren.push(' · ');
     metaChildren.push(h('span', { style: { color: '#8b949e' } }, pr.account));
   }
+  // Waiting on rendered as separate line
+  const waitingOnChildren = [];
   if (waitingOn.length) {
-    metaChildren.push(' · Waiting on: ');
+    waitingOnChildren.push('Waiting on: ');
     waitingOn.forEach((u, i) => {
-      if (i > 0) metaChildren.push(', ');
+      if (i > 0) waitingOnChildren.push(', ');
       if (u === username) {
-        metaChildren.push(h('strong', null, `@${u}`));
+        waitingOnChildren.push(h('strong', null, `@${u}`));
       } else {
-        metaChildren.push(`@${u}`);
+        waitingOnChildren.push(`@${u}`);
       }
     });
   }
@@ -195,7 +197,8 @@ function renderPRItem(pr, username, showRepo) {
     dot,
     h('div', { class: 'pr-info' }, [
       h('div', { class: 'pr-title' }, h('a', { href: pr.url, target: '_blank', title: pr.title }, pr.title)),
-      h('div', { class: 'pr-meta' }, metaChildren)
+      h('div', { class: 'pr-meta' }, metaChildren),
+      waitingOnChildren.length ? h('div', { class: 'pr-waiting' }, waitingOnChildren) : null
     ]),
     h('div', { class: 'pr-right' }, [
         h('span', { class: 'pr-time' }, timeAgo(pr.lastEventAt)),
