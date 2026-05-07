@@ -6,7 +6,7 @@
     "message": "查看哪些PR需要你的关注——类似Google Critique的Attention Set，适用于GitHub。"
   },
   "needsAttention": {
-    "message": "需要你的关注"
+    "message": "需要关注"
   },
   "waitingOnOthers": {
     "message": "等待他人"
