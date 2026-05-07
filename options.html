@@ -34,58 +34,64 @@
 </head>
 <body>
 <main>
-  <h1><img src="icons/icon48.png" width="24" height="24" alt="" style="vertical-align:middle;margin-right:8px">GitHub Attention Set Settings</h1>
+  <h1><img src="icons/icon48.png" width="24" height="24" alt="" style="vertical-align:middle;margin-right:8px"><span data-i18n="optTitle">GitHub Attention Set Settings</span></h1>
 
-  <h2>GitHub Tokens</h2>
-  <div class="hint" style="margin-bottom:12px;">Add one or more GitHub Personal Access Tokens. Results from all tokens are merged.<br>
-    <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">Create a fine-grained PAT</a> with: <strong>Pull requests → Read, Issues → Read</strong>
+  <h2 data-i18n="optTokenLabel">GitHub Tokens</h2>
+  <div class="hint" style="margin-bottom:12px;"><span data-i18n="tokenHintFull">Add one or more GitHub Personal Access Tokens. Results from all tokens are merged.</span><br>
+    <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" data-i18n="optTokenHint">Create a fine-grained PAT</a> with: <strong>Pull requests → Read, Issues → Read</strong>
   </div>
   <div id="token-list"></div>
-  <button id="add-token">+ Add token</button>
+  <button id="add-token" data-i18n="optAddToken">+ Add token</button>
 
-  <label for="debounce">Debounce time (minutes)</label>
+  <label for="debounce" data-i18n="optDebounce">Debounce time (minutes)</label>
   <input type="number" id="debounce" min="1" max="60" value="10">
-  <div class="hint">Wait this long before implicit signals flip attention.</div>
+  <div class="hint" data-i18n="optDebounceHint">Wait this long before implicit signals flip attention.</div>
 
-  <label for="poll">Poll interval (minutes)</label>
+  <label for="poll" data-i18n="optPoll">Poll interval (minutes)</label>
   <input type="number" id="poll" min="1" max="30" value="2">
-  <div class="hint">How often to check GitHub for updates.</div>
+  <div class="hint" data-i18n="optPollHint">How often to check GitHub for updates.</div>
 
   <div class="row">
     <input type="checkbox" id="notifications" checked>
-    <label for="notifications" style="margin:0;font-weight:normal;">Enable desktop notifications</label>
+    <label for="notifications" style="margin:0;font-weight:normal;" data-i18n="optNotifications">Enable desktop notifications</label>
   </div>
   <div style="margin-top:12px;">
-    <label style="display:inline-flex;align-items:center;gap:6px;font-weight:normal;"><input type="checkbox" id="groupByRepo"> Group PRs by repository</label>
+    <label style="display:inline-flex;align-items:center;gap:6px;font-weight:normal;"><input type="checkbox" id="groupByRepo"> <span data-i18n="optGroupByRepo">Group PRs by repository</span></label>
   </div>
 
   <div class="row" style="margin-top:24px;">
-    <button id="save">Save Settings</button>
-    <span class="saved" id="saved">✓ Saved!</span>
+    <button id="save" data-i18n="optSave">Save Settings</button>
+    <span class="saved" id="saved" data-i18n="optSaved">✓ Saved!</span>
   </div>
 
   <hr style="margin-top:32px;border:none;border-top:1px solid #d0d7de;">
 
-  <h2>Repository Filter</h2>
-  <div class="hint" style="margin-bottom:8px;">Filter which repositories appear in your attention set.</div>
+  <h2 data-i18n="optRepoFilter">Repository Filter</h2>
+  <div class="hint" style="margin-bottom:8px;" data-i18n="optFilterHint">Filter which repositories appear in your attention set.</div>
 
   <div style="margin-bottom:12px;">
-    <label style="display:inline;font-weight:normal;"><input type="radio" name="repoFilterMode" value="all" id="filter-all" checked> Show all (default)</label><br>
-    <label style="display:inline;font-weight:normal;"><input type="radio" name="repoFilterMode" value="include" id="filter-include"> Show only these repos</label><br>
-    <label style="display:inline;font-weight:normal;"><input type="radio" name="repoFilterMode" value="exclude" id="filter-exclude"> Hide these repos</label>
+    <label style="display:inline;font-weight:normal;"><input type="radio" name="repoFilterMode" value="all" id="filter-all" checked> <span data-i18n="optFilterAll">Show all (default)</span></label><br>
+    <label style="display:inline;font-weight:normal;"><input type="radio" name="repoFilterMode" value="include" id="filter-include"> <span data-i18n="optFilterInclude">Show only these repos</span></label><br>
+    <label style="display:inline;font-weight:normal;"><input type="radio" name="repoFilterMode" value="exclude" id="filter-exclude"> <span data-i18n="optFilterExclude">Hide these repos</span></label>
   </div>
 
-  <label for="repoList">Repositories (one per line, format: owner/repo)</label>
+  <label for="repoList" data-i18n="optRepoLabel">Repositories (one per line, format: owner/repo)</label>
   <textarea id="repoList" rows="6" style="width:100%;padding:8px;border:1px solid #d0d7de;border-radius:6px;font-size:13px;font-family:monospace;resize:vertical;" placeholder="microsoft/onnxruntime&#10;onnx/onnx"></textarea>
 
   <div class="row" style="margin-top:12px;">
-    <button id="saveFilter">Save Filter</button>
-    <span class="saved" id="savedFilter">✓ Saved!</span>
+    <button id="saveFilter" data-i18n="optSaveFilter">Save Filter</button>
+    <span class="saved" id="savedFilter" data-i18n="optSaved">✓ Saved!</span>
   </div>
 
   <script src="options.js" type="module"></script>
+  <script>
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const msg = chrome.i18n.getMessage(el.dataset.i18n);
+      if (msg) el.textContent = msg;
+    });
+  </script>
   <div style="margin-top:24px;text-align:center;font-size:11px;color:#57606a;">
-    <a href="https://github.com/justinchuby/github-attention-set/issues/new" target="_blank" style="color:#0969da;">Report a bug or request a feature</a>
+    <a href="https://github.com/justinchuby/github-attention-set/issues/new" target="_blank" style="color:#0969da;" data-i18n="optReportBug">Report a bug or request a feature</a>
   </div>
 </main>
 </body>

@@ -40,8 +40,8 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
   if (!hasToken) {
     app.textContent = '';
     const noToken = h('div', { class: 'no-token' }, [
-      h('p', null, 'No GitHub token configured.'),
-      h('p', null, h('a', { href: '#', id: 'open-options' }, 'Open Settings'))
+      h('p', null, chrome.i18n.getMessage('noToken')),
+      h('p', null, h('a', { href: '#', id: 'open-options' }, chrome.i18n.getMessage('openSettings')))
     ]);
     app.appendChild(noToken);
     document.getElementById('open-options').onclick = () => chrome.runtime.openOptionsPage();
@@ -61,7 +61,7 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
         const spinner = h('span', { class: 'spinner' });
         spinner.appendChild(htmlToNodes(getIcon('sync', 12)));
         btn.appendChild(spinner);
-        btn.append(' Refresh');
+        btn.append(' ' + chrome.i18n.getMessage('refresh'));
         btn.disabled = true;
       }
       chrome.runtime.sendMessage({ type: 'refresh' }, () => {
@@ -83,7 +83,7 @@ function showSpinner() {
   app.textContent = '';
   const empty = h('div', { class: 'empty' });
   empty.appendChild(htmlToNodes(getIcon('sync', 14)));
-  empty.append(' Loading...');
+  empty.append(' ' + chrome.i18n.getMessage('loading'));
   app.appendChild(empty);
 }
 
@@ -150,13 +150,13 @@ function renderPRItem(pr, username, showRepo) {
 
   
   const stateLabels = {
-    DRAFT: 'Draft',
-    REVIEWING: 'Review',
-    CHANGES_REQUESTED: 'Fix',
-    COMMENTED: 'Respond',
-    APPROVED_NO_AUTOMERGE: 'Merge',
-    MERGING: 'Merging',
-    STALLED_MERGE: 'Stuck',
+    DRAFT: chrome.i18n.getMessage('stateDraft'),
+    REVIEWING: chrome.i18n.getMessage('stateReview'),
+    CHANGES_REQUESTED: chrome.i18n.getMessage('stateFix'),
+    COMMENTED: chrome.i18n.getMessage('stateRespond'),
+    APPROVED_NO_AUTOMERGE: chrome.i18n.getMessage('stateMerge'),
+    MERGING: chrome.i18n.getMessage('stateMerging'),
+    STALLED_MERGE: chrome.i18n.getMessage('stateStuck'),
     MERGED: 'Merged',
     CLOSED: 'Closed',
   };
@@ -171,7 +171,7 @@ function renderPRItem(pr, username, showRepo) {
   // Waiting on rendered as separate line
   const waitingOnChildren = [];
   if (waitingOn.length) {
-    waitingOnChildren.push('Waiting on: ');
+    waitingOnChildren.push(chrome.i18n.getMessage('waitingOn') + ' ');
     waitingOn.forEach((u, i) => {
       if (i > 0) waitingOnChildren.push(', ');
       if (u === username) {
@@ -217,7 +217,7 @@ function renderDismissedItem(pr) {
   const dot = h('span', { class: 'dot' });
   dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, '#8b949e')));
 
-  const restoreBtn = h('button', { class: 'restore-btn', 'data-url': pr.url, 'aria-label': `Restore ${pr.title}` }, 'Restore');
+  const restoreBtn = h('button', { class: 'restore-btn', 'data-url': pr.url, 'aria-label': `${chrome.i18n.getMessage('restore')} ${pr.title}` }, chrome.i18n.getMessage('restore'));
   restoreBtn.onclick = (e) => {
     e.stopPropagation();
     restorePR(pr.url);
@@ -287,9 +287,9 @@ function render(data, isRefreshing) {
   const othersGroups = window.__groupByRepo ? groupByRepo(others) : [{ repo: '', prs: others }];
 
   // Build header
-  const refreshBtn = h('button', { class: 'refresh-btn', id: 'refresh', 'aria-label': 'Refresh' });
+  const refreshBtn = h('button', { class: 'refresh-btn', id: 'refresh', 'aria-label': chrome.i18n.getMessage('refresh') });
   refreshBtn.appendChild(htmlToNodes(getIcon('sync', 12)));
-  refreshBtn.append(' Refresh');
+  refreshBtn.append(' ' + chrome.i18n.getMessage('refresh'));
 
   const settingsBtn = h('button', { class: 'settings-btn', id: 'open-settings', title: 'Settings', 'aria-label': 'Settings' });
   settingsBtn.appendChild(htmlToNodes(getIcon('gear', 14)));
@@ -314,14 +314,14 @@ function render(data, isRefreshing) {
 
   // PR lists
   if (activePRs.length === 0) {
-    app.appendChild(h('div', { class: 'empty' }, 'No open PRs found.'));
+    app.appendChild(h('div', { class: 'empty' }, chrome.i18n.getMessage('noPRs')));
   } else {
     if (needsAttention.length > 0) {
-      app.appendChild(h('div', { class: 'status-section-title attention' }, `Needs your attention (${needsAttention.length})`));
+      app.appendChild(h('div', { class: 'status-section-title attention' }, `${chrome.i18n.getMessage('needsAttention')} (${needsAttention.length})`));
       app.appendChild(renderRepoGroups(needsAttentionGroups, username));
     }
     if (others.length > 0) {
-      app.appendChild(h('div', { class: 'status-section-title others' }, `Waiting on others (${others.length})`));
+      app.appendChild(h('div', { class: 'status-section-title others' }, `${chrome.i18n.getMessage('waitingOnOthers')} (${others.length})`));
       app.appendChild(renderRepoGroups(othersGroups, username));
     }
   }
@@ -338,8 +338,8 @@ function render(data, isRefreshing) {
     path.setAttribute('d', 'M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z');
     chevronSvg.appendChild(path);
 
-    const toggle = h('button', { class: 'dismissed-toggle', id: 'dismissed-toggle', 'aria-expanded': 'false', 'aria-label': `Show ${dismissedPRs.length} dismissed items` }, [
-      `${dismissedPRs.length} dismissed `,
+    const toggle = h('button', { class: 'dismissed-toggle', id: 'dismissed-toggle', 'aria-expanded': 'false', 'aria-label': `Show ${dismissedPRs.length} ${chrome.i18n.getMessage('dismissed')} items` }, [
+      `${dismissedPRs.length} ${chrome.i18n.getMessage('dismissed')} `,
       chevronSvg
     ]);
 
@@ -366,7 +366,7 @@ function render(data, isRefreshing) {
     const spinner = h('span', { class: 'spinner' });
     spinner.appendChild(htmlToNodes(getIcon('sync', 12)));
     btn.appendChild(spinner);
-    btn.append(' Refresh');
+    btn.append(' ' + chrome.i18n.getMessage('refresh'));
     btn.disabled = true;
     chrome.runtime.sendMessage({ type: 'refresh' }, () => {
       chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
@@ -374,7 +374,7 @@ function render(data, isRefreshing) {
         else {
           btn.textContent = '';
           btn.appendChild(htmlToNodes(getIcon('sync', 12)));
-          btn.append(' Refresh');
+          btn.append(' ' + chrome.i18n.getMessage('refresh'));
           btn.disabled = false;
         }
       });
