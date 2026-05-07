@@ -51,13 +51,13 @@
     "message": "ᠵᠠᠰᠠᠬᠤ"
   },
   "stateRespond": {
-    "message": "Хариулах"
+    "message": "ᠬᠠᠷᠢᠭᠤᠯᠬᠤ"
   },
   "stateMerge": {
-    "message": "Нэгтгэх"
+    "message": "ᠨᠢᠭᠡᠳᠬᠡᠬᠦ"
   },
   "stateMerging": {
-    "message": "Нэгтгэж"
+    "message": "ᠨᠢᠭᠡᠳᠬᠡᠵᠦ"
   },
   "stateStuck": {
     "message": "ᠭᠠᠴᠠᠭᠰᠠᠨ"
@@ -135,21 +135,21 @@
     "message": "ᠬᠡᠯᠡ ᠬᠠᠳᠠᠭᠠᠯᠠᠭᠳᠠᠯ᠎ᠠ!"
   },
   "openSettings": {
-    "message": "Тохиргоо нээх"
+    "message": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ"
   },
   "optDebounceHint": {
-    "message": "Далд дохио анхаарал шилжүүлэхийн өмнөх хүлээх хугацаа."
+    "message": "ᠰᠡᠳᠬᠢᠭᠳᠡᠯ ᠬᠦᠯᠢᠶᠡᠬᠦ ᠬᠤᠭᠤᠴᠠᠭ᠎ᠠ"
   },
   "optFilterHint": {
-    "message": "Анхаарлын жагсаалтад харагдах репо шүүх."
+    "message": "owner/repo᠂ ᠮᠥᠷ ᠪᠦᠷᠢ ᠳᠦ ᠨᠢᠭᠡ"
   },
   "optPollHint": {
-    "message": "GitHub-ээс шинэчлэл шалгах давтамж."
+    "message": "GitHub ᠰᠢᠯᠭᠠᠬᠤ ᠳᠠᠪᠲᠠᠮᠵᠢ"
   },
   "optRepoLabel": {
-    "message": "Репо (мөр тус бүрд нэг, owner/repo)"
+    "message": "ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠤᠨ ᠰᠢᠭᠦᠯᠲᠦᠦᠷ"
   },
   "tokenHintFull": {
-    "message": "Нэг буюу олон GitHub PAT нэмнэ. Бүх токены үр дүн нэгтгэгдэнэ."
+    "message": "GitHub PAT ᠨᠡᠮᠡᠬᠦ᠃ ᠪᠦᠬᠦ ᠲᠣᠬᠧᠨ ᠤ ᠦᠷ᠎ᠡ ᠳᠦᠩ ᠨᠢᠭᠡᠳᠬᠡᠭᠳᠡᠨ᠎ᠡ᠃"
   }
 }
