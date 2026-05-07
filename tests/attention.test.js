@@ -411,3 +411,39 @@ describe('isBot', () => {
     expect(result.myStatus).toBe('red');
     expect(result.myReason).toBe('REVIEWING');
   });
+
+// i18n completeness test
+import { readdirSync, readFileSync } from 'fs';
+import { join } from 'path';
+
+describe('i18n locale completeness', () => {
+  const localesDir = join(import.meta.dirname, '..', '_locales');
+  const enMessages = JSON.parse(readFileSync(join(localesDir, 'en', 'messages.json'), 'utf8'));
+  const enKeys = Object.keys(enMessages).sort();
+  const localeDirs = readdirSync(localesDir).filter(d => d !== 'en');
+
+  for (const locale of localeDirs) {
+    it(`${locale} has all keys from en`, () => {
+      const filePath = join(localesDir, locale, 'messages.json');
+      const messages = JSON.parse(readFileSync(filePath, 'utf8'));
+      const localeKeys = Object.keys(messages).sort();
+      const missing = enKeys.filter(k => !localeKeys.includes(k));
+      expect(missing).toEqual([]);
+    });
+  }
+
+  it('all badge labels are ≤ 8 characters', () => {
+    const badgeKeys = ['stateReview', 'stateFix', 'stateRespond', 'stateMerge', 'stateMerging', 'stateStuck', 'stateDraft'];
+    const violations = [];
+    for (const locale of [' en', ...localeDirs].map(l => l.trim())) {
+      const filePath = join(localesDir, locale, 'messages.json');
+      const messages = JSON.parse(readFileSync(filePath, 'utf8'));
+      for (const key of badgeKeys) {
+        if (messages[key] && messages[key].message.length > 8) {
+          violations.push(`${locale}/${key}: "${messages[key].message}" (${messages[key].message.length} chars)`);
+        }
+      }
+    }
+    expect(violations).toEqual([]);
+  });
+});
