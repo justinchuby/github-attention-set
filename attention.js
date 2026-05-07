@@ -71,6 +71,7 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         }
         break;
       }
+      case 'added_to_merge_queue':
       case 'auto_merge_enabled':
       case 'auto_squash_enabled':
       case 'auto_rebase_enabled':
@@ -101,6 +102,7 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         set.delete(author);
         break;
       }
+      case 'removed_from_merge_queue':
       case 'auto_merge_disabled': {
         // Auto merge turned off → author needs to merge manually
         set.set(author, { status: 'red', since: ts });
