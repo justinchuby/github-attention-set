@@ -216,9 +216,12 @@ function renderPRItem(pr, username, showRepo) {
   ]);
 }
 
-function renderDismissedItem(pr) {
-  const dot = h('span', { class: 'dot' });
-  dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, '#8b949e')));
+function renderDismissedItem(pr, dismissedData) {
+  const d = dismissedData || {};
+  const hasNewActivity = pr.lastEventAt && d.lastEventAt && pr.lastEventAt > d.lastEventAt;
+  const dotColor = hasNewActivity ? '#0969da' : '#8b949e';
+  const dot = h('span', { class: 'dot', title: hasNewActivity ? 'New activity' : '' });
+  dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, dotColor)));
 
   const restoreBtn = h('button', { class: 'restore-btn', 'data-url': pr.url, 'aria-label': `${msg('restore')} ${pr.title}` }, msg('restore'));
   restoreBtn.onclick = (e) => {
@@ -331,13 +334,13 @@ function render(data, isRefreshing) {
     chevronSvg.appendChild(path);
 
     const toggle = h('button', { class: 'dismissed-toggle', id: 'dismissed-toggle', 'aria-expanded': 'false', 'aria-label': `Show ${dismissedPRs.length} ${msg('dismissed')} items` }, [
-      `${dismissedPRs.length} ${msg('dismissed')} `,
+      `${dismissedPRs.length} ${msg('dismissed')}${dismissedPRs.filter(pr => { const d = dismissed[pr.url]; return pr.lastEventAt && d && d.lastEventAt && pr.lastEventAt > d.lastEventAt; }).length > 0 ? ' ●' : ''} `,
       chevronSvg
     ]);
 
     const dismissedList = h('ul', { class: 'pr-list dismissed-list', id: 'dismissed-list', style: { display: window.__dismissedExpanded ? '' : 'none' } });
     for (const pr of dismissedPRs) {
-      dismissedList.appendChild(renderDismissedItem(pr));
+      dismissedList.appendChild(renderDismissedItem(pr, dismissed[pr.url]));
     }
 
     toggle.onclick = () => {
