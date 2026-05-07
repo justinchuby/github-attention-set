@@ -119,7 +119,7 @@ async function pollAndCompute() {
     const filteredResults = applyRepoFilter(results, repoFilterMode, repoFilterList);
 
     // Subtract dismissed PRs from badge count
-    const dismissed = (await chrome.storage.local.get('dismissed')).dismissed || {};
+    const dismissed = (await chrome.storage.sync.get('dismissed')).dismissed || {};
     const needsAttention = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
     setBadge(needsAttention);
 
@@ -129,7 +129,7 @@ async function pollAndCompute() {
     for (const [url, entry] of Object.entries(dismissed)) {
       if (openUrls.has(url)) cleanedDismissed[url] = entry;
     }
-    chrome.storage.local.set({ dismissed: cleanedDismissed });
+    chrome.storage.sync.set({ dismissed: cleanedDismissed });
 
     // Clear any previous error
     chrome.storage.local.remove('lastError');
@@ -167,11 +167,13 @@ function setBadge(count) {
 // Listen for messages from popup/content
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type === 'updateBadge') {
-    chrome.storage.local.get(['results', 'dismissed'], (data) => {
-      const results = data.results || [];
-      const dismissed = data.dismissed || {};
-      const count = results.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
-      setBadge(count);
+    chrome.storage.local.get(['results'], (local) => {
+      chrome.storage.sync.get(['dismissed'], (synced) => {
+        const results = local.results || [];
+        const dismissed = synced.dismissed || {};
+        const count = results.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
+        setBadge(count);
+      });
     });
     return;
   }
@@ -180,7 +182,11 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
   if (msg.type === 'getData') {
-    chrome.storage.local.get(['results', 'username', 'usernames', 'lastPoll', 'dismissed', 'repoFilterMode', 'repoFilterList'], sendResponse);
+    chrome.storage.local.get(['results', 'username', 'usernames', 'lastPoll', 'repoFilterMode', 'repoFilterList'], (local) => {
+      chrome.storage.sync.get(['dismissed'], (synced) => {
+        sendResponse({ ...local, ...synced });
+      });
+    });
     return true;
   }
 });
