@@ -47,7 +47,9 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
     return;
   }
 
-  chrome.storage.local.get(['results', 'username', 'lastPoll', 'dismissed', 'repoFilterMode', 'repoFilterList', 'groupByRepo'], (cached) => {
+  chrome.storage.local.get(['results', 'username', 'lastPoll', 'repoFilterMode', 'repoFilterList', 'groupByRepo'], (localData) => {
+  chrome.storage.sync.get(['dismissed'], (syncData) => {
+    const cached = { ...localData, ...syncData };
     window.__lastError = cached.lastError || null;
     window.__groupByRepo = cached.groupByRepo === true;
     if (cached && cached.results) {
@@ -72,6 +74,7 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
         chrome.runtime.sendMessage({ type: 'getData' }, (data) => render(data, false));
       });
     }
+  });
   });
 });
 
