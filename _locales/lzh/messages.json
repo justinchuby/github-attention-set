@@ -133,5 +133,23 @@
   },
   "optLanguageSaved": {
     "message": "言已存！重啟窗見效。"
+  },
+  "optDebounceHint": {
+    "message": "評論後延候之時"
+  },
+  "optPollHint": {
+    "message": "詢GitHub之頻率"
+  },
+  "optRepoLabel": {
+    "message": "庫篩設"
+  },
+  "optFilterHint": {
+    "message": "主/庫，每行一"
+  },
+  "openSettings": {
+    "message": "往設置"
+  },
+  "tokenHintFull": {
+    "message": "創一細粒令牌，授 Pull requests → 閱，Issues → 閱"
   }
 }
