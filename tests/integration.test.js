@@ -71,14 +71,13 @@ describe('Integration: poll()', () => {
         ]
       },
       '/repos/org/repoA/issues/101/timeline': [
-        { event: 'reviewed', actor: { login: 'me' }, created_at: '2026-05-05T10:00:00Z' },
+        { event: 'reviewed', actor: { login: 'me' }, state: 'approved', submitted_at: '2026-05-05T10:00:00Z' },
       ],
       '/repos/org/repoB/issues/202/timeline': [
         { event: 'review_requested', actor: { login: 'bob' }, requested_reviewer: { login: 'me' }, created_at: '2026-05-05T11:00:00Z' },
       ],
       '/repos/org/repoC/issues/303/timeline': [
-        { event: 'reviewed', actor: { login: 'reviewer1' }, user: { login: 'reviewer1' }, state: 'commented', submitted_at: new Date(Date.now() - 60 * 60 * 1000).toISOString() },
-        { event: 'commented', actor: { login: 'reviewer1' }, user: { login: 'reviewer1' }, created_at: new Date(Date.now() - 3 * 60 * 1000).toISOString(), body: '' },
+        { event: 'reviewed', actor: { login: 'reviewer1' }, user: { login: 'reviewer1' }, state: 'commented', submitted_at: new Date(Date.now() - 3 * 60 * 1000).toISOString() },
       ],
     });
 
@@ -201,8 +200,7 @@ describe('Integration: poll()', () => {
         items: [makePR(1, 101, 'org', 'repo', 'me')]
       },
       '/repos/org/repo/issues/101/timeline': [
-        { event: 'reviewed', actor: { login: 'bob' }, user: { login: 'bob' }, state: 'commented', submitted_at: new Date(Date.now() - 60 * 60 * 1000).toISOString() },
-        { event: 'commented', actor: { login: 'reviewer' }, user: { login: 'reviewer' }, created_at: commentTime, body: '' },
+        { event: 'reviewed', actor: { login: 'reviewer' }, user: { login: 'reviewer' }, state: 'commented', submitted_at: commentTime },
       ],
     });
 
