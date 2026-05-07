@@ -122,13 +122,15 @@ async function pollAndCompute() {
 
     // Subtract dismissed PRs from badge count
     const dismissed = (await chrome.storage.local.get('dismissed')).dismissed || {};
-    const needsAttention = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
+    const needsAttention = filteredResults.filter(r => {
+      if (r.myStatus !== 'red') return false;
+      const d = dismissed[r.url];
+      if (!d) return true; // not dismissed
+      if (r.lastEventAt && r.lastEventAt > d.lastEventAt) return true; // new activity, auto-restore
+      return false; // dismissed, no new activity
+    }).length;
     setBadge(needsAttention);
-    console.log('[Badge Debug] total results:', filteredResults.length,
-      'red:', filteredResults.filter(r => r.myStatus === 'red').length,
-      'dismissed:', Object.keys(dismissed).length,
-      'badge:', needsAttention,
-      'dismissed URLs:', Object.keys(dismissed));
+
 
     // Cleanup: remove dismissed entries for PRs that are no longer open
     const openUrls = new Set(results.map(r => r.url));
@@ -178,7 +180,13 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       chrome.storage.local.get(['dismissed'], (synced) => {
         const results = local.results || [];
         const dismissed = synced.dismissed || {};
-        const count = results.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
+        const count = results.filter(r => {
+          if (r.myStatus !== 'red') return false;
+          const d = dismissed[r.url];
+          if (!d) return true;
+          if (r.lastEventAt && r.lastEventAt > d.lastEventAt) return true;
+          return false;
+        }).length;
         setBadge(count);
       });
     });
