@@ -49,7 +49,13 @@ async function pollSingleToken(tokenEntry, debounceMinutes) {
 
       let timeline;
       try {
-        timeline = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100`, token);
+        // Paginate timeline (max 3 pages = 300 events)
+        timeline = [];
+        for (let page = 1; page <= 3; page++) {
+          const batch = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100&page=${page}`, token);
+          timeline.push(...batch);
+          if (batch.length < 100) break; // no more pages
+        }
       } catch { timeline = []; }
 
       const attention = computeAttentionSet(timeline, username, pr.user.login, debounceMinutes);
