@@ -113,6 +113,20 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         set.delete(author);
         break;
       }
+      case 'assigned': {
+        // Someone assigned → they need attention (unless author assigns themselves)
+        const assignee = event.assignee?.login;
+        if (assignee && assignee !== author) {
+          set.set(assignee, { status: 'red', since: ts });
+        }
+        break;
+      }
+      case 'unassigned': {
+        // Someone unassigned → they leave attention set
+        const unassignee = event.assignee?.login;
+        if (unassignee) set.delete(unassignee);
+        break;
+      }
     }
 
     // @mentions in comment body
