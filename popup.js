@@ -346,12 +346,13 @@ function render(data, isRefreshing) {
       chevronSvg
     ]);
 
-    const dismissedList = h('ul', { class: 'pr-list dismissed-list', id: 'dismissed-list', style: { display: 'none' } });
+    const dismissedList = h('ul', { class: 'pr-list dismissed-list', id: 'dismissed-list', style: { display: window.__dismissedExpanded ? '' : 'none' } });
     for (const pr of dismissedPRs) {
       dismissedList.appendChild(renderDismissedItem(pr));
     }
 
     toggle.onclick = () => {
+      window.__dismissedExpanded = !window.__dismissedExpanded;
       const show = dismissedList.style.display === 'none';
       dismissedList.style.display = show ? 'block' : 'none';
       toggle.setAttribute('aria-expanded', String(show));
