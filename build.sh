@@ -18,6 +18,7 @@ zip -r "$OUT" . \
   -x "build.sh" \
   -x "scripts/*" \
   -x ".gitignore" \
-  -x "*.md"
+  -x "*.md" \
+  -x "package-lock.json"
 
 echo "Built: $OUT ($(du -h "$OUT" | cut -f1))"
