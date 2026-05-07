@@ -77,6 +77,7 @@ describe('Integration: poll()', () => {
         { event: 'review_requested', actor: { login: 'bob' }, requested_reviewer: { login: 'me' }, created_at: '2026-05-05T11:00:00Z' },
       ],
       '/repos/org/repoC/issues/303/timeline': [
+        { event: 'reviewed', actor: { login: 'reviewer1' }, user: { login: 'reviewer1' }, state: 'commented', submitted_at: new Date(Date.now() - 60 * 60 * 1000).toISOString() },
         { event: 'commented', actor: { login: 'reviewer1' }, user: { login: 'reviewer1' }, created_at: new Date(Date.now() - 3 * 60 * 1000).toISOString(), body: '' },
       ],
     });
@@ -200,6 +201,7 @@ describe('Integration: poll()', () => {
         items: [makePR(1, 101, 'org', 'repo', 'me')]
       },
       '/repos/org/repo/issues/101/timeline': [
+        { event: 'reviewed', actor: { login: 'bob' }, user: { login: 'bob' }, state: 'commented', submitted_at: new Date(Date.now() - 60 * 60 * 1000).toISOString() },
         { event: 'commented', actor: { login: 'reviewer' }, user: { login: 'reviewer' }, created_at: commentTime, body: '' },
       ],
     });

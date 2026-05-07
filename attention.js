@@ -141,14 +141,28 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
     }
   }
 
-  // Determine my status
-  const myEntry = set.get(me);
+  // Post-processing below, then determine my status
   // Post-processing: if author is in set but PR never reviewed, ball is with reviewers
   const hasBeenReviewed = timeline.some(e => (e.event || e.__type) === "reviewed");
   if (!hasBeenReviewed && set.has(author)) {
     set.delete(author);
   }
 
+  // If auto-merge is currently active, author doesn't need to act (CI will merge)
+  const autoMergeOnTypes = new Set(['auto_merge_enabled', 'auto_squash_enabled', 'auto_rebase_enabled', 'added_to_merge_queue']);
+  const autoMergeOffTypes = new Set(['auto_merge_disabled', 'removed_from_merge_queue']);
+  let autoMergeActive = false;
+  for (const ev of timeline) {
+    const t = ev.event || ev.__type;
+    if (autoMergeOnTypes.has(t)) autoMergeActive = true;
+    if (autoMergeOffTypes.has(t)) autoMergeActive = false;
+  }
+  if (autoMergeActive && set.has(author)) {
+    set.delete(author);
+  }
+
+  // Determine my status (after all post-processing)
+  const myEntry = set.get(me);
   let myStatus = 'green';
   if (myEntry) {
     myStatus = myEntry.status;

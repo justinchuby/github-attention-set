@@ -256,14 +256,9 @@ describe('computeAttentionSet bot filtering', () => {
       { event: 'reviewed', actor: { login: 'sayanshaw24', type: 'User' }, user: { login: 'sayanshaw24', type: 'User' }, state: 'approved', submitted_at: '2026-05-07T00:18:28Z' },
     ];
     const result = computeAttentionSet(timeline, 'justinchuby', 'justinchuby', 10, new Date('2026-05-07T01:00:00Z').getTime());
-    // auto_squash_enabled clears the set, then approved adds author back,
-    // but since auto_squash was already enabled, the PR is waiting on CI — not on author.
-    // However per current logic: auto_squash clears → approved adds author back.
-    // The correct behavior: since auto_squash happened BEFORE approved in timeline order,
-    // the approved re-adds author. But logically the PR is done.
-    // TODO: This reveals a subtle ordering issue — approve after auto_squash should also clear.
-    // For now, test the actual current behavior:
-    expect(result.myStatus).toBe('red');
+    // auto_squash_enabled is active in timeline → post-processing removes author
+    // even though approved re-added them. Auto-merge is on, waiting on CI.
+    expect(result.myStatus).toBe('green');
   });
 
   it('real PR: approve then auto_squash clears attention set', () => {
