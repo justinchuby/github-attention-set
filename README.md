@@ -35,7 +35,7 @@ The extension monitors PR activity and computes who currently needs to act:
 - Relative timestamps
 - Repo filter (show only / hide specific repos)
 - Dark mode support
-- 30+ languages (including Cantonese, Classical Chinese, Traditional Mongolian, and 🏴‍☠️ Pirate)
+- 30+ languages
 - All data stays local — nothing synced to Google servers
 
 ## Install
