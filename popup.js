@@ -51,11 +51,12 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
     return;
   }
 
-  chrome.storage.local.get(['results', 'username', 'lastPoll', 'repoFilterMode', 'repoFilterList', 'groupByRepo'], (localData) => {
+  chrome.storage.local.get(['results', 'username', 'lastPoll', 'repoFilterMode', 'repoFilterList', 'groupByRepo', 'dismissedClicked'], (localData) => {
   chrome.storage.local.get(['dismissed'], (syncData) => {
     const cached = { ...localData, ...syncData };
     window.__lastError = cached.lastError || null;
     window.__groupByRepo = cached.groupByRepo === true;
+    window.__dismissedClicked = cached.dismissedClicked || {};
     if (cached && cached.results) {
       render(cached, false);
       const btn = document.getElementById('refresh');
@@ -219,7 +220,9 @@ function renderPRItem(pr, username, showRepo) {
 function renderDismissedItem(pr, dismissedData) {
   const d = dismissedData || {};
   const hasNewActivity = pr.lastEventAt && d.lastEventAt && pr.lastEventAt > d.lastEventAt;
-  const dotColor = hasNewActivity ? '#0969da' : '#8b949e';
+  const clickedAt = (window.__dismissedClicked || {})[pr.url] || 0;
+  const seenNewActivity = hasNewActivity && clickedAt > pr.lastEventAt;
+  const dotColor = hasNewActivity && !seenNewActivity ? '#0969da' : '#8b949e';
   const dot = h('span', { class: 'dot', title: hasNewActivity ? 'New activity' : '' });
   dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, dotColor)));
 
@@ -229,10 +232,20 @@ function renderDismissedItem(pr, dismissedData) {
     restorePR(pr.url);
   };
 
+  const link = h('a', { href: pr.url, target: '_blank', title: pr.title }, pr.title);
+  link.onclick = () => {
+    // Record that user clicked this dismissed PR
+    chrome.storage.local.get(['dismissedClicked'], (data) => {
+      const clicked = data.dismissedClicked || {};
+      clicked[pr.url] = Date.now();
+      chrome.storage.local.set({ dismissedClicked: clicked });
+    });
+  };
+
   return h('li', { class: 'pr-item pr-item-dismissed' }, [
     dot,
     h('div', { class: 'pr-info' }, [
-      h('div', { class: 'pr-title' }, h('a', { href: pr.url, target: '_blank', title: pr.title }, pr.title)),
+      h('div', { class: 'pr-title' }, link),
       h('div', { class: 'pr-meta' }, `${pr.repo}#${pr.number}`)
     ]),
     restoreBtn
