@@ -112,7 +112,7 @@ chrome.storage.local.get({ language: 'auto' }, (s) => {
 languageEl.onchange = () => {
   chrome.storage.local.set({ language: languageEl.value }, () => {
     savedEl.style.display = 'inline';
-    savedEl.textContent = msg('optLanguageSaved');
+    savedEl.textContent = '✓';
     setTimeout(() => { savedEl.style.display = 'none'; savedEl.textContent = '✓ Saved!'; }, 3000);
   });
 };
