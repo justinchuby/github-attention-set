@@ -30,13 +30,9 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
       case 'reviewed': {
         // Submit review → reviewer leaves
         set.delete(actor);
-        // If approved → PR is done, clear set
-        if (event.state === 'approved') {
-          set.clear();
-        } else {
-          // commented/changes_requested → author needs to respond
-          set.set(author, { status: 'red', since: ts });
-        }
+        // approved → author needs to merge (unless auto-merge kicks in later)
+        // commented/changes_requested → author needs to respond
+        set.set(author, { status: 'red', since: ts });
         break;
       }
       case 'review_requested': {
@@ -77,6 +73,7 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
       }
       case 'auto_merge_enabled':
       case 'auto_squash_enabled':
+      case 'auto_rebase_enabled':
       case 'merged':
       case 'closed': {
         // PR approved/merged/closed → everyone leaves attention set
