@@ -334,7 +334,7 @@ function render(data, isRefreshing) {
     chevronSvg.appendChild(path);
 
     const toggle = h('button', { class: 'dismissed-toggle', id: 'dismissed-toggle', 'aria-expanded': 'false', 'aria-label': `Show ${dismissedPRs.length} ${msg('dismissed')} items` }, [
-      `${dismissedPRs.length} ${msg('dismissed')}${dismissedPRs.filter(pr => { const d = dismissed[pr.url]; return pr.lastEventAt && d && d.lastEventAt && pr.lastEventAt > d.lastEventAt; }).length > 0 ? ' ●' : ''} `,
+      `${dismissedPRs.length} ${msg('dismissed')} `,
       chevronSvg
     ]);
 
