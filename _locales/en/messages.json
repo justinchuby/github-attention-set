@@ -45,5 +45,9 @@
   "tokenName": { "message": "Name" },
   "tokenValue": { "message": "Token" },
   "openSettings": { "message": "Open Settings" },
-  "tokenHintFull": { "message": "Add one or more GitHub Personal Access Tokens. Results from all tokens are merged." }
+  "tokenHintFull": { "message": "Add one or more GitHub Personal Access Tokens. Results from all tokens are merged." },
+  "optLanguage": { "message": "Language" },
+  "optLanguageHint": { "message": "Choose the display language for this extension." },
+  "optLanguageAuto": { "message": "Auto (follow browser)" },
+  "optLanguageSaved": { "message": "Language saved. Please reopen the popup for changes to take effect." }
 }

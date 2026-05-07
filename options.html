@@ -36,6 +36,27 @@
 <main>
   <h1><img src="icons/icon48.png" width="24" height="24" alt="" style="vertical-align:middle;margin-right:8px"><span data-i18n="optTitle">GitHub Attention Set Settings</span></h1>
 
+  <h2 data-i18n="optLanguage">Language</h2>
+  <div class="hint" style="margin-bottom:8px;" data-i18n="optLanguageHint">Choose the display language for this extension.</div>
+  <select id="language" style="width:100%;padding:8px;border:1px solid #d0d7de;border-radius:6px;font-size:14px;">
+    <option value="auto" data-i18n="optLanguageAuto">Auto (follow browser)</option>
+    <option value="en">English</option>
+    <option value="zh_CN">简体中文</option>
+    <option value="zh_TW">繁體中文</option>
+    <option value="ja">日本語</option>
+    <option value="ko">한국어</option>
+    <option value="vi">Tiếng Việt</option>
+    <option value="th">ไทย</option>
+    <option value="id">Bahasa Indonesia</option>
+    <option value="fr">Français</option>
+    <option value="de">Deutsch</option>
+    <option value="es">Español</option>
+    <option value="pt_BR">Português (BR)</option>
+    <option value="it">Italiano</option>
+    <option value="ru">Русский</option>
+    <option value="tr">Türkçe</option>
+  </select>
+
   <h2 data-i18n="optTokenLabel">GitHub Tokens</h2>
   <div class="hint" style="margin-bottom:12px;"><span data-i18n="tokenHintFull">Add one or more GitHub Personal Access Tokens. Results from all tokens are merged.</span><br>
     <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" data-i18n="optTokenHint">Create a fine-grained PAT</a> with: <strong>Pull requests → Read, Issues → Read</strong>
@@ -84,12 +105,6 @@
   </div>
 
   <script src="options.js" type="module"></script>
-  <script>
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const msg = chrome.i18n.getMessage(el.dataset.i18n);
-      if (msg) el.textContent = msg;
-    });
-  </script>
   <div style="margin-top:24px;text-align:center;font-size:11px;color:#57606a;">
     <a href="https://github.com/justinchuby/github-attention-set/issues/new" target="_blank" style="color:#0969da;" data-i18n="optReportBug">Report a bug or request a feature</a>
   </div>

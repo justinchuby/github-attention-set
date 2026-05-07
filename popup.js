@@ -1,6 +1,9 @@
 // GitHub Attention Set — Popup
 import { getIcon } from './icons.js';
 import { h } from './dom.js';
+import { initI18n, msg } from './i18n.js';
+
+await initI18n();
 
 function timeAgo(dateStringOrMs) {
   if (!dateStringOrMs) return '';
@@ -40,8 +43,8 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
   if (!hasToken) {
     app.textContent = '';
     const noToken = h('div', { class: 'no-token' }, [
-      h('p', null, chrome.i18n.getMessage('noToken')),
-      h('p', null, h('a', { href: '#', id: 'open-options' }, chrome.i18n.getMessage('openSettings')))
+      h('p', null, msg('noToken')),
+      h('p', null, h('a', { href: '#', id: 'open-options' }, msg('openSettings')))
     ]);
     app.appendChild(noToken);
     document.getElementById('open-options').onclick = () => chrome.runtime.openOptionsPage();
@@ -61,7 +64,7 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
         const spinner = h('span', { class: 'spinner' });
         spinner.appendChild(htmlToNodes(getIcon('sync', 12)));
         btn.appendChild(spinner);
-        btn.append(' ' + chrome.i18n.getMessage('refresh'));
+        btn.append(' ' + msg('refresh'));
         btn.disabled = true;
       }
       chrome.runtime.sendMessage({ type: 'refresh' }, () => {
@@ -83,7 +86,7 @@ function showSpinner() {
   app.textContent = '';
   const empty = h('div', { class: 'empty' });
   empty.appendChild(htmlToNodes(getIcon('sync', 14)));
-  empty.append(' ' + chrome.i18n.getMessage('loading'));
+  empty.append(' ' + msg('loading'));
   app.appendChild(empty);
 }
 
@@ -150,13 +153,13 @@ function renderPRItem(pr, username, showRepo) {
 
   
   const stateLabels = {
-    DRAFT: chrome.i18n.getMessage('stateDraft'),
-    REVIEWING: chrome.i18n.getMessage('stateReview'),
-    CHANGES_REQUESTED: chrome.i18n.getMessage('stateFix'),
-    COMMENTED: chrome.i18n.getMessage('stateRespond'),
-    APPROVED_NO_AUTOMERGE: chrome.i18n.getMessage('stateMerge'),
-    MERGING: chrome.i18n.getMessage('stateMerging'),
-    STALLED_MERGE: chrome.i18n.getMessage('stateStuck'),
+    DRAFT: msg('stateDraft'),
+    REVIEWING: msg('stateReview'),
+    CHANGES_REQUESTED: msg('stateFix'),
+    COMMENTED: msg('stateRespond'),
+    APPROVED_NO_AUTOMERGE: msg('stateMerge'),
+    MERGING: msg('stateMerging'),
+    STALLED_MERGE: msg('stateStuck'),
     MERGED: 'Merged',
     CLOSED: 'Closed',
   };
@@ -171,7 +174,7 @@ function renderPRItem(pr, username, showRepo) {
   // Waiting on rendered as separate line
   const waitingOnChildren = [];
   if (waitingOn.length) {
-    waitingOnChildren.push(chrome.i18n.getMessage('waitingOn') + ' ');
+    waitingOnChildren.push(msg('waitingOn') + ' ');
     waitingOn.forEach((u, i) => {
       if (i > 0) waitingOnChildren.push(', ');
       if (u === username) {
@@ -217,7 +220,7 @@ function renderDismissedItem(pr) {
   const dot = h('span', { class: 'dot' });
   dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, '#8b949e')));
 
-  const restoreBtn = h('button', { class: 'restore-btn', 'data-url': pr.url, 'aria-label': `${chrome.i18n.getMessage('restore')} ${pr.title}` }, chrome.i18n.getMessage('restore'));
+  const restoreBtn = h('button', { class: 'restore-btn', 'data-url': pr.url, 'aria-label': `${msg('restore')} ${pr.title}` }, msg('restore'));
   restoreBtn.onclick = (e) => {
     e.stopPropagation();
     restorePR(pr.url);
@@ -287,9 +290,9 @@ function render(data, isRefreshing) {
   const othersGroups = window.__groupByRepo ? groupByRepo(others) : [{ repo: '', prs: others }];
 
   // Build header
-  const refreshBtn = h('button', { class: 'refresh-btn', id: 'refresh', 'aria-label': chrome.i18n.getMessage('refresh') });
+  const refreshBtn = h('button', { class: 'refresh-btn', id: 'refresh', 'aria-label': msg('refresh') });
   refreshBtn.appendChild(htmlToNodes(getIcon('sync', 12)));
-  refreshBtn.append(' ' + chrome.i18n.getMessage('refresh'));
+  refreshBtn.append(' ' + msg('refresh'));
 
   const settingsBtn = h('button', { class: 'settings-btn', id: 'open-settings', title: 'Settings', 'aria-label': 'Settings' });
   settingsBtn.appendChild(htmlToNodes(getIcon('gear', 14)));
@@ -314,14 +317,14 @@ function render(data, isRefreshing) {
 
   // PR lists
   if (activePRs.length === 0) {
-    app.appendChild(h('div', { class: 'empty' }, chrome.i18n.getMessage('noPRs')));
+    app.appendChild(h('div', { class: 'empty' }, msg('noPRs')));
   } else {
     if (needsAttention.length > 0) {
-      app.appendChild(h('div', { class: 'status-section-title attention' }, `${chrome.i18n.getMessage('needsAttention')} (${needsAttention.length})`));
+      app.appendChild(h('div', { class: 'status-section-title attention' }, `${msg('needsAttention')} (${needsAttention.length})`));
       app.appendChild(renderRepoGroups(needsAttentionGroups, username));
     }
     if (others.length > 0) {
-      app.appendChild(h('div', { class: 'status-section-title others' }, `${chrome.i18n.getMessage('waitingOnOthers')} (${others.length})`));
+      app.appendChild(h('div', { class: 'status-section-title others' }, `${msg('waitingOnOthers')} (${others.length})`));
       app.appendChild(renderRepoGroups(othersGroups, username));
     }
   }
@@ -338,8 +341,8 @@ function render(data, isRefreshing) {
     path.setAttribute('d', 'M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z');
     chevronSvg.appendChild(path);
 
-    const toggle = h('button', { class: 'dismissed-toggle', id: 'dismissed-toggle', 'aria-expanded': 'false', 'aria-label': `Show ${dismissedPRs.length} ${chrome.i18n.getMessage('dismissed')} items` }, [
-      `${dismissedPRs.length} ${chrome.i18n.getMessage('dismissed')} `,
+    const toggle = h('button', { class: 'dismissed-toggle', id: 'dismissed-toggle', 'aria-expanded': 'false', 'aria-label': `Show ${dismissedPRs.length} ${msg('dismissed')} items` }, [
+      `${dismissedPRs.length} ${msg('dismissed')} `,
       chevronSvg
     ]);
 
@@ -366,7 +369,7 @@ function render(data, isRefreshing) {
     const spinner = h('span', { class: 'spinner' });
     spinner.appendChild(htmlToNodes(getIcon('sync', 12)));
     btn.appendChild(spinner);
-    btn.append(' ' + chrome.i18n.getMessage('refresh'));
+    btn.append(' ' + msg('refresh'));
     btn.disabled = true;
     chrome.runtime.sendMessage({ type: 'refresh' }, () => {
       chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
@@ -374,7 +377,7 @@ function render(data, isRefreshing) {
         else {
           btn.textContent = '';
           btn.appendChild(htmlToNodes(getIcon('sync', 12)));
-          btn.append(' ' + chrome.i18n.getMessage('refresh'));
+          btn.append(' ' + msg('refresh'));
           btn.disabled = false;
         }
       });

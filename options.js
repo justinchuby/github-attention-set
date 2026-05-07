@@ -1,6 +1,16 @@
 // GitHub Attention Set — Options
 import { h } from './dom.js';
+import { initI18n, msg } from './i18n.js';
 
+await initI18n();
+
+// Apply i18n to data-i18n elements
+document.querySelectorAll('[data-i18n]').forEach(el => {
+  const m = msg(el.dataset.i18n);
+  if (m && m !== el.dataset.i18n) el.textContent = m;
+});
+
+const languageEl = document.getElementById('language');
 const debounceEl = document.getElementById('debounce');
 const pollEl = document.getElementById('poll');
 const notifEl = document.getElementById('notifications');
@@ -91,6 +101,19 @@ saveBtn.onclick = () => {
     chrome.alarms.clear('poll', () => {
       chrome.alarms.create('poll', { periodInMinutes: settings.pollMinutes });
     });
+  });
+};
+
+// --- Language ---
+chrome.storage.local.get({ language: 'auto' }, (s) => {
+  languageEl.value = s.language;
+});
+
+languageEl.onchange = () => {
+  chrome.storage.local.set({ language: languageEl.value }, () => {
+    savedEl.style.display = 'inline';
+    savedEl.textContent = msg('optLanguageSaved');
+    setTimeout(() => { savedEl.style.display = 'none'; savedEl.textContent = '✓ Saved!'; }, 3000);
   });
 };
 
