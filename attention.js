@@ -28,9 +28,15 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
 
     switch (event.event || event.__type) {
       case 'reviewed': {
-        // Submit review → author enters attention set
-        set.delete(actor); // reviewer leaves
-        set.set(author, { status: 'red', since: ts });
+        // Submit review → reviewer leaves
+        set.delete(actor);
+        // If approved → PR is done, clear set
+        if (event.state === 'approved') {
+          set.clear();
+        } else {
+          // commented/changes_requested → author needs to respond
+          set.set(author, { status: 'red', since: ts });
+        }
         break;
       }
       case 'review_requested': {
@@ -70,6 +76,7 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         break;
       }
       case 'auto_merge_enabled':
+      case 'auto_squash_enabled':
       case 'merged':
       case 'closed': {
         // PR approved/merged/closed → everyone leaves attention set
