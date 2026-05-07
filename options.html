@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>GitHub Attention Set — Settings</title>
@@ -27,12 +27,14 @@
     .token-entry input[type="password"] { flex: 1; }
     .token-remove { background: none; border: none; color: #d73a49; cursor: pointer; font-size: 18px; padding: 4px 8px; line-height: 1; }
     .token-remove:hover { background: #fff1f0; border-radius: 4px; }
+    button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible { outline: 2px solid #0969da; outline-offset: 2px; }
     #add-token { background: #f6f8fa; color: #24292f; border: 1px solid #d0d7de; margin-top: 8px; }
     #add-token:hover { background: #eaeef2; }
   </style>
 </head>
 <body>
-  <h1><img src="icons/icon48.png" width="24" height="24" style="vertical-align:middle;margin-right:8px">GitHub Attention Set Settings</h1>
+<main>
+  <h1><img src="icons/icon48.png" width="24" height="24" alt="" style="vertical-align:middle;margin-right:8px">GitHub Attention Set Settings</h1>
 
   <h2>GitHub Tokens</h2>
   <div class="hint" style="margin-bottom:12px;">Add one or more GitHub Personal Access Tokens. Results from all tokens are merged.<br>
@@ -85,5 +87,6 @@
   <div style="margin-top:24px;text-align:center;font-size:11px;color:#57606a;">
     <a href="https://github.com/justinchuby/github-attention-set/issues/new" target="_blank" style="color:#0969da;">Report a bug or request a feature</a>
   </div>
+</main>
 </body>
 </html>

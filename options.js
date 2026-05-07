@@ -36,7 +36,8 @@ function renderTokenList() {
     const removeBtn = h('button', {
       class: 'token-remove',
       'data-idx': String(i),
-      title: 'Remove'
+      title: 'Remove',
+      'aria-label': `Remove token ${entry.name || i + 1}`
     }, '✕');
     removeBtn.onclick = () => {
       tokens.splice(i, 1);

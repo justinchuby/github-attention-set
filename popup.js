@@ -20,6 +20,7 @@ function timeAgo(dateStringOrMs) {
 }
 
 const app = document.getElementById('app');
+app.setAttribute('role', 'main');
 
 function isBot(login) {
   if (!login) return false;
@@ -187,6 +188,7 @@ function renderPRItem(pr, username, showRepo) {
   const dismissBtn = h('button', {
     class: 'dismiss-btn',
     title: 'Dismiss',
+    'aria-label': `Dismiss ${pr.title}`,
     'data-url': pr.url,
     'data-event-at': String(pr.lastEventAt || 0)
   });
@@ -215,7 +217,7 @@ function renderDismissedItem(pr) {
   const dot = h('span', { class: 'dot' });
   dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, '#8b949e')));
 
-  const restoreBtn = h('button', { class: 'restore-btn', 'data-url': pr.url }, 'Restore');
+  const restoreBtn = h('button', { class: 'restore-btn', 'data-url': pr.url, 'aria-label': `Restore ${pr.title}` }, 'Restore');
   restoreBtn.onclick = (e) => {
     e.stopPropagation();
     restorePR(pr.url);
@@ -285,14 +287,14 @@ function render(data, isRefreshing) {
   const othersGroups = window.__groupByRepo ? groupByRepo(others) : [{ repo: '', prs: others }];
 
   // Build header
-  const refreshBtn = h('button', { class: 'refresh-btn', id: 'refresh' });
+  const refreshBtn = h('button', { class: 'refresh-btn', id: 'refresh', 'aria-label': 'Refresh' });
   refreshBtn.appendChild(htmlToNodes(getIcon('sync', 12)));
   refreshBtn.append(' Refresh');
 
-  const settingsBtn = h('button', { class: 'settings-btn', id: 'open-settings', title: 'Settings' });
+  const settingsBtn = h('button', { class: 'settings-btn', id: 'open-settings', title: 'Settings', 'aria-label': 'Settings' });
   settingsBtn.appendChild(htmlToNodes(getIcon('gear', 14)));
 
-  const headerImg = h('img', { src: 'icons/icon48.png', width: '18', height: '18', style: { verticalAlign: 'middle', marginRight: '6px' } });
+  const headerImg = h('img', { src: 'icons/icon48.png', width: '18', height: '18', alt: '', style: { verticalAlign: 'middle', marginRight: '6px' } });
   const header = h('div', { class: 'header' }, [
     h('h1', null, [headerImg, 'Attention Set']),
     refreshBtn,
@@ -336,7 +338,7 @@ function render(data, isRefreshing) {
     path.setAttribute('d', 'M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z');
     chevronSvg.appendChild(path);
 
-    const toggle = h('div', { class: 'dismissed-toggle', id: 'dismissed-toggle' }, [
+    const toggle = h('button', { class: 'dismissed-toggle', id: 'dismissed-toggle', 'aria-expanded': 'false', 'aria-label': `Show ${dismissedPRs.length} dismissed items` }, [
       `${dismissedPRs.length} dismissed `,
       chevronSvg
     ]);
@@ -347,7 +349,9 @@ function render(data, isRefreshing) {
     }
 
     toggle.onclick = () => {
-      dismissedList.style.display = dismissedList.style.display === 'none' ? 'block' : 'none';
+      const show = dismissedList.style.display === 'none';
+      dismissedList.style.display = show ? 'block' : 'none';
+      toggle.setAttribute('aria-expanded', String(show));
     };
 
     app.appendChild(toggle);
