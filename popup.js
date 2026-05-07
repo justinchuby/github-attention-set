@@ -100,7 +100,7 @@ function dismissPR(prUrl, lastEventAt) {
 }
 
 function restorePR(prUrl) {
-  chrome.storage.local.get(['dismissed'], (data) => {
+  chrome.storage.sync.get(['dismissed'], (data) => {
     const dismissed = data.dismissed || {};
     delete dismissed[prUrl];
     chrome.storage.sync.set({ dismissed }, () => {
