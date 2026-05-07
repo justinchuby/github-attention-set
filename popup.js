@@ -143,7 +143,12 @@ function applyRepoFilter(results, mode, repoListStr) {
 }
 
 function renderPRItem(pr, username, showRepo) {
-  const color = pr.myStatus === 'red' ? '#d73a49' : pr.myStatus === 'yellow' ? '#dbab09' : '#28a745';
+  const clickedAt = (window.__dismissedClicked || {})[pr.url] || 0;
+      const seen = clickedAt > (pr.lastEventAt || 0);
+      let color;
+      if (pr.myStatus === 'red') color = seen ? '#a8383f' : '#d73a49';
+      else if (pr.myStatus === 'yellow') color = seen ? '#9e7a08' : '#dbab09';
+      else color = seen ? '#1d6b30' : '#28a745';
   const waitingOn = Object.entries(pr.attentionSet || {})
     .filter(([u, s]) => s === 'red' && !isBot(u))
     .map(([u]) => u);
@@ -205,7 +210,17 @@ function renderPRItem(pr, username, showRepo) {
   return h('li', { class: 'pr-item' }, [
     dot,
     h('div', { class: 'pr-info' }, [
-      h('div', { class: 'pr-title' }, h('a', { href: pr.url, target: '_blank', title: pr.title }, pr.title)),
+      h('div', { class: 'pr-title' }, (() => {
+        const link = h('a', { href: pr.url, target: '_blank', title: pr.title }, pr.title);
+        link.onclick = () => {
+          chrome.storage.local.get(['dismissedClicked'], (data) => {
+            const clicked = data.dismissedClicked || {};
+            clicked[pr.url] = Date.now();
+            chrome.storage.local.set({ dismissedClicked: clicked });
+          });
+        };
+        return link;
+      })()),
       h('div', { class: 'pr-meta' }, metaChildren),
       waitingOnChildren.length ? h('div', { class: 'pr-waiting' }, waitingOnChildren) : null
     ]),
