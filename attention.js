@@ -69,6 +69,13 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         }
         break;
       }
+      case 'auto_merge_enabled':
+      case 'merged':
+      case 'closed': {
+        // PR approved/merged/closed → everyone leaves attention set
+        set.clear();
+        break;
+      }
     }
 
     // @mentions in comment body
