@@ -54,7 +54,7 @@
     "message": "待回复"
   },
   "stateMerge": {
-    "message": "待合并"
+    "message": "可合并"
   },
   "stateMerging": {
     "message": "合并中"
