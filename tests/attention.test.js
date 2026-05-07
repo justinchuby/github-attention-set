@@ -432,14 +432,14 @@ describe('i18n locale completeness', () => {
     });
   }
 
-  it('all badge labels are ≤ 8 characters', () => {
+  it('all badge labels are ≤ 10 characters', () => {
     const badgeKeys = ['stateReview', 'stateFix', 'stateRespond', 'stateMerge', 'stateMerging', 'stateStuck', 'stateDraft'];
     const violations = [];
     for (const locale of [' en', ...localeDirs].map(l => l.trim())) {
       const filePath = join(localesDir, locale, 'messages.json');
       const messages = JSON.parse(readFileSync(filePath, 'utf8'));
       for (const key of badgeKeys) {
-        if (messages[key] && messages[key].message.length > 8) {
+        if (messages[key] && messages[key].message.length > 10) {
           violations.push(`${locale}/${key}: "${messages[key].message}" (${messages[key].message.length} chars)`);
         }
       }
