@@ -140,6 +140,13 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         prState = STATE.CLOSED;
         break;
 
+      case 'mentioned': {
+        // User was @mentioned — they enter attention set
+        if (actor && !isBot(actor)) {
+          mentioned.set(actor, { status: 'red', since: ts });
+        }
+        break;
+      }
       case 'assigned': {
         const assignee = event.assignee?.login;
         if (assignee && assignee !== author && !isBot(assignee, event.assignee)) {
