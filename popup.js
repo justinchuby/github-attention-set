@@ -147,19 +147,19 @@ function renderPRItem(pr, username, showRepo) {
   
   const stateLabels = {
     DRAFT: 'Draft',
-    REVIEWING: 'In review',
-    CHANGES_REQUESTED: 'Changes requested',
-    COMMENTED: 'Feedback',
-    APPROVED_NO_AUTOMERGE: 'Approved',
-    MERGING: 'Merging',
-    STALLED_MERGE: 'Merge stalled',
+    REVIEWING: 'Review needed',
+    CHANGES_REQUESTED: 'Address feedback',
+    COMMENTED: 'Respond to review',
+    APPROVED_NO_AUTOMERGE: 'Ready to merge',
+    MERGING: 'Merging...',
+    STALLED_MERGE: 'Check CI',
     MERGED: 'Merged',
     CLOSED: 'Closed',
   };
 
   const stateLabel = stateLabels[pr.prState] || '';
   const metaChildren = [showRepo ? `${pr.repo}#${pr.number}` : `#${pr.number}`];
-  if (stateLabel) { metaChildren.push(' · '); metaChildren.push(h('span', { style: { color: '#8b949e', fontStyle: 'italic' } }, stateLabel)); }
+  // state badge rendered separately below
   if ((window.__multiAccount ? pr.account : null)) {
     metaChildren.push(' · ');
     metaChildren.push(h('span', { style: { color: '#8b949e' } }, pr.account));
@@ -197,7 +197,10 @@ function renderPRItem(pr, username, showRepo) {
       h('div', { class: 'pr-title' }, h('a', { href: pr.url, target: '_blank', title: pr.title }, pr.title)),
       h('div', { class: 'pr-meta' }, metaChildren)
     ]),
-    h('span', { class: 'pr-time' }, timeAgo(pr.lastEventAt)),
+    h('div', { class: 'pr-right' }, [
+        h('span', { class: 'pr-time' }, timeAgo(pr.lastEventAt)),
+        stateLabel ? h('span', { class: 'pr-state-badge' }, stateLabel) : null,
+      ]),
     dismissBtn
   ]);
 }
