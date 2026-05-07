@@ -3,135 +3,135 @@
     "message": "GitHub Attention Set"
   },
   "extDescription": {
-    "message": "Таны анхаарал шаардагдаж буй PR-уудыг харуулна — Google Critique-ийн Attention Set шиг."
+    "message": "ᠲᠠᠨ ᠤ ᠠᠩᠬᠠᠷᠠᠯ ᠱᠠᠭᠠᠷᠳᠠᠭᠳᠠᠵᠤ ᠪᠠᠢᠭ᠎ᠠ PR ᠢ ᠬᠠᠷᠠᠭᠤᠯᠨ᠎ᠠ"
   },
   "needsAttention": {
-    "message": "Таны анхаарал хэрэгтэй"
+    "message": "ᠲᠠᠨ ᠤ ᠠᠩᠬᠠᠷᠠᠯ ᠬᠡᠷᠡᠭᠲᠡᠢ"
   },
   "waitingOnOthers": {
-    "message": "Бусдыг хүлээж байна"
+    "message": "ᠪᠤᠰᠤᠳ ᠢ ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ"
   },
   "refresh": {
-    "message": "Шинэчлэх"
+    "message": "ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦ"
   },
   "dismiss": {
-    "message": "Хаах"
+    "message": "ᠬᠠᠭᠠᠬᠤ"
   },
   "restore": {
-    "message": "Сэргээх"
+    "message": "ᠰᠡᠷᠭᠡᠭᠡᠬᠦ"
   },
   "dismissed": {
-    "message": "хаагдсан"
+    "message": "ᠬᠠᠭᠠᠭᠳᠠᠭᠰᠠᠨ"
   },
   "loading": {
-    "message": "Ачааллаж байна..."
+    "message": "ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ..."
   },
   "noToken": {
-    "message": "Токен тохируулаагүй байна."
+    "message": "ᠲᠣᠬᠧᠨ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠠᠭᠠᠭᠦᠢ ᠪᠠᠢᠨ᠎ᠠ᠃"
   },
   "goToSettings": {
-    "message": "Тохиргоо руу очих"
+    "message": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ ᠷᠤᠤ ᠣᠴᠢᠬᠤ"
   },
   "noPRs": {
-    "message": "Нээлттэй PR олдсонгүй."
+    "message": "ᠨᠡᠭᠡᠭᠡᠯᠲᠡᠢ PR ᠣᠯᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ᠃"
   },
   "allClear": {
-    "message": "Бүгд дууссан! Таныг хүлээж буй PR байхгүй."
+    "message": "ᠪᠦᠭᠦᠳᠡ ᠳᠠᠭᠤᠰᠰᠠᠨ! ᠲᠠᠨ ᠢ ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠭ᠎ᠠ PR ᠪᠠᠢᠬᠤ ᠦᠭᠡᠢ᠃"
   },
   "waitingOn": {
-    "message": "Хүлээж байна:"
+    "message": "ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ:"
   },
   "settings": {
-    "message": "Тохиргоо"
+    "message": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ"
   },
   "stateReview": {
-    "message": "Шалгах"
+    "message": "ᠰᠢᠯᠭᠠᠬᠤ"
   },
   "stateFix": {
-    "message": "Засах"
+    "message": "ᠵᠠᠰᠠᠬᠤ"
   },
   "stateRespond": {
-    "message": "Хариулах"
+    "message": "ᠬᠠᠷᠢᠭᠤᠯᠬᠤ"
   },
   "stateMerge": {
-    "message": "Нэгтгэх"
+    "message": "ᠨᠢᠭᠡᠳᠬᠡᠬᠦ"
   },
   "stateMerging": {
-    "message": "Нэгтгэж байна"
+    "message": "ᠨᠢᠭᠡᠳᠬᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ"
   },
   "stateStuck": {
-    "message": "Гацсан"
+    "message": "ᠭᠠᠴᠠᠭᠰᠠᠨ"
   },
   "stateDraft": {
-    "message": "Ноорог"
+    "message": "ᠨᠣᠣᠷᠣᠭ"
   },
   "optTitle": {
-    "message": "GitHub Attention Set Тохиргоо"
+    "message": "GitHub Attention Set ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ"
   },
   "optTokenLabel": {
-    "message": "GitHub хувийн хандалтын токенууд"
+    "message": "GitHub ᠬᠤᠪᠢᠶᠢᠨ ᠬᠠᠨᠳᠠᠯᠲᠠ ᠶᠢᠨ ᠲᠣᠬᠧᠨ"
   },
   "optTokenHint": {
-    "message": "Fine-grained PAT үүсгэнэ үү: Pull requests → Read, Issues → Read"
+    "message": "Fine-grained PAT ᠦᠦᠰᠬᠡᠨ᠎ᠡ ᠦᠦ: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
-    "message": "+ Токен нэмэх"
+    "message": "+ ᠲᠣᠬᠧᠨ ᠨᠡᠮᠡᠬᠦ"
   },
   "optSave": {
-    "message": "Хадгалах"
+    "message": "ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ"
   },
   "optSaved": {
-    "message": "Хадгалагдлаа!"
+    "message": "ᠬᠠᠳᠠᠭᠠᠯᠠᠭᠳᠠᠯ᠎ᠠ!"
   },
   "optDebounce": {
-    "message": "Хүлээх хугацаа (минут)"
+    "message": "ᠬᠦᠯᠢᠶᠡᠬᠦ ᠬᠤᠭᠤᠴᠠᠭ᠎ᠠ (ᠮᠢᠨᠦ᠋ᠲ)"
   },
   "optPoll": {
-    "message": "Шалгах давтамж (минут)"
+    "message": "ᠰᠢᠯᠭᠠᠬᠤ ᠳᠠᠪᠲᠠᠮᠵᠢ (ᠮᠢᠨᠦ᠋ᠲ)"
   },
   "optNotifications": {
-    "message": "Мэдэгдэл идэвхжүүлэх"
+    "message": "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠢᠳᠡᠪᠬᠢᠵᠢᠭᠦᠯᠬᠦ"
   },
   "optGroupByRepo": {
-    "message": "Репозитороор бүлэглэх"
+    "message": "ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠢᠶᠠᠷ ᠪᠦᠯᠦᠭᠯᠡᠬᠦ"
   },
   "optRepoFilter": {
-    "message": "Репозиторын шүүлтүүр"
+    "message": "ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠤᠨ ᠰᠢᠭᠦᠯᠲᠦᠦᠷ"
   },
   "optFilterAll": {
-    "message": "Бүгдийг харуулах"
+    "message": "ᠪᠦᠭᠦᠳᠡ ᠶᠢ ᠬᠠᠷᠠᠭᠤᠯᠬᠤ"
   },
   "optFilterInclude": {
-    "message": "Зөвхөн эдгээрийг харуулах"
+    "message": "ᠵᠥᠪᠬᠡᠨ ᠡᠳᠡᠭᠡᠷ ᠢ ᠬᠠᠷᠠᠭᠤᠯᠬᠤ"
   },
   "optFilterExclude": {
-    "message": "Эдгээрийг нуух"
+    "message": "ᠡᠳᠡᠭᠡᠷ ᠢ ᠨᠤᠤᠬᠤ"
   },
   "optRepoPlaceholder": {
-    "message": "owner/repo (мөр бүрт нэг)"
+    "message": "owner/repo (ᠮᠥᠷ ᠪᠦᠷᠢ ᠳᠦ ᠨᠢᠭᠡ)"
   },
   "optSaveFilter": {
-    "message": "Шүүлтүүр хадгалах"
+    "message": "ᠰᠢᠭᠦᠯᠲᠦᠦᠷ ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ"
   },
   "optReportBug": {
-    "message": "Алдаа мэдэгдэх эсвэл хүсэлт гаргах"
+    "message": "ᠠᠯᠳᠠᠭ᠎ᠠ ᠮᠡᠳᠡᠭᠳᠡᠬᠦ ᠡᠰᠡᠪᠡᠯ ᠬᠦᠰᠡᠯᠲᠡ ᠭᠠᠷᠭᠠᠬᠤ"
   },
   "tokenName": {
-    "message": "Нэр"
+    "message": "ᠨᠡᠷ᠎ᠡ"
   },
   "tokenValue": {
-    "message": "Токен"
+    "message": "ᠲᠣᠬᠧᠨ"
   },
   "optLanguage": {
-    "message": "Хэл"
+    "message": "ᠬᠡᠯᠡ"
   },
   "optLanguageHint": {
-    "message": "Хэл сонгох (popup дахин нээхэд хүчин төгөлдөр болно)"
+    "message": "ᠬᠡᠯᠡ ᠰᠣᠩᠭᠤᠬᠤ"
   },
   "optLanguageAuto": {
-    "message": "Автомат (хөтчийн хэл)"
+    "message": "ᠠᠦ᠋ᠲ᠋ᠣᠮᠠᠲ (ᠬᠥᠲᠥᠴᠢ ᠶᠢᠨ ᠬᠡᠯᠡ)"
   },
   "optLanguageSaved": {
-    "message": "Хэл хадгалагдлаа! Popup дахин нээнэ үү."
+    "message": "ᠬᠡᠯᠡ ᠬᠠᠳᠠᠭᠠᠯᠠᠭᠳᠠᠯ᠎ᠠ!"
   }
 }
