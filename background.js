@@ -124,6 +124,11 @@ async function pollAndCompute() {
     const dismissed = (await chrome.storage.local.get('dismissed')).dismissed || {};
     const needsAttention = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
     setBadge(needsAttention);
+    console.log('[Badge Debug] total results:', filteredResults.length,
+      'red:', filteredResults.filter(r => r.myStatus === 'red').length,
+      'dismissed:', Object.keys(dismissed).length,
+      'badge:', needsAttention,
+      'dismissed URLs:', Object.keys(dismissed));
 
     // Cleanup: remove dismissed entries for PRs that are no longer open
     const openUrls = new Set(results.map(r => r.url));
