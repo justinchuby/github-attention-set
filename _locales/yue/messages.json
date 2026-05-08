@@ -232,5 +232,8 @@
   },
   "optNothingMuted": {
     "message": "冇嘢靜音。"
+  },
+  "other": {
+    "message": "其他"
   }
 }

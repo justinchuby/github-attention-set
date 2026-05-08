@@ -232,5 +232,8 @@
   },
   "optNothingMuted": {
     "message": "Nichts stummgeschaltet."
+  },
+  "other": {
+    "message": "Sonstige"
   }
 }

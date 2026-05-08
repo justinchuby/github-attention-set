@@ -232,5 +232,8 @@
   },
   "optNothingMuted": {
     "message": "음소거 없음."
+  },
+  "other": {
+    "message": "기타"
   }
 }

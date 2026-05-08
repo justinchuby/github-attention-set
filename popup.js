@@ -610,6 +610,9 @@ async function render(data, _isRefreshing) {
         attentionContainer.appendChild(renderRepoGroups(groups, username));
       }
       if (roles.other.length > 0) {
+        attentionContainer.appendChild(
+          roleHeader({ label: 'git-pull-request', labelText: msg('other') || 'Other', prs: roles.other }),
+        );
         const groups = window.__groupByRepo ? groupByRepo(roles.other) : [{ repo: '', prs: roles.other }];
         attentionContainer.appendChild(renderRepoGroups(groups, username));
       }
@@ -639,6 +642,9 @@ async function render(data, _isRefreshing) {
         othersContainer.appendChild(renderRepoGroups(groups, username));
       }
       if (roles.other.length > 0) {
+        othersContainer.appendChild(
+          roleHeader({ label: 'git-pull-request', labelText: msg('other') || 'Other', prs: roles.other }),
+        );
         const groups = window.__groupByRepo ? groupByRepo(roles.other) : [{ repo: '', prs: roles.other }];
         othersContainer.appendChild(renderRepoGroups(groups, username));
       }

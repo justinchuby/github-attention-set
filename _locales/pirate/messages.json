@@ -232,5 +232,8 @@
   },
   "optNothingMuted": {
     "message": "Nothin' silenced, arr."
+  },
+  "other": {
+    "message": "Th' Rest"
   }
 }

@@ -232,5 +232,8 @@
   },
   "optNothingMuted": {
     "message": "ミュートなし。"
+  },
+  "other": {
+    "message": "その他"
   }
 }

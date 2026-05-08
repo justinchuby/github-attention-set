@@ -232,5 +232,8 @@
   },
   "optNothingMuted": {
     "message": "Rien en sourdine."
+  },
+  "other": {
+    "message": "Autre"
   }
 }

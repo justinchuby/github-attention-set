@@ -232,5 +232,8 @@
   },
   "optNothingMuted": {
     "message": "Nothing muted."
+  },
+  "other": {
+    "message": "Другие"
   }
 }
