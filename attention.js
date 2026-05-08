@@ -41,6 +41,7 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
   let lastActivityAt = 0; // last non-bot event timestamp
   let requestedReviewers = new Set(); // track current requested reviewers
   let allReviewers = new Set(); // all users who ever reviewed or were requested
+  const reviewerStates = {}; // reviewer -> 'pending' | 'approved' | 'changes_requested' | 'commented'
   let commentedAt = 0; // timestamp of the commented review (for debounce)
 
   // Additional tracking for attention set extras
@@ -77,6 +78,7 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         if (reviewer && !isBot(reviewer, event.requested_reviewer)) {
           requestedReviewers.add(reviewer);
           allReviewers.add(reviewer);
+          if (!reviewerStates[reviewer]) reviewerStates[reviewer] = 'pending';
         }
         // If author re-requests review, transition to REVIEWING
         if (actor === author) {
@@ -97,6 +99,10 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         // Reviewer leaves requested set
         requestedReviewers.delete(actor);
         allReviewers.add(actor);
+        // Track reviewer's review state
+        if (reviewState === 'approved') reviewerStates[actor] = 'approved';
+        else if (reviewState === 'changes_requested') reviewerStates[actor] = 'changes_requested';
+        else if (reviewState === 'commented') reviewerStates[actor] = reviewerStates[actor] || 'commented';
 
         if (reviewState === 'changes_requested') {
           prState = STATE.CHANGES_REQUESTED;
@@ -367,5 +373,5 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
     }
   }
 
-  return { set, myStatus, prState, myReason, myRole, incomingDetail, allReviewers: [...allReviewers] };
+  return { set, myStatus, prState, myReason, myRole, incomingDetail, allReviewers: [...allReviewers], reviewerStates };
 }

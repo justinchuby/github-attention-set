@@ -249,19 +249,38 @@ function renderPRItem(pr, username, showRepo) {
     metaChildren.push(' · ');
     metaChildren.push(h('span', { style: { color: '#8b949e' } }, pr.account));
   }
-  // Waiting on rendered as separate line
-  const waitingOnChildren = [];
-  if (waitingOn.length) {
-    waitingOnChildren.push(msg('waitingOn') + ' ');
-    waitingOn.forEach((u, i) => {
-      if (i > 0) waitingOnChildren.push(', ');
-      if (u === username) {
-        waitingOnChildren.push(h('strong', null, `@${u}`));
-      } else {
-        waitingOnChildren.push(`@${u}`);
-      }
+  // Reviewers rendered as colored names (Critique-style)
+  // Color = review state, Bold = in attention set
+  const reviewerStates = pr.reviewerStates || {};
+  const attentionSet = pr.attentionSet || {};
+  const allReviewers = pr.allReviewers || [];
+  const reviewerChildren = [];
+  const stateColors = {
+    approved: '#28a745',
+    changes_requested: '#d73a49',
+    commented: '#dbab09',
+    pending: '#8b949e'
+  };
+  if (allReviewers.length > 0) {
+    allReviewers.forEach((u, i) => {
+      if (i > 0) reviewerChildren.push(' ');
+      const state = reviewerStates[u] || 'pending';
+      const inSet = !!attentionSet[u];
+      const nameEl = h('a', {
+        href: `https://github.com/${u}`,
+        target: '_blank',
+        style: {
+          color: stateColors[state],
+          fontWeight: inSet ? 'bold' : 'normal',
+          textDecoration: 'none',
+          fontSize: '11px'
+        },
+        title: `${u}: ${state}${inSet ? ' (in attention set)' : ''}`
+      }, u);
+      reviewerChildren.push(nameEl);
     });
   }
+  const waitingOnChildren = reviewerChildren;
 
   const dot = h('span', { class: 'dot' });
   dot.appendChild(htmlToNodes(getIcon(dotIcon, 10, color)));

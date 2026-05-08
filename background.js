@@ -113,6 +113,8 @@ async function pollSingleToken(tokenEntry, debounceMinutes) {
         repo: `${owner}/${repo}`,
         author: pr.user.login,
         attentionSet: attention.set,
+        reviewerStates: attention.reviewerStates,
+        allReviewers: attention.allReviewers,
         myStatus: attention.myStatus,
         prState: attention.prState,
         myReason: attention.myReason,
