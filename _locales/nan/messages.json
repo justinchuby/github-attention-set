@@ -3,7 +3,7 @@
     "message": "GitHub Attention Set"
   },
   "extDescription": {
-    "message": "看佗一個PR愛你注意——親像Google Critique个Attention Set"
+    "message": "看佗一個PR愛你注意——親像Google Critique個Attention Set"
   },
   "needsAttention": {
     "message": "愛你看覓"
@@ -33,7 +33,7 @@
     "message": "去設定"
   },
   "noPRs": {
-    "message": "無啥物愛看个。"
+    "message": "無啥物愛看個。"
   },
   "allClear": {
     "message": "攏好矣！無PR等你。"
@@ -120,7 +120,7 @@
     "message": "名"
   },
   "tokenValue": {
-    "message": "你个 GitHub token"
+    "message": "你個 GitHub token"
   },
   "optLanguage": {
     "message": "語言"
@@ -177,7 +177,7 @@
     "message": "靜音擁有者"
   },
   "optMuted": {
-    "message": "靜音个 Repos / 擁有者"
+    "message": "靜音個 Repos / 擁有者"
   },
   "optMutedHint": {
     "message": "靜音ê repo kap owner 袂顯示。"
@@ -195,10 +195,10 @@
     "message": "干焦通知直接審查請求（略過團隊請求）"
   },
   "optWhitelistedTeams": {
-    "message": "允准个团队（就算顶头有勾嘛通知）："
+    "message": "允准個團隊（就算顶头有勾嘛通知）："
   },
   "optWhitelistedTeamsHint": {
-    "message": "一逝一个团队 slug（比論 my-org/my-team）"
+    "message": "一逝一個團隊 slug（比論 my-org/my-team）"
   },
   "justNow": {
     "message": "拄仔"
@@ -228,10 +228,10 @@
     "message": "批准矣"
   },
   "optMutedDesc": {
-    "message": "静音个 repos 佮拥有者会对注意集合佮徽章计数内底隐藏。"
+    "message": "靜音個 repos 佮拥有者会對注意集合佮徽章計數内底隐藏。"
   },
   "optNothingMuted": {
-    "message": "無靜音个。"
+    "message": "無靜音個。"
   },
   "other": {
     "message": "其他"
