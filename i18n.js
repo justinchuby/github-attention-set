@@ -9,14 +9,18 @@ export async function initI18n() {
       const url = chrome.runtime.getURL(`_locales/${language}/messages.json`);
       const res = await fetch(url);
       overrideMessages = await res.json();
-    } catch { overrideMessages = null; }
+    } catch {
+      overrideMessages = null;
+    }
   }
   // Always load English as fallback
   try {
     const enUrl = chrome.runtime.getURL('_locales/en/messages.json');
     const enRes = await fetch(enUrl);
     fallbackMessages = await enRes.json();
-  } catch { fallbackMessages = null; }
+  } catch {
+    fallbackMessages = null;
+  }
 }
 
 export function msg(key) {

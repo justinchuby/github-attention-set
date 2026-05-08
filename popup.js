@@ -29,7 +29,12 @@ app.setAttribute('role', 'main');
 const searchContainer = h('div', { class: 'search-box' });
 const searchIcon = h('span', { class: 'search-icon' });
 searchIcon.appendChild(htmlToNodes(getIcon('search', 14)));
-const searchInput = h('input', { type: 'text', class: 'search-input', placeholder: msg('filterPlaceholder'), 'aria-label': msg('filterPlaceholder') });
+const searchInput = h('input', {
+  type: 'text',
+  class: 'search-input',
+  placeholder: msg('filterPlaceholder'),
+  'aria-label': msg('filterPlaceholder'),
+});
 searchContainer.appendChild(searchIcon);
 searchContainer.appendChild(searchInput);
 let currentFilter = '';
@@ -44,10 +49,10 @@ searchInput.addEventListener('keyup', () => {
 
 function applyFilter() {
   const sections = app.querySelectorAll('[data-filter-section]');
-  sections.forEach(section => {
+  sections.forEach((section) => {
     const items = section.querySelectorAll('.pr-item');
     let visibleCount = 0;
-    items.forEach(item => {
+    items.forEach((item) => {
       const text = (item.dataset.filterText || '').toLowerCase();
       const match = !currentFilter || text.includes(currentFilter);
       item.style.display = match ? '' : 'none';
@@ -62,7 +67,7 @@ function applyFilter() {
   });
 }
 
-function isBot(login) {
+function _isBot(login) {
   if (!login) return false;
   return login.includes('[bot]');
 }
@@ -81,43 +86,46 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
     app.textContent = '';
     const noToken = h('div', { class: 'no-token' }, [
       h('p', null, msg('noToken')),
-      h('p', null, h('a', { href: '#', id: 'open-options' }, msg('openSettings')))
+      h('p', null, h('a', { href: '#', id: 'open-options' }, msg('openSettings'))),
     ]);
     app.appendChild(noToken);
     document.getElementById('open-options').onclick = () => chrome.runtime.openOptionsPage();
     return;
   }
 
-  chrome.storage.local.get(['results', 'username', 'lastPoll', 'repoFilterMode', 'repoFilterList', 'groupByRepo', 'dismissedClicked'], (localData) => {
-  chrome.storage.local.get(['dismissed'], (syncData) => {
-    const cached = { ...localData, ...syncData };
-    window.__lastError = cached.lastError || null;
-    window.__groupByRepo = cached.groupByRepo === true;
-    window.__dismissedClicked = cached.dismissedClicked || {};
-    if (cached && cached.results) {
-      render(cached, false);
-      const btn = document.getElementById('refresh');
-      if (btn) {
-        btn.textContent = '';
-        const spinner = h('span', { class: 'spinner' });
-        spinner.appendChild(htmlToNodes(getIcon('sync', 12)));
-        btn.appendChild(spinner);
-        btn.append(' ' + msg('refresh'));
-        btn.disabled = true;
-      }
-      chrome.runtime.sendMessage({ type: 'refresh' }, () => {
-        chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
-          if (fresh && fresh.results) render(fresh, false);
-        });
+  chrome.storage.local.get(
+    ['results', 'username', 'lastPoll', 'repoFilterMode', 'repoFilterList', 'groupByRepo', 'dismissedClicked'],
+    (localData) => {
+      chrome.storage.local.get(['dismissed'], (syncData) => {
+        const cached = { ...localData, ...syncData };
+        window.__lastError = cached.lastError || null;
+        window.__groupByRepo = cached.groupByRepo === true;
+        window.__dismissedClicked = cached.dismissedClicked || {};
+        if (cached && cached.results) {
+          render(cached, false);
+          const btn = document.getElementById('refresh');
+          if (btn) {
+            btn.textContent = '';
+            const spinner = h('span', { class: 'spinner' });
+            spinner.appendChild(htmlToNodes(getIcon('sync', 12)));
+            btn.appendChild(spinner);
+            btn.append(' ' + msg('refresh'));
+            btn.disabled = true;
+          }
+          chrome.runtime.sendMessage({ type: 'refresh' }, () => {
+            chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
+              if (fresh && fresh.results) render(fresh, false);
+            });
+          });
+        } else {
+          showSpinner();
+          chrome.runtime.sendMessage({ type: 'refresh' }, () => {
+            chrome.runtime.sendMessage({ type: 'getData' }, (data) => render(data, false));
+          });
+        }
       });
-    } else {
-      showSpinner();
-      chrome.runtime.sendMessage({ type: 'refresh' }, () => {
-        chrome.runtime.sendMessage({ type: 'getData' }, (data) => render(data, false));
-      });
-    }
-  });
-  });
+    },
+  );
 });
 
 function showSpinner() {
@@ -198,22 +206,23 @@ function groupByRepo(prs) {
 
 function applyRepoFilter(results, mode, repoListStr) {
   if (!mode || mode === 'all' || !repoListStr.trim()) return results;
-  const repos = new Set(repoListStr.split('\n').map(r => r.trim().toLowerCase()).filter(Boolean));
+  const repos = new Set(
+    repoListStr
+      .split('\n')
+      .map((r) => r.trim().toLowerCase())
+      .filter(Boolean),
+  );
   if (repos.size === 0) return results;
-  if (mode === 'include') return results.filter(r => repos.has(r.repo.toLowerCase()));
-  if (mode === 'exclude') return results.filter(r => !repos.has(r.repo.toLowerCase()));
+  if (mode === 'include') return results.filter((r) => repos.has(r.repo.toLowerCase()));
+  if (mode === 'exclude') return results.filter((r) => !repos.has(r.repo.toLowerCase()));
   return results;
 }
 
 function renderPRItem(pr, username, showRepo) {
   const clickedAt = (window.__dismissedClicked || {})[pr.url] || 0;
-      const seen = clickedAt > (pr.lastEventAt || 0);
-      const color = pr.myStatus === 'red' ? '#d73a49' : pr.myStatus === 'yellow' ? '#dbab09' : '#28a745';
-      const dotIcon = seen ? 'dot' : 'dot-fill';
-  const waitingOn = Object.entries(pr.attentionSet || {})
-    .filter(([u, s]) => s === 'red' && !isBot(u))
-    .map(([u]) => u);
-
+  const seen = clickedAt > (pr.lastEventAt || 0);
+  const color = pr.myStatus === 'red' ? '#d73a49' : pr.myStatus === 'yellow' ? '#dbab09' : '#28a745';
+  const dotIcon = seen ? 'dot' : 'dot-fill';
   const metaParts = [];
   if (showRepo) metaParts.push(pr.repo);
   metaParts.push(`#${pr.number}`);
@@ -231,9 +240,9 @@ function renderPRItem(pr, username, showRepo) {
   };
 
   const incomingDetailLabels = {
-    'new': msg('stateNew'),
-    'updated': msg('stateUpdated'),
-    'rereview': msg('stateRereview'),
+    new: msg('stateNew'),
+    updated: msg('stateUpdated'),
+    rereview: msg('stateRereview'),
   };
 
   // Use incoming detail label if applicable
@@ -243,9 +252,17 @@ function renderPRItem(pr, username, showRepo) {
   } else {
     stateLabel = stateLabels[pr.myReason || pr.prState] || '';
   }
-  const metaChildren = [showRepo ? `${pr.repo}#${pr.number}` : `#${pr.number}`, pr.author ? [' · by ', h('a', { href: `https://github.com/${pr.author}`, target: '_blank', style: { color: 'inherit' } }, pr.author)] : ''];
+  const metaChildren = [
+    showRepo ? `${pr.repo}#${pr.number}` : `#${pr.number}`,
+    pr.author
+      ? [
+          ' · by ',
+          h('a', { href: `https://github.com/${pr.author}`, target: '_blank', style: { color: 'inherit' } }, pr.author),
+        ]
+      : '',
+  ];
   // state badge rendered separately below
-  if ((window.__multiAccount ? pr.account : null)) {
+  if (window.__multiAccount ? pr.account : null) {
     metaChildren.push(' · ');
     metaChildren.push(h('span', { style: { color: '#8b949e' } }, pr.account));
   }
@@ -259,7 +276,7 @@ function renderPRItem(pr, username, showRepo) {
     approved: '#28a745',
     changes_requested: '#d73a49',
     commented: '#dbab09',
-    pending: '#8b949e'
+    pending: '#8b949e',
   };
   if (allReviewers.length > 0) {
     allReviewers.forEach((u, i) => {
@@ -270,20 +287,24 @@ function renderPRItem(pr, username, showRepo) {
         approved: msg('stateApproved') || 'approved',
         changes_requested: msg('stateFix') || 'changes requested',
         commented: msg('stateRespond') || 'commented',
-        pending: msg('stateReview') || 'pending'
+        pending: msg('stateReview') || 'pending',
       };
-      const nameEl = h('a', {
-        href: `https://github.com/${u}`,
-        target: '_blank',
-        style: {
-          color: stateColors[state],
-          fontWeight: inSet ? 'bold' : 'normal',
-          textDecoration: 'none',
-          fontSize: '11px'
+      const nameEl = h(
+        'a',
+        {
+          href: `https://github.com/${u}`,
+          target: '_blank',
+          style: {
+            color: stateColors[state],
+            fontWeight: inSet ? 'bold' : 'normal',
+            textDecoration: 'none',
+            fontSize: '11px',
+          },
+          title: `${u}: ${state}${inSet ? ' (in attention set)' : ''}`,
+          'aria-label': `${u}: ${stateLabel_sr[state] || state}${inSet ? ' (in attention set)' : ''}`,
         },
-        title: `${u}: ${state}${inSet ? ' (in attention set)' : ''}`,
-        'aria-label': `${u}: ${stateLabel_sr[state] || state}${inSet ? ' (in attention set)' : ''}`
-      }, u);
+        u,
+      );
       reviewerChildren.push(nameEl);
     });
   }
@@ -297,7 +318,7 @@ function renderPRItem(pr, username, showRepo) {
     title: msg('dismiss'),
     'aria-label': `Dismiss ${pr.title}`,
     'data-url': pr.url,
-    'data-event-at': String(pr.lastEventAt || 0)
+    'data-event-at': String(pr.lastEventAt || 0),
   });
   dismissBtn.appendChild(htmlToNodes(getIcon('x', 14)));
   dismissBtn.onclick = (e) => {
@@ -306,24 +327,32 @@ function renderPRItem(pr, username, showRepo) {
   };
 
   // Mute menu button
-  const [owner, repoName] = pr.repo.split('/');
-  const muteBtn = h('button', {
-    class: 'dismiss-btn mute-btn',
-    title: msg('moreOptions'),
-    'aria-label': msg('moreOptions'),
-    style: { fontSize: '16px', padding: '2px 4px' }
-  }, '⋮');
+  const [owner, _repoName] = pr.repo.split('/');
+  const muteBtn = h(
+    'button',
+    {
+      class: 'dismiss-btn mute-btn',
+      title: msg('moreOptions'),
+      'aria-label': msg('moreOptions'),
+      style: { fontSize: '16px', padding: '2px 4px' },
+    },
+    '⋮',
+  );
   muteBtn.setAttribute('aria-expanded', 'false');
   muteBtn.setAttribute('aria-haspopup', 'true');
   const toggleMuteMenu = (e) => {
     e.stopPropagation();
     // Remove any existing mute menu
     const existing = muteBtn.parentElement.querySelector('.mute-menu');
-    if (existing) { existing.remove(); muteBtn.setAttribute('aria-expanded', 'false'); return; }
-    document.querySelectorAll('.mute-menu').forEach(m => m.remove());
+    if (existing) {
+      existing.remove();
+      muteBtn.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    document.querySelectorAll('.mute-menu').forEach((m) => m.remove());
     const menu = h('div', { class: 'mute-menu', role: 'menu' }, [
       h('button', { class: 'mute-menu-item', role: 'menuitem' }, `${msg('muteRepo')}: ${pr.repo}`),
-      h('button', { class: 'mute-menu-item', role: 'menuitem' }, `${msg('muteOwner')} ${owner}`)
+      h('button', { class: 'mute-menu-item', role: 'menuitem' }, `${msg('muteOwner')} ${owner}`),
     ]);
     menu.children[0].onclick = (ev) => {
       ev.stopPropagation();
@@ -370,26 +399,30 @@ function renderPRItem(pr, username, showRepo) {
   return h('li', { class: 'pr-item', 'data-filter-text': filterText }, [
     dot,
     h('div', { class: 'pr-info' }, [
-      h('div', { class: 'pr-title' }, (() => {
-        const link = h('a', { href: pr.url, target: '_blank', title: pr.title }, pr.title);
-        link.onclick = () => {
-          chrome.storage.local.get(['dismissedClicked'], (data) => {
-            const clicked = data.dismissedClicked || {};
-            clicked[pr.url] = Date.now();
-            chrome.storage.local.set({ dismissedClicked: clicked });
-          });
-        };
-        return link;
-      })()),
+      h(
+        'div',
+        { class: 'pr-title' },
+        (() => {
+          const link = h('a', { href: pr.url, target: '_blank', title: pr.title }, pr.title);
+          link.onclick = () => {
+            chrome.storage.local.get(['dismissedClicked'], (data) => {
+              const clicked = data.dismissedClicked || {};
+              clicked[pr.url] = Date.now();
+              chrome.storage.local.set({ dismissedClicked: clicked });
+            });
+          };
+          return link;
+        })(),
+      ),
       h('div', { class: 'pr-meta' }, metaChildren),
-      waitingOnChildren.length ? h('div', { class: 'pr-waiting' }, waitingOnChildren) : null
+      waitingOnChildren.length ? h('div', { class: 'pr-waiting' }, waitingOnChildren) : null,
     ]),
     h('div', { class: 'pr-right' }, [
-        h('span', { class: 'pr-time' }, timeAgo(pr.lastEventAt)),
-        stateLabel ? h('span', { class: 'pr-state-badge', 'aria-label': `Status: ${stateLabel}` }, stateLabel) : null,
-      ]),
+      h('span', { class: 'pr-time' }, timeAgo(pr.lastEventAt)),
+      stateLabel ? h('span', { class: 'pr-state-badge', 'aria-label': `Status: ${stateLabel}` }, stateLabel) : null,
+    ]),
     dismissBtn,
-    muteBtn
+    muteBtn,
   ]);
 }
 
@@ -402,7 +435,11 @@ function renderDismissedItem(pr, dismissedData) {
   const dot = h('span', { class: 'dot', title: hasNewActivity ? msg('newActivity') : '' });
   dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, dotColor)));
 
-  const restoreBtn = h('button', { class: 'restore-btn', 'data-url': pr.url, 'aria-label': `${msg('restore')} ${pr.title}` }, msg('restore'));
+  const restoreBtn = h(
+    'button',
+    { class: 'restore-btn', 'data-url': pr.url, 'aria-label': `${msg('restore')} ${pr.title}` },
+    msg('restore'),
+  );
   restoreBtn.onclick = (e) => {
     e.stopPropagation();
     restorePR(pr.url);
@@ -424,9 +461,13 @@ function renderDismissedItem(pr, dismissedData) {
     dot,
     h('div', { class: 'pr-info' }, [
       h('div', { class: 'pr-title' }, link),
-      h('div', { class: 'pr-meta' }, `${pr.repo}#${pr.number}${pr.author ? [' · by ', h('a', { href: `https://github.com/${pr.author}`, target: '_blank', style: { color: 'inherit' } }, pr.author)] : ''}`)
+      h(
+        'div',
+        { class: 'pr-meta' },
+        `${pr.repo}#${pr.number}${pr.author ? [' · by ', h('a', { href: `https://github.com/${pr.author}`, target: '_blank', style: { color: 'inherit' } }, pr.author)] : ''}`,
+      ),
     ]),
-    restoreBtn
+    restoreBtn,
   ]);
 }
 
@@ -448,7 +489,7 @@ function renderRepoGroups(groups, username) {
   return frag;
 }
 
-async function render(data, isRefreshing) {
+async function render(data, _isRefreshing) {
   if (!data || !data.results) {
     showSpinner();
     return;
@@ -464,58 +505,68 @@ async function render(data, isRefreshing) {
   results = applyRepoFilter(results, filterMode, filterList);
 
   // Apply mute filter
-  const mutedData = await new Promise(r => chrome.storage.local.get({ mutedRepos: [], mutedOwners: [] }, r));
-  const mutedRepoSet = new Set((mutedData.mutedRepos || []).map(r => r.toLowerCase()));
-  const mutedOwnerSet = new Set((mutedData.mutedOwners || []).map(o => o.toLowerCase()));
+  const mutedData = await new Promise((r) => chrome.storage.local.get({ mutedRepos: [], mutedOwners: [] }, r));
+  const mutedRepoSet = new Set((mutedData.mutedRepos || []).map((r) => r.toLowerCase()));
+  const mutedOwnerSet = new Set((mutedData.mutedOwners || []).map((o) => o.toLowerCase()));
   if (mutedRepoSet.size > 0 || mutedOwnerSet.size > 0) {
-    results = results.filter(r => {
+    results = results.filter((r) => {
       const repoLower = r.repo.toLowerCase();
       const owner = repoLower.split('/')[0];
       return !mutedRepoSet.has(repoLower) && !mutedOwnerSet.has(owner);
     });
   }
 
-  const activePRs = results.filter(pr => !dismissed[pr.url]);
-  const dismissedPRs = results.filter(pr => !!dismissed[pr.url]);
+  const activePRs = results.filter((pr) => !dismissed[pr.url]);
+  const dismissedPRs = results.filter((pr) => !!dismissed[pr.url]);
 
-  const needsAttention = activePRs.filter(r => r.myStatus === 'red').sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
-  const others = activePRs.filter(r => r.myStatus !== 'red').sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
+  const needsAttention = activePRs
+    .filter((r) => r.myStatus === 'red')
+    .sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
+  const others = activePRs
+    .filter((r) => r.myStatus !== 'red')
+    .sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
 
-const roleIcons = { incoming: 'eye', outgoing: 'git-pull-request', mentioned: 'mention' };
-function roleHeader(sec) {
-  const iconSpan = document.createElement('span');
-  iconSpan.innerHTML = getIcon(roleIcons[sec.label] || 'dot-fill', 12, '#8b949e');
-  iconSpan.style.cssText = 'vertical-align: middle; margin-right: 4px;';
-  const header = h('div', { class: 'role-subsection-title' });
-  header.appendChild(iconSpan);
-  header.appendChild(document.createTextNode(` ${sec.labelText} (${sec.prs.length})`));
-  return header;
-}
+  const roleIcons = { incoming: 'eye', outgoing: 'git-pull-request', mentioned: 'mention' };
+  function roleHeader(sec) {
+    const iconSpan = document.createElement('span');
+    iconSpan.innerHTML = getIcon(roleIcons[sec.label] || 'dot-fill', 12, '#8b949e');
+    iconSpan.style.cssText = 'vertical-align: middle; margin-right: 4px;';
+    const header = h('div', { class: 'role-subsection-title' });
+    header.appendChild(iconSpan);
+    header.appendChild(document.createTextNode(` ${sec.labelText} (${sec.prs.length})`));
+    return header;
+  }
 
   // Group by role for sub-sections
   function groupByRole(prs) {
-    const incoming = prs.filter(p => p.myRole === 'incoming');
-    const outgoing = prs.filter(p => p.myRole === 'outgoing');
-    const mentioned = prs.filter(p => p.myRole === 'mentioned');
-    const other = prs.filter(p => !p.myRole || p.myRole === 'other');
+    const incoming = prs.filter((p) => p.myRole === 'incoming');
+    const outgoing = prs.filter((p) => p.myRole === 'outgoing');
+    const mentioned = prs.filter((p) => p.myRole === 'mentioned');
+    const other = prs.filter((p) => !p.myRole || p.myRole === 'other');
     return { incoming, outgoing, mentioned, other };
   }
-
 
   // Build header
   const refreshBtn = h('button', { class: 'refresh-btn', id: 'refresh', 'aria-label': msg('refresh') });
   refreshBtn.appendChild(htmlToNodes(getIcon('sync', 12)));
   refreshBtn.append(' ' + msg('refresh'));
 
-  const settingsBtn = h('button', { class: 'settings-btn', id: 'open-settings', title: msg('settings'), 'aria-label': msg('settings') });
+  const settingsBtn = h('button', {
+    class: 'settings-btn',
+    id: 'open-settings',
+    title: msg('settings'),
+    'aria-label': msg('settings'),
+  });
   settingsBtn.appendChild(htmlToNodes(getIcon('gear', 14)));
 
-  const headerImg = h('img', { src: 'icons/icon48.png', width: '18', height: '18', alt: '', style: { verticalAlign: 'middle', marginRight: '6px' } });
-  const header = h('div', { class: 'header' }, [
-    h('h1', null, [headerImg, msg('extName')]),
-    refreshBtn,
-    settingsBtn
-  ]);
+  const headerImg = h('img', {
+    src: 'icons/icon48.png',
+    width: '18',
+    height: '18',
+    alt: '',
+    style: { verticalAlign: 'middle', marginRight: '6px' },
+  });
+  const header = h('div', { class: 'header' }, [h('h1', null, [headerImg, msg('extName')]), refreshBtn, settingsBtn]);
 
   app.textContent = '';
   app.appendChild(header);
@@ -525,9 +576,7 @@ function roleHeader(sec) {
 
   // Error banner
   if (window.__lastError) {
-    const msg = window.__lastError.type === 'auth'
-      ? msg('errorAuth')
-      : msg('errorNetwork');
+    const msg = window.__lastError.type === 'auth' ? msg('errorAuth') : msg('errorNetwork');
     app.appendChild(h('div', { class: 'error-banner' }, msg));
   }
 
@@ -536,7 +585,9 @@ function roleHeader(sec) {
     app.appendChild(h('div', { class: 'empty' }, msg('noPRs')));
   } else {
     if (needsAttention.length > 0) {
-      app.appendChild(h('div', { class: 'status-section-title attention' }, `${msg('needsAttention')} (${needsAttention.length})`));
+      app.appendChild(
+        h('div', { class: 'status-section-title attention' }, `${msg('needsAttention')} (${needsAttention.length})`),
+      );
       const attentionContainer = h('div', { 'data-filter-section': 'attention' });
       const roles = groupByRole(needsAttention);
       const roleSections = [
@@ -544,7 +595,7 @@ function roleHeader(sec) {
         { label: 'outgoing', labelText: msg('outgoing'), prs: roles.outgoing },
         { label: 'mentioned', labelText: msg('mentioned'), prs: roles.mentioned },
       ];
-      let hasSubSection = roleSections.some(s => s.prs.length > 0);
+      const hasSubSection = roleSections.some((s) => s.prs.length > 0);
       for (const sec of roleSections) {
         if (sec.prs.length === 0) continue;
         if (hasSubSection) {
@@ -560,14 +611,16 @@ function roleHeader(sec) {
       app.appendChild(attentionContainer);
     }
     if (others.length > 0) {
-      app.appendChild(h('div', { class: 'status-section-title others' }, `${msg('waitingOnOthers')} (${others.length})`));
+      app.appendChild(
+        h('div', { class: 'status-section-title others' }, `${msg('waitingOnOthers')} (${others.length})`),
+      );
       const othersContainer = h('div', { 'data-filter-section': 'others' });
       const roles = groupByRole(others);
       const roleSections = [
         { label: 'incoming', labelText: msg('incoming'), prs: roles.incoming },
         { label: 'outgoing', labelText: msg('outgoing'), prs: roles.outgoing },
       ];
-      let hasSubSection = roleSections.some(s => s.prs.length > 0);
+      const hasSubSection = roleSections.some((s) => s.prs.length > 0);
       for (const sec of roleSections) {
         if (sec.prs.length === 0) continue;
         if (hasSubSection) {
@@ -595,15 +648,28 @@ function roleHeader(sec) {
     chevronSvg.style.verticalAlign = 'middle';
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('fill', 'currentColor');
-    path.setAttribute('d', 'M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z');
+    path.setAttribute(
+      'd',
+      'M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z',
+    );
     chevronSvg.appendChild(path);
 
-    const toggle = h('button', { class: 'dismissed-toggle', id: 'dismissed-toggle', 'aria-expanded': 'false', 'aria-label': `Show ${dismissedPRs.length} ${msg('dismissed')} items` }, [
-      `${dismissedPRs.length} ${msg('dismissed')} `,
-      chevronSvg
-    ]);
+    const toggle = h(
+      'button',
+      {
+        class: 'dismissed-toggle',
+        id: 'dismissed-toggle',
+        'aria-expanded': 'false',
+        'aria-label': `Show ${dismissedPRs.length} ${msg('dismissed')} items`,
+      },
+      [`${dismissedPRs.length} ${msg('dismissed')} `, chevronSvg],
+    );
 
-    const dismissedList = h('ul', { class: 'pr-list dismissed-list', id: 'dismissed-list', style: { display: window.__dismissedExpanded ? '' : 'none' } });
+    const dismissedList = h('ul', {
+      class: 'pr-list dismissed-list',
+      id: 'dismissed-list',
+      style: { display: window.__dismissedExpanded ? '' : 'none' },
+    });
     for (const pr of dismissedPRs) {
       dismissedList.appendChild(renderDismissedItem(pr, dismissed[pr.url]));
     }

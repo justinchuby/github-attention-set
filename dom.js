@@ -21,9 +21,9 @@ export function h(tag, attrs, children) {
     const items = Array.isArray(children) ? children : [children];
     for (const child of items) {
       if (child == null || child === false) continue;
-      el.append(typeof child === 'string' || typeof child === 'number'
-        ? document.createTextNode(String(child))
-        : child);
+      el.append(
+        typeof child === 'string' || typeof child === 'number' ? document.createTextNode(String(child)) : child,
+      );
     }
   }
   return el;

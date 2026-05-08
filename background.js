@@ -1,6 +1,6 @@
 // GitHub Attention Set — Background Service Worker
 
-import { computeAttentionSet, isBot } from './attention.js';
+import { computeAttentionSet } from './attention.js';
 import { migrateTokens } from './poll.js';
 
 const DEFAULT_POLL_INTERVAL = 2; // minutes
@@ -30,8 +30,14 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
 pollAndCompute();
 
 async function getSettings() {
-  const defaults = { token: '', tokens: null, debounceMinutes: DEFAULT_DEBOUNCE, pollMinutes: DEFAULT_POLL_INTERVAL, notifications: true };
-  return new Promise(r => chrome.storage.local.get(defaults, r));
+  const defaults = {
+    token: '',
+    tokens: null,
+    debounceMinutes: DEFAULT_DEBOUNCE,
+    pollMinutes: DEFAULT_POLL_INTERVAL,
+    notifications: true,
+  };
+  return new Promise((r) => chrome.storage.local.get(defaults, r));
 }
 
 async function ghFetch(path, token, { useEtag = false } = {}) {
@@ -51,7 +57,9 @@ async function ghFetch(path, token, { useEtag = false } = {}) {
     const cached = etagCache.get(url);
     if (cached?.data) return cached.data;
     // 304 but no cached data — re-fetch without ETag
-    const retry = await fetch(url, { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } });
+    const retry = await fetch(url, {
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' },
+    });
     if (!retry.ok) throw new Error(`GitHub API ${retry.status}`);
     return retry.json();
   }
@@ -82,48 +90,56 @@ async function pollSingleToken(tokenEntry, debounceMinutes) {
 
   for (let i = 0; i < items.length; i += CONCURRENCY) {
     const batch = items.slice(i, i + CONCURRENCY);
-    const batchResults = await Promise.all(batch.map(async (pr) => {
-      const [owner, repo] = pr.repository_url.replace('https://api.github.com/repos/', '').split('/');
-      const number = pr.number;
+    const batchResults = await Promise.all(
+      batch.map(async (pr) => {
+        const [owner, repo] = pr.repository_url.replace('https://api.github.com/repos/', '').split('/');
+        const number = pr.number;
 
-      let timeline;
-      try {
-        // Paginate timeline (max 3 pages = 300 events)
-        timeline = [];
-        for (let page = 1; page <= 3; page++) {
-          const batch = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100&page=${page}`, token, { useEtag: true });
-          timeline.push(...batch);
-          if (batch.length < 100) break; // no more pages
+        let timeline;
+        try {
+          // Paginate timeline (max 3 pages = 300 events)
+          timeline = [];
+          for (let page = 1; page <= 3; page++) {
+            const batch = await ghFetch(
+              `/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100&page=${page}`,
+              token,
+              { useEtag: true },
+            );
+            timeline.push(...batch);
+            if (batch.length < 100) break; // no more pages
+          }
+        } catch {
+          timeline = [];
         }
-      } catch { timeline = []; }
 
-      const attention = computeAttentionSet(timeline, username, pr.user.login, debounceMinutes);
+        const attention = computeAttentionSet(timeline, username, pr.user.login, debounceMinutes);
 
-      let lastEventAt = 0;
-      for (const event of timeline) {
-        const ts = new Date(event.created_at || event.submitted_at || 0).getTime();
-        if (ts > lastEventAt) lastEventAt = ts;
-      }
+        let lastEventAt = 0;
+        for (const event of timeline) {
+          const ts = new Date(event.created_at || event.submitted_at || 0).getTime();
+          if (ts > lastEventAt) lastEventAt = ts;
+        }
 
-      return {
-        id: pr.id,
-        number,
-        title: pr.title,
-        url: pr.html_url,
-        repo: `${owner}/${repo}`,
-        author: pr.user.login,
-        attentionSet: attention.set,
-        reviewerStates: attention.reviewerStates,
-        allReviewers: attention.allReviewers,
-        myStatus: attention.myStatus,
-        prState: attention.prState,
-        myReason: attention.myReason,
-        myRole: attention.myRole,
-        incomingDetail: attention.incomingDetail,
-        lastEventAt,
-        account: name || username,
-      };
-    }));
+        return {
+          id: pr.id,
+          number,
+          title: pr.title,
+          url: pr.html_url,
+          repo: `${owner}/${repo}`,
+          author: pr.user.login,
+          attentionSet: attention.set,
+          reviewerStates: attention.reviewerStates,
+          allReviewers: attention.allReviewers,
+          myStatus: attention.myStatus,
+          prState: attention.prState,
+          myReason: attention.myReason,
+          myRole: attention.myRole,
+          incomingDetail: attention.incomingDetail,
+          lastEventAt,
+          account: name || username,
+        };
+      }),
+    );
     results.push(...batchResults);
   }
 
@@ -134,13 +150,14 @@ async function pollAndCompute() {
   const settings = await getSettings();
   const tokens = migrateTokens(settings);
 
-  if (tokens.length === 0) { setBadge(0); return; }
+  if (tokens.length === 0) {
+    setBadge(0);
+    return;
+  }
 
   try {
     // Poll all tokens concurrently
-    const tokenResults = await Promise.all(
-      tokens.map(entry => pollSingleToken(entry, settings.debounceMinutes))
-    );
+    const tokenResults = await Promise.all(tokens.map((entry) => pollSingleToken(entry, settings.debounceMinutes)));
 
     // Merge and deduplicate by PR URL
     const seen = new Set();
@@ -162,7 +179,9 @@ async function pollAndCompute() {
     for (const pr of results) {
       const [owner, repo] = pr.url.replace('https://github.com/', '').split('/pull/')[0].split('/');
       for (let page = 1; page <= 3; page++) {
-        openTimelineUrls.add(`https://api.github.com/repos/${owner}/${repo}/issues/${pr.number}/timeline?per_page=100&page=${page}`);
+        openTimelineUrls.add(
+          `https://api.github.com/repos/${owner}/${repo}/issues/${pr.number}/timeline?per_page=100&page=${page}`,
+        );
       }
     }
     for (const url of etagCache.keys()) {
@@ -174,15 +193,19 @@ async function pollAndCompute() {
     await chrome.storage.local.set({ results, username: usernames[0] || '', usernames, lastPoll: Date.now() });
 
     // Apply repo filter
-    const { repoFilterMode, repoFilterList } = await new Promise(r => chrome.storage.local.get({ repoFilterMode: 'all', repoFilterList: '' }, r));
+    const { repoFilterMode, repoFilterList } = await new Promise((r) =>
+      chrome.storage.local.get({ repoFilterMode: 'all', repoFilterList: '' }, r),
+    );
     let filteredResults = applyRepoFilter(results, repoFilterMode, repoFilterList);
 
     // Apply mute filter
-    const { mutedRepos = [], mutedOwners = [] } = await new Promise(r => chrome.storage.local.get({ mutedRepos: [], mutedOwners: [] }, r));
+    const { mutedRepos = [], mutedOwners = [] } = await new Promise((r) =>
+      chrome.storage.local.get({ mutedRepos: [], mutedOwners: [] }, r),
+    );
     if (mutedRepos.length > 0 || mutedOwners.length > 0) {
-      const mutedRepoSet = new Set(mutedRepos.map(r => r.toLowerCase()));
-      const mutedOwnerSet = new Set(mutedOwners.map(o => o.toLowerCase()));
-      filteredResults = filteredResults.filter(r => {
+      const mutedRepoSet = new Set(mutedRepos.map((r) => r.toLowerCase()));
+      const mutedOwnerSet = new Set(mutedOwners.map((o) => o.toLowerCase()));
+      filteredResults = filteredResults.filter((r) => {
         const repoLower = r.repo.toLowerCase();
         const owner = repoLower.split('/')[0];
         return !mutedRepoSet.has(repoLower) && !mutedOwnerSet.has(owner);
@@ -191,28 +214,40 @@ async function pollAndCompute() {
 
     // Subtract dismissed PRs from badge count
     const dismissed = (await chrome.storage.local.get('dismissed')).dismissed || {};
-    const needsAttention = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
+    const needsAttention = filteredResults.filter((r) => r.myStatus === 'red' && !dismissed[r.url]).length;
     setBadge(needsAttention);
 
     // Smart notifications: only notify on status changes
     if (settings.notifications !== false) {
-      const { lastNotifiedPRs = {}, notifyNewCommits = false, onlyDirectRequests = false, whitelistedTeams = [] } = await new Promise(r => chrome.storage.local.get({ lastNotifiedPRs: {}, notifyNewCommits: false, onlyDirectRequests: false, whitelistedTeams: [] }, r));
-      const currentRedPRs = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]);
+      const {
+        lastNotifiedPRs = {},
+        _notifyNewCommits = false,
+        onlyDirectRequests = false,
+        _whitelistedTeams = [],
+      } = await new Promise((r) =>
+        chrome.storage.local.get(
+          { lastNotifiedPRs: {}, notifyNewCommits: false, onlyDirectRequests: false, whitelistedTeams: [] },
+          r,
+        ),
+      );
+      const currentRedPRs = filteredResults.filter((r) => r.myStatus === 'red' && !dismissed[r.url]);
       // Skip first poll (no previous state) to avoid notifying all existing red PRs
       const isFirstPoll = Object.keys(lastNotifiedPRs).length === 0;
-      const newAttentionPRs = isFirstPoll ? [] : currentRedPRs.filter(pr => {
-        const prev = lastNotifiedPRs[pr.url];
-        if (prev && prev === 'red') return false; // already notified
-        // notifyNewCommits filter: if false, suppress notification when reason is commit-based
-        // (This is approximated: if the PR had no status change aside from commit activity)
-        // Team filter: if onlyDirectRequests, suppress team-based incoming unless whitelisted
-        if (onlyDirectRequests && pr.myRole === 'incoming') {
-          // We can't easily distinguish direct vs team here without timeline data.
-          // The filtering is done at computeAttentionSet level instead.
-          // For now, allow all incoming through notification.
-        }
-        return true;
-      });
+      const newAttentionPRs = isFirstPoll
+        ? []
+        : currentRedPRs.filter((pr) => {
+            const prev = lastNotifiedPRs[pr.url];
+            if (prev && prev === 'red') return false; // already notified
+            // notifyNewCommits filter: if false, suppress notification when reason is commit-based
+            // (This is approximated: if the PR had no status change aside from commit activity)
+            // Team filter: if onlyDirectRequests, suppress team-based incoming unless whitelisted
+            if (onlyDirectRequests && pr.myRole === 'incoming') {
+              // We can't easily distinguish direct vs team here without timeline data.
+              // The filtering is done at computeAttentionSet level instead.
+              // For now, allow all incoming through notification.
+            }
+            return true;
+          });
 
       if (newAttentionPRs.length === 1) {
         const pr = newAttentionPRs[0];
@@ -241,9 +276,8 @@ async function pollAndCompute() {
       await chrome.storage.local.set({ lastNotifiedPRs: newMap });
     }
 
-
     // Cleanup: remove dismissed entries for PRs that are no longer open
-    const openUrls = new Set(results.map(r => r.url));
+    const openUrls = new Set(results.map((r) => r.url));
     const cleanedDismissed = {};
     for (const [url, entry] of Object.entries(dismissed)) {
       if (openUrls.has(url)) cleanedDismissed[url] = entry;
@@ -277,10 +311,15 @@ async function pollAndCompute() {
 
 function applyRepoFilter(results, mode, repoListStr) {
   if (!mode || mode === 'all' || !repoListStr.trim()) return results;
-  const repos = new Set(repoListStr.split('\n').map(r => r.trim().toLowerCase()).filter(Boolean));
+  const repos = new Set(
+    repoListStr
+      .split('\n')
+      .map((r) => r.trim().toLowerCase())
+      .filter(Boolean),
+  );
   if (repos.size === 0) return results;
-  if (mode === 'include') return results.filter(r => repos.has(r.repo.toLowerCase()));
-  if (mode === 'exclude') return results.filter(r => !repos.has(r.repo.toLowerCase()));
+  if (mode === 'include') return results.filter((r) => repos.has(r.repo.toLowerCase()));
+  if (mode === 'exclude') return results.filter((r) => !repos.has(r.repo.toLowerCase()));
   return results;
 }
 
@@ -312,7 +351,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       chrome.storage.local.get(['dismissed'], (synced) => {
         const results = local.results || [];
         const dismissed = synced.dismissed || {};
-        const count = results.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
+        const count = results.filter((r) => r.myStatus === 'red' && !dismissed[r.url]).length;
         setBadge(count);
       });
     });
@@ -323,11 +362,14 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
   if (msg.type === 'getData') {
-    chrome.storage.local.get(['results', 'username', 'usernames', 'lastPoll', 'repoFilterMode', 'repoFilterList'], (local) => {
-      chrome.storage.local.get(['dismissed'], (synced) => {
-        sendResponse({ ...local, ...synced });
-      });
-    });
+    chrome.storage.local.get(
+      ['results', 'username', 'usernames', 'lastPoll', 'repoFilterMode', 'repoFilterList'],
+      (local) => {
+        chrome.storage.local.get(['dismissed'], (synced) => {
+          sendResponse({ ...local, ...synced });
+        });
+      },
+    );
     return true;
   }
 });

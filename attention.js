@@ -28,7 +28,12 @@ const STATE = {
   CLOSED: 'CLOSED',
 };
 
-const AUTO_MERGE_ON = new Set(['auto_merge_enabled', 'auto_squash_enabled', 'auto_rebase_enabled', 'added_to_merge_queue']);
+const AUTO_MERGE_ON = new Set([
+  'auto_merge_enabled',
+  'auto_squash_enabled',
+  'auto_rebase_enabled',
+  'added_to_merge_queue',
+]);
 const AUTO_MERGE_OFF = new Set(['auto_merge_disabled', 'removed_from_merge_queue']);
 
 export function computeAttentionSet(timeline, me, author, debounceMin, now = Date.now()) {
@@ -39,8 +44,8 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
   let prState = STATE.REVIEWING; // default: waiting for review
   let autoMergeActive = false;
   let lastActivityAt = 0; // last non-bot event timestamp
-  let requestedReviewers = new Set(); // track current requested reviewers
-  let allReviewers = new Set(); // all users who ever reviewed or were requested
+  const requestedReviewers = new Set(); // track current requested reviewers
+  const allReviewers = new Set(); // all users who ever reviewed or were requested
   const reviewerStates = {}; // reviewer -> 'pending' | 'approved' | 'changes_requested' | 'commented'
   let commentedAt = 0; // timestamp of the commented review (for debounce)
 
@@ -135,7 +140,7 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
 
       case 'committed':
       case 'head_ref_force_pushed': {
-        const committer = event.committer?.login || actor;
+        // const committer = event.committer?.login || actor;
         // Author commits don't auto-transition to REVIEWING
         // Only transitions if author also re-requested review (handled in review_requested)
         break;
@@ -261,7 +266,7 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
     }
   }
 
-    // Add pending requested reviewers regardless of state (unless PR is done)
+  // Add pending requested reviewers regardless of state (unless PR is done)
   const terminalStates = new Set(['MERGED', 'CLOSED', 'DRAFT', 'MERGING']);
   if (!terminalStates.has(prState)) {
     for (const reviewer of requestedReviewers) {
@@ -277,7 +282,7 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
     myStatus = set[me];
   }
 
-    // Determine user's specific reason for being in attention set
+  // Determine user's specific reason for being in attention set
   let myReason = prState;
   if (myStatus !== 'green') {
     // Check if user was requested to review and hasn't submitted a review after that request
@@ -355,8 +360,7 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         const ts = new Date(ev.created_at || ev.submitted_at || 0).getTime();
         const actor = ev.actor?.login || ev.user?.login || '';
         if (ts > lastMyReviewTime && actor === author) {
-          if (t === 'committed' || t === 'head_ref_force_pushed' || t === 'reviewed' ||
-              (ev.body && t !== 'reviewed')) {
+          if (t === 'committed' || t === 'head_ref_force_pushed' || t === 'reviewed' || (ev.body && t !== 'reviewed')) {
             authorActivityAfterReview = true;
             break;
           }

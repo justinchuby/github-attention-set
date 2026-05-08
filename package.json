@@ -4,10 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "eslint *.js",
+    "format": "prettier --write \"*.js\" \"*.html\""
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.3.0",
     "jsdom": "^29.1.1",
+    "prettier": "^3.8.3",
     "sharp": "^0.34.5",
     "vitest": "^3.1.0"
   }

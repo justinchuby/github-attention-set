@@ -1,147 +1,303 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>GitHub Attention Set — Settings</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-      max-width: 500px;
-      margin: 40px auto;
-      padding: 20px;
-      color: #24292f;
-    }
-    h1 { font-size: 20px; margin-bottom: 20px; }
-    h2 { font-size: 16px; margin-top: 20px; }
-    label { display: block; font-size: 13px; font-weight: 600; margin-top: 16px; margin-bottom: 4px; }
-    input[type="text"], input[type="number"], input[type="password"] {
-      width: 100%; padding: 8px; border: 1px solid #d0d7de; border-radius: 6px; font-size: 14px;
-    }
-    .hint { font-size: 12px; color: #57606a; margin-top: 4px; }
-    .row { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
-    button { padding: 8px 16px; background: #2da44e; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
-    button:hover { background: #2c974b; }
-    .saved { color: #2da44e; font-size: 13px; margin-left: 8px; display: none; }
-    .token-entry { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
-    .token-entry input[type="text"] { width: 120px; flex-shrink: 0; }
-    .token-entry input[type="password"] { flex: 1; }
-    .token-remove { background: none; border: none; color: #d73a49; cursor: pointer; font-size: 18px; padding: 4px 8px; line-height: 1; }
-    .token-remove:hover { background: #fff1f0; border-radius: 4px; }
-    button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible { outline: 2px solid #0969da; outline-offset: 2px; }
-    #add-token { background: #f6f8fa; color: #24292f; border: 1px solid #d0d7de; margin-top: 8px; }
-    #add-token:hover { background: #eaeef2; }
-  </style>
-</head>
-<body>
-<main>
-  <h1><img src="icons/icon48.png" width="24" height="24" alt="" style="vertical-align:middle;margin-right:8px"><span data-i18n="optTitle">GitHub Attention Set Settings</span></h1>
+  <head>
+    <meta charset="utf-8" />
+    <title>GitHub Attention Set — Settings</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 20px;
+        color: #24292f;
+      }
+      h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      h2 {
+        font-size: 16px;
+        margin-top: 20px;
+      }
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 16px;
+        margin-bottom: 4px;
+      }
+      input[type='text'],
+      input[type='number'],
+      input[type='password'] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+      .hint {
+        font-size: 12px;
+        color: #57606a;
+        margin-top: 4px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      button {
+        padding: 8px 16px;
+        background: #2da44e;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      button:hover {
+        background: #2c974b;
+      }
+      .saved {
+        color: #2da44e;
+        font-size: 13px;
+        margin-left: 8px;
+        display: none;
+      }
+      .token-entry {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .token-entry input[type='text'] {
+        width: 120px;
+        flex-shrink: 0;
+      }
+      .token-entry input[type='password'] {
+        flex: 1;
+      }
+      .token-remove {
+        background: none;
+        border: none;
+        color: #d73a49;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 4px 8px;
+        line-height: 1;
+      }
+      .token-remove:hover {
+        background: #fff1f0;
+        border-radius: 4px;
+      }
+      button:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible,
+      a:focus-visible {
+        outline: 2px solid #0969da;
+        outline-offset: 2px;
+      }
+      #add-token {
+        background: #f6f8fa;
+        color: #24292f;
+        border: 1px solid #d0d7de;
+        margin-top: 8px;
+      }
+      #add-token:hover {
+        background: #eaeef2;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>
+        <img
+          src="icons/icon48.png"
+          width="24"
+          height="24"
+          alt=""
+          style="vertical-align: middle; margin-right: 8px"
+        /><span data-i18n="optTitle">GitHub Attention Set Settings</span>
+      </h1>
 
-  <h2>🌐 <span data-i18n="optLanguage">Language</span> <span style="font-size:12px;font-weight:normal;color:#57606a;">(Language)</span></h2>
-  <div class="hint" style="margin-bottom:8px;" data-i18n="optLanguageHint">Choose the display language for this extension.</div>
-  <select id="language" style="width:100%;padding:8px;border:1px solid #d0d7de;border-radius:6px;font-size:14px;">
-    <option value="auto" data-i18n="optLanguageAuto">Auto (follow browser)</option>
-    <option value="en">English</option>
-    <option value="zh_CN">简体中文</option>
-    <option value="zh_TW">繁體中文</option>
-    <option value="ja">日本語</option>
-    <option value="ko">한국어</option>
-    <option value="vi">Tiếng Việt</option>
-    <option value="th">ไทย</option>
-    <option value="id">Bahasa Indonesia</option>
-    <option value="fr">Français</option>
-    <option value="de">Deutsch</option>
-    <option value="es">Español</option>
-    <option value="pt_BR">Português (BR)</option>
-    <option value="it">Italiano</option>
-    <option value="ru">Русский</option>
-    <option value="tr">Türkçe</option>
-    <option value="af">Afrikaans</option>
-    <option value="am">አማርኛ</option>
-    <option value="fi">Suomi</option>
-    <option value="hu">Magyar</option>
-    <option value="is">Íslenska</option>
-    <option value="ka">ქართული</option>
-    <option value="nl">Nederlands</option>
-    <option value="no">Norsk (Bokmål)</option>
-    <option value="mn">ᠮᠣᠩᠭᠣᠯ</option>
-    <option value="lzh">文言</option>
-    <option value="yue">粵語</option>
-    <option value="wuu">吳語</option>
-    <option value="hak">客家話</option>
-    <option value="nan">閩南語</option>
-    <option value="ga">Gaeilge</option>
-    <option value="pl">Polski</option>
-    <option value="pirate">🏴‍☠️ Pirate</option>
-  </select>
+      <h2>
+        🌐 <span data-i18n="optLanguage">Language</span>
+        <span style="font-size: 12px; font-weight: normal; color: #57606a">(Language)</span>
+      </h2>
+      <div class="hint" style="margin-bottom: 8px" data-i18n="optLanguageHint">
+        Choose the display language for this extension.
+      </div>
+      <select
+        id="language"
+        style="width: 100%; padding: 8px; border: 1px solid #d0d7de; border-radius: 6px; font-size: 14px"
+      >
+        <option value="auto" data-i18n="optLanguageAuto">Auto (follow browser)</option>
+        <option value="en">English</option>
+        <option value="zh_CN">简体中文</option>
+        <option value="zh_TW">繁體中文</option>
+        <option value="ja">日本語</option>
+        <option value="ko">한국어</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="th">ไทย</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="es">Español</option>
+        <option value="pt_BR">Português (BR)</option>
+        <option value="it">Italiano</option>
+        <option value="ru">Русский</option>
+        <option value="tr">Türkçe</option>
+        <option value="af">Afrikaans</option>
+        <option value="am">አማርኛ</option>
+        <option value="fi">Suomi</option>
+        <option value="hu">Magyar</option>
+        <option value="is">Íslenska</option>
+        <option value="ka">ქართული</option>
+        <option value="nl">Nederlands</option>
+        <option value="no">Norsk (Bokmål)</option>
+        <option value="mn">ᠮᠣᠩᠭᠣᠯ</option>
+        <option value="lzh">文言</option>
+        <option value="yue">粵語</option>
+        <option value="wuu">吳語</option>
+        <option value="hak">客家話</option>
+        <option value="nan">閩南語</option>
+        <option value="ga">Gaeilge</option>
+        <option value="pl">Polski</option>
+        <option value="pirate">🏴‍☠️ Pirate</option>
+      </select>
 
-  <h2 data-i18n="optTokenLabel">GitHub Tokens</h2>
-  <div class="hint" style="margin-bottom:12px;"><span data-i18n="tokenHintFull">Add one or more GitHub Personal Access Tokens. Results from all tokens are merged.</span><br>
-    <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">Create a fine-grained PAT</a> with: <strong>Pull requests → Read, Issues → Read</strong>
-  </div>
-  <div id="token-list"></div>
-  <button id="add-token" data-i18n="optAddToken">+ Add token</button>
+      <h2 data-i18n="optTokenLabel">GitHub Tokens</h2>
+      <div class="hint" style="margin-bottom: 12px">
+        <span data-i18n="tokenHintFull"
+          >Add one or more GitHub Personal Access Tokens. Results from all tokens are merged.</span
+        ><br />
+        <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">Create a fine-grained PAT</a>
+        with: <strong>Pull requests → Read, Issues → Read</strong>
+      </div>
+      <div id="token-list"></div>
+      <button id="add-token" data-i18n="optAddToken">+ Add token</button>
 
-  <label for="debounce" data-i18n="optDebounce">Debounce time (minutes)</label>
-  <input type="number" id="debounce" min="1" max="60" value="10">
-  <div class="hint" data-i18n="optDebounceHint">Wait this long before implicit signals flip attention.</div>
+      <label for="debounce" data-i18n="optDebounce">Debounce time (minutes)</label>
+      <input type="number" id="debounce" min="1" max="60" value="10" />
+      <div class="hint" data-i18n="optDebounceHint">Wait this long before implicit signals flip attention.</div>
 
-  <label for="poll" data-i18n="optPoll">Poll interval (minutes)</label>
-  <input type="number" id="poll" min="1" max="30" value="2">
-  <div class="hint" data-i18n="optPollHint">How often to check GitHub for updates.</div>
+      <label for="poll" data-i18n="optPoll">Poll interval (minutes)</label>
+      <input type="number" id="poll" min="1" max="30" value="2" />
+      <div class="hint" data-i18n="optPollHint">How often to check GitHub for updates.</div>
 
-  <div class="row">
-    <input type="checkbox" id="notifications" checked>
-    <label for="notifications" style="margin:0;font-weight:normal;" data-i18n="optNotifications">Enable desktop notifications</label>
-  </div>
-  <div style="margin-top:12px;">
-    <label style="display:inline-flex;align-items:center;gap:6px;font-weight:normal;"><input type="checkbox" id="groupByRepo"> <span data-i18n="optGroupByRepo">Group PRs by repository</span></label>
-  </div>
-  <div style="margin-top:12px;">
-    <label style="display:inline-flex;align-items:center;gap:6px;font-weight:normal;"><input type="checkbox" id="notifyNewCommits"> <span data-i18n="optNotifyNewCommits">Notify when PR author pushes new commits</span></label>
-  </div>
-  <div style="margin-top:12px;">
-    <label style="display:inline-flex;align-items:center;gap:6px;font-weight:normal;"><input type="checkbox" id="onlyDirectRequests"> <span data-i18n="optOnlyDirectRequests">Only notify for direct review requests (ignore team requests)</span></label>
-  </div>
-  <div style="margin-top:8px;margin-left:24px;">
-    <label for="whitelistedTeams" data-i18n="optWhitelistedTeams">Whitelisted teams (still notify even with above checked):</label>
-    <textarea id="whitelistedTeams" rows="3" style="width:100%;padding:8px;border:1px solid #d0d7de;border-radius:6px;font-size:13px;font-family:monospace;resize:vertical;" placeholder="my-org/my-team"></textarea>
-    <div class="hint" data-i18n="optWhitelistedTeamsHint">One team slug per line (e.g. my-org/my-team)</div>
-  </div>
+      <div class="row">
+        <input type="checkbox" id="notifications" checked />
+        <label for="notifications" style="margin: 0; font-weight: normal" data-i18n="optNotifications"
+          >Enable desktop notifications</label
+        >
+      </div>
+      <div style="margin-top: 12px">
+        <label style="display: inline-flex; align-items: center; gap: 6px; font-weight: normal"
+          ><input type="checkbox" id="groupByRepo" />
+          <span data-i18n="optGroupByRepo">Group PRs by repository</span></label
+        >
+      </div>
+      <div style="margin-top: 12px">
+        <label style="display: inline-flex; align-items: center; gap: 6px; font-weight: normal"
+          ><input type="checkbox" id="notifyNewCommits" />
+          <span data-i18n="optNotifyNewCommits">Notify when PR author pushes new commits</span></label
+        >
+      </div>
+      <div style="margin-top: 12px">
+        <label style="display: inline-flex; align-items: center; gap: 6px; font-weight: normal"
+          ><input type="checkbox" id="onlyDirectRequests" />
+          <span data-i18n="optOnlyDirectRequests"
+            >Only notify for direct review requests (ignore team requests)</span
+          ></label
+        >
+      </div>
+      <div style="margin-top: 8px; margin-left: 24px">
+        <label for="whitelistedTeams" data-i18n="optWhitelistedTeams"
+          >Whitelisted teams (still notify even with above checked):</label
+        >
+        <textarea
+          id="whitelistedTeams"
+          rows="3"
+          style="
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: monospace;
+            resize: vertical;
+          "
+          placeholder="my-org/my-team"
+        ></textarea>
+        <div class="hint" data-i18n="optWhitelistedTeamsHint">One team slug per line (e.g. my-org/my-team)</div>
+      </div>
 
-  <div class="row" style="margin-top:24px;">
-    <button id="save" data-i18n="optSave">Save Settings</button>
-    <span class="saved" id="saved" data-i18n="optSaved">✓ Saved!</span>
-  </div>
+      <div class="row" style="margin-top: 24px">
+        <button id="save" data-i18n="optSave">Save Settings</button>
+        <span class="saved" id="saved" data-i18n="optSaved">✓ Saved!</span>
+      </div>
 
-  <hr style="margin-top:32px;border:none;border-top:1px solid #d0d7de;">
+      <hr style="margin-top: 32px; border: none; border-top: 1px solid #d0d7de" />
 
-  <h2 data-i18n="optRepoFilter">Repository Filter</h2>
-  <div class="hint" style="margin-bottom:8px;" data-i18n="optFilterHint">Filter which repositories appear in your attention set.</div>
+      <h2 data-i18n="optRepoFilter">Repository Filter</h2>
+      <div class="hint" style="margin-bottom: 8px" data-i18n="optFilterHint">
+        Filter which repositories appear in your attention set.
+      </div>
 
-  <div style="margin-bottom:12px;">
-    <label style="display:inline;font-weight:normal;"><input type="radio" name="repoFilterMode" value="all" id="filter-all" checked> <span data-i18n="optFilterAll">Show all (default)</span></label><br>
-    <label style="display:inline;font-weight:normal;"><input type="radio" name="repoFilterMode" value="include" id="filter-include"> <span data-i18n="optFilterInclude">Show only these repos</span></label><br>
-    <label style="display:inline;font-weight:normal;"><input type="radio" name="repoFilterMode" value="exclude" id="filter-exclude"> <span data-i18n="optFilterExclude">Hide these repos</span></label>
-  </div>
+      <div style="margin-bottom: 12px">
+        <label style="display: inline; font-weight: normal"
+          ><input type="radio" name="repoFilterMode" value="all" id="filter-all" checked />
+          <span data-i18n="optFilterAll">Show all (default)</span></label
+        ><br />
+        <label style="display: inline; font-weight: normal"
+          ><input type="radio" name="repoFilterMode" value="include" id="filter-include" />
+          <span data-i18n="optFilterInclude">Show only these repos</span></label
+        ><br />
+        <label style="display: inline; font-weight: normal"
+          ><input type="radio" name="repoFilterMode" value="exclude" id="filter-exclude" />
+          <span data-i18n="optFilterExclude">Hide these repos</span></label
+        >
+      </div>
 
-  <label for="repoList" data-i18n="optRepoLabel">Repositories (one per line, format: owner/repo)</label>
-  <textarea id="repoList" rows="6" style="width:100%;padding:8px;border:1px solid #d0d7de;border-radius:6px;font-size:13px;font-family:monospace;resize:vertical;" placeholder="microsoft/onnxruntime&#10;onnx/onnx"></textarea>
+      <label for="repoList" data-i18n="optRepoLabel">Repositories (one per line, format: owner/repo)</label>
+      <textarea
+        id="repoList"
+        rows="6"
+        style="
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #d0d7de;
+          border-radius: 6px;
+          font-size: 13px;
+          font-family: monospace;
+          resize: vertical;
+        "
+        placeholder="microsoft/onnxruntime&#10;onnx/onnx"
+      ></textarea>
 
-  <div class="row" style="margin-top:12px;">
-    <button id="saveFilter" data-i18n="optSaveFilter">Save Filter</button>
-    <span class="saved" id="savedFilter" data-i18n="optSaved">✓ Saved!</span>
-  </div>
+      <div class="row" style="margin-top: 12px">
+        <button id="saveFilter" data-i18n="optSaveFilter">Save Filter</button>
+        <span class="saved" id="savedFilter" data-i18n="optSaved">✓ Saved!</span>
+      </div>
 
-  <hr style="margin-top:32px;border:none;border-top:1px solid #d0d7de;">
+      <hr style="margin-top: 32px; border: none; border-top: 1px solid #d0d7de" />
 
-  <h2 data-i18n="optMuted">Muted Repos / Owners</h2>
-  <div class="hint" style="margin-bottom:8px;" data-i18n="optMutedHint">Muted repos and owners are hidden from the attention set and badge count.</div>
-  <div id="muted-list"></div>
+      <h2 data-i18n="optMuted">Muted Repos / Owners</h2>
+      <div class="hint" style="margin-bottom: 8px" data-i18n="optMutedHint">
+        Muted repos and owners are hidden from the attention set and badge count.
+      </div>
+      <div id="muted-list"></div>
 
-  <script src="options.js" type="module"></script>
-  <div style="margin-top:24px;text-align:center;font-size:11px;color:#57606a;">
-    <a href="https://github.com/justinchuby/github-attention-set/issues/new" target="_blank" style="color:#0969da;" data-i18n="optReportBug">Report a bug or request a feature</a>
-  </div>
-</main>
-</body>
+      <script src="options.js" type="module"></script>
+      <div style="margin-top: 24px; text-align: center; font-size: 11px; color: #57606a">
+        <a
+          href="https://github.com/justinchuby/github-attention-set/issues/new"
+          target="_blank"
+          style="color: #0969da"
+          data-i18n="optReportBug"
+          >Report a bug or request a feature</a
+        >
+      </div>
+    </main>
+  </body>
 </html>

@@ -2,7 +2,7 @@
 // Input: settings + fetcher. Output: results + badge count.
 // Supports multiple tokens: polls each token concurrently and merges results.
 
-import { computeAttentionSet, isBot } from './attention.js';
+import { computeAttentionSet } from './attention.js';
 
 /**
  * Fetch helper that throws on non-OK responses.
@@ -26,7 +26,9 @@ async function ghFetch(path, token, fetcher = fetch, { useEtag = false, etagCach
     const cached = etagCache.get(url);
     if (cached?.data) return cached.data;
     // 304 but no cached data — re-fetch without ETag
-    const retry = await fetcher(url, { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } });
+    const retry = await fetcher(url, {
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' },
+    });
     if (!retry.ok) throw new Error(`GitHub API ${retry.status}`);
     return retry.json();
   }
@@ -74,44 +76,53 @@ async function pollSingleToken(tokenEntry, settings, fetcher, etagCache = null) 
 
   for (let i = 0; i < items.length; i += CONCURRENCY) {
     const batch = items.slice(i, i + CONCURRENCY);
-    const batchResults = await Promise.all(batch.map(async (pr) => {
-      const [owner, repo] = pr.repository_url.replace('https://api.github.com/repos/', '').split('/');
-      const number = pr.number;
+    const batchResults = await Promise.all(
+      batch.map(async (pr) => {
+        const [owner, repo] = pr.repository_url.replace('https://api.github.com/repos/', '').split('/');
+        const number = pr.number;
 
-      let timeline;
-      try {
-        // Paginate timeline (max 3 pages = 300 events)
-        timeline = [];
-        for (let page = 1; page <= 3; page++) {
-          const batch = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100&page=${page}`, token, fetcher, { useEtag: true, etagCache });
-          timeline.push(...batch);
-          if (batch.length < 100) break; // no more pages
+        let timeline;
+        try {
+          // Paginate timeline (max 3 pages = 300 events)
+          timeline = [];
+          for (let page = 1; page <= 3; page++) {
+            const batch = await ghFetch(
+              `/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100&page=${page}`,
+              token,
+              fetcher,
+              { useEtag: true, etagCache },
+            );
+            timeline.push(...batch);
+            if (batch.length < 100) break; // no more pages
+          }
+        } catch {
+          timeline = [];
         }
-      } catch { timeline = []; }
 
-      const attention = computeAttentionSet(timeline, username, pr.user.login, settings.debounceMinutes);
+        const attention = computeAttentionSet(timeline, username, pr.user.login, settings.debounceMinutes);
 
-      let lastEventAt = 0;
-      for (const event of timeline) {
-        const ts = new Date(event.created_at || event.submitted_at || 0).getTime();
-        if (ts > lastEventAt) lastEventAt = ts;
-      }
+        let lastEventAt = 0;
+        for (const event of timeline) {
+          const ts = new Date(event.created_at || event.submitted_at || 0).getTime();
+          if (ts > lastEventAt) lastEventAt = ts;
+        }
 
-      return {
-        id: pr.id,
-        number,
-        title: pr.title,
-        url: pr.html_url,
-        repo: `${owner}/${repo}`,
-        author: pr.user.login,
-        attentionSet: attention.set,
-        myStatus: attention.myStatus,
-        myRole: attention.myRole,
-        incomingDetail: attention.incomingDetail,
-        lastEventAt,
-        account: name || username,
-      };
-    }));
+        return {
+          id: pr.id,
+          number,
+          title: pr.title,
+          url: pr.html_url,
+          repo: `${owner}/${repo}`,
+          author: pr.user.login,
+          attentionSet: attention.set,
+          myStatus: attention.myStatus,
+          myRole: attention.myRole,
+          incomingDetail: attention.incomingDetail,
+          lastEventAt,
+          account: name || username,
+        };
+      }),
+    );
     results.push(...batchResults);
   }
 
@@ -134,9 +145,7 @@ export async function poll(settings, opts = {}) {
   }
 
   // Poll all tokens concurrently
-  const tokenResults = await Promise.all(
-    tokens.map(entry => pollSingleToken(entry, settings, fetcher, etagCache))
-  );
+  const tokenResults = await Promise.all(tokens.map((entry) => pollSingleToken(entry, settings, fetcher, etagCache)));
 
   // Merge and deduplicate by PR URL (first occurrence wins — keeps attention from first token that sees it)
   const seen = new Set();
@@ -157,16 +166,28 @@ export async function poll(settings, opts = {}) {
   const filteredResults = applyRepoFilter(mergedResults, repoFilterMode, repoFilterList);
 
   // Badge count: red status and not dismissed
-  const needsAttention = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
+  const needsAttention = filteredResults.filter((r) => r.myStatus === 'red' && !dismissed[r.url]).length;
 
-  return { results: mergedResults, username: usernames[0] || null, usernames, needsAttention, filteredResults, error: null };
+  return {
+    results: mergedResults,
+    username: usernames[0] || null,
+    usernames,
+    needsAttention,
+    filteredResults,
+    error: null,
+  };
 }
 
 export function applyRepoFilter(results, mode, repoListStr) {
   if (!mode || mode === 'all' || !repoListStr.trim()) return results;
-  const repos = new Set(repoListStr.split('\n').map(r => r.trim().toLowerCase()).filter(Boolean));
+  const repos = new Set(
+    repoListStr
+      .split('\n')
+      .map((r) => r.trim().toLowerCase())
+      .filter(Boolean),
+  );
   if (repos.size === 0) return results;
-  if (mode === 'include') return results.filter(r => repos.has(r.repo.toLowerCase()));
-  if (mode === 'exclude') return results.filter(r => !repos.has(r.repo.toLowerCase()));
+  if (mode === 'include') return results.filter((r) => repos.has(r.repo.toLowerCase()));
+  if (mode === 'exclude') return results.filter((r) => !repos.has(r.repo.toLowerCase()));
   return results;
 }
