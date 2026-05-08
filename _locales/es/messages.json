@@ -235,5 +235,14 @@
   },
   "other": {
     "message": "Otros"
+  },
+  "optPolling": {
+    "message": "Sondeo"
+  },
+  "optDisplay": {
+    "message": "Visualización"
+  },
+  "optNotificationsSection": {
+    "message": "Notificaciones"
   }
 }

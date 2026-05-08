@@ -235,5 +235,14 @@
   },
   "other": {
     "message": "อื่นๆ"
+  },
+  "optPolling": {
+    "message": "การสำรวจ"
+  },
+  "optDisplay": {
+    "message": "การแสดงผล"
+  },
+  "optNotificationsSection": {
+    "message": "การแจ้งเตือน"
   }
 }

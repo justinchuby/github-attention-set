@@ -235,5 +235,14 @@
   },
   "other": {
     "message": "Th' Rest"
+  },
+  "optPolling": {
+    "message": "Scannin' th' Horizon"
+  },
+  "optDisplay": {
+    "message": "Th' Spyglass"
+  },
+  "optNotificationsSection": {
+    "message": "Hails & Signals"
   }
 }

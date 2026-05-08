@@ -235,5 +235,14 @@
   },
   "other": {
     "message": "기타"
+  },
+  "optPolling": {
+    "message": "폴링"
+  },
+  "optDisplay": {
+    "message": "표시"
+  },
+  "optNotificationsSection": {
+    "message": "알림"
   }
 }

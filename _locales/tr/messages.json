@@ -235,5 +235,14 @@
   },
   "other": {
     "message": "Diğer"
+  },
+  "optPolling": {
+    "message": "Yoklama"
+  },
+  "optDisplay": {
+    "message": "Görünüm"
+  },
+  "optNotificationsSection": {
+    "message": "Bildirimler"
   }
 }

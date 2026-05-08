@@ -235,5 +235,14 @@
   },
   "other": {
     "message": "其他"
+  },
+  "optPolling": {
+    "message": "轮询"
+  },
+  "optDisplay": {
+    "message": "显示"
+  },
+  "optNotificationsSection": {
+    "message": "通知"
   }
 }

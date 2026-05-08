@@ -235,5 +235,14 @@
   },
   "other": {
     "message": "Бусад"
+  },
+  "optPolling": {
+    "message": "Polling"
+  },
+  "optDisplay": {
+    "message": "Display"
+  },
+  "optNotificationsSection": {
+    "message": "Notifications"
   }
 }

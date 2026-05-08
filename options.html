@@ -177,6 +177,9 @@
       <div id="token-list"></div>
       <button id="add-token" data-i18n="optAddToken">+ Add token</button>
 
+      <!-- Polling -->
+      <h2 data-i18n="optPolling">Polling</h2>
+
       <label for="debounce" data-i18n="optDebounce">Debounce time (minutes)</label>
       <input type="number" id="debounce" min="1" max="60" value="10" />
       <div class="hint" data-i18n="optDebounceHint">Wait this long before implicit signals flip attention.</div>
@@ -185,16 +188,23 @@
       <input type="number" id="poll" min="1" max="30" value="2" />
       <div class="hint" data-i18n="optPollHint">How often to check GitHub for updates.</div>
 
-      <div class="row">
-        <input type="checkbox" id="notifications" checked />
-        <label for="notifications" style="margin: 0; font-weight: normal" data-i18n="optNotifications"
-          >Enable desktop notifications</label
-        >
-      </div>
-      <div style="margin-top: 12px">
+      <!-- Display -->
+      <h2 data-i18n="optDisplay">Display</h2>
+
+      <div style="margin-top: 4px">
         <label style="display: inline-flex; align-items: center; gap: 6px; font-weight: normal"
           ><input type="checkbox" id="groupByRepo" />
           <span data-i18n="optGroupByRepo">Group PRs by repository</span></label
+        >
+      </div>
+
+      <!-- Notifications -->
+      <h2 data-i18n="optNotificationsSection">Notifications</h2>
+
+      <div style="margin-top: 4px">
+        <label style="display: inline-flex; align-items: center; gap: 6px; font-weight: normal">
+          <input type="checkbox" id="notifications" checked />
+          <span data-i18n="optNotifications">Enable desktop notifications</span></label
         >
       </div>
       <div style="margin-top: 12px">
@@ -232,7 +242,9 @@
         <div class="hint" data-i18n="optWhitelistedTeamsHint">One team slug per line (e.g. my-org/my-team)</div>
       </div>
 
-      <div class="row" style="margin-top: 24px">
+      <hr style="margin-top: 24px; border: none; border-top: 1px solid #d0d7de" />
+
+      <div class="row" style="margin-top: 16px">
         <button id="save" data-i18n="optSave">Save Settings</button>
         <span class="saved" id="saved" data-i18n="optSaved">✓ Saved!</span>
       </div>

@@ -235,5 +235,14 @@
   },
   "other": {
     "message": "その他"
+  },
+  "optPolling": {
+    "message": "ポーリング"
+  },
+  "optDisplay": {
+    "message": "表示"
+  },
+  "optNotificationsSection": {
+    "message": "通知"
   }
 }

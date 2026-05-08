@@ -235,5 +235,14 @@
   },
   "other": {
     "message": "Другие"
+  },
+  "optPolling": {
+    "message": "Опрос"
+  },
+  "optDisplay": {
+    "message": "Отображение"
+  },
+  "optNotificationsSection": {
+    "message": "Уведомления"
   }
 }

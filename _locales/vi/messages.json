@@ -235,5 +235,14 @@
   },
   "other": {
     "message": "Khác"
+  },
+  "optPolling": {
+    "message": "Thăm dò"
+  },
+  "optDisplay": {
+    "message": "Hiển thị"
+  },
+  "optNotificationsSection": {
+    "message": "Thông báo"
   }
 }

@@ -235,5 +235,14 @@
   },
   "other": {
     "message": "餘者"
+  },
+  "optPolling": {
+    "message": "巡查"
+  },
+  "optDisplay": {
+    "message": "陳列"
+  },
+  "optNotificationsSection": {
+    "message": "告知"
   }
 }
