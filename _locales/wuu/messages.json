@@ -3,7 +3,7 @@
     "message": "GitHub Attention Set"
   },
   "extDescription": {
-    "message": "看看啥PR要侬關注——像Google Critique個Attention Set一样"
+    "message": "看看啥PR要侬关注——像Google Critique个Attention Set一样"
   },
   "needsAttention": {
     "message": "要侬看看"
@@ -18,31 +18,31 @@
     "message": "弗管"
   },
   "restore": {
-    "message": "拿回來"
+    "message": "拿回来"
   },
   "dismissed": {
     "message": "已忽略"
   },
   "loading": {
-    "message": "载进來……"
+    "message": "载进来……"
   },
   "noToken": {
-    "message": "呒沒設token。"
+    "message": "呒没设token。"
   },
   "goToSettings": {
-    "message": "去設置"
+    "message": "去设置"
   },
   "noPRs": {
-    "message": "呒沒啥好看個。"
+    "message": "呒没啥好看个。"
   },
   "allClear": {
-    "message": "弄好了！呒沒PR等侬。"
+    "message": "弄好了！呒没PR等侬。"
   },
   "waitingOn": {
     "message": "等："
   },
   "settings": {
-    "message": "設置"
+    "message": "设置"
   },
   "stateReview": {
     "message": "看看"
@@ -66,13 +66,13 @@
     "message": "草稿"
   },
   "optTitle": {
-    "message": "GitHub Attention Set 設置"
+    "message": "GitHub Attention Set 设置"
   },
   "optTokenLabel": {
     "message": "GitHub Token"
   },
   "optTokenHint": {
-    "message": "弄個fine-grained PAT，权限選 Pull requests → Read，Issues → Read"
+    "message": "弄个fine-grained PAT，权限选 Pull requests → Read，Issues → Read"
   },
   "optAddToken": {
     "message": "+ 加Token"
@@ -84,34 +84,34 @@
     "message": "存好了！"
   },
   "optDebounce": {
-    "message": "等几分钟算數（分钟）"
+    "message": "等几分钟算数（分钟）"
   },
   "optPoll": {
     "message": "几分钟查一趟（分钟）"
   },
   "optNotifications": {
-    "message": "開通知"
+    "message": "开通知"
   },
   "optGroupByRepo": {
     "message": "按Repo分"
   },
   "optRepoFilter": {
-    "message": "Repo筛選"
+    "message": "Repo筛选"
   },
   "optFilterAll": {
-    "message": "全部顯示"
+    "message": "全部显示"
   },
   "optFilterInclude": {
-    "message": "就顯示箇些"
+    "message": "就显示箇些"
   },
   "optFilterExclude": {
     "message": "藏脱箇些"
   },
   "optRepoPlaceholder": {
-    "message": "owner/repo（一行一個）"
+    "message": "owner/repo（一行一个）"
   },
   "optSaveFilter": {
-    "message": "存筛選"
+    "message": "存筛选"
   },
   "optReportBug": {
     "message": "报Bug / 提建议"
@@ -120,19 +120,19 @@
     "message": "名字"
   },
   "tokenValue": {
-    "message": "侬個 GitHub token"
+    "message": "侬个 GitHub token"
   },
   "optLanguage": {
-    "message": "語言"
+    "message": "语言"
   },
   "optLanguageHint": {
-    "message": "選顯示語言"
+    "message": "选显示语言"
   },
   "optLanguageAuto": {
     "message": "自动（跟浏览器）"
   },
   "optLanguageSaved": {
-    "message": "選好了！關脱再開就看到了。"
+    "message": "选好了！关脱再开就看到了。"
   },
   "optDebounceHint": {
     "message": "评论后头等多少辰光"
@@ -141,19 +141,19 @@
     "message": "几密查GitHub"
   },
   "optRepoLabel": {
-    "message": "Repo筛選設置"
+    "message": "Repo筛选设置"
   },
   "optFilterHint": {
-    "message": "owner/repo，一行一個"
+    "message": "owner/repo，一行一个"
   },
   "openSettings": {
-    "message": "去設置"
+    "message": "去设置"
   },
   "tokenHintFull": {
-    "message": "弄個fine-grained PAT，权限選 Pull requests → Read，Issues → Read"
+    "message": "弄个fine-grained PAT，权限选 Pull requests → Read，Issues → Read"
   },
   "stateNew": {
-    "message": "新個"
+    "message": "新个"
   },
   "stateUpdated": {
     "message": "更新了"
@@ -162,64 +162,64 @@
     "message": "重新看看"
   },
   "incoming": {
-    "message": "要看個"
+    "message": "要看个"
   },
   "outgoing": {
-    "message": "我個PR"
+    "message": "我个PR"
   },
   "mentioned": {
     "message": "被提到"
   },
   "muteRepo": {
-    "message": "靜音倉庫"
+    "message": "静音仓庫"
   },
   "muteOwner": {
-    "message": "靜音擁有者"
+    "message": "静音擁有者"
   },
   "optMuted": {
-    "message": "靜音個 Repos / 拥有者"
+    "message": "静音个 Repos / 拥有者"
   },
   "optMutedHint": {
-    "message": "靜音個repo搭owner勿会顯示。"
+    "message": "静音个repo搭owner勿会显示。"
   },
   "optUnmute": {
-    "message": "取消靜音"
+    "message": "取消静音"
   },
   "optNoMuted": {
-    "message": "呒沒靜音個。"
+    "message": "呒没静音个。"
   },
   "optNotifyNewCommits": {
     "message": "PR 作者推新 commit 辰光通知"
   },
   "optOnlyDirectRequests": {
-    "message": "只通知直接審查請求（忽略團隊請求）"
+    "message": "只通知直接审查请求（忽略团队请求）"
   },
   "optWhitelistedTeams": {
-    "message": "允许個團隊（就算上头勾了也通知）："
+    "message": "允许个团队（就算上头勾了也通知）："
   },
   "optWhitelistedTeamsHint": {
-    "message": "一行一個團隊 slug（比方 my-org/my-team）"
+    "message": "一行一个团队 slug（比方 my-org/my-team）"
   },
   "justNow": {
     "message": "刚刚"
   },
   "stateMerged": {
-    "message": "合並了"
+    "message": "合并了"
   },
   "stateClosed": {
-    "message": "關了"
+    "message": "关了"
   },
   "moreOptions": {
-    "message": "更多選項"
+    "message": "更多选項"
   },
   "newActivity": {
     "message": "新动态"
   },
   "filterPlaceholder": {
-    "message": "過濾PR..."
+    "message": "过滤PR..."
   },
   "errorAuth": {
-    "message": "⚠️ 令牌過期或无效。"
+    "message": "⚠️ 令牌过期或无效。"
   },
   "errorNetwork": {
     "message": "⚠️ GitHub连勿上。"
@@ -228,10 +228,10 @@
     "message": "批准了"
   },
   "optMutedDesc": {
-    "message": "靜音個 repos 搭拥有者会从注意集合搭徽章計數里向隐藏。"
+    "message": "静音个 repos 搭拥有者会从注意集合搭徽章计数里向隐藏。"
   },
   "optNothingMuted": {
-    "message": "呒沒靜音個。"
+    "message": "呒没静音个。"
   },
   "other": {
     "message": "其他"
