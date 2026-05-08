@@ -37,7 +37,7 @@ async function pollSingleToken(tokenEntry, debounceMinutes) {
 
   const prs = await ghFetch(`/search/issues?q=involves:${username}+is:pr+is:open&per_page=50`, token);
 
-  const CONCURRENCY = 6;
+  const CONCURRENCY = 10;
   const items = prs.items || [];
   const results = [];
 
