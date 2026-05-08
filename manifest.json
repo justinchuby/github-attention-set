@@ -14,6 +14,7 @@
   ],
   "background": {
     "service_worker": "background.js",
+    "scripts": ["background.js"],
     "type": "module"
   },
   "action": {
@@ -33,5 +34,11 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "homepage_url": "https://chromewebstore.google.com/detail/gkimnedgjndjblnobajlecmndgjhkjfl"
+  "homepage_url": "https://chromewebstore.google.com/detail/gkimnedgjndjblnobajlecmndgjhkjfl",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "github-attention-set@justinchuby",
+      "strict_min_version": "128.0"
+    }
+  }
 }
