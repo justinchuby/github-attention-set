@@ -776,3 +776,228 @@ describe('bot comment handling', () => {
     expect(result.set['alice']).toBeUndefined();
   });
 });
+
+describe('team review requests', () => {
+  const NOW = Date.now();
+  function minutesAgo(n) {
+    return new Date(NOW - n * 60 * 1000).toISOString();
+  }
+
+  it('team review request adds me to attention set (onlyDirectRequests=false)', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_team: { name: 'frontend', slug: 'frontend' },
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'bob', 'alice', 10, NOW, {
+      onlyDirectRequests: false,
+    });
+    expect(result.set['bob']).toBe('red');
+  });
+
+  it('team review request respects onlyDirectRequests=true', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_team: { name: 'frontend', slug: 'frontend' },
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'bob', 'alice', 10, NOW, {
+      onlyDirectRequests: true,
+      whitelistedTeams: [],
+    });
+    expect(result.set['bob']).toBeUndefined();
+  });
+
+  it('whitelisted team adds me even with onlyDirectRequests=true', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_team: { name: 'core-team', slug: 'core-team' },
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'bob', 'alice', 10, NOW, {
+      onlyDirectRequests: true,
+      whitelistedTeams: ['core-team'],
+    });
+    expect(result.set['bob']).toBe('red');
+  });
+
+  it('team removal removes me from attention set', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_team: { name: 'frontend', slug: 'frontend' },
+        created_at: minutesAgo(10),
+      },
+      {
+        event: 'review_request_removed',
+        actor: { login: 'alice' },
+        requested_team: { name: 'frontend', slug: 'frontend' },
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'bob', 'alice', 10, NOW, {
+      onlyDirectRequests: false,
+    });
+    expect(result.set['bob']).toBeUndefined();
+  });
+
+  it('myRole = incoming for team-based requests', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_team: { name: 'frontend', slug: 'frontend' },
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'bob', 'alice', 10, NOW, {
+      onlyDirectRequests: false,
+    });
+    expect(result.myRole).toBe('incoming');
+  });
+
+  it('incomingDetail = new for team-based requests', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_team: { name: 'frontend', slug: 'frontend' },
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'bob', 'alice', 10, NOW, {
+      onlyDirectRequests: false,
+    });
+    expect(result.incomingDetail).toBe('new');
+  });
+});
+
+describe('incomingDetail classification', () => {
+  const NOW = Date.now();
+  function minutesAgo(n) {
+    return new Date(NOW - n * 60 * 1000).toISOString();
+  }
+
+  it('incomingDetail = new for first review request', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_reviewer: { login: 'bob' },
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'bob', 'alice', 10, NOW);
+    expect(result.incomingDetail).toBe('new');
+  });
+
+  it('incomingDetail = updated when author responded after review', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_reviewer: { login: 'bob' },
+        created_at: minutesAgo(30),
+      },
+      {
+        event: 'reviewed',
+        actor: { login: 'bob' },
+        state: 'changes_requested',
+        submitted_at: minutesAgo(20),
+      },
+      {
+        event: 'committed',
+        actor: { login: 'alice' },
+        created_at: minutesAgo(10),
+      },
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_reviewer: { login: 'bob' },
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'bob', 'alice', 10, NOW);
+    expect(result.incomingDetail).toBe('rereview');
+  });
+
+  it('incomingDetail = rereview when re-requested after submitting review', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_reviewer: { login: 'bob' },
+        created_at: minutesAgo(30),
+      },
+      {
+        event: 'reviewed',
+        actor: { login: 'bob' },
+        state: 'commented',
+        submitted_at: minutesAgo(20),
+      },
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_reviewer: { login: 'bob' },
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'bob', 'alice', 10, NOW);
+    expect(result.incomingDetail).toBe('rereview');
+  });
+
+  it('myRole = outgoing for PR author', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_reviewer: { login: 'bob' },
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'alice', 'alice', 10, NOW);
+    expect(result.myRole).toBe('outgoing');
+  });
+
+  it('myRole = mentioned for mentioned user', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_reviewer: { login: 'bob' },
+        created_at: minutesAgo(10),
+      },
+      {
+        event: 'commented',
+        actor: { login: 'alice' },
+        body: 'cc @carol please look',
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'carol', 'alice', 10, NOW);
+    expect(result.myRole).toBe('mentioned');
+  });
+
+  it('myRole = other for unrelated user', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_reviewer: { login: 'bob' },
+        created_at: minutesAgo(5),
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'dave', 'alice', 10, NOW);
+    expect(result.myRole).toBe('other');
+  });
+});
