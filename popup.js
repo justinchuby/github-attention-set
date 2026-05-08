@@ -603,12 +603,9 @@ async function render(data, _isRefreshing) {
         { label: 'outgoing', labelText: msg('outgoing'), prs: roles.outgoing },
         { label: 'mentioned', labelText: msg('mentioned'), prs: roles.mentioned },
       ];
-      const hasSubSection = roleSections.some((s) => s.prs.length > 0);
       for (const sec of roleSections) {
         if (sec.prs.length === 0) continue;
-        if (hasSubSection) {
-          attentionContainer.appendChild(roleHeader(sec));
-        }
+        attentionContainer.appendChild(roleHeader(sec));
         const groups = window.__groupByRepo ? groupByRepo(sec.prs) : [{ repo: '', prs: sec.prs }];
         attentionContainer.appendChild(renderRepoGroups(groups, username));
       }
@@ -628,12 +625,9 @@ async function render(data, _isRefreshing) {
         { label: 'incoming', labelText: msg('incoming'), prs: roles.incoming },
         { label: 'outgoing', labelText: msg('outgoing'), prs: roles.outgoing },
       ];
-      const hasSubSection = roleSections.some((s) => s.prs.length > 0);
       for (const sec of roleSections) {
         if (sec.prs.length === 0) continue;
-        if (hasSubSection) {
-          othersContainer.appendChild(roleHeader(sec));
-        }
+        othersContainer.appendChild(roleHeader(sec));
         const groups = window.__groupByRepo ? groupByRepo(sec.prs) : [{ repo: '', prs: sec.prs }];
         othersContainer.appendChild(renderRepoGroups(groups, username));
       }
