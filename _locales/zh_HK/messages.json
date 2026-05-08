@@ -3,64 +3,64 @@
     "message": "GitHub Attention Set"
   },
   "extDescription": {
-    "message": "睇吓邊個PR需要你關注——好似Google Critique嘅Attention Set咁"
+    "message": "查看哪些PR需要你關注——類似Google Critique的Attention Set"
   },
   "needsAttention": {
-    "message": "輪到你"
+    "message": "需要關注"
   },
   "waitingOnOthers": {
-    "message": "等緊人哋"
+    "message": "等待他人"
   },
   "refresh": {
-    "message": "刷新"
+    "message": "重新整理"
   },
   "dismiss": {
-    "message": "唔理"
+    "message": "忽略"
   },
   "restore": {
-    "message": "攞返"
+    "message": "還原"
   },
   "dismissed": {
     "message": "已忽略"
   },
   "loading": {
-    "message": "載緊……"
+    "message": "載入中……"
   },
   "noToken": {
-    "message": "未設token㗎。"
+    "message": "尚未設定Token。"
   },
   "goToSettings": {
-    "message": "去設定"
+    "message": "前往設定"
   },
   "noPRs": {
-    "message": "冇嘢要睇㗎。"
+    "message": "沒有需要關注的PR。"
   },
   "allClear": {
-    "message": "搞掂晒！冇PR等你。"
+    "message": "全部完成！沒有PR等你處理。"
   },
   "waitingOn": {
-    "message": "等緊："
+    "message": "等待："
   },
   "settings": {
     "message": "設定"
   },
   "stateReview": {
-    "message": "睇吓"
+    "message": "待審查"
   },
   "stateFix": {
-    "message": "執番"
+    "message": "待修復"
   },
   "stateRespond": {
-    "message": "覆佢"
+    "message": "待回覆"
   },
   "stateMerge": {
-    "message": "Merge得"
+    "message": "可合併"
   },
   "stateMerging": {
-    "message": "Merge緊"
+    "message": "合併中"
   },
   "stateStuck": {
-    "message": "阻塞"
+    "message": "卡住"
   },
   "stateDraft": {
     "message": "草稿"
@@ -69,145 +69,145 @@
     "message": "GitHub Attention Set 設定"
   },
   "optTokenLabel": {
-    "message": "GitHub Token"
+    "message": "GitHub 個人存取權杖"
   },
   "optTokenHint": {
-    "message": "整個fine-grained PAT，權限揀 Pull requests → Read，Issues → Read"
+    "message": "建立 fine-grained PAT，權限選 Pull requests → Read，Issues → Read"
   },
   "optAddToken": {
-    "message": "+ 加Token"
+    "message": "+ 新增權杖"
   },
   "optSave": {
-    "message": "儲存"
+    "message": "儲存設定"
   },
   "optSaved": {
-    "message": "存好喇！"
+    "message": "✓ 已儲存！"
   },
   "optDebounce": {
-    "message": "等幾耐先算（分鐘）"
+    "message": "評論等候時間（分鐘）"
+  },
+  "optDebounceHint": {
+    "message": "等待此時間後隱式信號才會翻轉注意力狀態。"
   },
   "optPoll": {
-    "message": "幾耐check一次（分鐘）"
+    "message": "輪詢間隔（分鐘）"
+  },
+  "optPollHint": {
+    "message": "檢查GitHub更新的頻率。"
   },
   "optNotifications": {
-    "message": "開通知"
+    "message": "啟用通知"
   },
   "optGroupByRepo": {
-    "message": "按Repo分"
+    "message": "按儲存庫分組"
   },
   "optRepoFilter": {
-    "message": "Repo篩選"
+    "message": "儲存庫篩選"
   },
   "optFilterAll": {
     "message": "全部顯示"
   },
   "optFilterInclude": {
-    "message": "淨係顯示呢啲"
+    "message": "只顯示這些儲存庫（允許清單）"
   },
   "optFilterExclude": {
-    "message": "隱藏呢啲"
+    "message": "隱藏這些儲存庫"
   },
   "optRepoPlaceholder": {
-    "message": "owner/repo（一行一個）"
+    "message": "owner/repo（每行一個）"
+  },
+  "optRepoLabel": {
+    "message": "儲存庫篩選設定"
   },
   "optSaveFilter": {
-    "message": "儲篩選"
+    "message": "儲存篩選"
+  },
+  "optFilterHint": {
+    "message": "owner/repo，每行一個"
   },
   "optReportBug": {
-    "message": "報Bug / 提建議"
+    "message": "回報錯誤或請求功能"
   },
   "tokenName": {
-    "message": "名"
+    "message": "Token 名稱（例如：個人、工作）"
   },
   "tokenValue": {
-    "message": "你嘅 GitHub token"
+    "message": "你的 GitHub token"
+  },
+  "openSettings": {
+    "message": "前往設定"
+  },
+  "tokenHintFull": {
+    "message": "建立 fine-grained PAT，權限選 Pull requests → Read，Issues → Read"
   },
   "optLanguage": {
     "message": "語言"
   },
   "optLanguageHint": {
-    "message": "揀顯示語言"
+    "message": "選擇顯示語言"
   },
   "optLanguageAuto": {
-    "message": "自動（跟瀏覽器）"
+    "message": "自動（跟隨瀏覽器）"
   },
   "optLanguageSaved": {
-    "message": "揀咗！閂咗再開就見到。"
-  },
-  "optDebounceHint": {
-    "message": "評論之後等幾耐"
-  },
-  "optPollHint": {
-    "message": "幾密check GitHub"
-  },
-  "optRepoLabel": {
-    "message": "Repo篩選設定"
-  },
-  "optFilterHint": {
-    "message": "owner/repo，一行一個"
-  },
-  "openSettings": {
-    "message": "去設定"
-  },
-  "tokenHintFull": {
-    "message": "整個fine-grained PAT，權限揀 Pull requests → Read，Issues → Read"
+    "message": "已儲存！關閉後重新開啟即可看到變更。"
   },
   "stateNew": {
-    "message": "新嘅"
+    "message": "新的"
   },
   "stateUpdated": {
-    "message": "更新咗"
+    "message": "已更新"
   },
   "stateRereview": {
-    "message": "重新睇過"
+    "message": "重新審查"
   },
   "incoming": {
-    "message": "要審查"
+    "message": "待審查"
   },
   "outgoing": {
-    "message": "我嘅PR"
+    "message": "我的PR"
   },
   "mentioned": {
     "message": "被提及"
   },
   "muteRepo": {
-    "message": "靜音倉庫"
+    "message": "靜音此儲存庫"
   },
   "muteOwner": {
-    "message": "靜音擁有者"
+    "message": "靜音此擁有者"
   },
   "optMuted": {
-    "message": "靜音咗嘅Repo / Owner"
+    "message": "已靜音的儲存庫 / 擁有者"
   },
   "optMutedHint": {
-    "message": "靜音咗嘅repo同owner唔會喺attention set同badge入面顯示。"
+    "message": "靜音的儲存庫和擁有者不會顯示在關注集和徽章計數中。"
   },
   "optUnmute": {
     "message": "取消靜音"
   },
   "optNoMuted": {
-    "message": "冇嘢靜音。"
+    "message": "沒有靜音項目。"
   },
   "optNotifyNewCommits": {
-    "message": "PR作者push咗新commit就通知"
+    "message": "當PR作者推送新提交時通知"
   },
   "optOnlyDirectRequests": {
-    "message": "淨係直接請求先通知（唔理team請求）"
+    "message": "僅在直接請求審查時通知（忽略團隊請求）"
   },
   "optWhitelistedTeams": {
-    "message": "允許team（就算撳咗上面都會通知）："
+    "message": "允許的團隊（即使勾選上方選項仍會通知）："
   },
   "optWhitelistedTeamsHint": {
-    "message": "每行一個team（例如 my-org/my-team）"
+    "message": "每行一個團隊（例如 my-org/my-team）"
   },
   "justNow": {
-    "message": "啱啱"
+    "message": "剛才"
   },
   "stateMerged": {
-    "message": "合併咗"
+    "message": "已合併"
   },
   "stateClosed": {
-    "message": "閂咗"
+    "message": "已關閉"
   },
   "moreOptions": {
     "message": "更多選項"
@@ -219,19 +219,19 @@
     "message": "篩選PR..."
   },
   "errorAuth": {
-    "message": "⚠️ Token過期或者無效。"
+    "message": "⚠️ Token 已過期或無效。"
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub連唔到。"
+    "message": "⚠️ 網絡錯誤，請稍後再試。"
   },
   "stateApproved": {
-    "message": "批准咗"
+    "message": "已核准"
   },
   "optMutedDesc": {
-    "message": "靜音咗嘅repo同owner唔會顯示。"
+    "message": "靜音的儲存庫和擁有者不會顯示在關注集和徽章計數中。"
   },
   "optNothingMuted": {
-    "message": "冇嘢靜音。"
+    "message": "沒有靜音項目。"
   },
   "other": {
     "message": "其他"
