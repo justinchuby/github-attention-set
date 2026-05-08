@@ -23,7 +23,7 @@ jobs:
         run: npm run lint
 
       - name: Format check
-        run: npx prettier --check "*.js" "*.html"
+        run: npx prettier --check "*.js" "*.html" "tests/*.js"
 
       - name: Test
         run: npm test
