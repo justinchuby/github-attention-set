@@ -13,6 +13,5 @@ export function applyRepoFilter(results, mode, repoListStr) {
   );
   if (repos.size === 0) return results;
   if (mode === 'include') return results.filter((r) => repos.has(r.repo.toLowerCase()));
-  if (mode === 'exclude') return results.filter((r) => !repos.has(r.repo.toLowerCase()));
   return results;
 }

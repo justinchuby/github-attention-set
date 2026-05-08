@@ -20,10 +20,6 @@ describe('applyRepoFilter', () => {
     expect(applyRepoFilter(results, 'include', 'org/RepoA\norg/RepoB')).toEqual([results[0], results[1]]);
   });
 
-  it('exclude mode removes listed repos', () => {
-    expect(applyRepoFilter(results, 'exclude', 'org/RepoA')).toEqual([results[1], results[2]]);
-  });
-
   it('empty list returns everything regardless of mode', () => {
     expect(applyRepoFilter(results, 'include', '')).toEqual(results);
     expect(applyRepoFilter(results, 'include', '  \n  ')).toEqual(results);

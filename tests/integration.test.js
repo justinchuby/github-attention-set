@@ -476,8 +476,4 @@ describe('applyRepoFilter', () => {
   it('mode=include filters to matching repos', () => {
     expect(applyRepoFilter(results, 'include', 'org/alpha\nother/gamma')).toHaveLength(2);
   });
-
-  it('mode=exclude removes matching repos', () => {
-    expect(applyRepoFilter(results, 'exclude', 'org/beta')).toHaveLength(2);
-  });
 });
