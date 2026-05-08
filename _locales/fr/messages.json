@@ -180,10 +180,10 @@
     "message": "Dépôts / Propriétaires muets"
   },
   "optMutedHint": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Les dépôts et propriétaires en sourdine sont masqués."
   },
   "optUnmute": {
-    "message": "Unmute"
+    "message": "Rétablir"
   },
   "optNoMuted": {
     "message": "Rien en sourdine."

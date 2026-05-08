@@ -180,10 +180,10 @@
     "message": "Muted Repos / Owners"
   },
   "optMutedHint": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "I repo e proprietari silenziati sono nascosti."
   },
   "optUnmute": {
-    "message": "Unmute"
+    "message": "Riattiva"
   },
   "optNoMuted": {
     "message": "Niente silenziato."

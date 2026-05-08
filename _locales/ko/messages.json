@@ -180,10 +180,10 @@
     "message": "음소거된 저장소 / 소유자"
   },
   "optMutedHint": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "음소거된 저장소와 소유자는 어텐션 셋과 배지에 표시되지 않습니다."
   },
   "optUnmute": {
-    "message": "Unmute"
+    "message": "음소거 해제"
   },
   "optNoMuted": {
     "message": "음소거 없음."

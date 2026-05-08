@@ -180,10 +180,10 @@
     "message": "Muted Repos / Owners"
   },
   "optMutedHint": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Tá stórais agus úinéirí balbhaithe i bhfolach."
   },
   "optUnmute": {
-    "message": "Unmute"
+    "message": "Díbhalbhaigh"
   },
   "optNoMuted": {
     "message": "Tada balbhaithe."

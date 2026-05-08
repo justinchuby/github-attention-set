@@ -180,10 +180,10 @@
     "message": "已静音的仓库 / 所有者"
   },
   "optMutedHint": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "静音的仓库和所有者不会显示在关注集和徽章计数中。"
   },
   "optUnmute": {
-    "message": "Unmute"
+    "message": "取消静音"
   },
   "optNoMuted": {
     "message": "无静音项。"

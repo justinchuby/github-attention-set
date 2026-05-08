@@ -180,10 +180,10 @@
     "message": "Muted Repos / Owners"
   },
   "optMutedHint": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "รีโปและเจ้าของที่ปิดเสียงจะถูกซ่อน"
   },
   "optUnmute": {
-    "message": "Unmute"
+    "message": "เลิกปิดเสียง"
   },
   "optNoMuted": {
     "message": "ไม่มีรายการปิดเสียง"

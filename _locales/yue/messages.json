@@ -180,10 +180,10 @@
     "message": "靜音咗嘅Repo / Owner"
   },
   "optMutedHint": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "靜音咗嘅repo同owner唔會喺attention set同badge入面顯示。"
   },
   "optUnmute": {
-    "message": "Unmute"
+    "message": "取消靜音"
   },
   "optNoMuted": {
     "message": "冇嘢靜音。"

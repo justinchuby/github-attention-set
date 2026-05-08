@@ -180,10 +180,10 @@
     "message": "Silenced Ships / Captains"
   },
   "optMutedHint": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Silenced ships an' captains be hidden from th' attention set an' badge."
   },
   "optUnmute": {
-    "message": "Unmute"
+    "message": "Unhush"
   },
   "optNoMuted": {
     "message": "Nothin' silenced, arr."

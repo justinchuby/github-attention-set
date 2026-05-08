@@ -180,10 +180,10 @@
     "message": "Muted Repos / Owners"
   },
   "optMutedHint": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "所靜之庫及主，不見於關注之集。"
   },
   "optUnmute": {
-    "message": "Unmute"
+    "message": "復聲"
   },
   "optNoMuted": {
     "message": "無所靜者。"
