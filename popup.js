@@ -237,8 +237,17 @@ function renderPRItem(pr, username, showRepo) {
   const metaChildren = [showRepo ? `${pr.repo}#${pr.number}` : `#${pr.number}`];
   if (pr.author) {
     metaChildren.push(' · by ');
+    const authorInSet = !!(pr.attentionSet || {})[pr.author];
     metaChildren.push(
-      h('a', { href: `https://github.com/${pr.author}`, target: '_blank', style: { color: 'inherit' } }, pr.author),
+      h(
+        'a',
+        {
+          href: `https://github.com/${pr.author}`,
+          target: '_blank',
+          style: { color: 'inherit', fontWeight: authorInSet ? 'bold' : 'normal' },
+        },
+        pr.author,
+      ),
     );
   }
   // state badge rendered separately below
