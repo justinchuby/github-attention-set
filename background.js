@@ -50,6 +50,10 @@ async function ghFetch(path, token, { useEtag = false } = {}) {
   if (useEtag && res.status === 304) {
     const cached = etagCache.get(url);
     if (cached?.data) return cached.data;
+    // 304 but no cached data — re-fetch without ETag
+    const retry = await fetch(url, { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } });
+    if (!retry.ok) throw new Error(`GitHub API ${retry.status}`);
+    return retry.json();
   }
 
   if (!res.ok) throw new Error(`GitHub API ${res.status}`);
@@ -178,7 +182,9 @@ async function pollAndCompute() {
     if (settings.notifications !== false) {
       const { lastNotifiedPRs = {} } = await chrome.storage.local.get('lastNotifiedPRs');
       const currentRedPRs = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]);
-      const newAttentionPRs = currentRedPRs.filter(pr => {
+      // Skip first poll (no previous state) to avoid notifying all existing red PRs
+      const isFirstPoll = Object.keys(lastNotifiedPRs).length === 0;
+      const newAttentionPRs = isFirstPoll ? [] : currentRedPRs.filter(pr => {
         const prev = lastNotifiedPRs[pr.url];
         return !prev || prev !== 'red';
       });

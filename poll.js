@@ -25,6 +25,10 @@ async function ghFetch(path, token, fetcher = fetch, { useEtag = false, etagCach
   if (useEtag && etagCache && res.status === 304) {
     const cached = etagCache.get(url);
     if (cached?.data) return cached.data;
+    // 304 but no cached data — re-fetch without ETag
+    const retry = await fetcher(url, { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } });
+    if (!retry.ok) throw new Error(`GitHub API ${retry.status}`);
+    return retry.json();
   }
 
   if (!res.ok) throw new Error(`GitHub API ${res.status}`);

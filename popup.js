@@ -33,9 +33,13 @@ const searchInput = h('input', { type: 'text', class: 'search-input', placeholde
 searchContainer.appendChild(searchIcon);
 searchContainer.appendChild(searchInput);
 let currentFilter = '';
+let _filterTimer = null;
 searchInput.addEventListener('keyup', () => {
-  currentFilter = searchInput.value.trim().toLowerCase();
-  applyFilter();
+  clearTimeout(_filterTimer);
+  _filterTimer = setTimeout(() => {
+    currentFilter = searchInput.value.trim().toLowerCase();
+    applyFilter();
+  }, 120);
 });
 
 function applyFilter() {
@@ -290,7 +294,9 @@ function renderDismissedItem(pr, dismissedData) {
     });
   };
 
-  return h('li', { class: 'pr-item pr-item-dismissed' }, [
+  const filterText = `${pr.title} ${pr.repo} ${pr.author || ''} #${pr.number} ${pr.number}`;
+
+  return h('li', { class: 'pr-item pr-item-dismissed', 'data-filter-text': filterText }, [
     dot,
     h('div', { class: 'pr-info' }, [
       h('div', { class: 'pr-title' }, link),
@@ -418,8 +424,11 @@ function render(data, isRefreshing) {
       toggle.setAttribute('aria-expanded', String(show));
     };
 
-    app.appendChild(toggle);
-    app.appendChild(dismissedList);
+    app.appendChild(h('div', { class: 'status-section-title' })); // spacer for filter logic
+    const dismissedContainer = h('div', { 'data-filter-section': 'dismissed' });
+    dismissedContainer.appendChild(toggle);
+    dismissedContainer.appendChild(dismissedList);
+    app.appendChild(dismissedContainer);
   }
 
   // Bind header buttons
