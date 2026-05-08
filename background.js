@@ -232,14 +232,7 @@ async function pollAndCompute() {
 
     // Smart notifications: only notify on status changes
     if (settings.notifications !== false) {
-      const {
-        lastNotifiedPRs = {},
-      } = await new Promise((r) =>
-        chrome.storage.local.get(
-          { lastNotifiedPRs: {} },
-          r,
-        ),
-      );
+      const { lastNotifiedPRs = {} } = await new Promise((r) => chrome.storage.local.get({ lastNotifiedPRs: {} }, r));
       const currentRedPRs = filteredResults.filter((r) => r.myStatus === 'red' && !dismissed[r.url]);
       // Skip first poll (no previous state) to avoid notifying all existing red PRs
       const isFirstPoll = Object.keys(lastNotifiedPRs).length === 0;
@@ -248,14 +241,7 @@ async function pollAndCompute() {
         : currentRedPRs.filter((pr) => {
             const prev = lastNotifiedPRs[pr.url];
             if (prev && prev === 'red') return false; // already notified
-            // notifyNewCommits filter: if false, suppress notification when reason is commit-based
-            // (This is approximated: if the PR had no status change aside from commit activity)
-            // Team filter: if onlyDirectRequests, suppress team-based incoming unless whitelisted
-            if (onlyDirectRequests && pr.myRole === 'incoming') {
-              // We can't easily distinguish direct vs team here without timeline data.
-              // The filtering is done at computeAttentionSet level instead.
-              // For now, allow all incoming through notification.
-            }
+
             return true;
           });
 
