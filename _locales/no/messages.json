@@ -240,9 +240,9 @@
     "message": "Polling"
   },
   "optDisplay": {
-    "message": "Display"
+    "message": "Visning"
   },
   "optNotificationsSection": {
-    "message": "Notifications"
+    "message": "Varsler"
   }
 }

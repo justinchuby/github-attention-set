@@ -237,12 +237,12 @@
     "message": "Ander"
   },
   "optPolling": {
-    "message": "Polling"
+    "message": "Peiling"
   },
   "optDisplay": {
-    "message": "Display"
+    "message": "Vertoon"
   },
   "optNotificationsSection": {
-    "message": "Notifications"
+    "message": "Kennisgewings"
   }
 }

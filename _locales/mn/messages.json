@@ -237,12 +237,12 @@
     "message": "Бусад"
   },
   "optPolling": {
-    "message": "Polling"
+    "message": "Санал асуулга"
   },
   "optDisplay": {
-    "message": "Display"
+    "message": "Харуулах"
   },
   "optNotificationsSection": {
-    "message": "Notifications"
+    "message": "Мэдэгдлүүд"
   }
 }

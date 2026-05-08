@@ -237,12 +237,12 @@
     "message": "Annað"
   },
   "optPolling": {
-    "message": "Polling"
+    "message": "Könnun"
   },
   "optDisplay": {
-    "message": "Display"
+    "message": "Birting"
   },
   "optNotificationsSection": {
-    "message": "Notifications"
+    "message": "Tilkynningar"
   }
 }

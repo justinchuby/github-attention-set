@@ -237,12 +237,12 @@
     "message": "ሌሎች"
   },
   "optPolling": {
-    "message": "Polling"
+    "message": "ምርመራ"
   },
   "optDisplay": {
-    "message": "Display"
+    "message": "ማሳያ"
   },
   "optNotificationsSection": {
-    "message": "Notifications"
+    "message": "ማሳወቂያዎች"
   }
 }

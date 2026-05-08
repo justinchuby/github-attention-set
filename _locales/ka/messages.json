@@ -237,12 +237,12 @@
     "message": "სხვა"
   },
   "optPolling": {
-    "message": "Polling"
+    "message": "გამოკითხვა"
   },
   "optDisplay": {
-    "message": "Display"
+    "message": "ჩვენება"
   },
   "optNotificationsSection": {
-    "message": "Notifications"
+    "message": "შეტყობინებები"
   }
 }

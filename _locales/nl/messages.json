@@ -240,9 +240,9 @@
     "message": "Polling"
   },
   "optDisplay": {
-    "message": "Display"
+    "message": "Weergave"
   },
   "optNotificationsSection": {
-    "message": "Notifications"
+    "message": "Meldingen"
   }
 }

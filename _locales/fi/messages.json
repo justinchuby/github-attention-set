@@ -237,12 +237,12 @@
     "message": "Muut"
   },
   "optPolling": {
-    "message": "Polling"
+    "message": "Kysely"
   },
   "optDisplay": {
-    "message": "Display"
+    "message": "Näyttö"
   },
   "optNotificationsSection": {
-    "message": "Notifications"
+    "message": "Ilmoitukset"
   }
 }

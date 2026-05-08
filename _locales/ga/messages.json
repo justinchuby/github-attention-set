@@ -237,12 +237,12 @@
     "message": "Eile"
   },
   "optPolling": {
-    "message": "Polling"
+    "message": "Pobail"
   },
   "optDisplay": {
-    "message": "Display"
+    "message": "Taispeáint"
   },
   "optNotificationsSection": {
-    "message": "Notifications"
+    "message": "Fógraí"
   }
 }

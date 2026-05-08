@@ -237,12 +237,12 @@
     "message": "Egyéb"
   },
   "optPolling": {
-    "message": "Polling"
+    "message": "Lekérdezés"
   },
   "optDisplay": {
-    "message": "Display"
+    "message": "Megjelenítés"
   },
   "optNotificationsSection": {
-    "message": "Notifications"
+    "message": "Értesítések"
   }
 }

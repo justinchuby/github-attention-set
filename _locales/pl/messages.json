@@ -237,12 +237,12 @@
     "message": "Inne"
   },
   "optPolling": {
-    "message": "Polling"
+    "message": "Odpytywanie"
   },
   "optDisplay": {
-    "message": "Display"
+    "message": "Wyświetlanie"
   },
   "optNotificationsSection": {
-    "message": "Notifications"
+    "message": "Powiadomienia"
   }
 }
