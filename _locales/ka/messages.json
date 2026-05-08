@@ -162,13 +162,13 @@
     "message": "ხელახლა განხილვა"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "შემომავალი"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "გამავალი"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "ნახსენები"
   },
   "muteRepo": {
     "message": "რეპოს დადუმება"

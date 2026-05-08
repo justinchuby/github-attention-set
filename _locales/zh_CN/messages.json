@@ -162,13 +162,13 @@
     "message": "重新审查"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "待审查"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "我的PR"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "被提及"
   },
   "muteRepo": {
     "message": "静音仓库"

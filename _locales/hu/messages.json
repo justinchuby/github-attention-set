@@ -162,13 +162,13 @@
     "message": "Újra átvizsgálás"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Bejövő"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Kimenő"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Megemlítve"
   },
   "muteRepo": {
     "message": "Tároló némítása"

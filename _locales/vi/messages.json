@@ -162,13 +162,13 @@
     "message": "Xem lại"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Nhận"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Gửi"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Đề cập"
   },
   "muteRepo": {
     "message": "Tắt tiếng repo"

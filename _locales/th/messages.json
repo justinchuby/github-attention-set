@@ -162,13 +162,13 @@
     "message": "รีวิวอีกครั้ง"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "ขาเข้า"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "ขาออก"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "ถูกกล่าวถึง"
   },
   "muteRepo": {
     "message": "ปิดเสียง repo"

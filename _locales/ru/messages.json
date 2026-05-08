@@ -162,13 +162,13 @@
     "message": "Повторная проверка"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Входящие"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Исходящие"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Упомянут"
   },
   "muteRepo": {
     "message": "Отключить репозиторий"

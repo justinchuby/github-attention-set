@@ -162,13 +162,13 @@
     "message": "重閱"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "所受"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "所發"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "見稱"
   },
   "muteRepo": {
     "message": "噤庫"

@@ -162,13 +162,13 @@
     "message": "Tarkista uudelleen"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Saapuvat"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Lähtevät"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Mainittu"
   },
   "muteRepo": {
     "message": "Mykistä repo"

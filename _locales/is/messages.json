@@ -162,13 +162,13 @@
     "message": "Endurskoða"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Innkomandi"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Útgangandi"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Nefnt"
   },
   "muteRepo": {
     "message": "Þagga geymslu"

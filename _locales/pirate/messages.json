@@ -162,13 +162,13 @@
     "message": "Inspect Again"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Sailin' In"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Sailin' Out"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Hailed"
   },
   "muteRepo": {
     "message": "Silence th' vessel"

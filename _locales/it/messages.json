@@ -162,13 +162,13 @@
     "message": "Ri-revisione"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "In arrivo"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "In uscita"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Menzionato"
   },
   "muteRepo": {
     "message": "Silenzia repo"

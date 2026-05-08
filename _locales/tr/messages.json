@@ -162,13 +162,13 @@
     "message": "Tekrar incele"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Gelen"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Giden"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Bahsedilen"
   },
   "muteRepo": {
     "message": "Depoyu sustur"

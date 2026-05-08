@@ -162,13 +162,13 @@
     "message": "Opnieuw beoordelen"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Inkomend"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Uitgaand"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Vermeld"
   },
   "muteRepo": {
     "message": "Repo dempen"

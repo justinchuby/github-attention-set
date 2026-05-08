@@ -162,13 +162,13 @@
     "message": "재검토"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "수신"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "발신"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "멘션"
   },
   "muteRepo": {
     "message": "저장소 음소거"

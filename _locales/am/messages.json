@@ -162,13 +162,13 @@
     "message": "እንደገና ገምግም"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "ገቢ"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "ወጪ"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "የተጠቀሰ"
   },
   "muteRepo": {
     "message": "ማከማቻ አጥፋ"

@@ -162,13 +162,13 @@
     "message": "Erneut prüfen"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Eingehend"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Ausgehend"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Erwähnt"
   },
   "muteRepo": {
     "message": "Repo stummschalten"

@@ -162,13 +162,13 @@
     "message": "Tinjau ulang"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Masuk"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Keluar"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Disebut"
   },
   "muteRepo": {
     "message": "Bisukan repo"

@@ -162,13 +162,13 @@
     "message": "Gjennomgå på nytt"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Innkommende"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Utgående"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Nevnt"
   },
   "muteRepo": {
     "message": "Demp repo"

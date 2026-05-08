@@ -162,13 +162,13 @@
     "message": "Дахин шалгах"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Ирсэн"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Явсан"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Дурдсан"
   },
   "muteRepo": {
     "message": "Репо хаах"

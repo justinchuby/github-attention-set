@@ -162,13 +162,13 @@
     "message": "Herbesoek"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Inkomend"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Uitgaand"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Genoem"
   },
   "muteRepo": {
     "message": "Demp repo"

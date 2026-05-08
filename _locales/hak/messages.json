@@ -162,13 +162,13 @@
     "message": "重新審查"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "愛看个"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "𠊎个PR"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "分人講到"
   },
   "muteRepo": {
     "message": "靜音倉庫"

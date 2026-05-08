@@ -162,13 +162,13 @@
     "message": "Ponowna recenzja"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Przychodzące"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Wychodzące"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Wspomniane"
   },
   "muteRepo": {
     "message": "Wycisz repozytorium"

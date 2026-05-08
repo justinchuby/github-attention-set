@@ -162,13 +162,13 @@
     "message": "Athbhreithniú"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "Isteach"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "Amach"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "Luaite"
   },
   "muteRepo": {
     "message": "Balbhaigh repo"

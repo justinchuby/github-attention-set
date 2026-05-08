@@ -162,13 +162,13 @@
     "message": "再レビュー"
   },
   "incoming": {
-    "message": "Incoming"
+    "message": "受信"
   },
   "outgoing": {
-    "message": "Outgoing"
+    "message": "送信"
   },
   "mentioned": {
-    "message": "Mentioned"
+    "message": "メンション"
   },
   "muteRepo": {
     "message": "リポジトリをミュート"
