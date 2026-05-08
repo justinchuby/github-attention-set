@@ -106,6 +106,8 @@ async function pollSingleToken(tokenEntry, settings, fetcher, etagCache = null) 
         author: pr.user.login,
         attentionSet: attention.set,
         myStatus: attention.myStatus,
+        myRole: attention.myRole,
+        incomingDetail: attention.incomingDetail,
         lastEventAt,
         account: name || username,
       };

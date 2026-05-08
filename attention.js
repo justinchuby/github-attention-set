@@ -290,5 +290,79 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
     }
   }
 
-  return { set, myStatus, prState, myReason };
+  // --- Step 4: Compute myRole ---
+  let myRole = 'other';
+  if (me === author) {
+    myRole = 'outgoing';
+  } else {
+    // Check if me was ever review_requested (direct or current)
+    let wasRequested = requestedReviewers.has(me);
+    if (!wasRequested) {
+      for (const ev of timeline) {
+        const t = ev.event || ev.__type;
+        if (t === 'review_requested' && ev.requested_reviewer?.login === me) {
+          wasRequested = true;
+          break;
+        }
+      }
+    }
+    if (wasRequested) {
+      myRole = 'incoming';
+    } else if (mentioned.has(me)) {
+      myRole = 'mentioned';
+    }
+  }
+
+  // --- Step 5: Compute incomingDetail for incoming PRs ---
+  let incomingDetail = null;
+  if (myRole === 'incoming') {
+    let lastMyReviewTime = 0;
+    let lastReviewRequestTime = 0;
+    let hasSubmittedReview = false;
+    let wasRerequested = false;
+
+    for (const ev of timeline) {
+      const t = ev.event || ev.__type;
+      const ts = new Date(ev.created_at || ev.submitted_at || 0).getTime();
+      if (t === 'review_requested' && ev.requested_reviewer?.login === me) {
+        if (hasSubmittedReview && ts > lastMyReviewTime) {
+          wasRerequested = true;
+        }
+        lastReviewRequestTime = ts;
+      }
+      if (t === 'reviewed' && (ev.actor?.login === me || ev.user?.login === me)) {
+        lastMyReviewTime = ts;
+        hasSubmittedReview = true;
+      }
+    }
+
+    if (wasRerequested && lastReviewRequestTime > lastMyReviewTime) {
+      incomingDetail = 'rereview';
+    } else if (hasSubmittedReview) {
+      // Check if author pushed commits or replied after my last review
+      let authorActivityAfterReview = false;
+      for (const ev of timeline) {
+        const t = ev.event || ev.__type;
+        const ts = new Date(ev.created_at || ev.submitted_at || 0).getTime();
+        const actor = ev.actor?.login || ev.user?.login || '';
+        if (ts > lastMyReviewTime && actor === author) {
+          if (t === 'committed' || t === 'head_ref_force_pushed' || t === 'reviewed' ||
+              (ev.body && t !== 'reviewed')) {
+            authorActivityAfterReview = true;
+            break;
+          }
+        }
+      }
+      if (authorActivityAfterReview) {
+        incomingDetail = 'updated';
+      } else {
+        // Already reviewed, no new activity — not really needing attention
+        incomingDetail = null;
+      }
+    } else {
+      incomingDetail = 'new';
+    }
+  }
+
+  return { set, myStatus, prState, myReason, myRole, incomingDetail };
 }

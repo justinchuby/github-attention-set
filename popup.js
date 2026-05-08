@@ -154,6 +154,32 @@ function restorePR(prUrl) {
   });
 }
 
+function muteRepo(repo) {
+  chrome.storage.local.get({ mutedRepos: [] }, (data) => {
+    const list = data.mutedRepos || [];
+    if (!list.includes(repo)) list.push(repo);
+    chrome.storage.local.set({ mutedRepos: list }, () => {
+      chrome.runtime.sendMessage({ type: 'updateBadge' });
+      chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
+        if (fresh && fresh.results) render(fresh, false);
+      });
+    });
+  });
+}
+
+function muteOwner(owner) {
+  chrome.storage.local.get({ mutedOwners: [] }, (data) => {
+    const list = data.mutedOwners || [];
+    if (!list.includes(owner)) list.push(owner);
+    chrome.storage.local.set({ mutedOwners: list }, () => {
+      chrome.runtime.sendMessage({ type: 'updateBadge' });
+      chrome.runtime.sendMessage({ type: 'getData' }, (fresh) => {
+        if (fresh && fresh.results) render(fresh, false);
+      });
+    });
+  });
+}
+
 function groupByRepo(prs) {
   const map = new Map();
   for (const pr of prs) {
@@ -192,7 +218,6 @@ function renderPRItem(pr, username, showRepo) {
   if (showRepo) metaParts.push(pr.repo);
   metaParts.push(`#${pr.number}`);
 
-  
   const stateLabels = {
     DRAFT: msg('stateDraft'),
     REVIEWING: msg('stateReview'),
@@ -205,7 +230,19 @@ function renderPRItem(pr, username, showRepo) {
     CLOSED: 'Closed',
   };
 
-  const stateLabel = stateLabels[pr.myReason || pr.prState] || '';
+  const incomingDetailLabels = {
+    'new': msg('stateNew'),
+    'updated': msg('stateUpdated'),
+    'rereview': msg('stateRereview'),
+  };
+
+  // Use incoming detail label if applicable
+  let stateLabel;
+  if (pr.myRole === 'incoming' && pr.incomingDetail && incomingDetailLabels[pr.incomingDetail]) {
+    stateLabel = incomingDetailLabels[pr.incomingDetail];
+  } else {
+    stateLabel = stateLabels[pr.myReason || pr.prState] || '';
+  }
   const metaChildren = [showRepo ? `${pr.repo}#${pr.number}` : `#${pr.number}`, pr.author ? [' · by ', h('a', { href: `https://github.com/${pr.author}`, target: '_blank', style: { color: 'inherit' } }, pr.author)] : ''];
   // state badge rendered separately below
   if ((window.__multiAccount ? pr.account : null)) {
@@ -242,6 +279,42 @@ function renderPRItem(pr, username, showRepo) {
     dismissPR(pr.url, pr.lastEventAt || 0);
   };
 
+  // Mute menu button
+  const [owner, repoName] = pr.repo.split('/');
+  const muteBtn = h('button', {
+    class: 'dismiss-btn mute-btn',
+    title: 'More options',
+    'aria-label': 'More options',
+    style: { fontSize: '16px', padding: '2px 4px' }
+  }, '⋮');
+  muteBtn.onclick = (e) => {
+    e.stopPropagation();
+    // Remove any existing mute menu
+    document.querySelectorAll('.mute-menu').forEach(m => m.remove());
+    const menu = h('div', { class: 'mute-menu' }, [
+      h('button', { class: 'mute-menu-item' }, `${msg('muteRepo')}: ${pr.repo}`),
+      h('button', { class: 'mute-menu-item' }, `${msg('muteOwner')} ${owner}`)
+    ]);
+    menu.children[0].onclick = (ev) => {
+      ev.stopPropagation();
+      muteRepo(pr.repo);
+      menu.remove();
+    };
+    menu.children[1].onclick = (ev) => {
+      ev.stopPropagation();
+      muteOwner(owner);
+      menu.remove();
+    };
+    muteBtn.parentElement.appendChild(menu);
+    // Close on outside click
+    setTimeout(() => {
+      const closer = (evt) => {
+        if (!menu.contains(evt.target)) { menu.remove(); document.removeEventListener('click', closer); }
+      };
+      document.addEventListener('click', closer);
+    }, 0);
+  };
+
   const filterText = `${pr.title} ${pr.repo} ${pr.author} #${pr.number} ${pr.number}`;
 
   return h('li', { class: 'pr-item', 'data-filter-text': filterText }, [
@@ -265,7 +338,8 @@ function renderPRItem(pr, username, showRepo) {
         h('span', { class: 'pr-time' }, timeAgo(pr.lastEventAt)),
         stateLabel ? h('span', { class: 'pr-state-badge' }, stateLabel) : null,
       ]),
-    dismissBtn
+    dismissBtn,
+    muteBtn
   ]);
 }
 
@@ -324,7 +398,7 @@ function renderRepoGroups(groups, username) {
   return frag;
 }
 
-function render(data, isRefreshing) {
+async function render(data, isRefreshing) {
   if (!data || !data.results) {
     showSpinner();
     return;
@@ -339,14 +413,33 @@ function render(data, isRefreshing) {
   const filterList = filterData.repoFilterList || '';
   results = applyRepoFilter(results, filterMode, filterList);
 
+  // Apply mute filter
+  const mutedData = await new Promise(r => chrome.storage.local.get({ mutedRepos: [], mutedOwners: [] }, r));
+  const mutedRepoSet = new Set((mutedData.mutedRepos || []).map(r => r.toLowerCase()));
+  const mutedOwnerSet = new Set((mutedData.mutedOwners || []).map(o => o.toLowerCase()));
+  if (mutedRepoSet.size > 0 || mutedOwnerSet.size > 0) {
+    results = results.filter(r => {
+      const repoLower = r.repo.toLowerCase();
+      const owner = repoLower.split('/')[0];
+      return !mutedRepoSet.has(repoLower) && !mutedOwnerSet.has(owner);
+    });
+  }
+
   const activePRs = results.filter(pr => !dismissed[pr.url]);
   const dismissedPRs = results.filter(pr => !!dismissed[pr.url]);
 
   const needsAttention = activePRs.filter(r => r.myStatus === 'red').sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
   const others = activePRs.filter(r => r.myStatus !== 'red').sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
 
-  const needsAttentionGroups = window.__groupByRepo ? groupByRepo(needsAttention) : [{ repo: "", prs: needsAttention }];
-  const othersGroups = window.__groupByRepo ? groupByRepo(others) : [{ repo: '', prs: others }];
+  // Group by role for sub-sections
+  function groupByRole(prs) {
+    const incoming = prs.filter(p => p.myRole === 'incoming');
+    const outgoing = prs.filter(p => p.myRole === 'outgoing');
+    const mentioned = prs.filter(p => p.myRole === 'mentioned');
+    const other = prs.filter(p => !p.myRole || p.myRole === 'other');
+    return { incoming, outgoing, mentioned, other };
+  }
+
 
   // Build header
   const refreshBtn = h('button', { class: 'refresh-btn', id: 'refresh', 'aria-label': msg('refresh') });
@@ -384,13 +477,50 @@ function render(data, isRefreshing) {
     if (needsAttention.length > 0) {
       app.appendChild(h('div', { class: 'status-section-title attention' }, `${msg('needsAttention')} (${needsAttention.length})`));
       const attentionContainer = h('div', { 'data-filter-section': 'attention' });
-      attentionContainer.appendChild(renderRepoGroups(needsAttentionGroups, username));
+      const roles = groupByRole(needsAttention);
+      const roleSections = [
+        { label: `📥 ${msg('incoming')}`, prs: roles.incoming },
+        { label: `📤 ${msg('outgoing')}`, prs: roles.outgoing },
+        { label: `📌 ${msg('mentioned')}`, prs: roles.mentioned },
+      ];
+      let hasSubSection = roleSections.some(s => s.prs.length > 0);
+      for (const sec of roleSections) {
+        if (sec.prs.length === 0) continue;
+        if (hasSubSection) {
+          attentionContainer.appendChild(h('div', { class: 'role-subsection-title' }, `${sec.label} (${sec.prs.length})`));
+        }
+        const groups = window.__groupByRepo ? groupByRepo(sec.prs) : [{ repo: '', prs: sec.prs }];
+        attentionContainer.appendChild(renderRepoGroups(groups, username));
+      }
+      if (roles.other.length > 0) {
+        const groups = window.__groupByRepo ? groupByRepo(roles.other) : [{ repo: '', prs: roles.other }];
+        attentionContainer.appendChild(renderRepoGroups(groups, username));
+      }
       app.appendChild(attentionContainer);
     }
     if (others.length > 0) {
       app.appendChild(h('div', { class: 'status-section-title others' }, `${msg('waitingOnOthers')} (${others.length})`));
       const othersContainer = h('div', { 'data-filter-section': 'others' });
-      othersContainer.appendChild(renderRepoGroups(othersGroups, username));
+      const roles = groupByRole(others);
+      const roleSections = [
+        { label: `📥 ${msg('incoming')}`, prs: roles.incoming },
+        { label: `📤 ${msg('outgoing')}`, prs: roles.outgoing },
+      ];
+      let hasSubSection = roleSections.some(s => s.prs.length > 0);
+      for (const sec of roleSections) {
+        if (sec.prs.length === 0) continue;
+        if (hasSubSection) {
+          othersContainer.appendChild(h('div', { class: 'role-subsection-title' }, `${sec.label} (${sec.prs.length})`));
+        }
+        const groups = window.__groupByRepo ? groupByRepo(sec.prs) : [{ repo: '', prs: sec.prs }];
+        othersContainer.appendChild(renderRepoGroups(groups, username));
+      }
+      // mentioned + other go ungrouped
+      const rest = [...roles.mentioned, ...roles.other];
+      if (rest.length > 0) {
+        const groups = window.__groupByRepo ? groupByRepo(rest) : [{ repo: '', prs: rest }];
+        othersContainer.appendChild(renderRepoGroups(groups, username));
+      }
       app.appendChild(othersContainer);
     }
   }

@@ -74,7 +74,7 @@ function migrateTokens(stored) {
 }
 
 // --- Load ---
-chrome.storage.local.get({ token: '', tokens: null, debounceMinutes: 10, pollMinutes: 2, notifications: true, groupByRepo: false }, (s) => {
+chrome.storage.local.get({ token: '', tokens: null, debounceMinutes: 10, pollMinutes: 2, notifications: true, groupByRepo: false, notifyNewCommits: false, onlyDirectRequests: false, whitelistedTeams: [] }, (s) => {
   tokens = migrateTokens(s);
   if (tokens.length === 0) tokens.push({ name: '', token: '' });
   renderTokenList();
@@ -82,11 +82,15 @@ chrome.storage.local.get({ token: '', tokens: null, debounceMinutes: 10, pollMin
   pollEl.value = s.pollMinutes;
   notifEl.checked = s.notifications;
   document.getElementById('groupByRepo').checked = s.groupByRepo === true;
+  document.getElementById('notifyNewCommits').checked = s.notifyNewCommits === true;
+  document.getElementById('onlyDirectRequests').checked = s.onlyDirectRequests === true;
+  document.getElementById('whitelistedTeams').value = (s.whitelistedTeams || []).join('\n');
 });
 
 // --- Save ---
 saveBtn.onclick = () => {
   const validTokens = tokens.filter(t => t.token.trim());
+  const whitelistedTeamsVal = document.getElementById('whitelistedTeams').value.split('\n').map(s => s.trim()).filter(Boolean);
   const settings = {
     tokens: validTokens,
     token: '',
@@ -94,6 +98,9 @@ saveBtn.onclick = () => {
     pollMinutes: parseInt(pollEl.value) || 2,
     notifications: notifEl.checked,
     groupByRepo: document.getElementById('groupByRepo').checked,
+    notifyNewCommits: document.getElementById('notifyNewCommits').checked,
+    onlyDirectRequests: document.getElementById('onlyDirectRequests').checked,
+    whitelistedTeams: whitelistedTeamsVal,
   };
   chrome.storage.local.set(settings, () => {
     savedEl.style.display = 'inline';
@@ -138,3 +145,39 @@ saveFilterBtn.onclick = () => {
     setTimeout(() => savedFilterEl.style.display = 'none', 2000);
   });
 };
+
+// --- Muted repos/owners ---
+function renderMutedList() {
+  const mutedListEl = document.getElementById('muted-list');
+  if (!mutedListEl) return;
+  chrome.storage.local.get({ mutedRepos: [], mutedOwners: [] }, (data) => {
+    mutedListEl.textContent = '';
+    const repos = data.mutedRepos || [];
+    const owners = data.mutedOwners || [];
+    if (repos.length === 0 && owners.length === 0) {
+      mutedListEl.appendChild(h('div', { style: { fontSize: '13px', color: '#57606a', padding: '8px 0' } }, msg('optNoMuted')));
+      return;
+    }
+    for (const repo of repos) {
+      const btn = h('button', { style: { background: '#f6f8fa', color: '#24292f', border: '1px solid #d0d7de', marginRight: '4px', marginBottom: '4px', padding: '4px 8px', borderRadius: '4px', fontSize: '12px', cursor: 'pointer' } }, `📦 ${repo} ✕`);
+      btn.onclick = () => {
+        chrome.storage.local.get({ mutedRepos: [] }, (d) => {
+          const list = (d.mutedRepos || []).filter(r => r !== repo);
+          chrome.storage.local.set({ mutedRepos: list }, renderMutedList);
+        });
+      };
+      mutedListEl.appendChild(btn);
+    }
+    for (const owner of owners) {
+      const btn = h('button', { style: { background: '#f6f8fa', color: '#24292f', border: '1px solid #d0d7de', marginRight: '4px', marginBottom: '4px', padding: '4px 8px', borderRadius: '4px', fontSize: '12px', cursor: 'pointer' } }, `👤 ${owner} ✕`);
+      btn.onclick = () => {
+        chrome.storage.local.get({ mutedOwners: [] }, (d) => {
+          const list = (d.mutedOwners || []).filter(o => o !== owner);
+          chrome.storage.local.set({ mutedOwners: list }, renderMutedList);
+        });
+      };
+      mutedListEl.appendChild(btn);
+    }
+  });
+}
+renderMutedList();

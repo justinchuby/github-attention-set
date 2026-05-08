@@ -96,6 +96,17 @@
   <div style="margin-top:12px;">
     <label style="display:inline-flex;align-items:center;gap:6px;font-weight:normal;"><input type="checkbox" id="groupByRepo"> <span data-i18n="optGroupByRepo">Group PRs by repository</span></label>
   </div>
+  <div style="margin-top:12px;">
+    <label style="display:inline-flex;align-items:center;gap:6px;font-weight:normal;"><input type="checkbox" id="notifyNewCommits"> <span data-i18n="optNotifyNewCommits">Notify when PR author pushes new commits</span></label>
+  </div>
+  <div style="margin-top:12px;">
+    <label style="display:inline-flex;align-items:center;gap:6px;font-weight:normal;"><input type="checkbox" id="onlyDirectRequests"> <span data-i18n="optOnlyDirectRequests">Only notify for direct review requests (ignore team requests)</span></label>
+  </div>
+  <div style="margin-top:8px;margin-left:24px;">
+    <label for="whitelistedTeams" data-i18n="optWhitelistedTeams">Whitelisted teams (still notify even with above checked):</label>
+    <textarea id="whitelistedTeams" rows="3" style="width:100%;padding:8px;border:1px solid #d0d7de;border-radius:6px;font-size:13px;font-family:monospace;resize:vertical;" placeholder="my-org/my-team"></textarea>
+    <div class="hint" data-i18n="optWhitelistedTeamsHint">One team slug per line (e.g. my-org/my-team)</div>
+  </div>
 
   <div class="row" style="margin-top:24px;">
     <button id="save" data-i18n="optSave">Save Settings</button>
@@ -120,6 +131,12 @@
     <button id="saveFilter" data-i18n="optSaveFilter">Save Filter</button>
     <span class="saved" id="savedFilter" data-i18n="optSaved">✓ Saved!</span>
   </div>
+
+  <hr style="margin-top:32px;border:none;border-top:1px solid #d0d7de;">
+
+  <h2 data-i18n="optMuted">Muted Repos / Owners</h2>
+  <div class="hint" style="margin-bottom:8px;" data-i18n="optMutedHint">Muted repos and owners are hidden from the attention set and badge count.</div>
+  <div id="muted-list"></div>
 
   <script src="options.js" type="module"></script>
   <div style="margin-top:24px;text-align:center;font-size:11px;color:#57606a;">

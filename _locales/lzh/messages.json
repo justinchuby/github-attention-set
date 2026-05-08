@@ -151,5 +151,53 @@
   },
   "tokenHintFull": {
     "message": "創一細粒令牌，授 Pull requests → 閱，Issues → 閱"
+  },
+  "stateNew": {
+    "message": "New"
+  },
+  "stateUpdated": {
+    "message": "Updated"
+  },
+  "stateRereview": {
+    "message": "Re-review"
+  },
+  "incoming": {
+    "message": "Incoming"
+  },
+  "outgoing": {
+    "message": "Outgoing"
+  },
+  "mentioned": {
+    "message": "Mentioned"
+  },
+  "muteRepo": {
+    "message": "Mute this repo"
+  },
+  "muteOwner": {
+    "message": "Mute all from"
+  },
+  "optMuted": {
+    "message": "Muted Repos / Owners"
+  },
+  "optMutedHint": {
+    "message": "Muted repos and owners are hidden from the attention set and badge count."
+  },
+  "optUnmute": {
+    "message": "Unmute"
+  },
+  "optNoMuted": {
+    "message": "Nothing muted."
+  },
+  "optNotifyNewCommits": {
+    "message": "Notify when PR author pushes new commits"
+  },
+  "optOnlyDirectRequests": {
+    "message": "Only notify for direct review requests (ignore team requests)"
+  },
+  "optWhitelistedTeams": {
+    "message": "Whitelisted teams (still notify even with above checked):"
+  },
+  "optWhitelistedTeamsHint": {
+    "message": "One team slug per line (e.g. my-org/my-team)"
   }
 }
