@@ -628,10 +628,15 @@ async function render(data, _isRefreshing) {
         const groups = window.__groupByRepo ? groupByRepo(sec.prs) : [{ repo: '', prs: sec.prs }];
         othersContainer.appendChild(renderRepoGroups(groups, username));
       }
-      // mentioned + other go ungrouped
-      const rest = [...roles.mentioned, ...roles.other];
-      if (rest.length > 0) {
-        const groups = window.__groupByRepo ? groupByRepo(rest) : [{ repo: '', prs: rest }];
+      if (roles.mentioned.length > 0) {
+        othersContainer.appendChild(
+          roleHeader({ label: 'mentioned', labelText: msg('mentioned'), prs: roles.mentioned }),
+        );
+        const groups = window.__groupByRepo ? groupByRepo(roles.mentioned) : [{ repo: '', prs: roles.mentioned }];
+        othersContainer.appendChild(renderRepoGroups(groups, username));
+      }
+      if (roles.other.length > 0) {
+        const groups = window.__groupByRepo ? groupByRepo(roles.other) : [{ repo: '', prs: roles.other }];
         othersContainer.appendChild(renderRepoGroups(groups, username));
       }
       app.appendChild(othersContainer);
