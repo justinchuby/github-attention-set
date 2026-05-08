@@ -58,7 +58,12 @@ describe('migrateTokens', () => {
 });
 
 describe('Integration: poll()', () => {
-  const baseSettings = { tokens: [{ name: 'Personal', token: 'ghp_test' }], debounceMinutes: 10, pollMinutes: 2, notifications: true };
+  const baseSettings = {
+    tokens: [{ name: 'Personal', token: 'ghp_test' }],
+    debounceMinutes: 10,
+    pollMinutes: 2,
+    notifications: true,
+  };
 
   it('1. Full poll flow: 3 PRs with different timelines → correct attention set', async () => {
     const fetcher = createMockFetcher({
@@ -68,16 +73,27 @@ describe('Integration: poll()', () => {
           makePR(1, 101, 'org', 'repoA', 'alice'),
           makePR(2, 202, 'org', 'repoB', 'bob'),
           makePR(3, 303, 'org', 'repoC', 'me'),
-        ]
+        ],
       },
       '/repos/org/repoA/issues/101/timeline': [
         { event: 'reviewed', actor: { login: 'me' }, state: 'approved', submitted_at: '2026-05-05T10:00:00Z' },
       ],
       '/repos/org/repoB/issues/202/timeline': [
-        { event: 'review_requested', actor: { login: 'bob' }, requested_reviewer: { login: 'me' }, created_at: '2026-05-05T11:00:00Z' },
+        {
+          event: 'review_requested',
+          actor: { login: 'bob' },
+          requested_reviewer: { login: 'me' },
+          created_at: '2026-05-05T11:00:00Z',
+        },
       ],
       '/repos/org/repoC/issues/303/timeline': [
-        { event: 'reviewed', actor: { login: 'reviewer1' }, user: { login: 'reviewer1' }, state: 'commented', submitted_at: new Date(Date.now() - 3 * 60 * 1000).toISOString() },
+        {
+          event: 'reviewed',
+          actor: { login: 'reviewer1' },
+          user: { login: 'reviewer1' },
+          state: 'commented',
+          submitted_at: new Date(Date.now() - 3 * 60 * 1000).toISOString(),
+        },
       ],
     });
 
@@ -86,15 +102,15 @@ describe('Integration: poll()', () => {
     expect(result.username).toBe('me');
     expect(result.results).toHaveLength(3);
 
-    const r1 = result.results.find(r => r.number === 101);
+    const r1 = result.results.find((r) => r.number === 101);
     expect(r1.attentionSet).toHaveProperty('alice', 'red');
     expect(r1.myStatus).toBe('green');
 
-    const r2 = result.results.find(r => r.number === 202);
+    const r2 = result.results.find((r) => r.number === 202);
     expect(r2.attentionSet).toHaveProperty('me', 'red');
     expect(r2.myStatus).toBe('red');
 
-    const r3 = result.results.find(r => r.number === 303);
+    const r3 = result.results.find((r) => r.number === 303);
     expect(r3.myStatus).toBe('yellow');
   });
 
@@ -109,7 +125,7 @@ describe('Integration: poll()', () => {
       if (url.includes('/timeline')) {
         inflight++;
         concurrentMax = Math.max(concurrentMax, inflight);
-        await new Promise(r => setTimeout(r, 10));
+        await new Promise((r) => setTimeout(r, 10));
         inflight--;
         return { ok: true, json: async () => [] };
       }
@@ -124,16 +140,23 @@ describe('Integration: poll()', () => {
     const fetcher = createMockFetcher({
       '/user': { login: 'me' },
       '/search/issues': {
-        items: [
-          makePR(1, 101, 'org', 'repo', 'alice'),
-          makePR(2, 202, 'org', 'repo', 'bob'),
-        ]
+        items: [makePR(1, 101, 'org', 'repo', 'alice'), makePR(2, 202, 'org', 'repo', 'bob')],
       },
       '/repos/org/repo/issues/101/timeline': [
-        { event: 'review_requested', actor: { login: 'alice' }, requested_reviewer: { login: 'me' }, created_at: '2026-05-05T10:00:00Z' },
+        {
+          event: 'review_requested',
+          actor: { login: 'alice' },
+          requested_reviewer: { login: 'me' },
+          created_at: '2026-05-05T10:00:00Z',
+        },
       ],
       '/repos/org/repo/issues/202/timeline': [
-        { event: 'review_requested', actor: { login: 'bob' }, requested_reviewer: { login: 'me' }, created_at: '2026-05-05T10:00:00Z' },
+        {
+          event: 'review_requested',
+          actor: { login: 'bob' },
+          requested_reviewer: { login: 'me' },
+          created_at: '2026-05-05T10:00:00Z',
+        },
       ],
     });
 
@@ -147,11 +170,23 @@ describe('Integration: poll()', () => {
     const fetcher = createMockFetcher({
       '/user': { login: 'me' },
       '/search/issues': {
-        items: [makePR(1, 101, 'org', 'repo', 'alice')]
+        items: [makePR(1, 101, 'org', 'repo', 'alice')],
       },
       '/repos/org/repo/issues/101/timeline': [
-        { event: 'commented', actor: { login: 'dependabot[bot]' }, user: { login: 'dependabot[bot]' }, created_at: '2026-05-04T10:00:00Z', body: '@me please review' },
-        { event: 'commented', actor: { login: 'renovate' }, user: { login: 'renovate' }, created_at: '2026-05-04T10:01:00Z', body: '' },
+        {
+          event: 'commented',
+          actor: { login: 'dependabot[bot]' },
+          user: { login: 'dependabot[bot]' },
+          created_at: '2026-05-04T10:00:00Z',
+          body: '@me please review',
+        },
+        {
+          event: 'commented',
+          actor: { login: 'renovate' },
+          user: { login: 'renovate' },
+          created_at: '2026-05-04T10:01:00Z',
+          body: '',
+        },
       ],
     });
 
@@ -165,16 +200,23 @@ describe('Integration: poll()', () => {
     const fetcher = createMockFetcher({
       '/user': { login: 'me' },
       '/search/issues': {
-        items: [
-          makePR(1, 1, 'org', 'keep', 'alice'),
-          makePR(2, 2, 'org', 'skip', 'bob'),
-        ]
+        items: [makePR(1, 1, 'org', 'keep', 'alice'), makePR(2, 2, 'org', 'skip', 'bob')],
       },
       '/repos/org/keep/issues/1/timeline': [
-        { event: 'review_requested', actor: { login: 'alice' }, requested_reviewer: { login: 'me' }, created_at: '2026-05-05T10:00:00Z' },
+        {
+          event: 'review_requested',
+          actor: { login: 'alice' },
+          requested_reviewer: { login: 'me' },
+          created_at: '2026-05-05T10:00:00Z',
+        },
       ],
       '/repos/org/skip/issues/2/timeline': [
-        { event: 'review_requested', actor: { login: 'bob' }, requested_reviewer: { login: 'me' }, created_at: '2026-05-05T10:00:00Z' },
+        {
+          event: 'review_requested',
+          actor: { login: 'bob' },
+          requested_reviewer: { login: 'me' },
+          created_at: '2026-05-05T10:00:00Z',
+        },
       ],
     });
 
@@ -197,10 +239,16 @@ describe('Integration: poll()', () => {
     const fetcher = createMockFetcher({
       '/user': { login: 'me' },
       '/search/issues': {
-        items: [makePR(1, 101, 'org', 'repo', 'me')]
+        items: [makePR(1, 101, 'org', 'repo', 'me')],
       },
       '/repos/org/repo/issues/101/timeline': [
-        { event: 'reviewed', actor: { login: 'reviewer' }, user: { login: 'reviewer' }, state: 'commented', submitted_at: commentTime },
+        {
+          event: 'reviewed',
+          actor: { login: 'reviewer' },
+          user: { login: 'reviewer' },
+          state: 'commented',
+          submitted_at: commentTime,
+        },
       ],
     });
 
@@ -239,15 +287,19 @@ describe('Integration: poll()', () => {
       }
       if (url.includes('/search/issues')) {
         if (token === 'ghp_1') {
-          return { ok: true, json: async () => ({ items: [
-            makePR(1, 101, 'org', 'repo', 'alice'),
-            makePR(2, 102, 'org', 'repo', 'bob'),
-          ]}) };
+          return {
+            ok: true,
+            json: async () => ({
+              items: [makePR(1, 101, 'org', 'repo', 'alice'), makePR(2, 102, 'org', 'repo', 'bob')],
+            }),
+          };
         } else {
-          return { ok: true, json: async () => ({ items: [
-            makePR(1, 101, 'org', 'repo', 'alice'),
-            makePR(3, 103, 'org', 'repo', 'charlie'),
-          ]}) };
+          return {
+            ok: true,
+            json: async () => ({
+              items: [makePR(1, 101, 'org', 'repo', 'alice'), makePR(3, 103, 'org', 'repo', 'charlie')],
+            }),
+          };
         }
       }
       if (url.includes('/timeline')) {
@@ -270,7 +322,7 @@ describe('Integration: poll()', () => {
     expect(result.results).toHaveLength(3);
     expect(result.usernames).toContain('user1');
     expect(result.usernames).toContain('user2');
-    const urls = result.results.map(r => r.url);
+    const urls = result.results.map((r) => r.url);
     expect(new Set(urls).size).toBe(3);
   });
 
@@ -284,14 +336,20 @@ describe('Integration: poll()', () => {
         return { ok: true, json: async () => ({ login: 'user1' }) };
       }
       if (url.includes('/search/issues')) {
-        return { ok: true, json: async () => ({ items: [
-          makePR(1, 101, 'org', 'repo', 'alice'),
-        ]}) };
+        return { ok: true, json: async () => ({ items: [makePR(1, 101, 'org', 'repo', 'alice')] }) };
       }
       if (url.includes('/timeline')) {
-        return { ok: true, json: async () => [
-          { event: 'review_requested', actor: { login: 'alice' }, requested_reviewer: { login: 'user1' }, created_at: '2026-05-05T10:00:00Z' },
-        ] };
+        return {
+          ok: true,
+          json: async () => [
+            {
+              event: 'review_requested',
+              actor: { login: 'alice' },
+              requested_reviewer: { login: 'user1' },
+              created_at: '2026-05-05T10:00:00Z',
+            },
+          ],
+        };
       }
       return { ok: true, json: async () => ({}) };
     });
@@ -322,7 +380,12 @@ describe('ETag caching', () => {
 
   it('13. Uses cached data on 304 response', async () => {
     const cachedTimeline = [
-      { event: 'review_requested', actor: { login: 'alice' }, requested_reviewer: { login: 'me' }, created_at: '2026-05-05T10:00:00Z' },
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_reviewer: { login: 'me' },
+        created_at: '2026-05-05T10:00:00Z',
+      },
     ];
     const etagCache = new Map();
     etagCache.set('https://api.github.com/repos/org/repo/issues/101/timeline?per_page=100&page=1', {
@@ -332,7 +395,12 @@ describe('ETag caching', () => {
 
     const fetcher = vi.fn(async (url, opts) => {
       if (url.includes('/user')) return { ok: true, json: async () => ({ login: 'me' }), headers: new Headers() };
-      if (url.includes('/search/issues')) return { ok: true, json: async () => ({ items: [makePR(1, 101, 'org', 'repo', 'alice')] }), headers: new Headers() };
+      if (url.includes('/search/issues'))
+        return {
+          ok: true,
+          json: async () => ({ items: [makePR(1, 101, 'org', 'repo', 'alice')] }),
+          headers: new Headers(),
+        };
       if (url.includes('/timeline')) {
         // Verify If-None-Match was sent
         expect(opts.headers['If-None-Match']).toBe('"abc123"');
@@ -349,12 +417,22 @@ describe('ETag caching', () => {
   it('14. Stores etag from 200 response and reuses on next poll', async () => {
     const etagCache = new Map();
     const timeline = [
-      { event: 'review_requested', actor: { login: 'alice' }, requested_reviewer: { login: 'me' }, created_at: '2026-05-05T10:00:00Z' },
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_reviewer: { login: 'me' },
+        created_at: '2026-05-05T10:00:00Z',
+      },
     ];
 
     const fetcher = vi.fn(async (url) => {
       if (url.includes('/user')) return { ok: true, json: async () => ({ login: 'me' }), headers: new Headers() };
-      if (url.includes('/search/issues')) return { ok: true, json: async () => ({ items: [makePR(1, 101, 'org', 'repo', 'alice')] }), headers: new Headers() };
+      if (url.includes('/search/issues'))
+        return {
+          ok: true,
+          json: async () => ({ items: [makePR(1, 101, 'org', 'repo', 'alice')] }),
+          headers: new Headers(),
+        };
       if (url.includes('/timeline')) {
         return { ok: true, status: 200, json: async () => timeline, headers: new Headers([['etag', '"xyz789"']]) };
       }
@@ -388,11 +466,7 @@ describe('ETag caching', () => {
 });
 
 describe('applyRepoFilter', () => {
-  const results = [
-    { repo: 'org/alpha' },
-    { repo: 'org/beta' },
-    { repo: 'other/gamma' },
-  ];
+  const results = [{ repo: 'org/alpha' }, { repo: 'org/beta' }, { repo: 'other/gamma' }];
 
   it('mode=all returns everything', () => {
     expect(applyRepoFilter(results, 'all', 'org/alpha')).toEqual(results);

@@ -34,7 +34,11 @@ describe('h() DOM helper', () => {
 
   it('adds event listeners for on* attrs', () => {
     let clicked = false;
-    const el = h('button', { onclick: () => { clicked = true; } });
+    const el = h('button', {
+      onclick: () => {
+        clicked = true;
+      },
+    });
     el.click();
     expect(clicked).toBe(true);
   });
@@ -64,13 +68,7 @@ describe('h() DOM helper', () => {
   });
 
   it('appends array of mixed children', () => {
-    const el = h('div', null, [
-      'text',
-      h('span', null, 'inner'),
-      42,
-      null,
-      false
-    ]);
+    const el = h('div', null, ['text', h('span', null, 'inner'), 42, null, false]);
     // text + span + 42 = 3 child nodes (null/false skipped)
     expect(el.childNodes.length).toBe(3);
   });

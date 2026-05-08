@@ -31,9 +31,7 @@ describe('i18n', () => {
 
     it('falls back to chrome.i18n if no override', async () => {
       chromeMock.storage.local.get.mockResolvedValue({ language: 'auto' });
-      chromeMock.i18n.getMessage.mockImplementation((key) =>
-        key === 'greeting' ? 'Hello' : '',
-      );
+      chromeMock.i18n.getMessage.mockImplementation((key) => (key === 'greeting' ? 'Hello' : ''));
       globalThis.fetch = vi.fn().mockResolvedValue({
         json: () => Promise.resolve({ greeting: { message: 'Hello EN' } }),
       });

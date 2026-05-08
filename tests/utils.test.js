@@ -17,10 +17,7 @@ describe('applyRepoFilter', () => {
   });
 
   it('include mode keeps only listed repos', () => {
-    expect(applyRepoFilter(results, 'include', 'org/RepoA\norg/RepoB')).toEqual([
-      results[0],
-      results[1],
-    ]);
+    expect(applyRepoFilter(results, 'include', 'org/RepoA\norg/RepoB')).toEqual([results[0], results[1]]);
   });
 
   it('exclude mode removes listed repos', () => {
@@ -37,9 +34,6 @@ describe('applyRepoFilter', () => {
   });
 
   it('multiline list with whitespace', () => {
-    expect(applyRepoFilter(results, 'include', '  org/RepoA  \n  other/RepoC  \n')).toEqual([
-      results[0],
-      results[2],
-    ]);
+    expect(applyRepoFilter(results, 'include', '  org/RepoA  \n  other/RepoC  \n')).toEqual([results[0], results[2]]);
   });
 });
