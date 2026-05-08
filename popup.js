@@ -234,15 +234,13 @@ function renderPRItem(pr, username, showRepo) {
   } else {
     stateLabel = stateLabels[pr.myReason || pr.prState] || '';
   }
-  const metaChildren = [
-    showRepo ? `${pr.repo}#${pr.number}` : `#${pr.number}`,
-    pr.author
-      ? [
-          ' · by ',
-          h('a', { href: `https://github.com/${pr.author}`, target: '_blank', style: { color: 'inherit' } }, pr.author),
-        ]
-      : '',
-  ];
+  const metaChildren = [showRepo ? `${pr.repo}#${pr.number}` : `#${pr.number}`];
+  if (pr.author) {
+    metaChildren.push(' · by ');
+    metaChildren.push(
+      h('a', { href: `https://github.com/${pr.author}`, target: '_blank', style: { color: 'inherit' } }, pr.author),
+    );
+  }
   // state badge rendered separately below
   if (window.__multiAccount ? pr.account : null) {
     metaChildren.push(' · ');
@@ -262,7 +260,7 @@ function renderPRItem(pr, username, showRepo) {
   };
   if (allReviewers.length > 0) {
     allReviewers.forEach((u, i) => {
-      if (i > 0) reviewerChildren.push(' ');
+      if (i > 0) reviewerChildren.push(', ');
       const state = reviewerStates[u] || 'pending';
       const inSet = !!attentionSet[u];
       const stateLabel_sr = {
