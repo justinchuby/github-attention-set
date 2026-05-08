@@ -401,8 +401,14 @@ function renderPRItem(pr, username, showRepo) {
       h('span', { class: 'pr-time' }, timeAgo(pr.lastEventAt)),
       stateLabel ? h('span', { class: 'pr-state-badge', 'aria-label': `Status: ${stateLabel}` }, stateLabel) : null,
     ]),
-    dismissBtn,
-    muteBtn,
+    h(
+      'div',
+      {
+        class: 'pr-actions',
+        style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', position: 'relative' },
+      },
+      [dismissBtn, muteBtn],
+    ),
   ]);
 }
 
