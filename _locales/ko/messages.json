@@ -72,7 +72,7 @@
     "message": "GitHub 개인 액세스 토큰"
   },
   "optTokenHint": {
-    "message": "Fine-grained PAT 생성 (권한: Pull requests → Read, Issues → Read)"
+    "message": "fine-grained PAT 생성 (권한: Pull requests → Read, Issues → Read)"
   },
   "optAddToken": {
     "message": "+ 토큰 추가"

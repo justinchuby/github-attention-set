@@ -72,7 +72,7 @@
     "message": "GitHub 私人令牌"
   },
   "optTokenHint": {
-    "message": "創一細粒令牌，授 Pull requests → 閱，Issues → 閱"
+    "message": "創建 fine-grained PAT，權限：Pull requests → Read，Issues → Read"
   },
   "optAddToken": {
     "message": "+ 增令牌"

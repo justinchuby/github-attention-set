@@ -72,7 +72,7 @@
     "message": "GitHub Token"
   },
   "optTokenHint": {
-    "message": "建一個fine-grained PAT，權限選 Pull requests → Read，Issues → Read"
+    "message": "建立 fine-grained PAT，權限：Pull requests → Read，Issues → Read"
   },
   "optAddToken": {
     "message": "+ 加Token"

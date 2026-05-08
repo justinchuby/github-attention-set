@@ -72,7 +72,7 @@
     "message": "GitHubin henkilökohtaiset käyttöoikeustunnisteet"
   },
   "optTokenHint": {
-    "message": "Luo hienojakoinen PAT oikeuksilla: Pull requests → Read, Issues → Read"
+    "message": "Luo fine-grained PAT oikeuksilla: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ Lisää tunniste"

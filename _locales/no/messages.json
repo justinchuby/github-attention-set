@@ -72,7 +72,7 @@
     "message": "GitHub personlige tilgangstokener"
   },
   "optTokenHint": {
-    "message": "Opprett en finkornet PAT med tillatelser: Pull requests → Read, Issues → Read"
+    "message": "Opprett en fine-grained PAT med tillatelser: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ Legg til token"

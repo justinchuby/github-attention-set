@@ -72,7 +72,7 @@
     "message": "Yer treasure maps (GitHub tokens)"
   },
   "optTokenHint": {
-    "message": "Forge a fine-grained treasure map with permissions: Pull requests → Read, Issues → Read"
+    "message": "Forge a fine-grained PAT with permissions: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ Add another map"

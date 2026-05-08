@@ -72,7 +72,7 @@
     "message": "GitHub persoonlike toegangstokens"
   },
   "optTokenHint": {
-    "message": "Skep 'n fynkorrelige PAT met toestemmings: Pull requests → Read, Issues → Read"
+    "message": "Skep 'n fine-grained PAT met toestemmings: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ Voeg token by"

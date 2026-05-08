@@ -72,7 +72,7 @@
     "message": "GitHub Kişisel Erişim Tokenları"
   },
   "optTokenHint": {
-    "message": "Fine-grained PAT oluşturun: Pull requests → Read, Issues → Read"
+    "message": "Şu izinlerle fine-grained PAT oluşturun: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ Token ekle"

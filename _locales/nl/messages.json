@@ -72,7 +72,7 @@
     "message": "GitHub persoonlijke toegangstokens"
   },
   "optTokenHint": {
-    "message": "Maak een fijnkorrelig PAT aan met machtigingen: Pull requests → Read, Issues → Read"
+    "message": "Maak een fine-grained PAT aan met machtigingen: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ Token toevoegen"

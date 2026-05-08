@@ -72,7 +72,7 @@
     "message": "Comharthaí Rochtana GitHub"
   },
   "optTokenHint": {
-    "message": "Cruthaigh PAT mín-ghráinneach: Pull requests → Read, Issues → Read"
+    "message": "Cruthaigh fine-grained PAT leis na ceadanna: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ Cuir token leis"

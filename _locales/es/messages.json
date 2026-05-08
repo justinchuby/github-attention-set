@@ -72,7 +72,7 @@
     "message": "Tokens de acceso personal de GitHub"
   },
   "optTokenHint": {
-    "message": "Crea un PAT fine-grained con permisos: Pull requests → Read, Issues → Read"
+    "message": "Crea un fine-grained PAT con permisos: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ Añadir token"

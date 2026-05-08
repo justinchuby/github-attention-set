@@ -72,7 +72,7 @@
     "message": "GitHub個人アクセストークン"
   },
   "optTokenHint": {
-    "message": "Fine-grained PATを作成（権限：Pull requests → Read、Issues → Read）"
+    "message": "fine-grained PATを作成（権限：Pull requests → Read、Issues → Read）"
   },
   "optAddToken": {
     "message": "+ トークンを追加"

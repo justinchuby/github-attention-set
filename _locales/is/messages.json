@@ -72,7 +72,7 @@
     "message": "GitHub persónuleg aðgangsmerki"
   },
   "optTokenHint": {
-    "message": "Búðu til fínkorna PAT með heimildir: Pull requests → Read, Issues → Read"
+    "message": "Búðu til fine-grained PAT með heimildum: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ Bæta við merki"

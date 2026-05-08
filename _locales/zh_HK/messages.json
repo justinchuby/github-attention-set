@@ -72,7 +72,7 @@
     "message": "GitHub 個人存取權杖"
   },
   "optTokenHint": {
-    "message": "建立 fine-grained PAT，權限選 Pull requests → Read，Issues → Read"
+    "message": "建立 fine-grained PAT，權限：Pull requests → Read，Issues → Read"
   },
   "optAddToken": {
     "message": "+ 新增權杖"

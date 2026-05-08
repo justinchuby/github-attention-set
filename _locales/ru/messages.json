@@ -72,7 +72,7 @@
     "message": "Персональные токены доступа GitHub"
   },
   "optTokenHint": {
-    "message": "Создайте fine-grained PAT с разрешениями: Pull requests → Read, Issues → Read"
+    "message": "Создайте fine-grained PAT с правами: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ Добавить токен"

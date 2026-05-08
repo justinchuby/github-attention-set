@@ -72,7 +72,7 @@
     "message": "GitHub személyes hozzáférési tokenek"
   },
   "optTokenHint": {
-    "message": "Hozz létre egy finomhangolt PAT-ot jogosultságokkal: Pull requests → Read, Issues → Read"
+    "message": "Hozz létre egy fine-grained PAT-ot jogosultságokkal: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ Token hozzáadása"

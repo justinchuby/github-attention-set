@@ -72,7 +72,7 @@
     "message": "GitHub 个人访问令牌"
   },
   "optTokenHint": {
-    "message": "创建细粒度PAT，权限：Pull requests → 读取，Issues → 读取"
+    "message": "创建 fine-grained PAT，权限：Pull requests → Read，Issues → Read"
   },
   "optAddToken": {
     "message": "+ 添加令牌"
