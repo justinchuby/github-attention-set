@@ -369,10 +369,13 @@ describe('isBot', () => {
     expect(isBot('bob', { type: 'User' })).toBe(false);
   });
 
-  it('detects known bots without suffix', () => {
-    expect(isBot('dependabot')).toBe(true);
-    expect(isBot('renovate')).toBe(true);
-    expect(isBot('codecov')).toBe(true);
+  it('bots without suffix or type are not detected (no hardcoded list)', () => {
+    // Without [bot] suffix or type:Bot, plain usernames are not detected as bots
+    expect(isBot('dependabot')).toBe(false);
+    expect(isBot('renovate')).toBe(false);
+    expect(isBot('codecov')).toBe(false);
+    // But with type info they are
+    expect(isBot('dependabot', { type: 'Bot' })).toBe(true);
   });
 
   it('detects numeric-only logins', () => {
