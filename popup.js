@@ -481,6 +481,17 @@ async function render(data, isRefreshing) {
   const needsAttention = activePRs.filter(r => r.myStatus === 'red').sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
   const others = activePRs.filter(r => r.myStatus !== 'red').sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
 
+const roleIcons = { incoming: 'eye', outgoing: 'git-pull-request', mentioned: 'mention' };
+function roleHeader(sec) {
+  const iconSpan = document.createElement('span');
+  iconSpan.innerHTML = getIcon(roleIcons[sec.label] || 'dot-fill', 12, '#8b949e');
+  iconSpan.style.cssText = 'vertical-align: middle; margin-right: 4px;';
+  const header = h('div', { class: 'role-subsection-title' });
+  header.appendChild(iconSpan);
+  header.appendChild(document.createTextNode(` ${sec.labelText} (${sec.prs.length})`));
+  return header;
+}
+
   // Group by role for sub-sections
   function groupByRole(prs) {
     const incoming = prs.filter(p => p.myRole === 'incoming');
@@ -529,15 +540,15 @@ async function render(data, isRefreshing) {
       const attentionContainer = h('div', { 'data-filter-section': 'attention' });
       const roles = groupByRole(needsAttention);
       const roleSections = [
-        { label: `📥 ${msg('incoming')}`, prs: roles.incoming },
-        { label: `📤 ${msg('outgoing')}`, prs: roles.outgoing },
-        { label: `📌 ${msg('mentioned')}`, prs: roles.mentioned },
+        { label: 'incoming', labelText: msg('incoming'), prs: roles.incoming },
+        { label: 'outgoing', labelText: msg('outgoing'), prs: roles.outgoing },
+        { label: 'mentioned', labelText: msg('mentioned'), prs: roles.mentioned },
       ];
       let hasSubSection = roleSections.some(s => s.prs.length > 0);
       for (const sec of roleSections) {
         if (sec.prs.length === 0) continue;
         if (hasSubSection) {
-          attentionContainer.appendChild(h('div', { class: 'role-subsection-title' }, `${sec.label} (${sec.prs.length})`));
+          attentionContainer.appendChild(roleHeader(sec));
         }
         const groups = window.__groupByRepo ? groupByRepo(sec.prs) : [{ repo: '', prs: sec.prs }];
         attentionContainer.appendChild(renderRepoGroups(groups, username));
@@ -553,14 +564,14 @@ async function render(data, isRefreshing) {
       const othersContainer = h('div', { 'data-filter-section': 'others' });
       const roles = groupByRole(others);
       const roleSections = [
-        { label: `📥 ${msg('incoming')}`, prs: roles.incoming },
-        { label: `📤 ${msg('outgoing')}`, prs: roles.outgoing },
+        { label: 'incoming', labelText: msg('incoming'), prs: roles.incoming },
+        { label: 'outgoing', labelText: msg('outgoing'), prs: roles.outgoing },
       ];
       let hasSubSection = roleSections.some(s => s.prs.length > 0);
       for (const sec of roleSections) {
         if (sec.prs.length === 0) continue;
         if (hasSubSection) {
-          othersContainer.appendChild(h('div', { class: 'role-subsection-title' }, `${sec.label} (${sec.prs.length})`));
+          othersContainer.appendChild(roleHeader(sec));
         }
         const groups = window.__groupByRepo ? groupByRepo(sec.prs) : [{ repo: '', prs: sec.prs }];
         othersContainer.appendChild(renderRepoGroups(groups, username));
