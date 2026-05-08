@@ -186,7 +186,7 @@
     "message": "Unmute"
   },
   "optNoMuted": {
-    "message": "Nothing muted."
+    "message": "음소거 없음."
   },
   "optNotifyNewCommits": {
     "message": "PR 작성자가 새 커밋을 푸시할 때 알림"

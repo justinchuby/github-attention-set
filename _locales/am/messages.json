@@ -186,7 +186,7 @@
     "message": "Unmute"
   },
   "optNoMuted": {
-    "message": "Nothing muted."
+    "message": "ምንም የተዘጋ የለም።"
   },
   "optNotifyNewCommits": {
     "message": "Notify when PR author pushes new commits"

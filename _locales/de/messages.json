@@ -186,7 +186,7 @@
     "message": "Unmute"
   },
   "optNoMuted": {
-    "message": "Nothing muted."
+    "message": "Nichts stummgeschaltet."
   },
   "optNotifyNewCommits": {
     "message": "Benachrichtigen wenn PR-Autor neue Commits pusht"
@@ -228,7 +228,7 @@
     "message": "Genehmigt"
   },
   "optMutedDesc": {
-    "message": "Stummgeschaltete Repos und Besitzer werden im Attention Set und Badge ausgeblendet."
+    "message": "Stummgeschaltete Repos und Besitzer werden ausgeblendet."
   },
   "optNothingMuted": {
     "message": "Nichts stummgeschaltet."

@@ -186,7 +186,7 @@
     "message": "Unmute"
   },
   "optNoMuted": {
-    "message": "Nothing muted."
+    "message": "無所靜者。"
   },
   "optNotifyNewCommits": {
     "message": "Notify when PR author pushes new commits"
@@ -228,7 +228,7 @@
     "message": "已准"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "所靜之庫及主，不見於關注之集。"
   },
   "optNothingMuted": {
     "message": "Nothing muted."

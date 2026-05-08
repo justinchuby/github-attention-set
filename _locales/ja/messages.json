@@ -186,7 +186,7 @@
     "message": "Unmute"
   },
   "optNoMuted": {
-    "message": "Nothing muted."
+    "message": "ミュートなし。"
   },
   "optNotifyNewCommits": {
     "message": "PR作成者が新しいコミットをプッシュした時に通知"

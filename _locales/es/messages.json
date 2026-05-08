@@ -186,7 +186,7 @@
     "message": "Unmute"
   },
   "optNoMuted": {
-    "message": "Nothing muted."
+    "message": "Nada silenciado."
   },
   "optNotifyNewCommits": {
     "message": "Notificar cuando el autor del PR sube nuevos commits"
@@ -228,7 +228,7 @@
     "message": "Aprobado"
   },
   "optMutedDesc": {
-    "message": "Los repos y propietarios silenciados se ocultan del conjunto de atención y el contador."
+    "message": "Los repos y propietarios silenciados se ocultan."
   },
   "optNothingMuted": {
     "message": "Nada silenciado."

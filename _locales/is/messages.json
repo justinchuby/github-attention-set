@@ -186,7 +186,7 @@
     "message": "Unmute"
   },
   "optNoMuted": {
-    "message": "Nothing muted."
+    "message": "Ekkert þaggað."
   },
   "optNotifyNewCommits": {
     "message": "Notify when PR author pushes new commits"

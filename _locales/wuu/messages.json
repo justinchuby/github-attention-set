@@ -186,7 +186,7 @@
     "message": "Unmute"
   },
   "optNoMuted": {
-    "message": "Nothing muted."
+    "message": "呒没静音个。"
   },
   "optNotifyNewCommits": {
     "message": "Notify when PR author pushes new commits"

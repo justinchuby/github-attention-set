@@ -186,7 +186,7 @@
     "message": "Unmute"
   },
   "optNoMuted": {
-    "message": "Nothing muted."
+    "message": "Rien en sourdine."
   },
   "optNotifyNewCommits": {
     "message": "Notifier quand l'auteur pousse de nouveaux commits"
@@ -228,7 +228,7 @@
     "message": "Approuvé"
   },
   "optMutedDesc": {
-    "message": "Les dépôts et propriétaires muets sont masqués de l'ensemble d'attention et du compteur."
+    "message": "Les dépôts et propriétaires en sourdine sont masqués."
   },
   "optNothingMuted": {
     "message": "Rien en sourdine."

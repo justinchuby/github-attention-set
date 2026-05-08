@@ -186,7 +186,7 @@
     "message": "Unmute"
   },
   "optNoMuted": {
-    "message": "Nothing muted."
+    "message": "Ничего не заглушено."
   },
   "optNotifyNewCommits": {
     "message": "Notify when PR author pushes new commits"
@@ -228,7 +228,7 @@
     "message": "Одобрено"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Заглушённые репозитории и владельцы скрыты."
   },
   "optNothingMuted": {
     "message": "Nothing muted."
