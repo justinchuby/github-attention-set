@@ -405,7 +405,7 @@ function renderPRItem(pr, username, showRepo) {
       'div',
       {
         class: 'pr-actions',
-        style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', position: 'relative' },
+        style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0px', position: 'relative' },
       },
       [dismissBtn, muteBtn],
     ),
