@@ -87,7 +87,6 @@ export function computeAttentionSet(
         break;
 
       case 'review_requested': {
-        if (isBot(actor, actorObj)) break;
         const reviewer = event.requested_reviewer?.login;
         if (reviewer) {
           requestedReviewers.add(reviewer);
