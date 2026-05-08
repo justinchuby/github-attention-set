@@ -1001,3 +1001,21 @@ describe('incomingDetail classification', () => {
     expect(result.myRole).toBe('other');
   });
 });
+
+describe('i18n translation completeness', () => {
+  const localesDir = join(import.meta.dirname, '..', '_locales');
+  const enMessages = JSON.parse(readFileSync(join(localesDir, 'en', 'messages.json'), 'utf8'));
+  const localeDirs = readdirSync(localesDir).filter((d) => d !== 'en');
+  const skipKeys = ['extName']; // brand name, intentionally English
+
+  for (const locale of localeDirs) {
+    it(`${locale} has no untranslated keys (same as English)`, () => {
+      const filePath = join(localesDir, locale, 'messages.json');
+      const messages = JSON.parse(readFileSync(filePath, 'utf8'));
+      const untranslated = Object.keys(enMessages).filter(
+        (k) => !skipKeys.includes(k) && messages[k] && messages[k].message === enMessages[k].message,
+      );
+      expect(untranslated, `Untranslated keys in ${locale}: ${untranslated.join(', ')}`).toEqual([]);
+    });
+  }
+});
