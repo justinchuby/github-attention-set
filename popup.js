@@ -145,10 +145,8 @@ function applyRepoFilter(results, mode, repoListStr) {
 function renderPRItem(pr, username, showRepo) {
   const clickedAt = (window.__dismissedClicked || {})[pr.url] || 0;
       const seen = clickedAt > (pr.lastEventAt || 0);
-      let color;
-      if (pr.myStatus === 'red') color = seen ? '#a8383f' : '#d73a49';
-      else if (pr.myStatus === 'yellow') color = seen ? '#9e7a08' : '#dbab09';
-      else color = seen ? '#1d6b30' : '#28a745';
+      const color = pr.myStatus === 'red' ? '#d73a49' : pr.myStatus === 'yellow' ? '#dbab09' : '#28a745';
+      const dotIcon = seen ? 'dot' : 'dot-fill';
   const waitingOn = Object.entries(pr.attentionSet || {})
     .filter(([u, s]) => s === 'red' && !isBot(u))
     .map(([u]) => u);
@@ -192,7 +190,7 @@ function renderPRItem(pr, username, showRepo) {
   }
 
   const dot = h('span', { class: 'dot' });
-  dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, color)));
+  dot.appendChild(htmlToNodes(getIcon(dotIcon, 10, color)));
 
   const dismissBtn = h('button', {
     class: 'dismiss-btn',
