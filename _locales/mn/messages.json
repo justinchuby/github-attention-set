@@ -42,7 +42,7 @@
     "message": "ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ:"
   },
   "settings": {
-    "message": "Тохиргоо"
+    "message": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ"
   },
   "stateReview": {
     "message": "ᠰᠢᠯᠭᠠᠬᠤ"
@@ -153,96 +153,96 @@
     "message": "GitHub PAT ᠨᠡᠮᠡᠬᠦ᠃ ᠪᠦᠬᠦ ᠲᠣᠬᠧᠨ ᠤ ᠦᠷ᠎ᠡ ᠳᠦᠩ ᠨᠢᠭᠡᠳᠬᠡᠭᠳᠡᠨ᠎ᠡ᠃"
   },
   "stateNew": {
-    "message": "Шинэ"
+    "message": "ᠰᠢᠨ᠎ᠡ"
   },
   "stateUpdated": {
-    "message": "Шинэчлэгдсэн"
+    "message": "ᠰᠢᠨᠡᠴᠢᠯᠡᠭᠳᠡᠭᠰᠡᠨ"
   },
   "stateRereview": {
-    "message": "Дахин шалгах"
+    "message": "ᠳᠠᠬᠢᠨ ᠰᠢᠯᠭᠠᠬᠤ"
   },
   "incoming": {
-    "message": "Ирсэн"
+    "message": "ᠣᠷᠣᠵᠤ ᠢᠷᠡᠭᠰᠡᠨ"
   },
   "outgoing": {
-    "message": "Явсан"
+    "message": "ᠭᠠᠷᠴᠤ ᠶᠠᠪᠤᠭᠰᠠᠨ"
   },
   "mentioned": {
-    "message": "Дурдсан"
+    "message": "ᠳᠤᠷᠠᠳᠤᠭᠳᠠᠭᠰᠠᠨ"
   },
   "muteRepo": {
-    "message": "Репо хаах"
+    "message": "ᠡᠨᠡ ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠢ ᠨᠤᠤᠬᠤ"
   },
   "muteOwner": {
-    "message": "Эзэмшигч хаах"
+    "message": "ᠡᠨᠡ ᠡᠵᠡᠮᠰᠢᠭᠴᠢ ᠶᠢ ᠨᠤᠤᠬᠤ"
   },
   "optMuted": {
-    "message": "Хаасан Repo / Эзэмшигчид"
+    "message": "ᠨᠤᠤᠭᠳᠠᠭᠰᠠᠨ ᠷᠧᠫᠣᠽᠢᠲᠣᠷ / ᠡᠵᠡᠮᠰᠢᠭᠴᠢ"
   },
   "optMutedHint": {
-    "message": "Хаагдсан репо болон эзэмшигчид нуугдсан."
+    "message": "ᠨᠤᠤᠭᠳᠠᠭᠰᠠᠨ ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠪᠣᠯᠣᠨ ᠡᠵᠡᠮᠰᠢᠭᠴᠢ ᠨᠢ ᠠᠩᠬᠠᠷᠤᠯ ᠤᠨ ᠴᠤᠭᠯᠠᠭ᠎ᠠ ᠪᠣᠯᠣᠨ ᠲᠡᠮᠳᠡᠭ ᠦᠨ ᠲᠣᠭ᠎ᠠ ᠳᠤ ᠬᠠᠷᠠᠭᠳᠠᠬᠤ ᠦᠭᠡᠢ᠃"
   },
   "optUnmute": {
-    "message": "Дуугүйг арилгах"
+    "message": "ᠨᠤᠤᠭᠰᠠᠨ ᠢ ᠪᠣᠯᠢᠭᠤᠯᠬᠤ"
   },
   "optNoMuted": {
-    "message": "Юу ч хаагдаагүй."
+    "message": "ᠨᠤᠤᠭᠳᠠᠭᠰᠠᠨ ᠵᠦᠢᠯ ᠦᠭᠡᠢ᠃"
   },
   "optNotifyNewCommits": {
-    "message": "PR зохиогч шинэ commit түлхэхэд мэдэгдэх"
+    "message": "PR ᠵᠣᠬᠢᠶᠠᠭᠴᠢ ᠰᠢᠨ᠎ᠡ commit ᠲᠦᠯᠬᠢᠬᠦ ᠳᠦ ᠮᠡᠳᠡᠭᠳᠡᠬᠦ"
   },
   "optOnlyDirectRequests": {
-    "message": "Зөвхөн шууд хянах хүсэлтэд мэдэгдэх (багийн хүсэлтийг үл тоох)"
+    "message": "ᠵᠥᠪᠬᠡᠨ ᠰᠢᠭᠤᠳ ᠬᠢᠨᠠᠬᠤ ᠬᠦᠰᠡᠯᠲᠡ ᠳᠦ ᠮᠡᠳᠡᠭᠳᠡᠬᠦ (ᠪᠠᠭ ᠤᠨ ᠬᠦᠰᠡᠯᠲᠡ ᠶᠢ ᠦᠯᠦ ᠲᠣᠭᠠᠬᠤ)"
   },
   "optWhitelistedTeams": {
-    "message": "Зөвшөөрөгдсөн багууд (дээрх сонголттой ч мэдэгдэх):"
+    "message": "ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠭᠳᠡᠭᠰᠡᠨ ᠪᠠᠭ (ᠳᠡᠭᠡᠷᠡᠬᠢ ᠰᠣᠩᠭᠤᠯᠲᠠ ᠲᠠᠢ ᠴᠤ ᠮᠡᠳᠡᠭᠳᠡᠬᠦ):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "Мөр бүрт нэг багийн slug (жнь. my-org/my-team)"
+    "message": "ᠮᠥᠷ ᠪᠦᠷᠢ ᠳᠦ ᠨᠢᠭᠡ ᠪᠠᠭ ᠤᠨ slug (ᠵᠢᠱᠢᠶ᠎ᠡ: my-org/my-team)"
   },
   "justNow": {
-    "message": "саяхан"
+    "message": "ᠰᠠᠶᠢᠬᠠᠨ"
   },
   "stateMerged": {
-    "message": "Нэгтгэсэн"
+    "message": "ᠨᠢᠭᠡᠳᠬᠡᠭᠳᠡᠭᠰᠡᠨ"
   },
   "stateClosed": {
-    "message": "Хаасан"
+    "message": "ᠬᠠᠭᠠᠭᠳᠠᠭᠰᠠᠨ"
   },
   "moreOptions": {
-    "message": "Бусад сонголтууд"
+    "message": "ᠪᠤᠰᠤᠳ ᠰᠣᠩᠭᠤᠯᠲᠠ"
   },
   "newActivity": {
-    "message": "Шинэ үйл ажиллагаа"
+    "message": "ᠰᠢᠨ᠎ᠡ ᠢᠳᠡᠪᠬᠢ"
   },
   "filterPlaceholder": {
-    "message": "PR шүүх..."
+    "message": "PR ᠰᠢᠭᠦᠬᠦ..."
   },
   "errorAuth": {
-    "message": "⚠️ Токен хугацаа дууссан."
+    "message": "⚠️ ᠲᠣᠬᠧᠨ ᠤ ᠬᠦᠴᠦᠨ ᠳᠠᠭᠤᠰᠤᠭᠰᠠᠨ ᠡᠰᠡᠪᠡᠯ ᠪᠤᠷᠤᠭᠤ᠃ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ ᠳᠤ ᠰᠢᠨᠡᠴᠢᠯᠡᠨ᠎ᠡ᠃"
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub холбогдохгүй байна."
+    "message": "⚠️ GitHub ᠳᠤ ᠬᠣᠯᠪᠣᠭᠳᠠᠬᠤ ᠦᠭᠡᠢ᠃ ᠺᠧᠱ ᠳᠠᠲᠠ ᠶᠢ ᠬᠠᠷᠠᠭᠤᠯᠵᠤ ᠪᠠᠢᠨ᠎ᠠ᠃"
   },
   "stateApproved": {
-    "message": "Зөвшөөрсөн"
+    "message": "ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠭᠰᠡᠨ"
   },
   "optMutedDesc": {
-    "message": "Хаасан repo болон эзэмшигчид анхаарлын олонлог болон badge тооноос нуугдана."
+    "message": "ᠨᠤᠤᠭᠳᠠᠭᠰᠠᠨ repo ᠪᠣᠯᠣᠨ ᠡᠵᠡᠮᠰᠢᠭᠴᠢ ᠨᠢ ᠠᠩᠬᠠᠷᠤᠯ ᠤᠨ ᠴᠤᠭᠯᠠᠭ᠎ᠠ ᠪᠣᠯᠣᠨ badge ᠲᠣᠭ᠎ᠠ ᠳᠤ ᠬᠠᠷᠠᠭᠳᠠᠬᠤ ᠦᠭᠡᠢ᠃"
   },
   "optNothingMuted": {
-    "message": "Хаасан зүйл байхгүй."
+    "message": "ᠨᠤᠤᠭᠳᠠᠭᠰᠠᠨ ᠵᠦᠢᠯ ᠦᠭᠡᠢ᠃"
   },
   "other": {
-    "message": "Бусад"
+    "message": "ᠪᠤᠰᠤᠳ"
   },
   "optPolling": {
-    "message": "Санал асуулга"
+    "message": "ᠰᠢᠯᠭᠠᠯᠲᠠ"
   },
   "optDisplay": {
-    "message": "Харуулах"
+    "message": "ᠬᠠᠷᠠᠭᠤᠯᠬᠤ"
   },
   "optNotificationsSection": {
-    "message": "Мэдэгдлүүд"
+    "message": "ᠮᠡᠳᠡᠭᠳᠡᠯ"
   }
 }

@@ -3,7 +3,7 @@
     "message": "GitHub Attention Set"
   },
   "extDescription": {
-    "message": "查看哪些PR需要你關注——類似Google Critique的Attention Set"
+    "message": "查看哪些 PR 需要你關注——類似 Google Critique 的 Attention Set，適用於 GitHub。"
   },
   "needsAttention": {
     "message": "需要關注"
@@ -33,7 +33,7 @@
     "message": "前往設定"
   },
   "noPRs": {
-    "message": "沒有需要關注的PR。"
+    "message": "找不到開啟中的 PR。"
   },
   "allClear": {
     "message": "全部完成！沒有PR等你處理。"
@@ -84,7 +84,7 @@
     "message": "✓ 已儲存！"
   },
   "optDebounce": {
-    "message": "評論等候時間（分鐘）"
+    "message": "防抖時間（分鐘）"
   },
   "optDebounceHint": {
     "message": "等待此時間後隱式信號才會翻轉注意力狀態。"
@@ -117,43 +117,43 @@
     "message": "owner/repo（每行一個）"
   },
   "optRepoLabel": {
-    "message": "儲存庫篩選設定"
+    "message": "儲存庫（每行一個，格式：owner/repo）"
   },
   "optSaveFilter": {
     "message": "儲存篩選"
   },
   "optFilterHint": {
-    "message": "owner/repo，每行一個"
+    "message": "篩選哪些儲存庫會出現在你的關注集中。"
   },
   "optReportBug": {
     "message": "回報錯誤或請求功能"
   },
   "tokenName": {
-    "message": "Token 名稱（例如：個人、工作）"
+    "message": "名稱"
   },
   "tokenValue": {
-    "message": "你的 GitHub token"
+    "message": "權杖"
   },
   "openSettings": {
-    "message": "前往設定"
+    "message": "開啟設定"
   },
   "tokenHintFull": {
-    "message": "建立 fine-grained PAT，權限選 Pull requests → Read，Issues → Read"
+    "message": "新增一個或多個 GitHub 個人存取權杖。所有權杖的結果會合併顯示。"
   },
   "optLanguage": {
     "message": "語言"
   },
   "optLanguageHint": {
-    "message": "選擇顯示語言"
+    "message": "選擇此擴充功能的顯示語言。"
   },
   "optLanguageAuto": {
     "message": "自動（跟隨瀏覽器）"
   },
   "optLanguageSaved": {
-    "message": "已儲存！關閉後重新開啟即可看到變更。"
+    "message": "語言已儲存。請重新開啟彈出視窗以套用變更。"
   },
   "stateNew": {
-    "message": "新的"
+    "message": "新增"
   },
   "stateUpdated": {
     "message": "已更新"
@@ -216,13 +216,13 @@
     "message": "新動態"
   },
   "filterPlaceholder": {
-    "message": "篩選PR..."
+    "message": "篩選 PR..."
   },
   "errorAuth": {
-    "message": "⚠️ Token 已過期或無效。"
+    "message": "⚠️ Token 已過期或無效。請到設定更新。"
   },
   "errorNetwork": {
-    "message": "⚠️ 網絡錯誤，請稍後再試。"
+    "message": "⚠️ 無法連接 GitHub。正在顯示快取資料。"
   },
   "stateApproved": {
     "message": "已核准"

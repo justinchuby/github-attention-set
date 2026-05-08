@@ -183,7 +183,7 @@
     "message": "Les dépôts et propriétaires en sourdine sont masqués."
   },
   "optUnmute": {
-    "message": "Rétablir"
+    "message": "Annuler le masquage"
   },
   "optNoMuted": {
     "message": "Rien en sourdine."

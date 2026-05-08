@@ -57,7 +57,7 @@
     "message": "รวม"
   },
   "stateMerging": {
-    "message": "Merge…"
+    "message": "กำลังรวม"
   },
   "stateStuck": {
     "message": "ติดขัด"
@@ -219,10 +219,10 @@
     "message": "กรอง PR..."
   },
   "errorAuth": {
-    "message": "⚠️ โทเค็นหมดอายุหรือไม่ถูกต้อง"
+    "message": "⚠️ โทเค็นหมดอายุหรือไม่ถูกต้อง อัปเดตในการตั้งค่า"
   },
   "errorNetwork": {
-    "message": "⚠️ ไม่สามารถเข้าถึง GitHub ได้"
+    "message": "⚠️ ไม่สามารถเข้าถึง GitHub ได้ กำลังแสดงข้อมูลที่แคชไว้"
   },
   "stateApproved": {
     "message": "อนุมัติแล้ว"
@@ -237,7 +237,7 @@
     "message": "อื่นๆ"
   },
   "optPolling": {
-    "message": "การสำรวจ"
+    "message": "การตรวจสอบเป็นระยะ"
   },
   "optDisplay": {
     "message": "การแสดงผล"

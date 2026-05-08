@@ -189,7 +189,7 @@
     "message": "Tada balbhaithe."
   },
   "optNotifyNewCommits": {
-    "message": "Fógra nuair a bhrúnn údar PR tiomáintí nua"
+    "message": "Fógraigh nuair a bhrúnn údar PR commits nua"
   },
   "optOnlyDirectRequests": {
     "message": "Ná fógair ach iarratais athbhreithnithe díreacha (déan neamhaird ar iarratais foirne)"
@@ -204,7 +204,7 @@
     "message": "díreach anois"
   },
   "stateMerged": {
-    "message": "Cumaisc"
+    "message": "Cumaiscthe"
   },
   "stateClosed": {
     "message": "Dúnta"
@@ -219,10 +219,10 @@
     "message": "Scag PRanna..."
   },
   "errorAuth": {
-    "message": "⚠️ Comhartha éagtha nó neamhbhailí."
+    "message": "⚠️ Comhartha imithe in éag nó neamhbhailí. Nuashonraigh sna socruithe."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub dorochtana."
+    "message": "⚠️ Ní féidir GitHub a bhaint amach. Ag taispeáint sonraí taiscthe."
   },
   "stateApproved": {
     "message": "Faofa"
@@ -231,13 +231,13 @@
     "message": "Bíonn repos agus úinéirí balbhaithe i bhfolach ón attention set agus ón gcomhaireamh suaitheantais."
   },
   "optNothingMuted": {
-    "message": "Rud ar bith balbhaithe."
+    "message": "Níl aon rud balbhaithe."
   },
   "other": {
     "message": "Eile"
   },
   "optPolling": {
-    "message": "Pobail"
+    "message": "Seiceáil tréimhsiúil"
   },
   "optDisplay": {
     "message": "Taispeáint"
