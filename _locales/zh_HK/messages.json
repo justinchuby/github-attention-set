@@ -36,7 +36,7 @@
     "message": "找不到開啟中的 PR。"
   },
   "allClear": {
-    "message": "全部完成！沒有PR等你處理。"
+    "message": "全部完成！沒有 PR 等你處理。"
   },
   "waitingOn": {
     "message": "等待："
@@ -93,19 +93,19 @@
     "message": "輪詢間隔（分鐘）"
   },
   "optPollHint": {
-    "message": "檢查GitHub更新的頻率。"
+    "message": "檢查 GitHub 更新的頻率。"
   },
   "optNotifications": {
-    "message": "啟用通知"
+    "message": "啟用桌面通知"
   },
   "optGroupByRepo": {
-    "message": "按儲存庫分組"
+    "message": "按儲存庫分組 PR"
   },
   "optRepoFilter": {
     "message": "儲存庫篩選"
   },
   "optFilterAll": {
-    "message": "全部顯示"
+    "message": "顯示全部（預設）"
   },
   "optFilterInclude": {
     "message": "只顯示這些儲存庫（允許清單）"
@@ -186,10 +186,10 @@
     "message": "取消靜音"
   },
   "optNoMuted": {
-    "message": "沒有靜音項目。"
+    "message": "沒有靜音項。"
   },
   "optNotifyNewCommits": {
-    "message": "當PR作者推送新提交時通知"
+    "message": "當 PR 作者推送新提交時通知"
   },
   "optOnlyDirectRequests": {
     "message": "僅在直接請求審查時通知（忽略團隊請求）"

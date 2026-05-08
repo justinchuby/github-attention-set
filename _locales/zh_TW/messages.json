@@ -3,7 +3,7 @@
     "message": "GitHub Attention Set"
   },
   "extDescription": {
-    "message": "查看哪些PR需要你的關注——類似Google Critique的Attention Set，適用於GitHub。"
+    "message": "查看哪些 PR 需要你的關注——類似 Google Critique 的 Attention Set，適用於 GitHub。"
   },
   "needsAttention": {
     "message": "需要關注"
@@ -24,7 +24,7 @@
     "message": "已忽略"
   },
   "loading": {
-    "message": "載入中..."
+    "message": "載入中……"
   },
   "noToken": {
     "message": "尚未設定Token。"
@@ -33,10 +33,10 @@
     "message": "前往設定"
   },
   "noPRs": {
-    "message": "未找到開啟的PR。"
+    "message": "找不到開啟中的 PR。"
   },
   "allClear": {
-    "message": "全部完成！沒有需要你處理的PR。"
+    "message": "全部完成！沒有 PR 等你處理。"
   },
   "waitingOn": {
     "message": "等待："
@@ -93,13 +93,13 @@
     "message": "輪詢間隔（分鐘）"
   },
   "optPollHint": {
-    "message": "檢查GitHub更新的頻率。"
+    "message": "檢查 GitHub 更新的頻率。"
   },
   "optNotifications": {
     "message": "啟用桌面通知"
   },
   "optGroupByRepo": {
-    "message": "按儲存庫分組PR"
+    "message": "按儲存庫分組 PR"
   },
   "optRepoFilter": {
     "message": "儲存庫篩選器"
@@ -108,7 +108,7 @@
     "message": "顯示全部（預設）"
   },
   "optFilterInclude": {
-    "message": "僅顯示這些儲存庫"
+    "message": "僅顯示這些儲存庫（允許清單）"
   },
   "optFilterExclude": {
     "message": "隱藏這些儲存庫"
@@ -123,7 +123,7 @@
     "message": "儲存篩選器"
   },
   "optFilterHint": {
-    "message": "篩選哪些儲存庫出現在你的關注集中。"
+    "message": "篩選哪些儲存庫會出現在你的關注集中。"
   },
   "optReportBug": {
     "message": "回報錯誤或請求功能"
@@ -138,7 +138,7 @@
     "message": "開啟設定"
   },
   "tokenHintFull": {
-    "message": "新增一個或多個GitHub個人存取權杖。所有權杖的結果將被合併。"
+    "message": "新增一個或多個 GitHub 個人存取權杖。所有權杖的結果會合併顯示。"
   },
   "optLanguage": {
     "message": "語言"
@@ -150,10 +150,10 @@
     "message": "自動（跟隨瀏覽器）"
   },
   "optLanguageSaved": {
-    "message": "語言已儲存。請重新開啟彈窗以使變更生效。"
+    "message": "語言已儲存。請重新開啟彈窗以套用變更。"
   },
   "stateNew": {
-    "message": "新的"
+    "message": "新增"
   },
   "stateUpdated": {
     "message": "已更新"
@@ -171,16 +171,16 @@
     "message": "被提及"
   },
   "muteRepo": {
-    "message": "靜音儲存庫"
+    "message": "靜音此儲存庫"
   },
   "muteOwner": {
-    "message": "靜音擁有者"
+    "message": "靜音此擁有者"
   },
   "optMuted": {
-    "message": "已靜音的倉庫 / 擁有者"
+    "message": "已靜音的儲存庫 / 擁有者"
   },
   "optMutedHint": {
-    "message": "靜音的倉庫和擁有者不會顯示在關注集和徽章計數中。"
+    "message": "靜音的儲存庫和擁有者不會顯示在關注集和徽章計數中。"
   },
   "optUnmute": {
     "message": "取消靜音"
@@ -195,7 +195,7 @@
     "message": "僅在直接請求審查時通知（忽略團隊請求）"
   },
   "optWhitelistedTeams": {
-    "message": "允許團隊（即使勾選上方選項仍會通知）："
+    "message": "允許的團隊（即使勾選上方選項仍會通知）："
   },
   "optWhitelistedTeamsHint": {
     "message": "每行一個團隊（如 my-org/my-team）"
@@ -216,19 +216,19 @@
     "message": "新動態"
   },
   "filterPlaceholder": {
-    "message": "篩選PR..."
+    "message": "篩選 PR..."
   },
   "errorAuth": {
-    "message": "⚠️ Token已過期或無效。"
+    "message": "⚠️ Token 已過期或無效。請到設定更新。"
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub無法連線。"
+    "message": "⚠️ GitHub 無法連線。正在顯示快取資料。"
   },
   "stateApproved": {
     "message": "已核准"
   },
   "optMutedDesc": {
-    "message": "靜音的倉庫和擁有者不會顯示在關注集和徽章計數中。"
+    "message": "靜音的儲存庫和擁有者不會顯示在關注集和徽章計數中。"
   },
   "optNothingMuted": {
     "message": "無靜音項目。"
