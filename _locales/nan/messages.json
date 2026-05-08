@@ -81,7 +81,7 @@
     "message": "保存"
   },
   "optSaved": {
-    "message": "存好矣！"
+    "message": "✓ 存好矣！"
   },
   "optDebounce": {
     "message": "等偌久算（分鐘）"
@@ -141,16 +141,16 @@
     "message": "偌密查GitHub"
   },
   "optRepoLabel": {
-    "message": "Repo篩選設定"
+    "message": "Repo（一行一個，格式：owner/repo）"
   },
   "optFilterHint": {
-    "message": "owner/repo，一行一個"
+    "message": "篩選佗一寡Repo會出現佇你個注意集。"
   },
   "openSettings": {
     "message": "去設定"
   },
   "tokenHintFull": {
-    "message": "建一個fine-grained PAT，權限選 Pull requests → Read，Issues → Read"
+    "message": "加一個抑是幾若個 GitHub PAT。逐個 token 個結果會合做伙。"
   },
   "stateNew": {
     "message": "新的"

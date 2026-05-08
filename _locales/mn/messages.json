@@ -81,7 +81,7 @@
     "message": "ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ"
   },
   "optSaved": {
-    "message": "ᠬᠠᠳᠠᠭᠠᠯᠠᠭᠳᠠᠯ᠎ᠠ!"
+    "message": "✓ ᠬᠠᠳᠠᠭᠠᠯᠠᠭᠳᠠᠯ᠎ᠠ!"
   },
   "optDebounce": {
     "message": "ᠬᠦᠯᠢᠶᠡᠬᠦ ᠬᠤᠭᠤᠴᠠᠭ᠎ᠠ (ᠮᠢᠨᠦ᠋ᠲ)"
@@ -141,13 +141,13 @@
     "message": "ᠰᠡᠳᠬᠢᠭᠳᠡᠯ ᠬᠦᠯᠢᠶᠡᠬᠦ ᠬᠤᠭᠤᠴᠠᠭ᠎ᠠ"
   },
   "optFilterHint": {
-    "message": "owner/repo᠂ ᠮᠥᠷ ᠪᠦᠷᠢ ᠳᠦ ᠨᠢᠭᠡ"
+    "message": "ᠠᠩᠬᠠᠷᠤᠯ ᠤᠨ ᠲᠥᠷᠥᠯ ᠳᠦ ᠠᠯᠢ ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠬᠠᠷᠠᠭᠳᠠᠬᠤ ᠶᠢ ᠰᠢᠭᠦᠬᠦ"
   },
   "optPollHint": {
     "message": "GitHub ᠰᠢᠯᠭᠠᠬᠤ ᠳᠠᠪᠲᠠᠮᠵᠢ"
   },
   "optRepoLabel": {
-    "message": "ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠤᠨ ᠰᠢᠭᠦᠯᠲᠦᠦᠷ"
+    "message": "ᠷᠧᠫᠣᠽᠢᠲᠣᠷ (ᠮᠥᠷ ᠪᠦᠷᠢ ᠳᠦ ᠨᠢᠭᠡ᠂ ᠬᠡᠯᠪᠡᠷᠢ: owner/repo)"
   },
   "tokenHintFull": {
     "message": "GitHub PAT ᠨᠡᠮᠡᠬᠦ᠃ ᠪᠦᠬᠦ ᠲᠣᠬᠧᠨ ᠤ ᠦᠷ᠎ᠡ ᠳᠦᠩ ᠨᠢᠭᠡᠳᠬᠡᠭᠳᠡᠨ᠎ᠡ᠃"

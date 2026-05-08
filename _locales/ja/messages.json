@@ -195,7 +195,7 @@
     "message": "直接のレビューリクエストのみ通知（チームリクエストを無視）"
   },
   "optWhitelistedTeams": {
-    "message": "許可チーム（上記をチックしても通知）："
+    "message": "許可チーム（上記をチェックしても通知）："
   },
   "optWhitelistedTeamsHint": {
     "message": "1行に1チーム（例: my-org/my-team）"

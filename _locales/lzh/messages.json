@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "GitHub 注意集"
+    "message": "GitHub Attention Set"
   },
   "extDescription": {
     "message": "視何人當行——仿Google Critique之注意集"
@@ -81,7 +81,7 @@
     "message": "存"
   },
   "optSaved": {
-    "message": "已存！"
+    "message": "✓ 已存！"
   },
   "optDebounce": {
     "message": "延候（分）"
@@ -141,16 +141,16 @@
     "message": "詢GitHub之頻率"
   },
   "optRepoLabel": {
-    "message": "庫篩設"
+    "message": "庫列（每行一，格式：主/庫）"
   },
   "optFilterHint": {
-    "message": "主/庫，每行一"
+    "message": "篩何庫見於注意集中。"
   },
   "openSettings": {
     "message": "往設置"
   },
   "tokenHintFull": {
-    "message": "創一細粒令牌，授 Pull requests → 閱，Issues → 閱"
+    "message": "添一或多令牌，諸令牌之果合而示之。"
   },
   "stateNew": {
     "message": "新"

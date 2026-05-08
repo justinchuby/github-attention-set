@@ -81,7 +81,7 @@
     "message": "Sábháil"
   },
   "optSaved": {
-    "message": "Sábháilte!"
+    "message": "✓ Sábháilte!"
   },
   "optDebounce": {
     "message": "Moill (nóim.)"
@@ -141,16 +141,16 @@
     "message": "Cé chomh minic a sheiceáiltear GitHub"
   },
   "optRepoLabel": {
-    "message": "Socruithe scagaire repo"
+    "message": "Stórais (ceann in aghaidh líne, formáid: owner/repo)"
   },
   "optFilterHint": {
-    "message": "owner/repo, ceann in aghaidh líne"
+    "message": "Scag na stórais a thaispeántar i do thacar airde."
   },
   "openSettings": {
     "message": "Téigh go socruithe"
   },
   "tokenHintFull": {
-    "message": "Cruthaigh PAT mín-ghráinneach: Pull requests → Read, Issues → Read"
+    "message": "Cuir ceann amháin nó níos mó GitHub PAT leis. Cumaiscítear torthaí ó gach tócáiste."
   },
   "stateNew": {
     "message": "Nua"

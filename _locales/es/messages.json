@@ -183,7 +183,7 @@
     "message": "Los repos y propietarios silenciados se ocultan."
   },
   "optUnmute": {
-    "message": "Activar"
+    "message": "Desilenciar"
   },
   "optNoMuted": {
     "message": "Nada silenciado."
