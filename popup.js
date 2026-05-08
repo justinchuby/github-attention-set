@@ -694,7 +694,7 @@ async function render(data, _isRefreshing) {
       toggle.setAttribute('aria-expanded', String(show));
     };
 
-    app.appendChild(h('div', { class: 'status-section-title' })); // spacer for filter logic
+
     const dismissedContainer = h('div', { 'data-filter-section': 'dismissed' });
     dismissedContainer.appendChild(toggle);
     dismissedContainer.appendChild(dismissedList);
