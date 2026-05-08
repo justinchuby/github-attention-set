@@ -8,8 +8,7 @@ export function isBot(login, userObj) {
   if (login.includes('[bot]')) return true;
   if (userObj && userObj.type === 'Bot') return true;
   if (userObj && userObj.type === 'Organization') return true;
-  const knownBots = ['dependabot', 'renovate', 'github-actions', 'codecov', 'stale'];
-  if (knownBots.includes(login.toLowerCase())) return true;
+
   if (/^\d+$/.test(login)) return true;
   if (userObj && userObj.type && userObj.type !== 'User') return true;
   return false;
