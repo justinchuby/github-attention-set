@@ -125,6 +125,42 @@ async function pollAndCompute() {
     const needsAttention = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]).length;
     setBadge(needsAttention);
 
+    // Smart notifications: only notify on status changes
+    if (settings.notifications !== false) {
+      const { lastNotifiedPRs = {} } = await chrome.storage.local.get('lastNotifiedPRs');
+      const currentRedPRs = filteredResults.filter(r => r.myStatus === 'red' && !dismissed[r.url]);
+      const newAttentionPRs = currentRedPRs.filter(pr => {
+        const prev = lastNotifiedPRs[pr.url];
+        return !prev || prev !== 'red';
+      });
+
+      if (newAttentionPRs.length === 1) {
+        const pr = newAttentionPRs[0];
+        chrome.notifications.create(pr.url, {
+          type: 'basic',
+          iconUrl: 'icons/icon128.png',
+          title: 'Attention Set',
+          message: `${pr.title} needs your attention`,
+        });
+      } else if (newAttentionPRs.length > 1) {
+        chrome.notifications.create('attention-set-batch', {
+          type: 'basic',
+          iconUrl: 'icons/icon128.png',
+          title: 'Attention Set',
+          message: `${newAttentionPRs.length} new PRs need your attention`,
+        });
+      }
+
+      // Update lastNotifiedPRs map
+      const newMap = {};
+      for (const pr of filteredResults) {
+        if (!dismissed[pr.url]) {
+          newMap[pr.url] = pr.myStatus;
+        }
+      }
+      await chrome.storage.local.set({ lastNotifiedPRs: newMap });
+    }
+
 
     // Cleanup: remove dismissed entries for PRs that are no longer open
     const openUrls = new Set(results.map(r => r.url));
@@ -166,6 +202,18 @@ function setBadge(count) {
     chrome.action.setBadgeText({ text: '' });
   }
 }
+
+// Handle notification clicks
+chrome.notifications.onClicked.addListener((notificationId) => {
+  if (notificationId === 'attention-set-batch') {
+    // Open popup (can't programmatically open popup, so open options or just clear)
+    chrome.notifications.clear(notificationId);
+  } else {
+    // notificationId is the PR URL
+    chrome.tabs.create({ url: notificationId });
+    chrome.notifications.clear(notificationId);
+  }
+});
 
 // Listen for messages from popup/content
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {

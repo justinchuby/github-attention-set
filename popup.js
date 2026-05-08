@@ -25,6 +25,39 @@ function timeAgo(dateStringOrMs) {
 const app = document.getElementById('app');
 app.setAttribute('role', 'main');
 
+// Search filter — created once, outside render() to preserve focus/input
+const searchContainer = h('div', { class: 'search-box' });
+const searchIcon = h('span', { class: 'search-icon' });
+searchIcon.appendChild(htmlToNodes(getIcon('search', 14)));
+const searchInput = h('input', { type: 'text', class: 'search-input', placeholder: 'Filter PRs...', 'aria-label': 'Filter PRs' });
+searchContainer.appendChild(searchIcon);
+searchContainer.appendChild(searchInput);
+let currentFilter = '';
+searchInput.addEventListener('keyup', () => {
+  currentFilter = searchInput.value.trim().toLowerCase();
+  applyFilter();
+});
+
+function applyFilter() {
+  const sections = app.querySelectorAll('[data-filter-section]');
+  sections.forEach(section => {
+    const items = section.querySelectorAll('.pr-item');
+    let visibleCount = 0;
+    items.forEach(item => {
+      const text = (item.dataset.filterText || '').toLowerCase();
+      const match = !currentFilter || text.includes(currentFilter);
+      item.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
+    });
+    // Hide section header if no visible items
+    const header = section.previousElementSibling;
+    if (header && header.classList.contains('status-section-title')) {
+      header.style.display = visibleCount > 0 ? '' : 'none';
+    }
+    section.style.display = visibleCount > 0 ? '' : 'none';
+  });
+}
+
 function isBot(login) {
   if (!login) return false;
   return login.includes('[bot]');
@@ -205,7 +238,9 @@ function renderPRItem(pr, username, showRepo) {
     dismissPR(pr.url, pr.lastEventAt || 0);
   };
 
-  return h('li', { class: 'pr-item' }, [
+  const filterText = `${pr.title} ${pr.repo} ${pr.author} #${pr.number} ${pr.number}`;
+
+  return h('li', { class: 'pr-item', 'data-filter-text': filterText }, [
     dot,
     h('div', { class: 'pr-info' }, [
       h('div', { class: 'pr-title' }, (() => {
@@ -324,6 +359,9 @@ function render(data, isRefreshing) {
 
   app.textContent = '';
   app.appendChild(header);
+  app.appendChild(searchContainer);
+  // Restore search input value
+  searchInput.value = currentFilter ? searchInput.value : '';
 
   // Error banner
   if (window.__lastError) {
@@ -339,11 +377,15 @@ function render(data, isRefreshing) {
   } else {
     if (needsAttention.length > 0) {
       app.appendChild(h('div', { class: 'status-section-title attention' }, `${msg('needsAttention')} (${needsAttention.length})`));
-      app.appendChild(renderRepoGroups(needsAttentionGroups, username));
+      const attentionContainer = h('div', { 'data-filter-section': 'attention' });
+      attentionContainer.appendChild(renderRepoGroups(needsAttentionGroups, username));
+      app.appendChild(attentionContainer);
     }
     if (others.length > 0) {
       app.appendChild(h('div', { class: 'status-section-title others' }, `${msg('waitingOnOthers')} (${others.length})`));
-      app.appendChild(renderRepoGroups(othersGroups, username));
+      const othersContainer = h('div', { 'data-filter-section': 'others' });
+      othersContainer.appendChild(renderRepoGroups(othersGroups, username));
+      app.appendChild(othersContainer);
     }
   }
 
@@ -402,4 +444,7 @@ function render(data, isRefreshing) {
       });
     });
   };
+
+  // Re-apply filter after render
+  applyFilter();
 }
