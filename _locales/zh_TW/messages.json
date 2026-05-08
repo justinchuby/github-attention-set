@@ -195,7 +195,7 @@
     "message": "僅在直接請求審查時通知（忽略團隊請求）"
   },
   "optWhitelistedTeams": {
-    "message": "白名單團隊（即使勾選上方選項仍會通知）："
+    "message": "允許團隊（即使勾選上方選項仍會通知）："
   },
   "optWhitelistedTeamsHint": {
     "message": "每行一個團隊（如 my-org/my-team）"

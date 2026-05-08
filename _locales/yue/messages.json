@@ -195,7 +195,7 @@
     "message": "淨係直接請求先通知（唔理team請求）"
   },
   "optWhitelistedTeams": {
-    "message": "白名單team（就算撳咗上面都會通知）："
+    "message": "允許team（就算撳咗上面都會通知）："
   },
   "optWhitelistedTeamsHint": {
     "message": "每行一個team（例如 my-org/my-team）"

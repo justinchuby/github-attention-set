@@ -195,7 +195,7 @@
     "message": "仅在直接请求审查时通知（忽略团队请求）"
   },
   "optWhitelistedTeams": {
-    "message": "白名单团队（即使勾选上方选项仍会通知）："
+    "message": "允许团队（即使勾选上方选项仍会通知）："
   },
   "optWhitelistedTeamsHint": {
     "message": "每行一个团队（如 my-org/my-team）"

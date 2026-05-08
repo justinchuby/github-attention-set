@@ -195,7 +195,7 @@
     "message": "Only notify for direct review requests (ignore team requests)"
   },
   "optWhitelistedTeams": {
-    "message": "Whitelisted teams (still notify even with above checked):"
+    "message": "Allowed teams (still notify even with above checked):"
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
