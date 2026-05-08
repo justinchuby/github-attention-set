@@ -2,6 +2,7 @@
 import { getIcon } from './icons.js';
 import { h } from './dom.js';
 import { initI18n, msg } from './i18n.js';
+import { applyRepoFilter } from './utils.js';
 
 await initI18n();
 
@@ -65,11 +66,6 @@ function applyFilter() {
     }
     section.style.display = visibleCount > 0 ? '' : 'none';
   });
-}
-
-function _isBot(login) {
-  if (!login) return false;
-  return login.includes('[bot]');
 }
 
 /** Parse an HTML string into DOM nodes (for icon SVGs from getIcon) */
@@ -202,20 +198,6 @@ function groupByRepo(prs) {
   }
   groups.sort((a, b) => b.latestEvent - a.latestEvent);
   return groups;
-}
-
-function applyRepoFilter(results, mode, repoListStr) {
-  if (!mode || mode === 'all' || !repoListStr.trim()) return results;
-  const repos = new Set(
-    repoListStr
-      .split('\n')
-      .map((r) => r.trim().toLowerCase())
-      .filter(Boolean),
-  );
-  if (repos.size === 0) return results;
-  if (mode === 'include') return results.filter((r) => repos.has(r.repo.toLowerCase()));
-  if (mode === 'exclude') return results.filter((r) => !repos.has(r.repo.toLowerCase()));
-  return results;
 }
 
 function renderPRItem(pr, username, showRepo) {
