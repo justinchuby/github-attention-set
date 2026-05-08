@@ -89,7 +89,7 @@ export function computeAttentionSet(
       case 'review_requested': {
         if (isBot(actor, actorObj)) break;
         const reviewer = event.requested_reviewer?.login;
-        if (reviewer && !isBot(reviewer, event.requested_reviewer)) {
+        if (reviewer) {
           requestedReviewers.add(reviewer);
           allReviewers.add(reviewer);
           if (!reviewerStates[reviewer]) reviewerStates[reviewer] = 'pending';
@@ -121,7 +121,8 @@ export function computeAttentionSet(
       }
 
       case 'reviewed': {
-        if (isBot(actor, actorObj)) break;
+        // Ignore bot reviews unless the bot was an explicit reviewer
+        if (isBot(actor, actorObj) && !requestedReviewers.has(actor) && !allReviewers.has(actor)) break;
         const reviewState = event.state;
         // Reviewer leaves requested set
         requestedReviewers.delete(actor);
@@ -281,9 +282,9 @@ export function computeAttentionSet(
 
   // review_request_removed already handled by removing from requestedReviewers
 
-  // Filter bots from final output
+  // Filter bots from final output — but keep bots that are explicit reviewers
   for (const user of Object.keys(set)) {
-    if (isBot(user)) {
+    if (isBot(user) && !allReviewers.has(user)) {
       delete set[user];
     }
   }
@@ -292,7 +293,7 @@ export function computeAttentionSet(
   const terminalStates = new Set(['MERGED', 'CLOSED', 'DRAFT', 'MERGING']);
   if (!terminalStates.has(prState)) {
     for (const reviewer of requestedReviewers) {
-      if (!isBot(reviewer) && !set[reviewer]) {
+      if (!set[reviewer]) {
         set[reviewer] = 'red';
       }
     }
