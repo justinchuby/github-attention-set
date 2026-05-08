@@ -444,7 +444,20 @@ function renderDismissedItem(pr, dismissedData) {
       h(
         'div',
         { class: 'pr-meta' },
-        `${pr.repo}#${pr.number}${pr.author ? [' · by ', h('a', { href: `https://github.com/${pr.author}`, target: '_blank', style: { color: 'inherit' } }, pr.author)] : ''}`,
+        (() => {
+          const parts = [`${pr.repo}#${pr.number}`];
+          if (pr.author) {
+            parts.push(' · by ');
+            parts.push(
+              h(
+                'a',
+                { href: `https://github.com/${pr.author}`, target: '_blank', style: { color: 'inherit' } },
+                pr.author,
+              ),
+            );
+          }
+          return parts;
+        })(),
       ),
     ]),
     restoreBtn,
