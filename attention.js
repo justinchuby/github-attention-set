@@ -44,6 +44,7 @@ export function computeAttentionSet(
   { onlyDirectRequests = false, whitelistedTeams = [] } = {},
 ) {
   const debounceMs = debounceMin * 60 * 1000;
+  const ciHas = (set, val) => [...set].some((v) => v.toLowerCase() === val.toLowerCase());
   const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 
   // --- Step 1: Determine PR state ---
@@ -121,7 +122,7 @@ export function computeAttentionSet(
 
       case 'reviewed': {
         // Ignore bot reviews unless the bot was an explicit reviewer
-        if (isBot(actor, actorObj) && !requestedReviewers.has(actor) && !allReviewers.has(actor)) break;
+        if (isBot(actor, actorObj) && !ciHas(requestedReviewers, actor) && !ciHas(allReviewers, actor)) break;
         const reviewState = event.state;
         // Reviewer leaves requested set
         requestedReviewers.delete(actor);
@@ -208,7 +209,7 @@ export function computeAttentionSet(
       const mentions = event.body.match(/@([a-zA-Z0-9-]+)/g) || [];
       for (const m of mentions) {
         const user = m.slice(1);
-        if (user !== actor && !isBot(user) && !allReviewers.has(user)) {
+        if (user !== actor && !isBot(user) && !ciHas(allReviewers, user)) {
           mentioned.set(user, { status: 'red', since: ts });
         }
       }
@@ -288,7 +289,7 @@ export function computeAttentionSet(
 
   // Filter bots from final output — but keep bots that are explicit reviewers
   for (const user of Object.keys(set)) {
-    if (isBot(user) && !allReviewers.has(user)) {
+    if (isBot(user) && !ciHas(allReviewers, user)) {
       delete set[user];
     }
   }
