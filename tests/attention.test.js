@@ -20,7 +20,12 @@ describe('computeAttentionSet', () => {
   describe('State: REVIEWING', () => {
     it('review_requested → reviewer in attention set', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(5, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(5, NOW),
+        },
       ];
       const result = computeAttentionSet(timeline, 'charlie', author, DEBOUNCE_MIN, NOW);
       expect(result.set[reviewer]).toBe('red');
@@ -29,7 +34,12 @@ describe('computeAttentionSet', () => {
 
     it('fresh PR with review request → reviewer red', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(1, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(1, NOW),
+        },
       ];
       const result = computeAttentionSet(timeline, reviewer, author, DEBOUNCE_MIN, NOW);
       expect(result.set[reviewer]).toBe('red');
@@ -38,8 +48,18 @@ describe('computeAttentionSet', () => {
 
     it('multiple reviewers tracked independently', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: 'bob' }, created_at: minutesAgo(30, NOW) },
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: 'carol' }, created_at: minutesAgo(29, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: 'bob' },
+          created_at: minutesAgo(30, NOW),
+        },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: 'carol' },
+          created_at: minutesAgo(29, NOW),
+        },
       ];
       const result = computeAttentionSet(timeline, 'carol', author, DEBOUNCE_MIN, NOW);
       expect(result.set['bob']).toBe('red');
@@ -49,7 +69,12 @@ describe('computeAttentionSet', () => {
 
     it('reviewer submits review → leaves attention set', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(30, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(30, NOW),
+        },
         { event: 'reviewed', actor: { login: reviewer }, state: 'commented', submitted_at: minutesAgo(20, NOW) },
       ];
       // After reviewed state=commented, state becomes COMMENTED, author in set
@@ -60,10 +85,25 @@ describe('computeAttentionSet', () => {
 
     it('author re-requests review after changes → REVIEWING', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(60, NOW) },
-        { event: 'reviewed', actor: { login: reviewer }, state: 'changes_requested', submitted_at: minutesAgo(50, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(60, NOW),
+        },
+        {
+          event: 'reviewed',
+          actor: { login: reviewer },
+          state: 'changes_requested',
+          submitted_at: minutesAgo(50, NOW),
+        },
         { event: 'committed', actor: { login: author }, committer: { login: author }, created_at: minutesAgo(40, NOW) },
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(30, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(30, NOW),
+        },
       ];
       const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);
       expect(result.set[reviewer]).toBe('red');
@@ -75,7 +115,12 @@ describe('computeAttentionSet', () => {
   describe('State: DRAFT', () => {
     it('convert_to_draft → nobody in set', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(30, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(30, NOW),
+        },
         { event: 'convert_to_draft', actor: { login: author }, created_at: minutesAgo(20, NOW) },
       ];
       const result = computeAttentionSet(timeline, reviewer, author, DEBOUNCE_MIN, NOW);
@@ -87,7 +132,12 @@ describe('computeAttentionSet', () => {
       const timeline = [
         { event: 'convert_to_draft', actor: { login: author }, created_at: minutesAgo(30, NOW) },
         { event: 'ready_for_review', actor: { login: author }, created_at: minutesAgo(20, NOW) },
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(19, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(19, NOW),
+        },
       ];
       const result = computeAttentionSet(timeline, reviewer, author, DEBOUNCE_MIN, NOW);
       expect(result.set[reviewer]).toBe('red');
@@ -98,8 +148,18 @@ describe('computeAttentionSet', () => {
   describe('State: CHANGES_REQUESTED', () => {
     it('changes_requested → author in set', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(30, NOW) },
-        { event: 'reviewed', actor: { login: reviewer }, state: 'changes_requested', submitted_at: minutesAgo(20, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(30, NOW),
+        },
+        {
+          event: 'reviewed',
+          actor: { login: reviewer },
+          state: 'changes_requested',
+          submitted_at: minutesAgo(20, NOW),
+        },
       ];
       const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);
       expect(result.set[author]).toBe('red');
@@ -108,7 +168,12 @@ describe('computeAttentionSet', () => {
 
     it('commit without re-request stays in CHANGES_REQUESTED', () => {
       const timeline = [
-        { event: 'reviewed', actor: { login: reviewer }, state: 'changes_requested', submitted_at: minutesAgo(30, NOW) },
+        {
+          event: 'reviewed',
+          actor: { login: reviewer },
+          state: 'changes_requested',
+          submitted_at: minutesAgo(30, NOW),
+        },
         { event: 'committed', actor: { login: author }, committer: { login: author }, created_at: minutesAgo(20, NOW) },
       ];
       const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);
@@ -158,7 +223,12 @@ describe('computeAttentionSet', () => {
   describe('State: APPROVED_NO_AUTOMERGE', () => {
     it('approved without auto-merge → author red', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(30, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(30, NOW),
+        },
         { event: 'reviewed', actor: { login: reviewer }, state: 'approved', submitted_at: minutesAgo(10, NOW) },
       ];
       const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);
@@ -170,7 +240,12 @@ describe('computeAttentionSet', () => {
   describe('State: MERGING', () => {
     it('approved + auto-merge + recent activity → nobody in set', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(60, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(60, NOW),
+        },
         { event: 'auto_squash_enabled', actor: { login: reviewer }, created_at: minutesAgo(10, NOW) },
         { event: 'reviewed', actor: { login: reviewer }, state: 'approved', submitted_at: minutesAgo(9, NOW) },
       ];
@@ -215,7 +290,12 @@ describe('computeAttentionSet', () => {
   describe('State: MERGED / CLOSED', () => {
     it('merged → nobody in set', () => {
       const timeline = [
-        { event: 'reviewed', actor: { login: reviewer }, state: 'changes_requested', submitted_at: minutesAgo(30, NOW) },
+        {
+          event: 'reviewed',
+          actor: { login: reviewer },
+          state: 'changes_requested',
+          submitted_at: minutesAgo(30, NOW),
+        },
         { event: 'merged', actor: { login: author }, created_at: minutesAgo(5, NOW) },
       ];
       const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);
@@ -225,7 +305,12 @@ describe('computeAttentionSet', () => {
 
     it('closed → nobody in set', () => {
       const timeline = [
-        { event: 'reviewed', actor: { login: reviewer }, state: 'changes_requested', submitted_at: minutesAgo(30, NOW) },
+        {
+          event: 'reviewed',
+          actor: { login: reviewer },
+          state: 'changes_requested',
+          submitted_at: minutesAgo(30, NOW),
+        },
         { event: 'closed', actor: { login: author }, created_at: minutesAgo(5, NOW) },
       ];
       const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);
@@ -237,7 +322,12 @@ describe('computeAttentionSet', () => {
   describe('Additional rules', () => {
     it('@mention → that person enters set regardless of state', () => {
       const timeline = [
-        { event: 'commented', actor: { login: reviewer }, created_at: minutesAgo(30, NOW), body: 'Hey @charlie can you take a look?' },
+        {
+          event: 'commented',
+          actor: { login: reviewer },
+          created_at: minutesAgo(30, NOW),
+          body: 'Hey @charlie can you take a look?',
+        },
       ];
       const result = computeAttentionSet(timeline, 'charlie', author, DEBOUNCE_MIN, NOW);
       expect(result.set['charlie']).toBe('red');
@@ -255,8 +345,18 @@ describe('computeAttentionSet', () => {
 
     it('review_request_removed → reviewer leaves', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(30, NOW) },
-        { event: 'review_request_removed', actor: { login: author }, requested_reviewer: { login: reviewer }, created_at: minutesAgo(20, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(30, NOW),
+        },
+        {
+          event: 'review_request_removed',
+          actor: { login: author },
+          requested_reviewer: { login: reviewer },
+          created_at: minutesAgo(20, NOW),
+        },
       ];
       const result = computeAttentionSet(timeline, reviewer, author, DEBOUNCE_MIN, NOW);
       expect(result.set[reviewer]).toBeUndefined();
@@ -265,8 +365,19 @@ describe('computeAttentionSet', () => {
 
     it('bot comments do not affect attention set', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author, type: 'User' }, requested_reviewer: { login: reviewer, type: 'User' }, created_at: minutesAgo(30, NOW) },
-        { event: 'commented', actor: { login: 'codecov[bot]', type: 'Bot' }, user: { login: 'codecov[bot]', type: 'Bot' }, created_at: minutesAgo(20, NOW), body: '@alice coverage dropped' },
+        {
+          event: 'review_requested',
+          actor: { login: author, type: 'User' },
+          requested_reviewer: { login: reviewer, type: 'User' },
+          created_at: minutesAgo(30, NOW),
+        },
+        {
+          event: 'commented',
+          actor: { login: 'codecov[bot]', type: 'Bot' },
+          user: { login: 'codecov[bot]', type: 'Bot' },
+          created_at: minutesAgo(20, NOW),
+          body: '@alice coverage dropped',
+        },
       ];
       const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);
       // Bot mention should be ignored, state stays REVIEWING, author not in set
@@ -316,7 +427,12 @@ describe('computeAttentionSet', () => {
 
     it('review_requested with team does not add team to set', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: author, type: 'User' }, requested_team: { name: 'sig-approvers' }, created_at: minutesAgo(10, NOW) },
+        {
+          event: 'review_requested',
+          actor: { login: author, type: 'User' },
+          requested_team: { name: 'sig-approvers' },
+          created_at: minutesAgo(10, NOW),
+        },
       ];
       const result = computeAttentionSet(timeline, author, author, DEBOUNCE_MIN, NOW);
       expect(result.set).not.toHaveProperty('sig-approvers');
@@ -326,27 +442,130 @@ describe('computeAttentionSet', () => {
   describe('Real PR #1056: approve + auto_squash_enabled', () => {
     it('full timeline → green (MERGING state)', () => {
       const timeline = [
-        { event: 'review_requested', actor: { login: 'justinchuby', type: 'User' }, requested_team: { name: 'onnxruntime-extensions' }, created_at: '2026-05-06T16:42:50Z' },
-        { event: 'review_requested', actor: { login: 'justinchuby', type: 'User' }, requested_reviewer: { login: 'Copilot', type: 'Bot' }, created_at: '2026-05-06T16:42:50Z' },
-        { event: 'head_ref_force_pushed', actor: { login: 'justinchuby', type: 'User' }, created_at: '2026-05-06T16:51:59Z' },
-        { event: 'head_ref_force_pushed', actor: { login: 'justinchuby', type: 'User' }, created_at: '2026-05-06T16:57:07Z' },
-        { event: 'committed', actor: { login: 'justinchuby', type: 'User' }, committer: { login: 'justinchuby' }, created_at: '2026-05-06T17:02:22Z' },
-        { event: 'commented', actor: { login: 'justinchuby', type: 'User' }, user: { login: 'justinchuby', type: 'User' }, created_at: '2026-05-06T17:13:24Z', body: '@sayanshaw24 @apsonawane' },
-        { event: 'reviewed', actor: { login: 'sayanshaw24', type: 'User' }, user: { login: 'sayanshaw24', type: 'User' }, state: 'commented', submitted_at: '2026-05-06T18:11:42Z' },
-        { event: 'reviewed', actor: { login: 'sayanshaw24', type: 'User' }, user: { login: 'sayanshaw24', type: 'User' }, state: 'commented', submitted_at: '2026-05-06T18:14:41Z' },
-        { event: 'reviewed', actor: { login: 'sayanshaw24', type: 'User' }, user: { login: 'sayanshaw24', type: 'User' }, state: 'commented', submitted_at: '2026-05-06T18:17:38Z' },
-        { event: 'commented', actor: { login: 'sayanshaw24', type: 'User' }, user: { login: 'sayanshaw24', type: 'User' }, created_at: '2026-05-06T18:22:51Z' },
-        { event: 'committed', actor: { login: 'justinchuby', type: 'User' }, committer: { login: 'justinchuby' }, created_at: '2026-05-06T21:19:23Z' },
-        { event: 'commented', actor: { login: 'justinchuby', type: 'User' }, user: { login: 'justinchuby', type: 'User' }, created_at: '2026-05-06T21:19:43Z' },
-        { event: 'commented', actor: { login: 'justinchuby', type: 'User' }, user: { login: 'justinchuby', type: 'User' }, created_at: '2026-05-06T21:25:45Z' },
-        { event: 'committed', actor: { login: 'justinchuby', type: 'User' }, committer: { login: 'justinchuby' }, created_at: '2026-05-06T21:29:46Z' },
-        { event: 'review_requested', actor: { login: 'justinchuby', type: 'User' }, requested_reviewer: { login: 'sayanshaw24', type: 'User' }, created_at: '2026-05-06T23:58:53Z' },
-        { event: 'committed', actor: { login: 'justinchuby', type: 'User' }, committer: { login: 'justinchuby' }, created_at: '2026-05-07T00:04:15Z' },
-        { event: 'commented', actor: { login: 'justinchuby', type: 'User' }, user: { login: 'justinchuby', type: 'User' }, created_at: '2026-05-07T00:05:16Z' },
-        { event: 'auto_squash_enabled', actor: { login: 'sayanshaw24', type: 'User' }, created_at: '2026-05-07T00:18:25Z' },
-        { event: 'reviewed', actor: { login: 'sayanshaw24', type: 'User' }, user: { login: 'sayanshaw24', type: 'User' }, state: 'approved', submitted_at: '2026-05-07T00:18:28Z' },
+        {
+          event: 'review_requested',
+          actor: { login: 'justinchuby', type: 'User' },
+          requested_team: { name: 'onnxruntime-extensions' },
+          created_at: '2026-05-06T16:42:50Z',
+        },
+        {
+          event: 'review_requested',
+          actor: { login: 'justinchuby', type: 'User' },
+          requested_reviewer: { login: 'Copilot', type: 'Bot' },
+          created_at: '2026-05-06T16:42:50Z',
+        },
+        {
+          event: 'head_ref_force_pushed',
+          actor: { login: 'justinchuby', type: 'User' },
+          created_at: '2026-05-06T16:51:59Z',
+        },
+        {
+          event: 'head_ref_force_pushed',
+          actor: { login: 'justinchuby', type: 'User' },
+          created_at: '2026-05-06T16:57:07Z',
+        },
+        {
+          event: 'committed',
+          actor: { login: 'justinchuby', type: 'User' },
+          committer: { login: 'justinchuby' },
+          created_at: '2026-05-06T17:02:22Z',
+        },
+        {
+          event: 'commented',
+          actor: { login: 'justinchuby', type: 'User' },
+          user: { login: 'justinchuby', type: 'User' },
+          created_at: '2026-05-06T17:13:24Z',
+          body: '@sayanshaw24 @apsonawane',
+        },
+        {
+          event: 'reviewed',
+          actor: { login: 'sayanshaw24', type: 'User' },
+          user: { login: 'sayanshaw24', type: 'User' },
+          state: 'commented',
+          submitted_at: '2026-05-06T18:11:42Z',
+        },
+        {
+          event: 'reviewed',
+          actor: { login: 'sayanshaw24', type: 'User' },
+          user: { login: 'sayanshaw24', type: 'User' },
+          state: 'commented',
+          submitted_at: '2026-05-06T18:14:41Z',
+        },
+        {
+          event: 'reviewed',
+          actor: { login: 'sayanshaw24', type: 'User' },
+          user: { login: 'sayanshaw24', type: 'User' },
+          state: 'commented',
+          submitted_at: '2026-05-06T18:17:38Z',
+        },
+        {
+          event: 'commented',
+          actor: { login: 'sayanshaw24', type: 'User' },
+          user: { login: 'sayanshaw24', type: 'User' },
+          created_at: '2026-05-06T18:22:51Z',
+        },
+        {
+          event: 'committed',
+          actor: { login: 'justinchuby', type: 'User' },
+          committer: { login: 'justinchuby' },
+          created_at: '2026-05-06T21:19:23Z',
+        },
+        {
+          event: 'commented',
+          actor: { login: 'justinchuby', type: 'User' },
+          user: { login: 'justinchuby', type: 'User' },
+          created_at: '2026-05-06T21:19:43Z',
+        },
+        {
+          event: 'commented',
+          actor: { login: 'justinchuby', type: 'User' },
+          user: { login: 'justinchuby', type: 'User' },
+          created_at: '2026-05-06T21:25:45Z',
+        },
+        {
+          event: 'committed',
+          actor: { login: 'justinchuby', type: 'User' },
+          committer: { login: 'justinchuby' },
+          created_at: '2026-05-06T21:29:46Z',
+        },
+        {
+          event: 'review_requested',
+          actor: { login: 'justinchuby', type: 'User' },
+          requested_reviewer: { login: 'sayanshaw24', type: 'User' },
+          created_at: '2026-05-06T23:58:53Z',
+        },
+        {
+          event: 'committed',
+          actor: { login: 'justinchuby', type: 'User' },
+          committer: { login: 'justinchuby' },
+          created_at: '2026-05-07T00:04:15Z',
+        },
+        {
+          event: 'commented',
+          actor: { login: 'justinchuby', type: 'User' },
+          user: { login: 'justinchuby', type: 'User' },
+          created_at: '2026-05-07T00:05:16Z',
+        },
+        {
+          event: 'auto_squash_enabled',
+          actor: { login: 'sayanshaw24', type: 'User' },
+          created_at: '2026-05-07T00:18:25Z',
+        },
+        {
+          event: 'reviewed',
+          actor: { login: 'sayanshaw24', type: 'User' },
+          user: { login: 'sayanshaw24', type: 'User' },
+          state: 'approved',
+          submitted_at: '2026-05-07T00:18:28Z',
+        },
       ];
-      const result = computeAttentionSet(timeline, 'justinchuby', 'justinchuby', 10, new Date('2026-05-07T01:00:00Z').getTime());
+      const result = computeAttentionSet(
+        timeline,
+        'justinchuby',
+        'justinchuby',
+        10,
+        new Date('2026-05-07T01:00:00Z').getTime(),
+      );
       expect(result.myStatus).toBe('green');
       expect(result.set['justinchuby']).toBeUndefined();
     });
@@ -383,37 +602,81 @@ describe('isBot', () => {
   });
 });
 
-  it('user requested to review shows REVIEWING reason even if PR is approved', () => {
-    const timeline = [
-      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_reviewer: { login: 'me', type: 'User' }, created_at: '2026-01-01T00:00:00Z' },
-      { event: 'reviewed', actor: { login: 'other-reviewer', type: 'User' }, user: { login: 'other-reviewer', type: 'User' }, state: 'approved', submitted_at: '2026-01-02T00:00:00Z' },
-    ];
-    const result = computeAttentionSet(timeline, 'me', 'author', 10, new Date('2026-01-03').getTime());
-    expect(result.myStatus).toBe('red');
-    expect(result.myReason).toBe('REVIEWING');
-  });
+it('user requested to review shows REVIEWING reason even if PR is approved', () => {
+  const timeline = [
+    {
+      event: 'review_requested',
+      actor: { login: 'author', type: 'User' },
+      requested_reviewer: { login: 'me', type: 'User' },
+      created_at: '2026-01-01T00:00:00Z',
+    },
+    {
+      event: 'reviewed',
+      actor: { login: 'other-reviewer', type: 'User' },
+      user: { login: 'other-reviewer', type: 'User' },
+      state: 'approved',
+      submitted_at: '2026-01-02T00:00:00Z',
+    },
+  ];
+  const result = computeAttentionSet(timeline, 'me', 'author', 10, new Date('2026-01-03').getTime());
+  expect(result.myStatus).toBe('red');
+  expect(result.myReason).toBe('REVIEWING');
+});
 
-  it('user who already reviewed does not get REVIEWING reason', () => {
-    const timeline = [
-      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_reviewer: { login: 'me', type: 'User' }, created_at: '2026-01-01T00:00:00Z' },
-      { event: 'reviewed', actor: { login: 'me', type: 'User' }, user: { login: 'me', type: 'User' }, state: 'commented', submitted_at: '2026-01-02T00:00:00Z' },
-      { event: 'reviewed', actor: { login: 'other', type: 'User' }, user: { login: 'other', type: 'User' }, state: 'approved', submitted_at: '2026-01-03T00:00:00Z' },
-    ];
-    const result = computeAttentionSet(timeline, 'me', 'author', 10, new Date('2026-01-04').getTime());
-    // me already reviewed, so reason follows prState not REVIEWING
-    expect(result.myReason).not.toBe('REVIEWING');
-  });
+it('user who already reviewed does not get REVIEWING reason', () => {
+  const timeline = [
+    {
+      event: 'review_requested',
+      actor: { login: 'author', type: 'User' },
+      requested_reviewer: { login: 'me', type: 'User' },
+      created_at: '2026-01-01T00:00:00Z',
+    },
+    {
+      event: 'reviewed',
+      actor: { login: 'me', type: 'User' },
+      user: { login: 'me', type: 'User' },
+      state: 'commented',
+      submitted_at: '2026-01-02T00:00:00Z',
+    },
+    {
+      event: 'reviewed',
+      actor: { login: 'other', type: 'User' },
+      user: { login: 'other', type: 'User' },
+      state: 'approved',
+      submitted_at: '2026-01-03T00:00:00Z',
+    },
+  ];
+  const result = computeAttentionSet(timeline, 'me', 'author', 10, new Date('2026-01-04').getTime());
+  // me already reviewed, so reason follows prState not REVIEWING
+  expect(result.myReason).not.toBe('REVIEWING');
+});
 
-  it('re-requested review after user already reviewed shows REVIEWING', () => {
-    const timeline = [
-      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_reviewer: { login: 'me', type: 'User' }, created_at: '2026-01-01T00:00:00Z' },
-      { event: 'reviewed', actor: { login: 'me', type: 'User' }, user: { login: 'me', type: 'User' }, state: 'commented', submitted_at: '2026-01-02T00:00:00Z' },
-      { event: 'review_requested', actor: { login: 'author', type: 'User' }, requested_reviewer: { login: 'me', type: 'User' }, created_at: '2026-01-03T00:00:00Z' },
-    ];
-    const result = computeAttentionSet(timeline, 'me', 'author', 10, new Date('2026-01-04').getTime());
-    expect(result.myStatus).toBe('red');
-    expect(result.myReason).toBe('REVIEWING');
-  });
+it('re-requested review after user already reviewed shows REVIEWING', () => {
+  const timeline = [
+    {
+      event: 'review_requested',
+      actor: { login: 'author', type: 'User' },
+      requested_reviewer: { login: 'me', type: 'User' },
+      created_at: '2026-01-01T00:00:00Z',
+    },
+    {
+      event: 'reviewed',
+      actor: { login: 'me', type: 'User' },
+      user: { login: 'me', type: 'User' },
+      state: 'commented',
+      submitted_at: '2026-01-02T00:00:00Z',
+    },
+    {
+      event: 'review_requested',
+      actor: { login: 'author', type: 'User' },
+      requested_reviewer: { login: 'me', type: 'User' },
+      created_at: '2026-01-03T00:00:00Z',
+    },
+  ];
+  const result = computeAttentionSet(timeline, 'me', 'author', 10, new Date('2026-01-04').getTime());
+  expect(result.myStatus).toBe('red');
+  expect(result.myReason).toBe('REVIEWING');
+});
 
 // i18n completeness test
 import { readdirSync, readFileSync } from 'fs';
@@ -423,22 +686,30 @@ describe('i18n locale completeness', () => {
   const localesDir = join(import.meta.dirname, '..', '_locales');
   const enMessages = JSON.parse(readFileSync(join(localesDir, 'en', 'messages.json'), 'utf8'));
   const enKeys = Object.keys(enMessages).sort();
-  const localeDirs = readdirSync(localesDir).filter(d => d !== 'en');
+  const localeDirs = readdirSync(localesDir).filter((d) => d !== 'en');
 
   for (const locale of localeDirs) {
     it(`${locale} has all keys from en`, () => {
       const filePath = join(localesDir, locale, 'messages.json');
       const messages = JSON.parse(readFileSync(filePath, 'utf8'));
       const localeKeys = Object.keys(messages).sort();
-      const missing = enKeys.filter(k => !localeKeys.includes(k));
+      const missing = enKeys.filter((k) => !localeKeys.includes(k));
       expect(missing).toEqual([]);
     });
   }
 
   it('all badge labels are ≤ 10 characters', () => {
-    const badgeKeys = ['stateReview', 'stateFix', 'stateRespond', 'stateMerge', 'stateMerging', 'stateStuck', 'stateDraft'];
+    const badgeKeys = [
+      'stateReview',
+      'stateFix',
+      'stateRespond',
+      'stateMerge',
+      'stateMerging',
+      'stateStuck',
+      'stateDraft',
+    ];
     const violations = [];
-    for (const locale of [' en', ...localeDirs].map(l => l.trim())) {
+    for (const locale of [' en', ...localeDirs].map((l) => l.trim())) {
       const filePath = join(localesDir, locale, 'messages.json');
       const messages = JSON.parse(readFileSync(filePath, 'utf8'));
       for (const key of badgeKeys) {
@@ -448,5 +719,60 @@ describe('i18n locale completeness', () => {
       }
     }
     expect(violations).toEqual([]);
+  });
+});
+
+describe('bot comment handling', () => {
+  it('bot comment (not in reviewer list) does not give author attention', () => {
+    const timeline = [
+      {
+        event: 'reviewed',
+        actor: { login: 'codecov[bot]', type: 'Bot' },
+        state: 'commented',
+        submitted_at: '2026-05-01T10:00:00Z',
+        body: 'Coverage report',
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'alice', 'alice', 10);
+    expect(result.myStatus).toBe('green');
+    expect(result.set['alice']).toBeUndefined();
+  });
+
+  it('bot requested as reviewer is treated normally', () => {
+    const timeline = [
+      {
+        event: 'review_requested',
+        actor: { login: 'alice' },
+        requested_reviewer: { login: 'copilot[bot]', type: 'Bot' },
+        created_at: '2026-05-01T09:00:00Z',
+      },
+      {
+        event: 'reviewed',
+        actor: { login: 'copilot[bot]', type: 'Bot' },
+        state: 'commented',
+        submitted_at: '2026-05-01T10:00:00Z',
+        body: 'Suggestions',
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'alice', 'alice', 10);
+    // Bot was requested reviewer and commented — author gets attention (COMMENTED state)
+    expect(result.set['alice']).toBe('red');
+    expect(result.allReviewers).toContain('copilot[bot]');
+    expect(result.reviewerStates['copilot[bot]']).toBe('commented');
+  });
+
+  it('bot comment without being reviewer does not appear in allReviewers', () => {
+    const timeline = [
+      {
+        event: 'reviewed',
+        actor: { login: 'stale[bot]', type: 'Bot' },
+        state: 'commented',
+        submitted_at: '2026-05-01T10:00:00Z',
+        body: 'This issue is stale',
+      },
+    ];
+    const result = computeAttentionSet(timeline, 'bob', 'alice', 10);
+    expect(result.allReviewers).not.toContain('stale[bot]');
+    expect(result.set['alice']).toBeUndefined();
   });
 });

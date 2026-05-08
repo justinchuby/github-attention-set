@@ -129,7 +129,8 @@ export function computeAttentionSet(
         // Track reviewer's review state
         if (reviewState === 'approved') reviewerStates[actor] = 'approved';
         else if (reviewState === 'changes_requested') reviewerStates[actor] = 'changes_requested';
-        else if (reviewState === 'commented') reviewerStates[actor] = reviewerStates[actor] || 'commented';
+        else if (reviewState === 'commented' && reviewerStates[actor] === 'pending')
+          reviewerStates[actor] = 'commented';
 
         if (reviewState === 'changes_requested') {
           prState = STATE.CHANGES_REQUESTED;
