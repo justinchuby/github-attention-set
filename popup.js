@@ -315,7 +315,7 @@ function renderPRItem(pr, username, showRepo) {
     }, 0);
   };
 
-  const filterText = `${pr.title} ${pr.repo} ${pr.author} #${pr.number} ${pr.number}`;
+  const filterText = `${pr.title} ${pr.repo} ${pr.author} #${pr.number} ${pr.number} ${(pr.allReviewers || []).join(' ')}`;
 
   return h('li', { class: 'pr-item', 'data-filter-text': filterText }, [
     dot,
@@ -368,7 +368,7 @@ function renderDismissedItem(pr, dismissedData) {
     });
   };
 
-  const filterText = `${pr.title} ${pr.repo} ${pr.author || ''} #${pr.number} ${pr.number}`;
+  const filterText = `${pr.title} ${pr.repo} ${pr.author || ''} #${pr.number} ${pr.number} ${(pr.allReviewers || []).join(' ')}`;
 
   return h('li', { class: 'pr-item pr-item-dismissed', 'data-filter-text': filterText }, [
     dot,
