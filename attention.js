@@ -357,7 +357,7 @@ export function computeAttentionSet(
         }
       }
     }
-    if (wasRequested) {
+    if (wasRequested || allReviewers.has(me)) {
       myRole = 'incoming';
     } else if (mentioned.has(me)) {
       myRole = 'mentioned';
