@@ -234,12 +234,9 @@ async function pollAndCompute() {
     if (settings.notifications !== false) {
       const {
         lastNotifiedPRs = {},
-        _notifyNewCommits = false,
-        onlyDirectRequests = false,
-        _whitelistedTeams = [],
       } = await new Promise((r) =>
         chrome.storage.local.get(
-          { lastNotifiedPRs: {}, notifyNewCommits: false, onlyDirectRequests: false, whitelistedTeams: [] },
+          { lastNotifiedPRs: {} },
           r,
         ),
       );

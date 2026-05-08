@@ -3,6 +3,7 @@
 // Supports multiple tokens: polls each token concurrently and merges results.
 
 import { computeAttentionSet } from './attention.js';
+import { applyRepoFilter } from './utils.js';
 
 /**
  * Fetch helper that throws on non-OK responses.
@@ -178,16 +179,3 @@ export async function poll(settings, opts = {}) {
   };
 }
 
-export function applyRepoFilter(results, mode, repoListStr) {
-  if (!mode || mode === 'all' || !repoListStr.trim()) return results;
-  const repos = new Set(
-    repoListStr
-      .split('\n')
-      .map((r) => r.trim().toLowerCase())
-      .filter(Boolean),
-  );
-  if (repos.size === 0) return results;
-  if (mode === 'include') return results.filter((r) => repos.has(r.repo.toLowerCase()));
-  if (mode === 'exclude') return results.filter((r) => !repos.has(r.repo.toLowerCase()));
-  return results;
-}

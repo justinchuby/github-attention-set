@@ -44,7 +44,13 @@ export function computeAttentionSet(
   { onlyDirectRequests = false, whitelistedTeams = [] } = {},
 ) {
   const debounceMs = debounceMin * 60 * 1000;
-  const ciHas = (set, val) => [...set].some((v) => v.toLowerCase() === val.toLowerCase());
+  const ciHas = (set, val) => {
+    const lower = val.toLowerCase();
+    for (const v of set) {
+      if (v.toLowerCase() === lower) return true;
+    }
+    return false;
+  };
   const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 
   // --- Step 1: Determine PR state ---

@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { poll, applyRepoFilter, migrateTokens } from '../poll.js';
+import { poll, migrateTokens } from '../poll.js';
+import { applyRepoFilter } from '../utils.js';
 
 // Helper: create a mock fetcher that routes based on URL
 function createMockFetcher(routes) {

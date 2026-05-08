@@ -537,7 +537,7 @@ async function render(data, _isRefreshing) {
   const roleIcons = { incoming: 'eye', outgoing: 'git-pull-request', mentioned: 'mention' };
   function roleHeader(sec) {
     const iconSpan = document.createElement('span');
-    iconSpan.innerHTML = getIcon(roleIcons[sec.label] || 'dot-fill', 12, '#8b949e');
+    iconSpan.appendChild(htmlToNodes(getIcon(roleIcons[sec.label] || 'dot-fill', 12, '#8b949e')));
     iconSpan.style.cssText = 'vertical-align: middle; margin-right: 4px;';
     const header = h('div', { class: 'role-subsection-title' });
     header.appendChild(iconSpan);
@@ -584,8 +584,8 @@ async function render(data, _isRefreshing) {
 
   // Error banner
   if (window.__lastError) {
-    const msg = window.__lastError.type === 'auth' ? msg('errorAuth') : msg('errorNetwork');
-    app.appendChild(h('div', { class: 'error-banner' }, msg));
+    const errorText = window.__lastError.type === 'auth' ? msg('errorAuth') : msg('errorNetwork');
+    app.appendChild(h('div', { class: 'error-banner' }, errorText));
   }
 
   // PR lists
