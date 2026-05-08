@@ -19,5 +19,9 @@ zip -r "$OUT" . \
   -x "scripts/*" \
   -x ".gitignore" \
   -x "*.md" \
+  -x "coverage/*" \
+  -x ".prettierrc" \
+  -x "eslint.config.js" \
+  -x ".github/*"
 
 echo "Built: $OUT ($(du -h "$OUT" | cut -f1))"
