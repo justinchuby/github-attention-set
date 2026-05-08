@@ -36,7 +36,14 @@ const AUTO_MERGE_ON = new Set([
 ]);
 const AUTO_MERGE_OFF = new Set(['auto_merge_disabled', 'removed_from_merge_queue']);
 
-export function computeAttentionSet(timeline, me, author, debounceMin, now = Date.now()) {
+export function computeAttentionSet(
+  timeline,
+  me,
+  author,
+  debounceMin,
+  now = Date.now(),
+  { onlyDirectRequests = false, whitelistedTeams = [] } = {},
+) {
   const debounceMs = debounceMin * 60 * 1000;
   const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 
@@ -47,6 +54,8 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
   const requestedReviewers = new Set(); // track current requested reviewers
   const allReviewers = new Set(); // all users who ever reviewed or were requested
   const reviewerStates = {}; // reviewer -> 'pending' | 'approved' | 'changes_requested' | 'commented'
+  let meAddedViaTeam = false; // whether me entered via team review request
+  let meAddedDirectly = false; // whether me was directly requested
   let commentedAt = 0; // timestamp of the commented review (for debounce)
 
   // Additional tracking for attention set extras
@@ -84,6 +93,15 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
           requestedReviewers.add(reviewer);
           allReviewers.add(reviewer);
           if (!reviewerStates[reviewer]) reviewerStates[reviewer] = 'pending';
+          if (reviewer === me) meAddedDirectly = true;
+        }
+        // Team review request — track if me is implicitly involved
+        const _team = event.requested_team?.name || event.requested_team?.slug;
+        if (_team && !reviewer) {
+          const teamAllowed = !onlyDirectRequests || whitelistedTeams.includes(_team);
+          if (teamAllowed) {
+            meAddedViaTeam = true;
+          }
         }
         // If author re-requests review, transition to REVIEWING
         if (actor === author) {
@@ -95,6 +113,10 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
       case 'review_request_removed': {
         const removed = event.requested_reviewer?.login;
         if (removed) requestedReviewers.delete(removed);
+        // Team removal
+        if (event.requested_team && !removed) {
+          meAddedViaTeam = false;
+        }
         break;
       }
 
@@ -274,6 +296,10 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
         set[reviewer] = 'red';
       }
     }
+    // Add me to attention set if added via team (and not already there)
+    if (meAddedViaTeam && !meAddedDirectly && me !== author && !set[me]) {
+      set[me] = 'red';
+    }
   }
 
   // --- Step 3: Compute myStatus ---
@@ -309,8 +335,8 @@ export function computeAttentionSet(timeline, me, author, debounceMin, now = Dat
   if (me === author) {
     myRole = 'outgoing';
   } else {
-    // Check if me was ever review_requested (direct or current)
-    let wasRequested = requestedReviewers.has(me);
+    // Check if me was ever review_requested (direct or via team)
+    let wasRequested = requestedReviewers.has(me) || meAddedDirectly || meAddedViaTeam;
     if (!wasRequested) {
       for (const ev of timeline) {
         const t = ev.event || ev.__type;

@@ -77,7 +77,11 @@ async function ghFetch(path, token, { useEtag = false } = {}) {
   return data;
 }
 
-async function pollSingleToken(tokenEntry, debounceMinutes) {
+async function pollSingleToken(
+  tokenEntry,
+  debounceMinutes,
+  { onlyDirectRequests = false, whitelistedTeams = [] } = {},
+) {
   const { token, name } = tokenEntry;
   const user = await ghFetch('/user', token);
   const username = user.login;
@@ -112,7 +116,10 @@ async function pollSingleToken(tokenEntry, debounceMinutes) {
           timeline = [];
         }
 
-        const attention = computeAttentionSet(timeline, username, pr.user.login, debounceMinutes);
+        const attention = computeAttentionSet(timeline, username, pr.user.login, debounceMinutes, undefined, {
+          onlyDirectRequests,
+          whitelistedTeams,
+        });
 
         let lastEventAt = 0;
         for (const event of timeline) {
@@ -149,6 +156,9 @@ async function pollSingleToken(tokenEntry, debounceMinutes) {
 async function pollAndCompute() {
   const settings = await getSettings();
   const tokens = migrateTokens(settings);
+  const { onlyDirectRequests, whitelistedTeams } = await new Promise((r) =>
+    chrome.storage.local.get({ onlyDirectRequests: false, whitelistedTeams: [] }, r),
+  );
 
   if (tokens.length === 0) {
     setBadge(0);
@@ -157,7 +167,9 @@ async function pollAndCompute() {
 
   try {
     // Poll all tokens concurrently
-    const tokenResults = await Promise.all(tokens.map((entry) => pollSingleToken(entry, settings.debounceMinutes)));
+    const tokenResults = await Promise.all(
+      tokens.map((entry) => pollSingleToken(entry, settings.debounceMinutes, { onlyDirectRequests, whitelistedTeams })),
+    );
 
     // Merge and deduplicate by PR URL
     const seen = new Set();
