@@ -177,7 +177,7 @@
     "message": "静音所有者"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "已静音的仓库 / 所有者"
   },
   "optMutedHint": {
     "message": "Muted repos and owners are hidden from the attention set and badge count."
@@ -189,16 +189,16 @@
     "message": "Nothing muted."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "当 PR 作者推送新提交时通知"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "仅在直接请求审查时通知（忽略团队请求）"
   },
   "optWhitelistedTeams": {
-    "message": "Whitelisted teams (still notify even with above checked):"
+    "message": "白名单团队（即使勾选上方选项仍会通知）："
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "每行一个团队（如 my-org/my-team）"
   },
   "justNow": {
     "message": "刚刚"
@@ -226,5 +226,11 @@
   },
   "stateApproved": {
     "message": "已批准"
+  },
+  "optMutedDesc": {
+    "message": "静音的仓库和所有者不会显示在关注集和徽章计数中。"
+  },
+  "optNothingMuted": {
+    "message": "无静音项目。"
   }
 }

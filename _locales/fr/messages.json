@@ -177,7 +177,7 @@
     "message": "Masquer le propriétaire"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Dépôts / Propriétaires muets"
   },
   "optMutedHint": {
     "message": "Muted repos and owners are hidden from the attention set and badge count."
@@ -189,16 +189,16 @@
     "message": "Nothing muted."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Notifier quand l'auteur pousse de nouveaux commits"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Notifier uniquement pour les demandes directes (ignorer les demandes d'équipe)"
   },
   "optWhitelistedTeams": {
-    "message": "Whitelisted teams (still notify even with above checked):"
+    "message": "Équipes autorisées (notifier même si l'option ci-dessus est cochée) :"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Un slug d'équipe par ligne (ex: my-org/my-team)"
   },
   "justNow": {
     "message": "à l'instant"
@@ -226,5 +226,11 @@
   },
   "stateApproved": {
     "message": "Approuvé"
+  },
+  "optMutedDesc": {
+    "message": "Les dépôts et propriétaires muets sont masqués de l'ensemble d'attention et du compteur."
+  },
+  "optNothingMuted": {
+    "message": "Rien en sourdine."
   }
 }

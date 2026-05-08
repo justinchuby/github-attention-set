@@ -226,5 +226,11 @@
   },
   "stateApproved": {
     "message": "已准"
+  },
+  "optMutedDesc": {
+    "message": "Muted repos and owners are hidden from the attention set and badge count."
+  },
+  "optNothingMuted": {
+    "message": "Nothing muted."
   }
 }

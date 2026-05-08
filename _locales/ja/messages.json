@@ -177,7 +177,7 @@
     "message": "オーナーをミュート"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "ミュート済みリポジトリ / オーナー"
   },
   "optMutedHint": {
     "message": "Muted repos and owners are hidden from the attention set and badge count."
@@ -189,16 +189,16 @@
     "message": "Nothing muted."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "PR作成者が新しいコミットをプッシュした時に通知"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "直接のレビューリクエストのみ通知（チームリクエストを無視）"
   },
   "optWhitelistedTeams": {
-    "message": "Whitelisted teams (still notify even with above checked):"
+    "message": "ホワイトリストチーム（上記をチックしても通知）："
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "1行に1チーム（例: my-org/my-team）"
   },
   "justNow": {
     "message": "たった今"
@@ -226,5 +226,11 @@
   },
   "stateApproved": {
     "message": "承認済み"
+  },
+  "optMutedDesc": {
+    "message": "ミュートされたリポジトリとオーナーはアテンションセットとバッジに表示されません。"
+  },
+  "optNothingMuted": {
+    "message": "ミュートなし。"
   }
 }

@@ -177,7 +177,7 @@
     "message": "소유자 음소거"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "음소거된 저장소 / 소유자"
   },
   "optMutedHint": {
     "message": "Muted repos and owners are hidden from the attention set and badge count."
@@ -189,16 +189,16 @@
     "message": "Nothing muted."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "PR 작성자가 새 커밋을 푸시할 때 알림"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "직접 리뷰 요청만 알림 (팀 요청 무시)"
   },
   "optWhitelistedTeams": {
-    "message": "Whitelisted teams (still notify even with above checked):"
+    "message": "허용 팀 (위 옵션 체크 시에도 알림):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "줄당 하나의 팀 (예: my-org/my-team)"
   },
   "justNow": {
     "message": "방금"
@@ -226,5 +226,11 @@
   },
   "stateApproved": {
     "message": "승인됨"
+  },
+  "optMutedDesc": {
+    "message": "음소거된 저장소와 소유자는 어텐션 셋과 배지에 표시되지 않습니다."
+  },
+  "optNothingMuted": {
+    "message": "음소거 없음."
   }
 }

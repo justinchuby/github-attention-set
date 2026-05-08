@@ -177,7 +177,7 @@
     "message": "Silence th' captain"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Silenced Ships / Captains"
   },
   "optMutedHint": {
     "message": "Muted repos and owners are hidden from the attention set and badge count."
@@ -189,16 +189,16 @@
     "message": "Nothing muted."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Alert when th' captain pushes new cargo"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Only hail for direct orders (ignore fleet requests)"
   },
   "optWhitelistedTeams": {
-    "message": "Whitelisted teams (still notify even with above checked):"
+    "message": "Trusted crews (still hail even with above checked):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "One crew per line (e.g. me-fleet/me-crew)"
   },
   "justNow": {
     "message": "just now, arr"
@@ -226,5 +226,11 @@
   },
   "stateApproved": {
     "message": "Aye, approved!"
+  },
+  "optMutedDesc": {
+    "message": "Silenced ships an' captains be hidden from th' attention set an' badge."
+  },
+  "optNothingMuted": {
+    "message": "Nothin' silenced, arr."
   }
 }
