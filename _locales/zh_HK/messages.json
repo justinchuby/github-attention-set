@@ -1,0 +1,239 @@
+{
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "睇吓邊個PR需要你關注——好似Google Critique嘅Attention Set咁"
+  },
+  "needsAttention": {
+    "message": "輪到你"
+  },
+  "waitingOnOthers": {
+    "message": "等緊人哋"
+  },
+  "refresh": {
+    "message": "刷新"
+  },
+  "dismiss": {
+    "message": "唔理"
+  },
+  "restore": {
+    "message": "攞返"
+  },
+  "dismissed": {
+    "message": "已忽略"
+  },
+  "loading": {
+    "message": "載緊……"
+  },
+  "noToken": {
+    "message": "未設token㗎。"
+  },
+  "goToSettings": {
+    "message": "去設定"
+  },
+  "noPRs": {
+    "message": "冇嘢要睇㗎。"
+  },
+  "allClear": {
+    "message": "搞掂晒！冇PR等你。"
+  },
+  "waitingOn": {
+    "message": "等緊："
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "stateReview": {
+    "message": "睇吓"
+  },
+  "stateFix": {
+    "message": "執番"
+  },
+  "stateRespond": {
+    "message": "覆佢"
+  },
+  "stateMerge": {
+    "message": "Merge得"
+  },
+  "stateMerging": {
+    "message": "Merge緊"
+  },
+  "stateStuck": {
+    "message": "阻塞"
+  },
+  "stateDraft": {
+    "message": "草稿"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set 設定"
+  },
+  "optTokenLabel": {
+    "message": "GitHub Token"
+  },
+  "optTokenHint": {
+    "message": "整個fine-grained PAT，權限揀 Pull requests → Read，Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ 加Token"
+  },
+  "optSave": {
+    "message": "儲存"
+  },
+  "optSaved": {
+    "message": "存好喇！"
+  },
+  "optDebounce": {
+    "message": "等幾耐先算（分鐘）"
+  },
+  "optPoll": {
+    "message": "幾耐check一次（分鐘）"
+  },
+  "optNotifications": {
+    "message": "開通知"
+  },
+  "optGroupByRepo": {
+    "message": "按Repo分"
+  },
+  "optRepoFilter": {
+    "message": "Repo篩選"
+  },
+  "optFilterAll": {
+    "message": "全部顯示"
+  },
+  "optFilterInclude": {
+    "message": "淨係顯示呢啲"
+  },
+  "optFilterExclude": {
+    "message": "隱藏呢啲"
+  },
+  "optRepoPlaceholder": {
+    "message": "owner/repo（一行一個）"
+  },
+  "optSaveFilter": {
+    "message": "儲篩選"
+  },
+  "optReportBug": {
+    "message": "報Bug / 提建議"
+  },
+  "tokenName": {
+    "message": "名"
+  },
+  "tokenValue": {
+    "message": "你嘅 GitHub token"
+  },
+  "optLanguage": {
+    "message": "語言"
+  },
+  "optLanguageHint": {
+    "message": "揀顯示語言"
+  },
+  "optLanguageAuto": {
+    "message": "自動（跟瀏覽器）"
+  },
+  "optLanguageSaved": {
+    "message": "揀咗！閂咗再開就見到。"
+  },
+  "optDebounceHint": {
+    "message": "評論之後等幾耐"
+  },
+  "optPollHint": {
+    "message": "幾密check GitHub"
+  },
+  "optRepoLabel": {
+    "message": "Repo篩選設定"
+  },
+  "optFilterHint": {
+    "message": "owner/repo，一行一個"
+  },
+  "openSettings": {
+    "message": "去設定"
+  },
+  "tokenHintFull": {
+    "message": "整個fine-grained PAT，權限揀 Pull requests → Read，Issues → Read"
+  },
+  "stateNew": {
+    "message": "新嘅"
+  },
+  "stateUpdated": {
+    "message": "更新咗"
+  },
+  "stateRereview": {
+    "message": "重新睇過"
+  },
+  "incoming": {
+    "message": "要審查"
+  },
+  "outgoing": {
+    "message": "我嘅PR"
+  },
+  "mentioned": {
+    "message": "被提及"
+  },
+  "muteRepo": {
+    "message": "靜音倉庫"
+  },
+  "muteOwner": {
+    "message": "靜音擁有者"
+  },
+  "optMuted": {
+    "message": "靜音咗嘅Repo / Owner"
+  },
+  "optMutedHint": {
+    "message": "靜音咗嘅repo同owner唔會喺attention set同badge入面顯示。"
+  },
+  "optUnmute": {
+    "message": "取消靜音"
+  },
+  "optNoMuted": {
+    "message": "冇嘢靜音。"
+  },
+  "optNotifyNewCommits": {
+    "message": "PR作者push咗新commit就通知"
+  },
+  "optOnlyDirectRequests": {
+    "message": "淨係直接請求先通知（唔理team請求）"
+  },
+  "optWhitelistedTeams": {
+    "message": "允許team（就算撳咗上面都會通知）："
+  },
+  "optWhitelistedTeamsHint": {
+    "message": "每行一個team（例如 my-org/my-team）"
+  },
+  "justNow": {
+    "message": "啱啱"
+  },
+  "stateMerged": {
+    "message": "合併咗"
+  },
+  "stateClosed": {
+    "message": "閂咗"
+  },
+  "moreOptions": {
+    "message": "更多選項"
+  },
+  "newActivity": {
+    "message": "新動態"
+  },
+  "filterPlaceholder": {
+    "message": "篩選PR..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token過期或者無效。"
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub連唔到。"
+  },
+  "stateApproved": {
+    "message": "批准咗"
+  },
+  "optMutedDesc": {
+    "message": "靜音咗嘅repo同owner唔會顯示。"
+  },
+  "optNothingMuted": {
+    "message": "冇嘢靜音。"
+  },
+  "other": {
+    "message": "其他"
+  }
+}
