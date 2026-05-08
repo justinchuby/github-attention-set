@@ -237,7 +237,7 @@
     "message": "Overig"
   },
   "optPolling": {
-    "message": "Ophalen"
+    "message": "Polling"
   },
   "optDisplay": {
     "message": "Weergave"
