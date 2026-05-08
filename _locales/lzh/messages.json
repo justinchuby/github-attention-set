@@ -153,13 +153,13 @@
     "message": "創一細粒令牌，授 Pull requests → 閱，Issues → 閱"
   },
   "stateNew": {
-    "message": "New"
+    "message": "新"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "已更"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "重閱"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "噤庫"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "噤主"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "方才"
+  },
+  "stateMerged": {
+    "message": "已合"
+  },
+  "stateClosed": {
+    "message": "已閉"
+  },
+  "moreOptions": {
+    "message": "更多選項"
+  },
+  "newActivity": {
+    "message": "新動"
+  },
+  "filterPlaceholder": {
+    "message": "篩PR..."
+  },
+  "errorAuth": {
+    "message": "⚠️ 令牌已逾或無效。"
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub不可達。"
+  },
+  "stateApproved": {
+    "message": "已准"
   }
 }

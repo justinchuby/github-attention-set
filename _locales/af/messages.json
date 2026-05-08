@@ -153,13 +153,13 @@
     "message": "Taal gestoor. Heropen die opspringer sodat veranderinge in werking tree."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Nuut"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Opgedateer"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Herbesoek"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Demp repo"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Demp eienaar"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "sopas"
+  },
+  "stateMerged": {
+    "message": "Saamgevoeg"
+  },
+  "stateClosed": {
+    "message": "Gesluit"
+  },
+  "moreOptions": {
+    "message": "Meer opsies"
+  },
+  "newActivity": {
+    "message": "Nuwe aktiwiteit"
+  },
+  "filterPlaceholder": {
+    "message": "Filter PR'e..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token verval of ongeldig. Werk in instellings by."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub onbereikbaar. Wys gekas data."
+  },
+  "stateApproved": {
+    "message": "Goedgekeur"
   }
 }

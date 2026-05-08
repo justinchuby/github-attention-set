@@ -153,13 +153,13 @@
     "message": "Tungumál vistað. Enduropnaðu sprettgluggann til að breytingar taki gildi."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Nýtt"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Uppfært"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Endurskoða"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Þagga geymslu"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Þagga eiganda"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "rétt í þessu"
+  },
+  "stateMerged": {
+    "message": "Sameinað"
+  },
+  "stateClosed": {
+    "message": "Lokað"
+  },
+  "moreOptions": {
+    "message": "Fleiri valkostir"
+  },
+  "newActivity": {
+    "message": "Ný virkni"
+  },
+  "filterPlaceholder": {
+    "message": "Sía PR..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Tóki útrunninn eða ógildur."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub óaðgengilegt."
+  },
+  "stateApproved": {
+    "message": "Samþykkt"
   }
 }

@@ -42,7 +42,7 @@
     "message": "Esperando a:"
   },
   "settings": {
-    "message": "Ajustes"
+    "message": "Configuración"
   },
   "stateReview": {
     "message": "Revisar"
@@ -153,13 +153,13 @@
     "message": "Idioma guardado. Reabre el popup para aplicar."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Nuevo"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Actualizado"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Re-revisar"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Silenciar repo"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Silenciar propietario"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "ahora mismo"
+  },
+  "stateMerged": {
+    "message": "Fusionado"
+  },
+  "stateClosed": {
+    "message": "Cerrado"
+  },
+  "moreOptions": {
+    "message": "Más opciones"
+  },
+  "newActivity": {
+    "message": "Nueva actividad"
+  },
+  "filterPlaceholder": {
+    "message": "Filtrar PRs..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token expirado o inválido."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub inaccesible. Datos en caché."
+  },
+  "stateApproved": {
+    "message": "Aprobado"
   }
 }

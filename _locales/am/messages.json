@@ -153,13 +153,13 @@
     "message": "ቋንቋ ተቀምጧል። ለውጦቹ እንዲሠሩ popup-ውን እንደገና ይክፈቱ።"
   },
   "stateNew": {
-    "message": "New"
+    "message": "አዲስ"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "ተዘምኗል"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "እንደገና ገምግም"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "ማከማቻ አጥፋ"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "ባለቤት አጥፋ"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "አሁን"
+  },
+  "stateMerged": {
+    "message": "ተዋህዷል"
+  },
+  "stateClosed": {
+    "message": "ተዘግቷል"
+  },
+  "moreOptions": {
+    "message": "ተጨማሪ አማራጮች"
+  },
+  "newActivity": {
+    "message": "አዲስ እንቅስቃሴ"
+  },
+  "filterPlaceholder": {
+    "message": "PR-ዎችን ያጣሩ..."
+  },
+  "errorAuth": {
+    "message": "⚠️ ቶከን ጊዜው አልፏል ወይም ልክ አይደለም።"
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub ተደራሽ አይደለም።"
+  },
+  "stateApproved": {
+    "message": "ጸድቋል"
   }
 }

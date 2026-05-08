@@ -153,13 +153,13 @@
     "message": "弄个fine-grained PAT，权限选 Pull requests → Read，Issues → Read"
   },
   "stateNew": {
-    "message": "New"
+    "message": "新个"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "更新了"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "重新看看"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "靜音倉庫"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "靜音擁有者"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "刚刚"
+  },
+  "stateMerged": {
+    "message": "合并了"
+  },
+  "stateClosed": {
+    "message": "关了"
+  },
+  "moreOptions": {
+    "message": "更多选项"
+  },
+  "newActivity": {
+    "message": "新动态"
+  },
+  "filterPlaceholder": {
+    "message": "过滤PR..."
+  },
+  "errorAuth": {
+    "message": "⚠️ 令牌过期或无效。"
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub连勿上。"
+  },
+  "stateApproved": {
+    "message": "批准了"
   }
 }

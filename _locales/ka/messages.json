@@ -153,13 +153,13 @@
     "message": "ენა შენახულია. გახსენით popup ხელახლა ცვლილებების ასამოქმედებლად."
   },
   "stateNew": {
-    "message": "New"
+    "message": "ახალი"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "განახლებული"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "ხელახლა განხილვა"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "რეპოს დადუმება"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "მფლობელის დადუმება"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "ახლახანს"
+  },
+  "stateMerged": {
+    "message": "გაერთიანებული"
+  },
+  "stateClosed": {
+    "message": "დახურული"
+  },
+  "moreOptions": {
+    "message": "სხვა ვარიანტები"
+  },
+  "newActivity": {
+    "message": "ახალი აქტივობა"
+  },
+  "filterPlaceholder": {
+    "message": "PR-ების ფილტრი..."
+  },
+  "errorAuth": {
+    "message": "⚠️ ტოკენის ვადა ამოიწურა."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub მიუწვდომელია."
+  },
+  "stateApproved": {
+    "message": "დამტკიცებული"
   }
 }

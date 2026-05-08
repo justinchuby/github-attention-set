@@ -153,13 +153,13 @@
     "message": "Lingua salvata. Riapri il popup per applicare."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Nuovo"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Aggiornato"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Ri-revisione"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Silenzia repo"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Silenzia proprietario"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "proprio ora"
+  },
+  "stateMerged": {
+    "message": "Unito"
+  },
+  "stateClosed": {
+    "message": "Chiuso"
+  },
+  "moreOptions": {
+    "message": "Altre opzioni"
+  },
+  "newActivity": {
+    "message": "Nuova attività"
+  },
+  "filterPlaceholder": {
+    "message": "Filtra PR..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token scaduto o non valido."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub irraggiungibile."
+  },
+  "stateApproved": {
+    "message": "Approvato"
   }
 }

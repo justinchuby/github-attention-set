@@ -153,13 +153,13 @@
     "message": "Språk lagret. Åpne popup-en på nytt for at endringene skal tre i kraft."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Ny"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Oppdatert"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Gjennomgå på nytt"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Demp repo"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Demp eier"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "akkurat nå"
+  },
+  "stateMerged": {
+    "message": "Slått sammen"
+  },
+  "stateClosed": {
+    "message": "Lukket"
+  },
+  "moreOptions": {
+    "message": "Flere alternativer"
+  },
+  "newActivity": {
+    "message": "Ny aktivitet"
+  },
+  "filterPlaceholder": {
+    "message": "Filtrer PRer..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token utløpt eller ugyldig."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub utilgjengelig."
+  },
+  "stateApproved": {
+    "message": "Godkjent"
   }
 }

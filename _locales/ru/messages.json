@@ -153,13 +153,13 @@
     "message": "Язык сохранён. Откройте popup заново для применения."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Новый"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Обновлено"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Повторная проверка"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Отключить репозиторий"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Отключить владельца"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "только что"
+  },
+  "stateMerged": {
+    "message": "Объединено"
+  },
+  "stateClosed": {
+    "message": "Закрыто"
+  },
+  "moreOptions": {
+    "message": "Дополнительные параметры"
+  },
+  "newActivity": {
+    "message": "Новая активность"
+  },
+  "filterPlaceholder": {
+    "message": "Фильтр PR..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Токен истёк или недействителен."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub недоступен."
+  },
+  "stateApproved": {
+    "message": "Одобрено"
   }
 }

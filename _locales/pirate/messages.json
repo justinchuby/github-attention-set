@@ -42,7 +42,7 @@
     "message": "Waitin' on:"
   },
   "settings": {
-    "message": "Captain's Quarters"
+    "message": "Ship Settings"
   },
   "stateReview": {
     "message": "Inspect"
@@ -153,13 +153,13 @@
     "message": "Tongue saved! Close the hatch and reopen fer changes to take effect, savvy?"
   },
   "stateNew": {
-    "message": "New"
+    "message": "Fresh Catch"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Patched Up"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Inspect Again"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Silence th' vessel"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Silence th' captain"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "just now, arr"
+  },
+  "stateMerged": {
+    "message": "Scuttled Together"
+  },
+  "stateClosed": {
+    "message": "Sunk"
+  },
+  "moreOptions": {
+    "message": "More plunder options"
+  },
+  "newActivity": {
+    "message": "New plunder spotted"
+  },
+  "filterPlaceholder": {
+    "message": "Search th' loot..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Yer token be expired, matey!"
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub be lost at sea!"
+  },
+  "stateApproved": {
+    "message": "Aye, approved!"
   }
 }

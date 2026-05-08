@@ -153,13 +153,13 @@
     "message": "Dil kaydedildi. Değişiklikleri görmek için popup'ı yeniden açın."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Yeni"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Güncellendi"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Tekrar incele"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Depoyu sustur"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Sahibi sustur"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "az önce"
+  },
+  "stateMerged": {
+    "message": "Birleştirildi"
+  },
+  "stateClosed": {
+    "message": "Kapatıldı"
+  },
+  "moreOptions": {
+    "message": "Diğer seçenekler"
+  },
+  "newActivity": {
+    "message": "Yeni etkinlik"
+  },
+  "filterPlaceholder": {
+    "message": "PR'ları filtrele..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token süresi dolmuş veya geçersiz."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub'a erişilemiyor."
+  },
+  "stateApproved": {
+    "message": "Onaylandı"
   }
 }

@@ -42,7 +42,7 @@
     "message": "ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ:"
   },
   "settings": {
-    "message": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ"
+    "message": "Тохиргоо"
   },
   "stateReview": {
     "message": "ᠰᠢᠯᠭᠠᠬᠤ"
@@ -153,13 +153,13 @@
     "message": "GitHub PAT ᠨᠡᠮᠡᠬᠦ᠃ ᠪᠦᠬᠦ ᠲᠣᠬᠧᠨ ᠤ ᠦᠷ᠎ᠡ ᠳᠦᠩ ᠨᠢᠭᠡᠳᠬᠡᠭᠳᠡᠨ᠎ᠡ᠃"
   },
   "stateNew": {
-    "message": "New"
+    "message": "Шинэ"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Шинэчлэгдсэн"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Дахин шалгах"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Репо хаах"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Эзэмшигч хаах"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "саяхан"
+  },
+  "stateMerged": {
+    "message": "Нэгтгэсэн"
+  },
+  "stateClosed": {
+    "message": "Хаасан"
+  },
+  "moreOptions": {
+    "message": "Бусад сонголтууд"
+  },
+  "newActivity": {
+    "message": "Шинэ үйл ажиллагаа"
+  },
+  "filterPlaceholder": {
+    "message": "PR шүүх..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Токен хугацаа дууссан."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub холбогдохгүй байна."
+  },
+  "stateApproved": {
+    "message": "Зөвшөөрсөн"
   }
 }

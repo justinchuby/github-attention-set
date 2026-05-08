@@ -153,13 +153,13 @@
     "message": "บันทึกภาษาแล้ว กรุณาเปิด popup ใหม่เพื่อใช้งาน"
   },
   "stateNew": {
-    "message": "New"
+    "message": "ใหม่"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "อัปเดตแล้ว"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "รีวิวอีกครั้ง"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "ปิดเสียง repo"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "ปิดเสียงเจ้าของ"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "เมื่อสักครู่"
+  },
+  "stateMerged": {
+    "message": "รวมแล้ว"
+  },
+  "stateClosed": {
+    "message": "ปิดแล้ว"
+  },
+  "moreOptions": {
+    "message": "ตัวเลือกเพิ่มเติม"
+  },
+  "newActivity": {
+    "message": "กิจกรรมใหม่"
+  },
+  "filterPlaceholder": {
+    "message": "กรอง PR..."
+  },
+  "errorAuth": {
+    "message": "⚠️ โทเค็นหมดอายุหรือไม่ถูกต้อง"
+  },
+  "errorNetwork": {
+    "message": "⚠️ ไม่สามารถเข้าถึง GitHub ได้"
+  },
+  "stateApproved": {
+    "message": "อนุมัติแล้ว"
   }
 }

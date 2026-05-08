@@ -153,13 +153,13 @@
     "message": "Langue enregistrée. Veuillez rouvrir le popup pour appliquer."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Nouveau"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Mis à jour"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Re-examiner"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Masquer le dépôt"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Masquer le propriétaire"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "à l'instant"
+  },
+  "stateMerged": {
+    "message": "Fusionné"
+  },
+  "stateClosed": {
+    "message": "Fermé"
+  },
+  "moreOptions": {
+    "message": "Plus d'options"
+  },
+  "newActivity": {
+    "message": "Nouvelle activité"
+  },
+  "filterPlaceholder": {
+    "message": "Filtrer les PRs..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token expiré ou invalide."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub inaccessible. Données en cache."
+  },
+  "stateApproved": {
+    "message": "Approuvé"
   }
 }

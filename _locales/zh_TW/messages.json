@@ -153,13 +153,13 @@
     "message": "語言已儲存。請重新開啟彈窗以使變更生效。"
   },
   "stateNew": {
-    "message": "New"
+    "message": "新的"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "已更新"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "重新審查"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "靜音儲存庫"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "靜音擁有者"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "剛才"
+  },
+  "stateMerged": {
+    "message": "已合併"
+  },
+  "stateClosed": {
+    "message": "已關閉"
+  },
+  "moreOptions": {
+    "message": "更多選項"
+  },
+  "newActivity": {
+    "message": "新動態"
+  },
+  "filterPlaceholder": {
+    "message": "篩選PR..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token已過期或無效。"
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub無法連線。"
+  },
+  "stateApproved": {
+    "message": "已核准"
   }
 }

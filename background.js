@@ -250,6 +250,16 @@ async function pollAndCompute() {
     }
     chrome.storage.local.set({ dismissed: cleanedDismissed });
 
+    // Cleanup: remove dismissedClicked entries for PRs no longer open
+    chrome.storage.local.get(['dismissedClicked'], (data) => {
+      const clicked = data.dismissedClicked || {};
+      const cleanedClicked = {};
+      for (const [url, ts] of Object.entries(clicked)) {
+        if (openUrls.has(url)) cleanedClicked[url] = ts;
+      }
+      chrome.storage.local.set({ dismissedClicked: cleanedClicked });
+    });
+
     // Clear any previous error
     chrome.storage.local.remove('lastError');
   } catch (e) {

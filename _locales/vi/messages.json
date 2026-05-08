@@ -153,13 +153,13 @@
     "message": "Đã lưu ngôn ngữ. Vui lòng mở lại popup để áp dụng."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Mới"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Đã cập nhật"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Xem lại"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Tắt tiếng repo"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Tắt tiếng chủ sở hữu"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "vừa xong"
+  },
+  "stateMerged": {
+    "message": "Đã hợp nhất"
+  },
+  "stateClosed": {
+    "message": "Đã đóng"
+  },
+  "moreOptions": {
+    "message": "Thêm tùy chọn"
+  },
+  "newActivity": {
+    "message": "Hoạt động mới"
+  },
+  "filterPlaceholder": {
+    "message": "Lọc PR..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token hết hạn hoặc không hợp lệ."
+  },
+  "errorNetwork": {
+    "message": "⚠️ Không thể kết nối GitHub."
+  },
+  "stateApproved": {
+    "message": "Đã phê duyệt"
   }
 }

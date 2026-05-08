@@ -1,69 +1,230 @@
 {
-  "extName": { "message": "GitHub Attention Set" },
-  "extDescription": { "message": "See which PRs need your attention — like Google Critique's Attention Set for GitHub." },
-  "needsAttention": { "message": "Needs your attention" },
-  "waitingOnOthers": { "message": "Waiting on others" },
-  "refresh": { "message": "Refresh" },
-  "dismiss": { "message": "Dismiss" },
-  "restore": { "message": "Restore" },
-  "dismissed": { "message": "dismissed" },
-  "loading": { "message": "Loading..." },
-  "noToken": { "message": "No token configured." },
-  "goToSettings": { "message": "Go to settings" },
-  "noPRs": { "message": "No open PRs found." },
-  "allClear": { "message": "All clear! No PRs waiting on you." },
-  "waitingOn": { "message": "Waiting on:" },
-  "settings": { "message": "Settings" },
-  "stateReview": { "message": "Review" },
-  "stateFix": { "message": "Fix" },
-  "stateRespond": { "message": "Respond" },
-  "stateMerge": { "message": "Merge" },
-  "stateMerging": { "message": "Merging" },
-  "stateStuck": { "message": "Stuck" },
-  "stateDraft": { "message": "Draft" },
-  "optTitle": { "message": "GitHub Attention Set Settings" },
-  "optTokenLabel": { "message": "GitHub Personal Access Tokens" },
-  "optTokenHint": { "message": "Create a fine-grained PAT with permissions: Pull requests → Read, Issues → Read" },
-  "optAddToken": { "message": "+ Add token" },
-  "optSave": { "message": "Save Settings" },
-  "optSaved": { "message": "✓ Saved!" },
-  "optDebounce": { "message": "Debounce time (minutes)" },
-  "optDebounceHint": { "message": "Wait this long before implicit signals flip attention." },
-  "optPoll": { "message": "Poll interval (minutes)" },
-  "optPollHint": { "message": "How often to check GitHub for updates." },
-  "optNotifications": { "message": "Enable desktop notifications" },
-  "optGroupByRepo": { "message": "Group PRs by repository" },
-  "optRepoFilter": { "message": "Repository Filter" },
-  "optFilterAll": { "message": "Show all (default)" },
-  "optFilterInclude": { "message": "Show only these repos" },
-  "optFilterExclude": { "message": "Hide these repos" },
-  "optRepoPlaceholder": { "message": "owner/repo (one per line)" },
-  "optRepoLabel": { "message": "Repositories (one per line, format: owner/repo)" },
-  "optSaveFilter": { "message": "Save Filter" },
-  "optFilterHint": { "message": "Filter which repositories appear in your attention set." },
-  "optReportBug": { "message": "Report a bug or request a feature" },
-  "tokenName": { "message": "Name" },
-  "tokenValue": { "message": "Token" },
-  "openSettings": { "message": "Open Settings" },
-  "tokenHintFull": { "message": "Add one or more GitHub Personal Access Tokens. Results from all tokens are merged." },
-  "optLanguage": { "message": "Language" },
-  "optLanguageHint": { "message": "Choose the display language for this extension." },
-  "optLanguageAuto": { "message": "Auto (follow browser)" },
-  "optLanguageSaved": { "message": "Language saved. Please reopen the popup for changes to take effect." },
-  "stateNew": { "message": "New" },
-  "stateUpdated": { "message": "Updated" },
-  "stateRereview": { "message": "Re-review" },
-  "incoming": { "message": "Incoming" },
-  "outgoing": { "message": "Outgoing" },
-  "mentioned": { "message": "Mentioned" },
-  "muteRepo": { "message": "Mute this repo" },
-  "muteOwner": { "message": "Mute all from" },
-  "optMuted": { "message": "Muted Repos / Owners" },
-  "optMutedHint": { "message": "Muted repos and owners are hidden from the attention set and badge count." },
-  "optUnmute": { "message": "Unmute" },
-  "optNoMuted": { "message": "Nothing muted." },
-  "optNotifyNewCommits": { "message": "Notify when PR author pushes new commits" },
-  "optOnlyDirectRequests": { "message": "Only notify for direct review requests (ignore team requests)" },
-  "optWhitelistedTeams": { "message": "Whitelisted teams (still notify even with above checked):" },
-  "optWhitelistedTeamsHint": { "message": "One team slug per line (e.g. my-org/my-team)" }
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "See which PRs need your attention — like Google Critique's Attention Set for GitHub."
+  },
+  "needsAttention": {
+    "message": "Needs your attention"
+  },
+  "waitingOnOthers": {
+    "message": "Waiting on others"
+  },
+  "refresh": {
+    "message": "Refresh"
+  },
+  "dismiss": {
+    "message": "Dismiss"
+  },
+  "restore": {
+    "message": "Restore"
+  },
+  "dismissed": {
+    "message": "dismissed"
+  },
+  "loading": {
+    "message": "Loading..."
+  },
+  "noToken": {
+    "message": "No token configured."
+  },
+  "goToSettings": {
+    "message": "Go to settings"
+  },
+  "noPRs": {
+    "message": "No open PRs found."
+  },
+  "allClear": {
+    "message": "All clear! No PRs waiting on you."
+  },
+  "waitingOn": {
+    "message": "Waiting on:"
+  },
+  "settings": {
+    "message": "Settings"
+  },
+  "stateReview": {
+    "message": "Review"
+  },
+  "stateFix": {
+    "message": "Fix"
+  },
+  "stateRespond": {
+    "message": "Respond"
+  },
+  "stateMerge": {
+    "message": "Merge"
+  },
+  "stateMerging": {
+    "message": "Merging"
+  },
+  "stateStuck": {
+    "message": "Stuck"
+  },
+  "stateDraft": {
+    "message": "Draft"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set Settings"
+  },
+  "optTokenLabel": {
+    "message": "GitHub Personal Access Tokens"
+  },
+  "optTokenHint": {
+    "message": "Create a fine-grained PAT with permissions: Pull requests → Read, Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ Add token"
+  },
+  "optSave": {
+    "message": "Save Settings"
+  },
+  "optSaved": {
+    "message": "✓ Saved!"
+  },
+  "optDebounce": {
+    "message": "Debounce time (minutes)"
+  },
+  "optDebounceHint": {
+    "message": "Wait this long before implicit signals flip attention."
+  },
+  "optPoll": {
+    "message": "Poll interval (minutes)"
+  },
+  "optPollHint": {
+    "message": "How often to check GitHub for updates."
+  },
+  "optNotifications": {
+    "message": "Enable desktop notifications"
+  },
+  "optGroupByRepo": {
+    "message": "Group PRs by repository"
+  },
+  "optRepoFilter": {
+    "message": "Repository Filter"
+  },
+  "optFilterAll": {
+    "message": "Show all (default)"
+  },
+  "optFilterInclude": {
+    "message": "Show only these repos"
+  },
+  "optFilterExclude": {
+    "message": "Hide these repos"
+  },
+  "optRepoPlaceholder": {
+    "message": "owner/repo (one per line)"
+  },
+  "optRepoLabel": {
+    "message": "Repositories (one per line, format: owner/repo)"
+  },
+  "optSaveFilter": {
+    "message": "Save Filter"
+  },
+  "optFilterHint": {
+    "message": "Filter which repositories appear in your attention set."
+  },
+  "optReportBug": {
+    "message": "Report a bug or request a feature"
+  },
+  "tokenName": {
+    "message": "Name"
+  },
+  "tokenValue": {
+    "message": "Token"
+  },
+  "openSettings": {
+    "message": "Open Settings"
+  },
+  "tokenHintFull": {
+    "message": "Add one or more GitHub Personal Access Tokens. Results from all tokens are merged."
+  },
+  "optLanguage": {
+    "message": "Language"
+  },
+  "optLanguageHint": {
+    "message": "Choose the display language for this extension."
+  },
+  "optLanguageAuto": {
+    "message": "Auto (follow browser)"
+  },
+  "optLanguageSaved": {
+    "message": "Language saved. Please reopen the popup for changes to take effect."
+  },
+  "stateNew": {
+    "message": "New"
+  },
+  "stateUpdated": {
+    "message": "Updated"
+  },
+  "stateRereview": {
+    "message": "Re-review"
+  },
+  "incoming": {
+    "message": "Incoming"
+  },
+  "outgoing": {
+    "message": "Outgoing"
+  },
+  "mentioned": {
+    "message": "Mentioned"
+  },
+  "muteRepo": {
+    "message": "Mute this repo"
+  },
+  "muteOwner": {
+    "message": "Mute all from"
+  },
+  "optMuted": {
+    "message": "Muted Repos / Owners"
+  },
+  "optMutedHint": {
+    "message": "Muted repos and owners are hidden from the attention set and badge count."
+  },
+  "optUnmute": {
+    "message": "Unmute"
+  },
+  "optNoMuted": {
+    "message": "Nothing muted."
+  },
+  "optNotifyNewCommits": {
+    "message": "Notify when PR author pushes new commits"
+  },
+  "optOnlyDirectRequests": {
+    "message": "Only notify for direct review requests (ignore team requests)"
+  },
+  "optWhitelistedTeams": {
+    "message": "Whitelisted teams (still notify even with above checked):"
+  },
+  "optWhitelistedTeamsHint": {
+    "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "just now"
+  },
+  "stateMerged": {
+    "message": "Merged"
+  },
+  "stateClosed": {
+    "message": "Closed"
+  },
+  "moreOptions": {
+    "message": "More options"
+  },
+  "newActivity": {
+    "message": "New activity"
+  },
+  "filterPlaceholder": {
+    "message": "Filter PRs..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token expired or invalid. Update in settings."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub unreachable. Showing cached data."
+  },
+  "stateApproved": {
+    "message": "Approved"
+  }
 }

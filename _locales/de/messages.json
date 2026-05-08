@@ -153,13 +153,13 @@
     "message": "Sprache gespeichert. Bitte Popup erneut öffnen."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Neu"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Aktualisiert"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Erneut prüfen"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Repo stummschalten"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Eigentümer stummschalten"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "gerade eben"
+  },
+  "stateMerged": {
+    "message": "Zusammengeführt"
+  },
+  "stateClosed": {
+    "message": "Geschlossen"
+  },
+  "moreOptions": {
+    "message": "Weitere Optionen"
+  },
+  "newActivity": {
+    "message": "Neue Aktivität"
+  },
+  "filterPlaceholder": {
+    "message": "PRs filtern..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token abgelaufen oder ungültig."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub nicht erreichbar. Zwischengespeicherte Daten."
+  },
+  "stateApproved": {
+    "message": "Genehmigt"
   }
 }

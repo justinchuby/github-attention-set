@@ -153,13 +153,13 @@
     "message": "Bahasa disimpan. Silakan buka ulang popup untuk menerapkan."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Baru"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Diperbarui"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Tinjau ulang"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Bisukan repo"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Bisukan pemilik"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "baru saja"
+  },
+  "stateMerged": {
+    "message": "Digabungkan"
+  },
+  "stateClosed": {
+    "message": "Ditutup"
+  },
+  "moreOptions": {
+    "message": "Opsi lainnya"
+  },
+  "newActivity": {
+    "message": "Aktivitas baru"
+  },
+  "filterPlaceholder": {
+    "message": "Filter PR..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token kedaluwarsa atau tidak valid."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub tidak dapat dijangkau."
+  },
+  "stateApproved": {
+    "message": "Disetujui"
   }
 }

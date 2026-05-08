@@ -153,13 +153,13 @@
     "message": "Nyelv mentve. Nyisd újra a felugró ablakot a módosítások érvénybe lépéséhez."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Új"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Frissítve"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Újra átvizsgálás"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Tároló némítása"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Tulajdonos némítása"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "éppen most"
+  },
+  "stateMerged": {
+    "message": "Összefésülve"
+  },
+  "stateClosed": {
+    "message": "Lezárva"
+  },
+  "moreOptions": {
+    "message": "További lehetőségek"
+  },
+  "newActivity": {
+    "message": "Új tevékenység"
+  },
+  "filterPlaceholder": {
+    "message": "PR-ek szűrése..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token lejárt vagy érvénytelen."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub nem elérhető."
+  },
+  "stateApproved": {
+    "message": "Jóváhagyva"
   }
 }

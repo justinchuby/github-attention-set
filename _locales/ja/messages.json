@@ -153,13 +153,13 @@
     "message": "言語を保存しました。変更を反映するにはポップアップを開き直してください。"
   },
   "stateNew": {
-    "message": "New"
+    "message": "新規"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "更新あり"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "再レビュー"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "リポジトリをミュート"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "オーナーをミュート"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "たった今"
+  },
+  "stateMerged": {
+    "message": "マージ済み"
+  },
+  "stateClosed": {
+    "message": "クローズ"
+  },
+  "moreOptions": {
+    "message": "その他のオプション"
+  },
+  "newActivity": {
+    "message": "新しいアクティビティ"
+  },
+  "filterPlaceholder": {
+    "message": "PRを検索..."
+  },
+  "errorAuth": {
+    "message": "⚠️ トークンが期限切れまたは無効です。"
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHubに接続できません。"
+  },
+  "stateApproved": {
+    "message": "承認済み"
   }
 }

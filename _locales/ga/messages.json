@@ -153,13 +153,13 @@
     "message": "Cruthaigh PAT mín-ghráinneach: Pull requests → Read, Issues → Read"
   },
   "stateNew": {
-    "message": "New"
+    "message": "Nua"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Nuashonraithe"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Athbhreithniú"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Balbhaigh repo"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Balbhaigh úinéir"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "díreach anois"
+  },
+  "stateMerged": {
+    "message": "Cumaisc"
+  },
+  "stateClosed": {
+    "message": "Dúnta"
+  },
+  "moreOptions": {
+    "message": "Roghanna eile"
+  },
+  "newActivity": {
+    "message": "Gníomhaíocht nua"
+  },
+  "filterPlaceholder": {
+    "message": "Scag PRanna..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Comhartha éagtha nó neamhbhailí."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub dorochtana."
+  },
+  "stateApproved": {
+    "message": "Faofa"
   }
 }

@@ -153,13 +153,13 @@
     "message": "Kieli tallennettu. Avaa ponnahdusikkuna uudelleen, jotta muutokset tulevat voimaan."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Uusi"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Päivitetty"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Tarkista uudelleen"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Mykistä repo"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Mykistä omistaja"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "juuri nyt"
+  },
+  "stateMerged": {
+    "message": "Yhdistetty"
+  },
+  "stateClosed": {
+    "message": "Suljettu"
+  },
+  "moreOptions": {
+    "message": "Lisää vaihtoehtoja"
+  },
+  "newActivity": {
+    "message": "Uutta toimintaa"
+  },
+  "filterPlaceholder": {
+    "message": "Suodata PR:t..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token vanhentunut tai virheellinen."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub ei saatavilla."
+  },
+  "stateApproved": {
+    "message": "Hyväksytty"
   }
 }

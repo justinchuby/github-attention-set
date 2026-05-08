@@ -11,7 +11,7 @@ function timeAgo(dateStringOrMs) {
   if (!ms || isNaN(ms)) return '';
   const diff = Math.max(0, Date.now() - ms);
   const sec = Math.floor(diff / 1000);
-  if (sec < 60) return 'just now';
+  if (sec < 60) return msg('justNow');
   const min = Math.floor(sec / 60);
   if (min < 60) return `${min}m ago`;
   const hr = Math.floor(min / 60);
@@ -29,7 +29,7 @@ app.setAttribute('role', 'main');
 const searchContainer = h('div', { class: 'search-box' });
 const searchIcon = h('span', { class: 'search-icon' });
 searchIcon.appendChild(htmlToNodes(getIcon('search', 14)));
-const searchInput = h('input', { type: 'text', class: 'search-input', placeholder: 'Filter PRs...', 'aria-label': 'Filter PRs' });
+const searchInput = h('input', { type: 'text', class: 'search-input', placeholder: msg('filterPlaceholder'), 'aria-label': msg('filterPlaceholder') });
 searchContainer.appendChild(searchIcon);
 searchContainer.appendChild(searchInput);
 let currentFilter = '';
@@ -226,8 +226,8 @@ function renderPRItem(pr, username, showRepo) {
     APPROVED_NO_AUTOMERGE: msg('stateMerge'),
     MERGING: msg('stateMerging'),
     STALLED_MERGE: msg('stateStuck'),
-    MERGED: 'Merged',
-    CLOSED: 'Closed',
+    MERGED: msg('stateMerged'),
+    CLOSED: msg('stateClosed'),
   };
 
   const incomingDetailLabels = {
@@ -266,6 +266,12 @@ function renderPRItem(pr, username, showRepo) {
       if (i > 0) reviewerChildren.push(' ');
       const state = reviewerStates[u] || 'pending';
       const inSet = !!attentionSet[u];
+      const stateLabel_sr = {
+        approved: msg('stateApproved') || 'approved',
+        changes_requested: msg('stateFix') || 'changes requested',
+        commented: msg('stateRespond') || 'commented',
+        pending: msg('stateReview') || 'pending'
+      };
       const nameEl = h('a', {
         href: `https://github.com/${u}`,
         target: '_blank',
@@ -275,7 +281,8 @@ function renderPRItem(pr, username, showRepo) {
           textDecoration: 'none',
           fontSize: '11px'
         },
-        title: `${u}: ${state}${inSet ? ' (in attention set)' : ''}`
+        title: `${u}: ${state}${inSet ? ' (in attention set)' : ''}`,
+        'aria-label': `${u}: ${stateLabel_sr[state] || state}${inSet ? ' (in attention set)' : ''}`
       }, u);
       reviewerChildren.push(nameEl);
     });
@@ -287,7 +294,7 @@ function renderPRItem(pr, username, showRepo) {
 
   const dismissBtn = h('button', {
     class: 'dismiss-btn',
-    title: 'Dismiss',
+    title: msg('dismiss'),
     'aria-label': `Dismiss ${pr.title}`,
     'data-url': pr.url,
     'data-event-at': String(pr.lastEventAt || 0)
@@ -302,37 +309,61 @@ function renderPRItem(pr, username, showRepo) {
   const [owner, repoName] = pr.repo.split('/');
   const muteBtn = h('button', {
     class: 'dismiss-btn mute-btn',
-    title: 'More options',
-    'aria-label': 'More options',
+    title: msg('moreOptions'),
+    'aria-label': msg('moreOptions'),
     style: { fontSize: '16px', padding: '2px 4px' }
   }, '⋮');
-  muteBtn.onclick = (e) => {
+  muteBtn.setAttribute('aria-expanded', 'false');
+  muteBtn.setAttribute('aria-haspopup', 'true');
+  const toggleMuteMenu = (e) => {
     e.stopPropagation();
     // Remove any existing mute menu
+    const existing = muteBtn.parentElement.querySelector('.mute-menu');
+    if (existing) { existing.remove(); muteBtn.setAttribute('aria-expanded', 'false'); return; }
     document.querySelectorAll('.mute-menu').forEach(m => m.remove());
-    const menu = h('div', { class: 'mute-menu' }, [
-      h('button', { class: 'mute-menu-item' }, `${msg('muteRepo')}: ${pr.repo}`),
-      h('button', { class: 'mute-menu-item' }, `${msg('muteOwner')} ${owner}`)
+    const menu = h('div', { class: 'mute-menu', role: 'menu' }, [
+      h('button', { class: 'mute-menu-item', role: 'menuitem' }, `${msg('muteRepo')}: ${pr.repo}`),
+      h('button', { class: 'mute-menu-item', role: 'menuitem' }, `${msg('muteOwner')} ${owner}`)
     ]);
     menu.children[0].onclick = (ev) => {
       ev.stopPropagation();
       muteRepo(pr.repo);
       menu.remove();
+      muteBtn.setAttribute('aria-expanded', 'false');
     };
     menu.children[1].onclick = (ev) => {
       ev.stopPropagation();
       muteOwner(owner);
       menu.remove();
+      muteBtn.setAttribute('aria-expanded', 'false');
     };
     muteBtn.parentElement.appendChild(menu);
-    // Close on outside click
+    muteBtn.setAttribute('aria-expanded', 'true');
+    menu.children[0].focus();
+    // Close on outside click or Escape
+    const closer = (evt) => {
+      if (!menu.contains(evt.target) && evt.target !== muteBtn) {
+        menu.remove();
+        muteBtn.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', closer);
+        document.removeEventListener('keydown', keyHandler);
+      }
+    };
+    const keyHandler = (evt) => {
+      if (evt.key === 'Escape') {
+        menu.remove();
+        muteBtn.setAttribute('aria-expanded', 'false');
+        muteBtn.focus();
+        document.removeEventListener('click', closer);
+        document.removeEventListener('keydown', keyHandler);
+      }
+    };
     setTimeout(() => {
-      const closer = (evt) => {
-        if (!menu.contains(evt.target)) { menu.remove(); document.removeEventListener('click', closer); }
-      };
       document.addEventListener('click', closer);
+      document.addEventListener('keydown', keyHandler);
     }, 0);
   };
+  muteBtn.onclick = toggleMuteMenu;
 
   const filterText = `${pr.title} ${pr.repo} ${pr.author} #${pr.number} ${pr.number} ${(pr.allReviewers || []).join(' ')}`;
 
@@ -355,7 +386,7 @@ function renderPRItem(pr, username, showRepo) {
     ]),
     h('div', { class: 'pr-right' }, [
         h('span', { class: 'pr-time' }, timeAgo(pr.lastEventAt)),
-        stateLabel ? h('span', { class: 'pr-state-badge' }, stateLabel) : null,
+        stateLabel ? h('span', { class: 'pr-state-badge', 'aria-label': `Status: ${stateLabel}` }, stateLabel) : null,
       ]),
     dismissBtn,
     muteBtn
@@ -368,7 +399,7 @@ function renderDismissedItem(pr, dismissedData) {
   const clickedAt = (window.__dismissedClicked || {})[pr.url] || 0;
   const seenNewActivity = hasNewActivity && clickedAt > pr.lastEventAt;
   const dotColor = hasNewActivity && !seenNewActivity ? '#0969da' : '#8b949e';
-  const dot = h('span', { class: 'dot', title: hasNewActivity ? 'New activity' : '' });
+  const dot = h('span', { class: 'dot', title: hasNewActivity ? msg('newActivity') : '' });
   dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, dotColor)));
 
   const restoreBtn = h('button', { class: 'restore-btn', 'data-url': pr.url, 'aria-label': `${msg('restore')} ${pr.title}` }, msg('restore'));
@@ -465,12 +496,12 @@ async function render(data, isRefreshing) {
   refreshBtn.appendChild(htmlToNodes(getIcon('sync', 12)));
   refreshBtn.append(' ' + msg('refresh'));
 
-  const settingsBtn = h('button', { class: 'settings-btn', id: 'open-settings', title: 'Settings', 'aria-label': 'Settings' });
+  const settingsBtn = h('button', { class: 'settings-btn', id: 'open-settings', title: msg('settings'), 'aria-label': msg('settings') });
   settingsBtn.appendChild(htmlToNodes(getIcon('gear', 14)));
 
   const headerImg = h('img', { src: 'icons/icon48.png', width: '18', height: '18', alt: '', style: { verticalAlign: 'middle', marginRight: '6px' } });
   const header = h('div', { class: 'header' }, [
-    h('h1', null, [headerImg, 'Attention Set']),
+    h('h1', null, [headerImg, msg('extName')]),
     refreshBtn,
     settingsBtn
   ]);
@@ -484,8 +515,8 @@ async function render(data, isRefreshing) {
   // Error banner
   if (window.__lastError) {
     const msg = window.__lastError.type === 'auth'
-      ? '⚠️ Token expired or invalid. Update in settings.'
-      : '⚠️ GitHub unreachable. Showing cached data.';
+      ? msg('errorAuth')
+      : msg('errorNetwork');
     app.appendChild(h('div', { class: 'error-banner' }, msg));
   }
 

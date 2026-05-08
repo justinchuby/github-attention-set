@@ -153,13 +153,13 @@
     "message": "Taal opgeslagen. Open de popup opnieuw om de wijzigingen toe te passen."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Nieuw"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Bijgewerkt"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Opnieuw beoordelen"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Repo dempen"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Eigenaar dempen"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "zojuist"
+  },
+  "stateMerged": {
+    "message": "Samengevoegd"
+  },
+  "stateClosed": {
+    "message": "Gesloten"
+  },
+  "moreOptions": {
+    "message": "Meer opties"
+  },
+  "newActivity": {
+    "message": "Nieuwe activiteit"
+  },
+  "filterPlaceholder": {
+    "message": "Filter PRs..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token verlopen of ongeldig."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub onbereikbaar."
+  },
+  "stateApproved": {
+    "message": "Goedgekeurd"
   }
 }

@@ -153,13 +153,13 @@
     "message": "Język zapisany. Otwórz ponownie popup, aby zmiany weszły w życie."
   },
   "stateNew": {
-    "message": "New"
+    "message": "Nowe"
   },
   "stateUpdated": {
-    "message": "Updated"
+    "message": "Zaktualizowane"
   },
   "stateRereview": {
-    "message": "Re-review"
+    "message": "Ponowna recenzja"
   },
   "incoming": {
     "message": "Incoming"
@@ -171,10 +171,10 @@
     "message": "Mentioned"
   },
   "muteRepo": {
-    "message": "Mute this repo"
+    "message": "Wycisz repozytorium"
   },
   "muteOwner": {
-    "message": "Mute all from"
+    "message": "Wycisz właściciela"
   },
   "optMuted": {
     "message": "Muted Repos / Owners"
@@ -199,5 +199,32 @@
   },
   "optWhitelistedTeamsHint": {
     "message": "One team slug per line (e.g. my-org/my-team)"
+  },
+  "justNow": {
+    "message": "właśnie teraz"
+  },
+  "stateMerged": {
+    "message": "Scalono"
+  },
+  "stateClosed": {
+    "message": "Zamknięto"
+  },
+  "moreOptions": {
+    "message": "Więcej opcji"
+  },
+  "newActivity": {
+    "message": "Nowa aktywność"
+  },
+  "filterPlaceholder": {
+    "message": "Filtruj PR..."
+  },
+  "errorAuth": {
+    "message": "⚠️ Token wygasł lub jest nieprawidłowy."
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub nieosiągalny."
+  },
+  "stateApproved": {
+    "message": "Zatwierdzone"
   }
 }
