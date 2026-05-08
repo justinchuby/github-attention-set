@@ -54,7 +54,7 @@
     "message": "Svar"
   },
   "stateMerge": {
-    "message": "Merge"
+    "message": "Slå sammen"
   },
   "stateMerging": {
     "message": "Merger…"
@@ -132,7 +132,7 @@
     "message": "Navn"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "GitHub-tokenet ditt"
   },
   "openSettings": {
     "message": "Åpne innstillinger"
@@ -177,7 +177,7 @@
     "message": "Demp eier"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Dempede repoer / eiere"
   },
   "optMutedHint": {
     "message": "Dempede repos og eiere er skjult."
@@ -189,16 +189,16 @@
     "message": "Ingenting dempet."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Varsle når PR-forfatteren pusher nye commits"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Bare varsle ved direkte gjennomgangsforespørsler (ignorer teamforespørsler)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Tillatte team (varsle likevel selv om ovenfor er huket av):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Én team-slug per linje (f.eks. my-org/my-team)"
   },
   "justNow": {
     "message": "akkurat nå"
@@ -228,10 +228,10 @@
     "message": "Godkjent"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Dempede repoer og eiere skjules fra attention settet og badge-tellingen."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Ingenting dempet."
   },
   "other": {
     "message": "Andre"

@@ -45,7 +45,7 @@
     "message": "Instellingen"
   },
   "stateReview": {
-    "message": "Review"
+    "message": "Beoordelen"
   },
   "stateFix": {
     "message": "Fixen"
@@ -132,7 +132,7 @@
     "message": "Naam"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "Je GitHub-token"
   },
   "openSettings": {
     "message": "Instellingen openen"
@@ -177,7 +177,7 @@
     "message": "Eigenaar dempen"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Gedempte repos / eigenaren"
   },
   "optMutedHint": {
     "message": "Gedempte repos en eigenaren worden verborgen."
@@ -189,16 +189,16 @@
     "message": "Niets gedempt."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Melden wanneer PR-auteur nieuwe commits pusht"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Alleen melden bij directe review-verzoeken (teamverzoeken negeren)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Toegestane teams (toch melden, ook als bovenstaande is aangevinkt):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Eén team-slug per regel (bijv. my-org/my-team)"
   },
   "justNow": {
     "message": "zojuist"
@@ -216,7 +216,7 @@
     "message": "Nieuwe activiteit"
   },
   "filterPlaceholder": {
-    "message": "Filter PRs..."
+    "message": "PRs filteren..."
   },
   "errorAuth": {
     "message": "⚠️ Token verlopen of ongeldig."
@@ -228,10 +228,10 @@
     "message": "Goedgekeurd"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Gedempte repos en eigenaren zijn verborgen uit de attention set en badge-telling."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Niets gedempt."
   },
   "other": {
     "message": "Overig"

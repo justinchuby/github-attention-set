@@ -177,7 +177,7 @@
     "message": "ባለቤት አጥፋ"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "የተዘጉ Repos / ባለቤቶች"
   },
   "optMutedHint": {
     "message": "የተዘጉ ማከማቻዎች እና ባለቤቶች ተደብቀዋል።"
@@ -189,16 +189,16 @@
     "message": "ምንም የተዘጋ የለም።"
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "PR ደራሲ አዲስ commits ሲገፋ ያሳውቁ"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "ለቀጥታ ግምገማ ጥያቄዎች ብቻ ያሳውቁ (የቡድን ጥያቄዎችን ይተዉ)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "የተፈቀዱ ቡድኖች (ከላይ ቢመረጥም አሳውቅ)፡"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "በአንድ መስመር አንድ የቡድን slug (ለምሳሌ my-org/my-team)"
   },
   "justNow": {
     "message": "አሁን"
@@ -228,10 +228,10 @@
     "message": "ጸድቋል"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "የተዘጉ repos እና ባለቤቶች ከትኩረት ስብስቡ እና ባጅ ቆጠራ ተደብቀዋል።"
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "ምንም የተዘጋ የለም።"
   },
   "other": {
     "message": "ሌሎች"

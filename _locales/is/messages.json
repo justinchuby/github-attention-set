@@ -132,7 +132,7 @@
     "message": "Nafn"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "GitHub-merkið þitt"
   },
   "openSettings": {
     "message": "Opna stillingar"
@@ -177,7 +177,7 @@
     "message": "Þagga eiganda"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Þöguð Repos / Eigendur"
   },
   "optMutedHint": {
     "message": "Þaggaðar geymslur og eigendur eru faldir."
@@ -189,16 +189,16 @@
     "message": "Ekkert þaggað."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Tilkynna þegar PR-höfundur ýtir nýjum commitum"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Aðeins tilkynna um beinar endurskoðunarbeiðnir (hunsa hópbeiðnir)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Leyfð teymi (tilkynna samt þótt ofangreint sé merkt):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Eitt teymi-slug á línu (t.d. my-org/my-team)"
   },
   "justNow": {
     "message": "rétt í þessu"
@@ -228,10 +228,10 @@
     "message": "Samþykkt"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Þöguð repos og eigendur eru falin frá attention setinu og merkja-tölunni."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Ekkert þagað."
   },
   "other": {
     "message": "Annað"

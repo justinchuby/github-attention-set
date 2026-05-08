@@ -60,7 +60,7 @@
     "message": "Ag cum."
   },
   "stateStuck": {
-    "message": "Stuck"
+    "message": "I bhfostú"
   },
   "stateDraft": {
     "message": "Dréacht"
@@ -120,7 +120,7 @@
     "message": "Ainm"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "Do tócáiste GitHub"
   },
   "optLanguage": {
     "message": "Teanga"
@@ -177,7 +177,7 @@
     "message": "Balbhaigh úinéir"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Repos / Úinéirí balbhaithe"
   },
   "optMutedHint": {
     "message": "Tá stórais agus úinéirí balbhaithe i bhfolach."
@@ -189,16 +189,16 @@
     "message": "Tada balbhaithe."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Fógra nuair a bhrúnn údar PR tiomáintí nua"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Ná fógair ach iarratais athbhreithnithe díreacha (déan neamhaird ar iarratais foirne)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Foirne ceadaithe (fógair fós fiú le thuas roghnaithe):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Slug foirne amháin in aghaidh an líne (m.sh. my-org/my-team)"
   },
   "justNow": {
     "message": "díreach anois"
@@ -228,10 +228,10 @@
     "message": "Faofa"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Bíonn repos agus úinéirí balbhaithe i bhfolach ón attention set agus ón gcomhaireamh suaitheantais."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Rud ar bith balbhaithe."
   },
   "other": {
     "message": "Eile"

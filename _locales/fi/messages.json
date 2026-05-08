@@ -177,7 +177,7 @@
     "message": "Mykistä omistaja"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Mykistetyt repot / omistajat"
   },
   "optMutedHint": {
     "message": "Mykistetyt repot ja omistajat piilotetaan."
@@ -189,16 +189,16 @@
     "message": "Ei mykistettyjä."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Ilmoita kun PR:n tekijä pushaa uusia committeja"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Ilmoita vain suorista arviointipyynnöistä (ohita tiimipyynnöt)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Sallitut tiimit (ilmoita silti, vaikka yllä oleva on valittu):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Yksi tiimi-slug per rivi (esim. my-org/my-team)"
   },
   "justNow": {
     "message": "juuri nyt"
@@ -228,10 +228,10 @@
     "message": "Hyväksytty"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Mykistetyt repot ja omistajat piilotetaan huomiojoukosta ja badge-laskurista."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Mitään ei ole mykistetty."
   },
   "other": {
     "message": "Muut"

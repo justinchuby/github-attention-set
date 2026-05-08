@@ -54,7 +54,7 @@
     "message": "ตอบ"
   },
   "stateMerge": {
-    "message": "Merge"
+    "message": "รวม"
   },
   "stateMerging": {
     "message": "Merge…"
@@ -132,7 +132,7 @@
     "message": "ชื่อ"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "โทเค็น GitHub ของคุณ"
   },
   "openSettings": {
     "message": "เปิดการตั้งค่า"
@@ -177,7 +177,7 @@
     "message": "ปิดเสียงเจ้าของ"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "รีโพ / เจ้าของที่ปิดเสียง"
   },
   "optMutedHint": {
     "message": "รีโปและเจ้าของที่ปิดเสียงจะถูกซ่อน"
@@ -189,16 +189,16 @@
     "message": "ไม่มีรายการปิดเสียง"
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "แจ้งเตือนเมื่อผู้เขียน PR พุชคอมมิตใหม่"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "แจ้งเตือนเฉพาะคำขอรีวิวโดยตรง (ข้ามคำขอจากทีม)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "ทีมที่อนุญาต (ยังแจ้งเตือนแม้เลือกตัวเลือกข้างบน):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "หนึ่ง team slug ต่อบรรทัด (เช่น my-org/my-team)"
   },
   "justNow": {
     "message": "เมื่อสักครู่"
@@ -228,10 +228,10 @@
     "message": "อนุมัติแล้ว"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "รีโพและเจ้าของที่ปิดเสียงจะถูกซ่อนจาก attention set และตัวนับ badge"
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "ไม่มีรายการที่ปิดเสียง"
   },
   "other": {
     "message": "อื่นๆ"

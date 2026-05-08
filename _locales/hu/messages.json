@@ -54,7 +54,7 @@
     "message": "Válasz"
   },
   "stateMerge": {
-    "message": "Merge"
+    "message": "Egyesítés"
   },
   "stateMerging": {
     "message": "Merging"
@@ -132,7 +132,7 @@
     "message": "Név"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "A GitHub tokened"
   },
   "openSettings": {
     "message": "Beállítások megnyitása"
@@ -177,7 +177,7 @@
     "message": "Tulajdonos némítása"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Némított repók / tulajdonosok"
   },
   "optMutedHint": {
     "message": "A némított repók és tulajdonosok rejtve vannak."
@@ -189,16 +189,16 @@
     "message": "Semmi nincs némítva."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Értesítés, ha a PR szerzője új commitokat küld"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Csak közvetlen review kéréseknél értesítsen (csapat kérések mellőzése)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Engedélyezett csapatok (akkor is értesít, ha a fenti be van jelölve):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Egy csapat-slug soronként (pl. my-org/my-team)"
   },
   "justNow": {
     "message": "éppen most"
@@ -228,10 +228,10 @@
     "message": "Jóváhagyva"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "A némított repók és tulajdonosok el vannak rejtve az attention setből és a badge-számból."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Semmi nincs némítva."
   },
   "other": {
     "message": "Egyéb"

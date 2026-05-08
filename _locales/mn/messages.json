@@ -177,7 +177,7 @@
     "message": "Эзэмшигч хаах"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Хаасан Repo / Эзэмшигчид"
   },
   "optMutedHint": {
     "message": "Хаагдсан репо болон эзэмшигчид нуугдсан."
@@ -189,16 +189,16 @@
     "message": "Юу ч хаагдаагүй."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "PR зохиогч шинэ commit түлхэхэд мэдэгдэх"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Зөвхөн шууд хянах хүсэлтэд мэдэгдэх (багийн хүсэлтийг үл тоох)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Зөвшөөрөгдсөн багууд (дээрх сонголттой ч мэдэгдэх):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Мөр бүрт нэг багийн slug (жнь. my-org/my-team)"
   },
   "justNow": {
     "message": "саяхан"
@@ -228,10 +228,10 @@
     "message": "Зөвшөөрсөн"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Хаасан repo болон эзэмшигчид анхаарлын олонлог болон badge тооноос нуугдана."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Хаасан зүйл байхгүй."
   },
   "other": {
     "message": "Бусад"

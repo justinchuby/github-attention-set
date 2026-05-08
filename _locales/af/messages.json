@@ -132,7 +132,7 @@
     "message": "Naam"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "Jou GitHub-token"
   },
   "openSettings": {
     "message": "Maak instellings oop"
@@ -177,7 +177,7 @@
     "message": "Demp eienaar"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Stilgemaakte Repos / Eienaars"
   },
   "optMutedHint": {
     "message": "Gedempte repos en eienaars is versteek."
@@ -189,16 +189,16 @@
     "message": "Niks gedemp."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Stel in kennis wanneer PR-outeur nuwe commits stoot"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Stel slegs in kennis vir direkte hersieningsversoeke (ignoreer spanversoeke)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Toegelate spanne (stel steeds in kennis selfs met bogenoemde aangemerk):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Een span-slug per reël (bv. my-org/my-team)"
   },
   "justNow": {
     "message": "sopas"
@@ -228,10 +228,10 @@
     "message": "Goedgekeur"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Stilgemaakte repos en eienaars word van die aandag-stel en kenteken-telling verberg."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Niks is stilgemaak nie."
   },
   "other": {
     "message": "Ander"

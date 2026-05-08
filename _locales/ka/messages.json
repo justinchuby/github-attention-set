@@ -177,7 +177,7 @@
     "message": "მფლობელის დადუმება"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "დადუმებული რეპოები / მფლობელები"
   },
   "optMutedHint": {
     "message": "გაჩუმებული რეპოზიტორიები და მფლობელები დამალულია."
@@ -189,16 +189,16 @@
     "message": "არაფერია გაჩუმებული."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "შეტყობინება როცა PR ავტორი ახალ კომიტებს აგზავნის"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "შეტყობინება მხოლოდ პირდაპირი განხილვის მოთხოვნებზე (გუნდური იგნორირება)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "დაშვებული გუნდები (მაინც შეატყობინე ზემოთ მონიშვნის მიუხედავად):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "ერთი გუნდის slug თითო ხაზზე (მაგ. my-org/my-team)"
   },
   "justNow": {
     "message": "ახლახანს"
@@ -228,10 +228,10 @@
     "message": "დამტკიცებული"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "დადუმებული რეპოები და მფლობელები დამალულია attention set-იდან და badge-ის რაოდენობიდან."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "არაფერია დადუმებული."
   },
   "other": {
     "message": "სხვა"

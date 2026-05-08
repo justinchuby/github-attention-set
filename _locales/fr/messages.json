@@ -45,7 +45,7 @@
     "message": "Paramètres"
   },
   "stateReview": {
-    "message": "Review"
+    "message": "Revue"
   },
   "stateFix": {
     "message": "Corriger"
@@ -57,7 +57,7 @@
     "message": "Merger"
   },
   "stateMerging": {
-    "message": "Merging"
+    "message": "Fusion…"
   },
   "stateStuck": {
     "message": "Bloqué"
@@ -132,7 +132,7 @@
     "message": "Nom"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "Ton token GitHub"
   },
   "openSettings": {
     "message": "Ouvrir les paramètres"

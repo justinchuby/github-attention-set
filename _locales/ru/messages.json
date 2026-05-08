@@ -54,7 +54,7 @@
     "message": "Ответить"
   },
   "stateMerge": {
-    "message": "Merge"
+    "message": "Слить"
   },
   "stateMerging": {
     "message": "Merge…"
@@ -177,7 +177,7 @@
     "message": "Отключить владельца"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Скрытые репозитории / владельцы"
   },
   "optMutedHint": {
     "message": "Заглушённые репозитории и владельцы скрыты."
@@ -189,16 +189,16 @@
     "message": "Ничего не заглушено."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Уведомлять, когда автор PR отправляет новые коммиты"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Уведомлять только о прямых запросах на ревью (игнорировать командные)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Разрешённые команды (уведомлять, даже если выше отмечено):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Один slug команды на строку (напр. my-org/my-team)"
   },
   "justNow": {
     "message": "только что"
@@ -231,7 +231,7 @@
     "message": "Заглушённые репозитории и владельцы скрыты."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Ничего не скрыто."
   },
   "other": {
     "message": "Другие"

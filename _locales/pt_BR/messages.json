@@ -45,19 +45,19 @@
     "message": "Configurações"
   },
   "stateReview": {
-    "message": "Review"
+    "message": "Revisão"
   },
   "stateFix": {
     "message": "Corrigir"
   },
   "stateRespond": {
-    "message": "Respond"
+    "message": "Responder"
   },
   "stateMerge": {
-    "message": "Merge"
+    "message": "Mesclar"
   },
   "stateMerging": {
-    "message": "Merging"
+    "message": "Mesclando"
   },
   "stateStuck": {
     "message": "Travado"
@@ -132,7 +132,7 @@
     "message": "Nome"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "Seu token do GitHub"
   },
   "openSettings": {
     "message": "Abrir configurações"
@@ -177,7 +177,7 @@
     "message": "Silenciar proprietário"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Repos / Proprietários silenciados"
   },
   "optMutedHint": {
     "message": "Repos e proprietários silenciados ficam ocultos."
@@ -189,16 +189,16 @@
     "message": "Nada silenciado."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Notificar quando o autor do PR enviar novos commits"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Notificar apenas solicitações de revisão diretas (ignorar solicitações de equipe)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Equipes permitidas (ainda notificar mesmo com a opção acima marcada):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Um slug de equipe por linha (ex. my-org/my-team)"
   },
   "justNow": {
     "message": "agora mesmo"
@@ -231,7 +231,7 @@
     "message": "Repos e proprietários silenciados ficam ocultos."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Nada silenciado."
   },
   "other": {
     "message": "Outros"

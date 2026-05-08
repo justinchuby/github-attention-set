@@ -120,7 +120,7 @@
     "message": "名字"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "侬个 GitHub token"
   },
   "optLanguage": {
     "message": "语言"
@@ -177,7 +177,7 @@
     "message": "靜音擁有者"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "静音个 Repos / 拥有者"
   },
   "optMutedHint": {
     "message": "静音个repo搭owner勿会显示。"
@@ -189,16 +189,16 @@
     "message": "呒没静音个。"
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "PR 作者推新 commit 辰光通知"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "只通知直接审查请求（忽略团队请求）"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "允许个团队（就算上头勾了也通知）："
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "一行一个团队 slug（比方 my-org/my-team）"
   },
   "justNow": {
     "message": "刚刚"
@@ -228,10 +228,10 @@
     "message": "批准了"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "静音个 repos 搭拥有者会从注意集合搭徽章计数里向隐藏。"
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "呒没静音个。"
   },
   "other": {
     "message": "其他"

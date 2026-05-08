@@ -54,10 +54,10 @@
     "message": "Yanıtla"
   },
   "stateMerge": {
-    "message": "Merge"
+    "message": "Birleştir"
   },
   "stateMerging": {
-    "message": "Merging"
+    "message": "Birleşim"
   },
   "stateStuck": {
     "message": "Takılı"
@@ -132,7 +132,7 @@
     "message": "Ad"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "GitHub tokeniniz"
   },
   "openSettings": {
     "message": "Ayarları aç"
@@ -177,7 +177,7 @@
     "message": "Sahibi sustur"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Sessize alınan depolar / sahipler"
   },
   "optMutedHint": {
     "message": "Sessizleştirilen depolar ve sahipler gizlenir."
@@ -189,16 +189,16 @@
     "message": "Sessizleştirilen yok."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "PR yazarı yeni commit gönderdiğinde bildir"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Yalnızca doğrudan inceleme isteklerinde bildir (takım isteklerini yoksay)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "İzin verilen takımlar (yukarıdaki işaretli olsa bile bildir):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Satır başına bir takım slug'ı (ör. my-org/my-team)"
   },
   "justNow": {
     "message": "az önce"
@@ -231,7 +231,7 @@
     "message": "Sessizleştirilen depolar ve sahipler gizlenir."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Sessize alınmış bir şey yok."
   },
   "other": {
     "message": "Diğer"

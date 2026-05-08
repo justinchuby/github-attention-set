@@ -51,13 +51,13 @@
     "message": "Corregir"
   },
   "stateRespond": {
-    "message": "Respond"
+    "message": "Responder"
   },
   "stateMerge": {
-    "message": "Merge"
+    "message": "Fusionar"
   },
   "stateMerging": {
-    "message": "Merging"
+    "message": "Fusionando"
   },
   "stateStuck": {
     "message": "Atascado"
@@ -132,7 +132,7 @@
     "message": "Nombre"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "Tu token de GitHub"
   },
   "openSettings": {
     "message": "Abrir ajustes"

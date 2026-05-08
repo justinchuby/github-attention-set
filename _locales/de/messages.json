@@ -45,7 +45,7 @@
     "message": "Einstellungen"
   },
   "stateReview": {
-    "message": "Review"
+    "message": "Prüfen"
   },
   "stateFix": {
     "message": "Beheben"
@@ -129,10 +129,10 @@
     "message": "Bug melden oder Feature anfragen"
   },
   "tokenName": {
-    "message": "Name"
+    "message": "Token-Name (z.B. Persönlich, Arbeit)"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "Dein GitHub-Token"
   },
   "openSettings": {
     "message": "Einstellungen öffnen"

@@ -177,7 +177,7 @@
     "message": "噤主"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "已噤之庫與主"
   },
   "optMutedHint": {
     "message": "所靜之庫及主，不見於關注之集。"
@@ -189,16 +189,16 @@
     "message": "無所靜者。"
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "PR 著者推新 commit 時告之"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "唯直請審時告，隊請則略"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "許可之隊（縱上已勾，仍告之）："
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "每行一隊之 slug（如 my-org/my-team）"
   },
   "justNow": {
     "message": "方才"
@@ -231,7 +231,7 @@
     "message": "所靜之庫及主，不見於關注之集。"
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "無所噤。"
   },
   "other": {
     "message": "餘者"

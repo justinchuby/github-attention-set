@@ -120,7 +120,7 @@
     "message": "名"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "你嘅 GitHub token"
   },
   "optLanguage": {
     "message": "語言"

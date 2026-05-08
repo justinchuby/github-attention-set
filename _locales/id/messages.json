@@ -45,7 +45,7 @@
     "message": "Pengaturan"
   },
   "stateReview": {
-    "message": "Review"
+    "message": "Tinjau"
   },
   "stateFix": {
     "message": "Perbaiki"
@@ -54,10 +54,10 @@
     "message": "Balas"
   },
   "stateMerge": {
-    "message": "Merge"
+    "message": "Gabung"
   },
   "stateMerging": {
-    "message": "Merging"
+    "message": "Menggabung"
   },
   "stateStuck": {
     "message": "Macet"
@@ -132,7 +132,7 @@
     "message": "Nama"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "Token GitHub Anda"
   },
   "openSettings": {
     "message": "Buka pengaturan"
@@ -177,7 +177,7 @@
     "message": "Bisukan pemilik"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Repo / Pemilik yang dibisukan"
   },
   "optMutedHint": {
     "message": "Repo dan pemilik yang dibisukan akan disembunyikan."
@@ -189,16 +189,16 @@
     "message": "Tidak ada yang dibisukan."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Beri tahu saat penulis PR mendorong commit baru"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Hanya beri tahu untuk permintaan tinjauan langsung (abaikan permintaan tim)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Tim yang diizinkan (tetap beri tahu meski opsi di atas dicentang):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Satu slug tim per baris (mis. my-org/my-team)"
   },
   "justNow": {
     "message": "baru saja"
@@ -228,10 +228,10 @@
     "message": "Disetujui"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Repo dan pemilik yang dibisukan disembunyikan dari attention set dan hitungan badge."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Tidak ada yang dibisukan."
   },
   "other": {
     "message": "Lainnya"

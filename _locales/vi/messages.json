@@ -45,7 +45,7 @@
     "message": "Cài đặt"
   },
   "stateReview": {
-    "message": "Review"
+    "message": "Duyệt"
   },
   "stateFix": {
     "message": "Sửa"
@@ -54,10 +54,10 @@
     "message": "Trả lời"
   },
   "stateMerge": {
-    "message": "Merge"
+    "message": "Gộp"
   },
   "stateMerging": {
-    "message": "Merging"
+    "message": "Đang gộp"
   },
   "stateStuck": {
     "message": "Bị kẹt"
@@ -132,7 +132,7 @@
     "message": "Tên"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "Token GitHub của bạn"
   },
   "openSettings": {
     "message": "Mở cài đặt"
@@ -177,7 +177,7 @@
     "message": "Tắt tiếng chủ sở hữu"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Repo / Chủ sở hữu đã tắt tiếng"
   },
   "optMutedHint": {
     "message": "Repo và chủ sở hữu bị tắt sẽ được ẩn."
@@ -189,16 +189,16 @@
     "message": "Không có gì bị tắt."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Thông báo khi tác giả PR đẩy commit mới"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Chỉ thông báo yêu cầu review trực tiếp (bỏ qua yêu cầu từ nhóm)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Nhóm được phép (vẫn thông báo dù đã chọn ở trên):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Một slug nhóm mỗi dòng (vd. my-org/my-team)"
   },
   "justNow": {
     "message": "vừa xong"
@@ -231,7 +231,7 @@
     "message": "Repo và chủ sở hữu bị tắt sẽ được ẩn."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Chưa tắt tiếng mục nào."
   },
   "other": {
     "message": "Khác"

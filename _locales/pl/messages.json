@@ -132,7 +132,7 @@
     "message": "Nazwa"
   },
   "tokenValue": {
-    "message": "Token"
+    "message": "Twój token GitHub"
   },
   "openSettings": {
     "message": "Otwórz ustawienia"
@@ -177,7 +177,7 @@
     "message": "Wycisz właściciela"
   },
   "optMuted": {
-    "message": "Muted Repos / Owners"
+    "message": "Wyciszone repozytoria / właściciele"
   },
   "optMutedHint": {
     "message": "Wyciszone repozytoria i właściciele są ukryte."
@@ -189,16 +189,16 @@
     "message": "Nic wyciszonego."
   },
   "optNotifyNewCommits": {
-    "message": "Notify when PR author pushes new commits"
+    "message": "Powiadom, gdy autor PR wypchnie nowe commity"
   },
   "optOnlyDirectRequests": {
-    "message": "Only notify for direct review requests (ignore team requests)"
+    "message": "Powiadamiaj tylko o bezpośrednich prośbach o przegląd (ignoruj prośby zespołowe)"
   },
   "optWhitelistedTeams": {
-    "message": "Allowed teams (still notify even with above checked):"
+    "message": "Dozwolone zespoły (powiadamiaj mimo zaznaczenia powyżej):"
   },
   "optWhitelistedTeamsHint": {
-    "message": "One team slug per line (e.g. my-org/my-team)"
+    "message": "Jeden slug zespołu na linię (np. my-org/my-team)"
   },
   "justNow": {
     "message": "właśnie teraz"
@@ -228,10 +228,10 @@
     "message": "Zatwierdzone"
   },
   "optMutedDesc": {
-    "message": "Muted repos and owners are hidden from the attention set and badge count."
+    "message": "Wyciszone repozytoria i właściciele są ukryte z attention setu i licznika badge."
   },
   "optNothingMuted": {
-    "message": "Nothing muted."
+    "message": "Nic nie jest wyciszone."
   },
   "other": {
     "message": "Inne"
