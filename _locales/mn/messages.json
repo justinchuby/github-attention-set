@@ -3,13 +3,13 @@
     "message": "GitHub Attention Set"
   },
   "extDescription": {
-    "message": "ᠲᠠᠨ ᠤ ᠠᠩᠬᠠᠷᠠᠯ ᠱᠠᠭᠠᠷᠳᠠᠭᠳᠠᠵᠤ ᠪᠠᠢᠭ᠎ᠠ PR ᠢ ᠬᠠᠷᠠᠭᠤᠯᠨ᠎ᠠ"
+    "message": "ᠲᠠᠨ ᠤ ᠠᠩᠬᠠᠷᠤᠯ ᠳᠤ ᠬᠦᠷᠬᠦ PR ᠨᠤᠭᠤᠳ ᠢ ᠬᠠᠷᠠᠭᠤᠯᠤᠨ᠎ᠠ — GitHub ᠳᠠᠬᠢ Google Critique ᠤᠨ Attention Set ᠮᠡᠲᠦ᠃"
   },
   "needsAttention": {
-    "message": "ᠲᠠᠨ ᠤ ᠠᠩᠬᠠᠷᠠᠯ ᠬᠡᠷᠡᠭᠲᠡᠢ"
+    "message": "ᠲᠠᠨ ᠤ ᠠᠩᠬᠠᠷᠤᠯ ᠳᠤ"
   },
   "waitingOnOthers": {
-    "message": "ᠪᠤᠰᠤᠳ ᠢ ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ"
+    "message": "ᠪᠤᠰᠤᠳ ᠢ ᠬᠦᠯᠢᠶᠡᠨ᠎ᠡ"
   },
   "refresh": {
     "message": "ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦ"
@@ -27,25 +27,25 @@
     "message": "ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ..."
   },
   "noToken": {
-    "message": "ᠲᠣᠬᠧᠨ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠠᠭᠠᠭᠦᠢ ᠪᠠᠢᠨ᠎ᠠ᠃"
+    "message": "ᠲᠣᠬᠧᠨ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠤᠭᠠᠳᠤᠢ᠃"
   },
   "goToSettings": {
-    "message": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ ᠷᠤᠤ ᠣᠴᠢᠬᠤ"
+    "message": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ ᠳᠤ ᠣᠴᠢᠬᠤ"
   },
   "noPRs": {
     "message": "ᠨᠡᠭᠡᠭᠡᠯᠲᠡᠢ PR ᠣᠯᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ᠃"
   },
   "allClear": {
-    "message": "ᠪᠦᠭᠦᠳᠡ ᠳᠠᠭᠤᠰᠰᠠᠨ! ᠲᠠᠨ ᠢ ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠭ᠎ᠠ PR ᠪᠠᠢᠬᠤ ᠦᠭᠡᠢ᠃"
+    "message": "ᠪᠦᠭᠦᠳᠡ ᠴᠡᠪᠡᠷ! ᠲᠠᠨ ᠢ ᠬᠦᠯᠢᠶᠡᠬᠦ PR ᠦᠭᠡᠢ᠃"
   },
   "waitingOn": {
-    "message": "ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ:"
+    "message": "ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠤᠢ:"
   },
   "settings": {
     "message": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ"
   },
   "stateReview": {
-    "message": "ᠰᠢᠯᠭᠠᠬᠤ"
+    "message": "ᠬᠢᠨᠠᠬᠤ"
   },
   "stateFix": {
     "message": "ᠵᠠᠰᠠᠬᠤ"
@@ -57,7 +57,7 @@
     "message": "ᠨᠢᠭᠡᠳᠬᠡᠬᠦ"
   },
   "stateMerging": {
-    "message": "ᠨᠢᠭᠡᠳᠬᠡᠵᠦ"
+    "message": "ᠨᠢᠭᠡᠳᠬᠡᠵᠦ ᠪᠤᠢ"
   },
   "stateStuck": {
     "message": "ᠭᠠᠴᠠᠭᠰᠠᠨ"
@@ -66,55 +66,55 @@
     "message": "ᠨᠣᠣᠷᠣᠭ"
   },
   "optTitle": {
-    "message": "GitHub Attention Set ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ"
+    "message": "GitHub Attention Set ᠤᠨ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ"
   },
   "optTokenLabel": {
-    "message": "GitHub ᠬᠤᠪᠢᠶᠢᠨ ᠬᠠᠨᠳᠠᠯᠲᠠ ᠶᠢᠨ ᠲᠣᠬᠧᠨ"
+    "message": "GitHub ᠤᠨ ᠬᠤᠪᠢ ᠶᠢᠨ ᠬᠠᠨᠳᠠᠯᠲᠠ ᠶᠢᠨ ᠲᠣᠬᠧᠨ"
   },
   "optTokenHint": {
-    "message": "fine-grained PAT ᠡᠭᠦᠰᠬᠡᠵᠦ᠂ ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠯ: Pull requests → Read, Issues → Read"
+    "message": "fine-grained PAT ᠡᠭᠦᠰᠬᠡᠨ᠎ᠡ᠃ ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠯ: Pull requests → Read, Issues → Read"
   },
   "optAddToken": {
     "message": "+ ᠲᠣᠬᠧᠨ ᠨᠡᠮᠡᠬᠦ"
   },
   "optSave": {
-    "message": "ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ"
+    "message": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ"
   },
   "optSaved": {
     "message": "✓ ᠬᠠᠳᠠᠭᠠᠯᠠᠭᠳᠠᠯ᠎ᠠ!"
   },
   "optDebounce": {
-    "message": "ᠬᠦᠯᠢᠶᠡᠬᠦ ᠬᠤᠭᠤᠴᠠᠭ᠎ᠠ (ᠮᠢᠨᠦ᠋ᠲ)"
+    "message": "ᠲᠦᠷ ᠬᠦᠯᠢᠶᠡᠬᠦ ᠴᠠᠭ (ᠮᠢᠨᠦ᠋ᠲ)"
   },
   "optPoll": {
-    "message": "ᠰᠢᠯᠭᠠᠬᠤ ᠳᠠᠪᠲᠠᠮᠵᠢ (ᠮᠢᠨᠦ᠋ᠲ)"
+    "message": "ᠰᠢᠨᠡᠴᠢᠯᠡᠯ ᠰᠢᠯᠭᠠᠬᠤ ᠵᠠᠪᠰᠠᠷ (ᠮᠢᠨᠦ᠋ᠲ)"
   },
   "optNotifications": {
-    "message": "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠢᠳᠡᠪᠬᠢᠵᠢᠭᠦᠯᠬᠦ"
+    "message": "ᠰᠢᠷᠡᠭᠡᠨ ᠳᠡᠭᠡᠷᠡᠬᠢ ᠮᠡᠳᠡᠭᠳᠡᠯ ᠢᠳᠡᠪᠬᠢᠵᠢᠭᠦᠯᠬᠦ"
   },
   "optGroupByRepo": {
-    "message": "ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠢᠶᠠᠷ ᠪᠦᠯᠦᠭᠯᠡᠬᠦ"
+    "message": "PR ᠢ ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠢᠶᠠᠷ ᠪᠦᠯᠦᠭᠯᠡᠬᠦ"
   },
   "optRepoFilter": {
     "message": "ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠤᠨ ᠰᠢᠭᠦᠯᠲᠦᠦᠷ"
   },
   "optFilterAll": {
-    "message": "ᠪᠦᠭᠦᠳᠡ ᠶᠢ ᠬᠠᠷᠠᠭᠤᠯᠬᠤ"
+    "message": "ᠪᠦᠭᠦᠳᠡ ᠶᠢ ᠬᠠᠷᠠᠭᠤᠯᠬᠤ (ᠠᠩᠬᠠᠨ ᠤ)"
   },
   "optFilterInclude": {
-    "message": "ᠵᠥᠪᠬᠡᠨ ᠡᠳᠡᠭᠡᠷ ᠢ ᠬᠠᠷᠠᠭᠤᠯᠬᠤ"
+    "message": "ᠵᠥᠪᠬᠡᠨ ᠡᠳᠡᠭᠡᠷ repo ᠶᠢ ᠬᠠᠷᠠᠭᠤᠯᠬᠤ"
   },
   "optFilterExclude": {
-    "message": "ᠡᠳᠡᠭᠡᠷ ᠢ ᠨᠤᠤᠬᠤ"
+    "message": "ᠡᠳᠡᠭᠡᠷ repo ᠶᠢ ᠨᠤᠤᠬᠤ"
   },
   "optRepoPlaceholder": {
     "message": "owner/repo (ᠮᠥᠷ ᠪᠦᠷᠢ ᠳᠦ ᠨᠢᠭᠡ)"
   },
   "optSaveFilter": {
-    "message": "ᠰᠢᠭᠦᠯᠲᠦᠦᠷ ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ"
+    "message": "ᠰᠢᠭᠦᠯᠲᠡ ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ"
   },
   "optReportBug": {
-    "message": "ᠠᠯᠳᠠᠭ᠎ᠠ ᠮᠡᠳᠡᠭᠳᠡᠬᠦ ᠡᠰᠡᠪᠡᠯ ᠬᠦᠰᠡᠯᠲᠡ ᠭᠠᠷᠭᠠᠬᠤ"
+    "message": "ᠠᠯᠳᠠᠭ᠎ᠠ ᠮᠡᠳᠡᠭᠳᠡᠬᠦ ᠪᠤᠶᠤ ᠰᠠᠨᠠᠯ ᠬᠦᠰᠡᠯᠲᠡ ᠢᠯᠡᠭᠡᠬᠦ"
   },
   "tokenName": {
     "message": "ᠨᠡᠷ᠎ᠡ"
@@ -126,31 +126,31 @@
     "message": "ᠬᠡᠯᠡ"
   },
   "optLanguageHint": {
-    "message": "ᠬᠡᠯᠡ ᠰᠣᠩᠭᠤᠬᠤ"
+    "message": "ᠡᠨᠡ ᠥᠷᠭᠡᠳᠬᠡᠯ ᠦᠨ ᠬᠠᠷᠠᠭᠳᠠᠬᠤ ᠬᠡᠯᠡ ᠶᠢ ᠰᠣᠩᠭᠤᠨ᠎ᠠ᠃"
   },
   "optLanguageAuto": {
-    "message": "ᠠᠦ᠋ᠲ᠋ᠣᠮᠠᠲ (ᠬᠥᠲᠥᠴᠢ ᠶᠢᠨ ᠬᠡᠯᠡ)"
+    "message": "ᠠᠦ᠋ᠲ᠋ᠣᠮᠠᠲ (ᠬᠥᠲᠥᠴᠢ ᠶᠢᠨ ᠬᠡᠯᠡ ᠶᠢ ᠳᠠᠭᠠᠬᠤ)"
   },
   "optLanguageSaved": {
-    "message": "ᠬᠡᠯᠡ ᠬᠠᠳᠠᠭᠠᠯᠠᠭᠳᠠᠯ᠎ᠠ!"
+    "message": "ᠬᠡᠯᠡ ᠬᠠᠳᠠᠭᠠᠯᠠᠭᠳᠠᠯ᠎ᠠ᠃ popup ᠢ ᠳᠠᠬᠢᠨ ᠨᠡᠭᠡᠭᠡᠨ᠎ᠡ ᠦᠦ᠃"
   },
   "openSettings": {
-    "message": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ"
+    "message": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ ᠨᠡᠭᠡᠭᠡᠬᠦ"
   },
   "optDebounceHint": {
-    "message": "ᠰᠡᠳᠬᠢᠭᠳᠡᠯ ᠬᠦᠯᠢᠶᠡᠬᠦ ᠬᠤᠭᠤᠴᠠᠭ᠎ᠠ"
+    "message": "ᠳᠠᠯᠳᠠ ᠳᠣᠬᠢᠶ᠎ᠠ attention ᠢ ᠥᠭᠡᠷᠡᠴᠢᠯᠡᠬᠦ ᠡᠴᠡ ᠡᠮᠦᠨ᠎ᠡ ᠡᠨᠡ ᠬᠤᠭᠤᠴᠠᠭ᠎ᠠ ᠬᠦᠯᠢᠶᠡᠨ᠎ᠡ᠃"
   },
   "optFilterHint": {
-    "message": "ᠠᠩᠬᠠᠷᠤᠯ ᠤᠨ ᠲᠥᠷᠥᠯ ᠳᠦ ᠠᠯᠢ ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠬᠠᠷᠠᠭᠳᠠᠬᠤ ᠶᠢ ᠰᠢᠭᠦᠬᠦ"
+    "message": "attention set ᠳᠤ ᠠᠯᠢ repo ᠬᠠᠷᠠᠭᠳᠠᠬᠤ ᠶᠢ ᠰᠢᠭᠦᠨ᠎ᠡ᠃"
   },
   "optPollHint": {
-    "message": "GitHub ᠰᠢᠯᠭᠠᠬᠤ ᠳᠠᠪᠲᠠᠮᠵᠢ"
+    "message": "GitHub ᠤᠨ ᠰᠢᠨᠡᠴᠢᠯᠡᠯ ᠢ ᠬᠡᠳᠦᠢ ᠣᠢᠷ᠎ᠠ ᠰᠢᠯᠭᠠᠬᠤ ᠶᠢ ᠲᠣᠭᠲᠠᠭᠠᠨ᠎ᠠ᠃"
   },
   "optRepoLabel": {
     "message": "ᠷᠧᠫᠣᠽᠢᠲᠣᠷ (ᠮᠥᠷ ᠪᠦᠷᠢ ᠳᠦ ᠨᠢᠭᠡ᠂ ᠬᠡᠯᠪᠡᠷᠢ: owner/repo)"
   },
   "tokenHintFull": {
-    "message": "GitHub PAT ᠨᠡᠮᠡᠬᠦ᠃ ᠪᠦᠬᠦ ᠲᠣᠬᠧᠨ ᠤ ᠦᠷ᠎ᠡ ᠳᠦᠩ ᠨᠢᠭᠡᠳᠬᠡᠭᠳᠡᠨ᠎ᠡ᠃"
+    "message": "GitHub ᠤᠨ Personal Access Token ᠨᠢᠭᠡ ᠪᠤᠶᠤ ᠣᠯᠠᠨ ᠨᠡᠮᠡᠨ᠎ᠡ᠃ ᠪᠦᠬᠦ ᠲᠣᠬᠧᠨ ᠤ ᠦᠷ᠎ᠡ ᠳᠦᠩ ᠢ ᠨᠢᠭᠡᠳᠬᠡᠵᠦ ᠬᠠᠷᠠᠭᠤᠯᠤᠨ᠎ᠠ᠃"
   },
   "stateNew": {
     "message": "ᠰᠢᠨ᠎ᠡ"
@@ -162,46 +162,46 @@
     "message": "ᠳᠠᠬᠢᠨ ᠰᠢᠯᠭᠠᠬᠤ"
   },
   "incoming": {
-    "message": "ᠣᠷᠣᠵᠤ ᠢᠷᠡᠭᠰᠡᠨ"
+    "message": "ᠢᠷᠡᠭᠰᠡᠨ"
   },
   "outgoing": {
-    "message": "ᠭᠠᠷᠴᠤ ᠶᠠᠪᠤᠭᠰᠠᠨ"
+    "message": "ᠶᠠᠪᠤᠭᠰᠠᠨ"
   },
   "mentioned": {
     "message": "ᠳᠤᠷᠠᠳᠤᠭᠳᠠᠭᠰᠠᠨ"
   },
   "muteRepo": {
-    "message": "ᠡᠨᠡ ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠢ ᠨᠤᠤᠬᠤ"
+    "message": "ᠡᠨᠡ repo ᠶᠢ ᠨᠤᠤᠬᠤ"
   },
   "muteOwner": {
-    "message": "ᠡᠨᠡ ᠡᠵᠡᠮᠰᠢᠭᠴᠢ ᠶᠢ ᠨᠤᠤᠬᠤ"
+    "message": "ᠡᠨᠡ ᠡᠵᠡᠮᠰᠢᠭᠴᠢ ᠶᠢᠨ ᠪᠦᠬᠦ PR ᠢ ᠨᠤᠤᠬᠤ"
   },
   "optMuted": {
-    "message": "ᠨᠤᠤᠭᠳᠠᠭᠰᠠᠨ ᠷᠧᠫᠣᠽᠢᠲᠣᠷ / ᠡᠵᠡᠮᠰᠢᠭᠴᠢ"
+    "message": "ᠨᠤᠤᠭᠰᠠᠨ repo / ᠡᠵᠡᠮᠰᠢᠭᠴᠢ"
   },
   "optMutedHint": {
-    "message": "ᠨᠤᠤᠭᠳᠠᠭᠰᠠᠨ ᠷᠧᠫᠣᠽᠢᠲᠣᠷ ᠪᠣᠯᠣᠨ ᠡᠵᠡᠮᠰᠢᠭᠴᠢ ᠨᠢ ᠠᠩᠬᠠᠷᠤᠯ ᠤᠨ ᠴᠤᠭᠯᠠᠭ᠎ᠠ ᠪᠣᠯᠣᠨ ᠲᠡᠮᠳᠡᠭ ᠦᠨ ᠲᠣᠭ᠎ᠠ ᠳᠤ ᠬᠠᠷᠠᠭᠳᠠᠬᠤ ᠦᠭᠡᠢ᠃"
+    "message": "ᠨᠤᠤᠭᠰᠠᠨ repo ᠪᠣᠯᠣᠨ ᠡᠵᠡᠮᠰᠢᠭᠴᠢ ᠨᠢ attention set ᠪᠣᠯᠣᠨ badge ᠲᠣᠭ᠎ᠠ ᠳᠤ ᠣᠷᠣᠬᠤ ᠦᠭᠡᠢ᠃"
   },
   "optUnmute": {
-    "message": "ᠨᠤᠤᠭᠰᠠᠨ ᠢ ᠪᠣᠯᠢᠭᠤᠯᠬᠤ"
+    "message": "ᠨᠤᠤᠭᠰᠠᠨ ᠢ ᠴᠤᠴᠠᠯᠠᠬᠤ"
   },
   "optNoMuted": {
-    "message": "ᠨᠤᠤᠭᠳᠠᠭᠰᠠᠨ ᠵᠦᠢᠯ ᠦᠭᠡᠢ᠃"
+    "message": "ᠨᠤᠤᠭᠰᠠᠨ ᠵᠦᠢᠯ ᠦᠭᠡᠢ᠃"
   },
   "optNotifyNewCommits": {
-    "message": "PR ᠵᠣᠬᠢᠶᠠᠭᠴᠢ ᠰᠢᠨ᠎ᠡ commit ᠲᠦᠯᠬᠢᠬᠦ ᠳᠦ ᠮᠡᠳᠡᠭᠳᠡᠬᠦ"
+    "message": "PR ᠡᠭᠦᠰᠬᠡᠭᠴᠢ ᠰᠢᠨ᠎ᠡ ᠥᠭᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠢᠯᠡᠭᠡᠬᠦ ᠳᠦ ᠮᠡᠳᠡᠭᠳᠡᠬᠦ"
   },
   "optOnlyDirectRequests": {
-    "message": "ᠵᠥᠪᠬᠡᠨ ᠰᠢᠭᠤᠳ ᠬᠢᠨᠠᠬᠤ ᠬᠦᠰᠡᠯᠲᠡ ᠳᠦ ᠮᠡᠳᠡᠭᠳᠡᠬᠦ (ᠪᠠᠭ ᠤᠨ ᠬᠦᠰᠡᠯᠲᠡ ᠶᠢ ᠦᠯᠦ ᠲᠣᠭᠠᠬᠤ)"
+    "message": "ᠵᠥᠪᠬᠡᠨ ᠰᠢᠭᠤᠳ review ᠬᠦᠰᠡᠯᠲᠡ ᠳᠦ ᠮᠡᠳᠡᠭᠳᠡᠬᠦ (ᠪᠠᠭ ᠤᠨ ᠬᠦᠰᠡᠯᠲᠡ ᠶᠢ ᠦᠯᠦ ᠲᠣᠭᠠᠬᠤ)"
   },
   "optWhitelistedTeams": {
-    "message": "ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠭᠳᠡᠭᠰᠡᠨ ᠪᠠᠭ (ᠳᠡᠭᠡᠷᠡᠬᠢ ᠰᠣᠩᠭᠤᠯᠲᠠ ᠲᠠᠢ ᠴᠤ ᠮᠡᠳᠡᠭᠳᠡᠬᠦ):"
+    "message": "ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠭᠰᠡᠨ ᠪᠠᠭ (ᠳᠡᠭᠡᠷᠡᠬᠢ ᠰᠣᠩᠭᠤᠯᠲᠠ ᠪᠠᠢᠭᠰᠠᠨ ᠴᠤ ᠮᠡᠳᠡᠭᠳᠡᠨ᠎ᠡ):"
   },
   "optWhitelistedTeamsHint": {
     "message": "ᠮᠥᠷ ᠪᠦᠷᠢ ᠳᠦ ᠨᠢᠭᠡ ᠪᠠᠭ ᠤᠨ slug (ᠵᠢᠱᠢᠶ᠎ᠡ: my-org/my-team)"
   },
   "justNow": {
-    "message": "ᠰᠠᠶᠢᠬᠠᠨ"
+    "message": "ᠣᠳᠣᠬᠠᠨ"
   },
   "stateMerged": {
     "message": "ᠨᠢᠭᠡᠳᠬᠡᠭᠳᠡᠭᠰᠡᠨ"
@@ -210,34 +210,34 @@
     "message": "ᠬᠠᠭᠠᠭᠳᠠᠭᠰᠠᠨ"
   },
   "moreOptions": {
-    "message": "ᠪᠤᠰᠤᠳ ᠰᠣᠩᠭᠤᠯᠲᠠ"
+    "message": "ᠨᠡᠮᠡᠯᠲᠡ ᠰᠣᠩᠭᠤᠯᠲᠠ"
   },
   "newActivity": {
-    "message": "ᠰᠢᠨ᠎ᠡ ᠢᠳᠡᠪᠬᠢ"
+    "message": "ᠰᠢᠨ᠎ᠡ ᠬᠥᠳᠡᠯᠭᠡᠭᠡᠨ"
   },
   "filterPlaceholder": {
     "message": "PR ᠰᠢᠭᠦᠬᠦ..."
   },
   "errorAuth": {
-    "message": "⚠️ ᠲᠣᠬᠧᠨ ᠤ ᠬᠦᠴᠦᠨ ᠳᠠᠭᠤᠰᠤᠭᠰᠠᠨ ᠡᠰᠡᠪᠡᠯ ᠪᠤᠷᠤᠭᠤ᠃ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ ᠳᠤ ᠰᠢᠨᠡᠴᠢᠯᠡᠨ᠎ᠡ᠃"
+    "message": "⚠️ ᠲᠣᠬᠧᠨ ᠤ ᠬᠦᠴᠦᠨ ᠳᠠᠭᠤᠰᠤᠭᠰᠠᠨ ᠪᠤᠶᠤ ᠪᠤᠷᠤᠭᠤ᠃ ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ ᠳᠤ ᠰᠢᠨᠡᠴᠢᠯᠡᠨ᠎ᠡ᠃"
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub ᠳᠤ ᠬᠣᠯᠪᠣᠭᠳᠠᠬᠤ ᠦᠭᠡᠢ᠃ ᠺᠧᠱ ᠳᠠᠲᠠ ᠶᠢ ᠬᠠᠷᠠᠭᠤᠯᠵᠤ ᠪᠠᠢᠨ᠎ᠠ᠃"
+    "message": "⚠️ GitHub ᠳᠤ ᠬᠦᠷᠴᠦ ᠴᠢᠳᠠᠬᠤ ᠦᠭᠡᠢ᠃ ᠺᠧᠱ ᠳᠠᠲᠠ ᠶᠢ ᠦᠵᠡᠭᠦᠯᠵᠦ ᠪᠤᠢ᠃"
   },
   "stateApproved": {
     "message": "ᠵᠥᠪᠰᠢᠶᠡᠷᠡᠭᠰᠡᠨ"
   },
   "optMutedDesc": {
-    "message": "ᠨᠤᠤᠭᠳᠠᠭᠰᠠᠨ repo ᠪᠣᠯᠣᠨ ᠡᠵᠡᠮᠰᠢᠭᠴᠢ ᠨᠢ ᠠᠩᠬᠠᠷᠤᠯ ᠤᠨ ᠴᠤᠭᠯᠠᠭ᠎ᠠ ᠪᠣᠯᠣᠨ badge ᠲᠣᠭ᠎ᠠ ᠳᠤ ᠬᠠᠷᠠᠭᠳᠠᠬᠤ ᠦᠭᠡᠢ᠃"
+    "message": "ᠨᠤᠤᠭᠰᠠᠨ repo ᠪᠣᠯᠣᠨ ᠡᠵᠡᠮᠰᠢᠭᠴᠢ ᠨᠢ attention set ᠪᠣᠯᠣᠨ badge ᠲᠣᠭ᠎ᠠ ᠳᠤ ᠣᠷᠣᠬᠤ ᠦᠭᠡᠢ᠃"
   },
   "optNothingMuted": {
-    "message": "ᠨᠤᠤᠭᠳᠠᠭᠰᠠᠨ ᠵᠦᠢᠯ ᠦᠭᠡᠢ᠃"
+    "message": "ᠨᠤᠤᠭᠰᠠᠨ ᠵᠦᠢᠯ ᠦᠭᠡᠢ᠃"
   },
   "other": {
     "message": "ᠪᠤᠰᠤᠳ"
   },
   "optPolling": {
-    "message": "ᠰᠢᠯᠭᠠᠯᠲᠠ"
+    "message": "ᠰᠢᠨᠡᠴᠢᠯᠡᠯ ᠰᠢᠯᠭᠠᠬᠤ"
   },
   "optDisplay": {
     "message": "ᠬᠠᠷᠠᠭᠤᠯᠬᠤ"
