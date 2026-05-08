@@ -178,4 +178,3 @@ export async function poll(settings, opts = {}) {
     error: null,
   };
 }
-

@@ -694,7 +694,6 @@ async function render(data, _isRefreshing) {
       toggle.setAttribute('aria-expanded', String(show));
     };
 
-
     const dismissedContainer = h('div', { 'data-filter-section': 'dismissed' });
     dismissedContainer.appendChild(toggle);
     dismissedContainer.appendChild(dismissedList);
