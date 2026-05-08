@@ -151,7 +151,6 @@ languageEl.onchange = () => {
 // --- Repo Filter ---
 const filterAllEl = document.getElementById('filter-all');
 const filterIncludeEl = document.getElementById('filter-include');
-const filterExcludeEl = document.getElementById('filter-exclude');
 const repoListEl = document.getElementById('repoList');
 const saveFilterBtn = document.getElementById('saveFilter');
 const savedFilterEl = document.getElementById('savedFilter');
