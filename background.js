@@ -6,6 +6,18 @@ import { migrateTokens } from './poll.js';
 const DEFAULT_POLL_INTERVAL = 2; // minutes
 const DEFAULT_DEBOUNCE = 10; // minutes
 
+// In-memory ETag cache for timeline requests
+const etagCache = new Map();
+
+// Load persisted ETag cache on startup
+chrome.storage.local.get('timelineCache', (stored) => {
+  if (stored.timelineCache) {
+    for (const [url, entry] of Object.entries(stored.timelineCache)) {
+      etagCache.set(url, entry);
+    }
+  }
+});
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.alarms.create('poll', { periodInMinutes: DEFAULT_POLL_INTERVAL });
 });
@@ -22,12 +34,35 @@ async function getSettings() {
   return new Promise(r => chrome.storage.local.get(defaults, r));
 }
 
-async function ghFetch(path, token) {
-  const res = await fetch(`https://api.github.com${path}`, {
-    headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
-  });
+async function ghFetch(path, token, { useEtag = false } = {}) {
+  const url = `https://api.github.com${path}`;
+  const headers = { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' };
+
+  if (useEtag) {
+    const cached = etagCache.get(url);
+    if (cached?.etag) {
+      headers['If-None-Match'] = cached.etag;
+    }
+  }
+
+  const res = await fetch(url, { headers });
+
+  if (useEtag && res.status === 304) {
+    const cached = etagCache.get(url);
+    if (cached?.data) return cached.data;
+  }
+
   if (!res.ok) throw new Error(`GitHub API ${res.status}`);
-  return res.json();
+  const data = await res.json();
+
+  if (useEtag) {
+    const etag = res.headers.get('etag');
+    if (etag) {
+      etagCache.set(url, { etag, data });
+    }
+  }
+
+  return data;
 }
 
 async function pollSingleToken(tokenEntry, debounceMinutes) {
@@ -52,7 +87,7 @@ async function pollSingleToken(tokenEntry, debounceMinutes) {
         // Paginate timeline (max 3 pages = 300 events)
         timeline = [];
         for (let page = 1; page <= 3; page++) {
-          const batch = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100&page=${page}`, token);
+          const batch = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100&page=${page}`, token, { useEtag: true });
           timeline.push(...batch);
           if (batch.length < 100) break; // no more pages
         }
@@ -113,6 +148,20 @@ async function pollAndCompute() {
         }
       }
     }
+
+    // Persist ETag cache and clean up stale entries
+    const openTimelineUrls = new Set();
+    for (const pr of results) {
+      const [owner, repo] = pr.url.replace('https://github.com/', '').split('/pull/')[0].split('/');
+      for (let page = 1; page <= 3; page++) {
+        openTimelineUrls.add(`https://api.github.com/repos/${owner}/${repo}/issues/${pr.number}/timeline?per_page=100&page=${page}`);
+      }
+    }
+    for (const url of etagCache.keys()) {
+      if (!openTimelineUrls.has(url)) etagCache.delete(url);
+    }
+    const cacheObj = Object.fromEntries(etagCache);
+    chrome.storage.local.set({ timelineCache: cacheObj });
 
     await chrome.storage.local.set({ results, username: usernames[0] || '', usernames, lastPoll: Date.now() });
 

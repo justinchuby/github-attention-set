@@ -317,6 +317,76 @@ describe('Integration: poll()', () => {
   });
 });
 
+describe('ETag caching', () => {
+  const baseSettings = { tokens: [{ name: 'Test', token: 'ghp_test' }], debounceMinutes: 10 };
+
+  it('13. Uses cached data on 304 response', async () => {
+    const cachedTimeline = [
+      { event: 'review_requested', actor: { login: 'alice' }, requested_reviewer: { login: 'me' }, created_at: '2026-05-05T10:00:00Z' },
+    ];
+    const etagCache = new Map();
+    etagCache.set('https://api.github.com/repos/org/repo/issues/101/timeline?per_page=100&page=1', {
+      etag: '"abc123"',
+      data: cachedTimeline,
+    });
+
+    const fetcher = vi.fn(async (url, opts) => {
+      if (url.includes('/user')) return { ok: true, json: async () => ({ login: 'me' }), headers: new Headers() };
+      if (url.includes('/search/issues')) return { ok: true, json: async () => ({ items: [makePR(1, 101, 'org', 'repo', 'alice')] }), headers: new Headers() };
+      if (url.includes('/timeline')) {
+        // Verify If-None-Match was sent
+        expect(opts.headers['If-None-Match']).toBe('"abc123"');
+        return { ok: false, status: 304, json: async () => ({}), headers: new Headers() };
+      }
+      return { ok: true, json: async () => ({}), headers: new Headers() };
+    });
+
+    const result = await poll(baseSettings, { fetcher, etagCache });
+    expect(result.results).toHaveLength(1);
+    expect(result.results[0].myStatus).toBe('red');
+  });
+
+  it('14. Stores etag from 200 response and reuses on next poll', async () => {
+    const etagCache = new Map();
+    const timeline = [
+      { event: 'review_requested', actor: { login: 'alice' }, requested_reviewer: { login: 'me' }, created_at: '2026-05-05T10:00:00Z' },
+    ];
+
+    const fetcher = vi.fn(async (url) => {
+      if (url.includes('/user')) return { ok: true, json: async () => ({ login: 'me' }), headers: new Headers() };
+      if (url.includes('/search/issues')) return { ok: true, json: async () => ({ items: [makePR(1, 101, 'org', 'repo', 'alice')] }), headers: new Headers() };
+      if (url.includes('/timeline')) {
+        return { ok: true, status: 200, json: async () => timeline, headers: new Headers([['etag', '"xyz789"']]) };
+      }
+      return { ok: true, json: async () => ({}), headers: new Headers() };
+    });
+
+    await poll(baseSettings, { fetcher, etagCache });
+
+    const cached = etagCache.get('https://api.github.com/repos/org/repo/issues/101/timeline?per_page=100&page=1');
+    expect(cached).toBeDefined();
+    expect(cached.etag).toBe('"xyz789"');
+    expect(cached.data).toEqual(timeline);
+  });
+
+  it('15. No If-None-Match sent for non-timeline requests', async () => {
+    const etagCache = new Map();
+    const fetcher = vi.fn(async (url, opts) => {
+      if (url.includes('/user')) {
+        expect(opts.headers['If-None-Match']).toBeUndefined();
+        return { ok: true, json: async () => ({ login: 'me' }), headers: new Headers() };
+      }
+      if (url.includes('/search/issues')) {
+        expect(opts.headers['If-None-Match']).toBeUndefined();
+        return { ok: true, json: async () => ({ items: [] }), headers: new Headers() };
+      }
+      return { ok: true, json: async () => ({}), headers: new Headers() };
+    });
+
+    await poll(baseSettings, { fetcher, etagCache });
+  });
+});
+
 describe('applyRepoFilter', () => {
   const results = [
     { repo: 'org/alpha' },

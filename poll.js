@@ -6,13 +6,38 @@ import { computeAttentionSet, isBot } from './attention.js';
 
 /**
  * Fetch helper that throws on non-OK responses.
+ * When useEtag is true and an etagCache map is provided, sends If-None-Match
+ * and returns cached data on 304.
  */
-async function ghFetch(path, token, fetcher = fetch) {
-  const res = await fetcher(`https://api.github.com${path}`, {
-    headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
-  });
+async function ghFetch(path, token, fetcher = fetch, { useEtag = false, etagCache = null } = {}) {
+  const url = `https://api.github.com${path}`;
+  const headers = { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' };
+
+  if (useEtag && etagCache) {
+    const cached = etagCache.get(url);
+    if (cached?.etag) {
+      headers['If-None-Match'] = cached.etag;
+    }
+  }
+
+  const res = await fetcher(url, { headers });
+
+  if (useEtag && etagCache && res.status === 304) {
+    const cached = etagCache.get(url);
+    if (cached?.data) return cached.data;
+  }
+
   if (!res.ok) throw new Error(`GitHub API ${res.status}`);
-  return res.json();
+  const data = await res.json();
+
+  if (useEtag && etagCache) {
+    const etag = typeof res.headers?.get === 'function' ? res.headers.get('etag') : null;
+    if (etag) {
+      etagCache.set(url, { etag, data });
+    }
+  }
+
+  return data;
 }
 
 /**
@@ -32,7 +57,7 @@ export function migrateTokens(stored) {
  * Poll a single token: fetch user, PRs, timelines, compute attention sets.
  * Returns { results, username }
  */
-async function pollSingleToken(tokenEntry, settings, fetcher) {
+async function pollSingleToken(tokenEntry, settings, fetcher, etagCache = null) {
   const { token, name } = tokenEntry;
   const user = await ghFetch('/user', token, fetcher);
   const username = user.login;
@@ -54,7 +79,7 @@ async function pollSingleToken(tokenEntry, settings, fetcher) {
         // Paginate timeline (max 3 pages = 300 events)
         timeline = [];
         for (let page = 1; page <= 3; page++) {
-          const batch = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100&page=${page}`, token, fetcher);
+          const batch = await ghFetch(`/repos/${owner}/${repo}/issues/${number}/timeline?per_page=100&page=${page}`, token, fetcher, { useEtag: true, etagCache });
           timeline.push(...batch);
           if (batch.length < 100) break; // no more pages
         }
@@ -94,7 +119,7 @@ async function pollSingleToken(tokenEntry, settings, fetcher) {
  * @returns {{ results, username, usernames, needsAttention, filteredResults, error? }}
  */
 export async function poll(settings, opts = {}) {
-  const { fetcher = fetch, repoFilterMode = 'all', repoFilterList = '', dismissed = {} } = opts;
+  const { fetcher = fetch, repoFilterMode = 'all', repoFilterList = '', dismissed = {}, etagCache = null } = opts;
 
   // Resolve tokens array (backward compat)
   const tokens = migrateTokens(settings);
@@ -104,7 +129,7 @@ export async function poll(settings, opts = {}) {
 
   // Poll all tokens concurrently
   const tokenResults = await Promise.all(
-    tokens.map(entry => pollSingleToken(entry, settings, fetcher))
+    tokens.map(entry => pollSingleToken(entry, settings, fetcher, etagCache))
   );
 
   // Merge and deduplicate by PR URL (first occurrence wins — keeps attention from first token that sees it)
