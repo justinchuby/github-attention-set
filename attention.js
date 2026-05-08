@@ -126,6 +126,10 @@ export function computeAttentionSet(
         // Reviewer leaves requested set
         requestedReviewers.delete(actor);
         allReviewers.add(actor);
+        // Submitting a review clears any prior @mention (they've engaged)
+        mentioned.delete(actor);
+        // Also clear from assigned — they've done their part
+        assigned.delete(actor);
         // Track reviewer's review state
         if (reviewState === 'approved') reviewerStates[actor] = 'approved';
         else if (reviewState === 'changes_requested') reviewerStates[actor] = 'changes_requested';
@@ -204,7 +208,7 @@ export function computeAttentionSet(
       const mentions = event.body.match(/@([a-zA-Z0-9-]+)/g) || [];
       for (const m of mentions) {
         const user = m.slice(1);
-        if (user !== actor && !isBot(user)) {
+        if (user !== actor && !isBot(user) && !allReviewers.has(user)) {
           mentioned.set(user, { status: 'red', since: ts });
         }
       }
