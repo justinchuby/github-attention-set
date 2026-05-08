@@ -301,8 +301,8 @@ function render(data, isRefreshing) {
   const activePRs = results.filter(pr => !dismissed[pr.url]);
   const dismissedPRs = results.filter(pr => !!dismissed[pr.url]);
 
-  const needsAttention = activePRs.filter(r => r.myStatus === 'red');
-  const others = activePRs.filter(r => r.myStatus !== 'red');
+  const needsAttention = activePRs.filter(r => r.myStatus === 'red').sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
+  const others = activePRs.filter(r => r.myStatus !== 'red').sort((a, b) => (b.lastEventAt || 0) - (a.lastEventAt || 0));
 
   const needsAttentionGroups = window.__groupByRepo ? groupByRepo(needsAttention) : [{ repo: "", prs: needsAttention }];
   const othersGroups = window.__groupByRepo ? groupByRepo(others) : [{ repo: '', prs: others }];
