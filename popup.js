@@ -68,8 +68,6 @@ function applyFilter() {
   });
 }
 
-
-
 chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) => {
   const hasToken = (settings.tokens && settings.tokens.length > 0) || settings.token;
   window.__multiAccount = settings.tokens && settings.tokens.length > 1;
