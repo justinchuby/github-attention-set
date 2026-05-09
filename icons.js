@@ -36,15 +36,27 @@ const ICONS = {
   },
 };
 
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
 /**
- * Get an Octicon SVG string.
- * @param {string} name - Icon name (sync, x, clock, gear, dot-fill, eye)
+ * Get an Octicon as a DOM SVGElement — no innerHTML needed.
+ * @param {string} name - Icon name
  * @param {number} [size=16] - Width and height in px
  * @param {string} [color='currentColor'] - Fill color
- * @returns {string} SVG markup string
+ * @returns {SVGElement|null}
  */
-export function getIcon(name, size = 16, color = 'currentColor') {
+export function getIconElement(name, size = 16, color = 'currentColor') {
   const icon = ICONS[name];
-  if (!icon) return '';
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="${size}" height="${size}" fill="${color}" aria-hidden="true"><path d="${icon.path}"></path></svg>`;
+  if (!icon) return null;
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('xmlns', SVG_NS);
+  svg.setAttribute('viewBox', '0 0 16 16');
+  svg.setAttribute('width', String(size));
+  svg.setAttribute('height', String(size));
+  svg.setAttribute('fill', color);
+  svg.setAttribute('aria-hidden', 'true');
+  const path = document.createElementNS(SVG_NS, 'path');
+  path.setAttribute('d', icon.path);
+  svg.appendChild(path);
+  return svg;
 }

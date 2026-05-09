@@ -1,5 +1,5 @@
 // GitHub Attention Set — Popup
-import { getIcon } from './icons.js';
+import { getIconElement } from './icons.js';
 import { h } from './dom.js';
 import { initI18n, msg } from './i18n.js';
 import { applyRepoFilter } from './utils.js';
@@ -29,7 +29,7 @@ app.setAttribute('role', 'main');
 // Search filter — created once, outside render() to preserve focus/input
 const searchContainer = h('div', { class: 'search-box' });
 const searchIcon = h('span', { class: 'search-icon' });
-searchIcon.appendChild(htmlToNodes(getIcon('search', 14)));
+searchIcon.appendChild(getIconElement('search', 14));
 const searchInput = h('input', {
   type: 'text',
   class: 'search-input',
@@ -68,12 +68,7 @@ function applyFilter() {
   });
 }
 
-/** Parse an HTML string into DOM nodes (for icon SVGs from getIcon) */
-function htmlToNodes(htmlStr) {
-  const t = document.createElement('template');
-  t.innerHTML = htmlStr;
-  return t.content;
-}
+
 
 chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) => {
   const hasToken = (settings.tokens && settings.tokens.length > 0) || settings.token;
@@ -103,7 +98,7 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
           if (btn) {
             btn.textContent = '';
             const spinner = h('span', { class: 'spinner' });
-            spinner.appendChild(htmlToNodes(getIcon('sync', 12)));
+            spinner.appendChild(getIconElement('sync', 12));
             btn.appendChild(spinner);
             btn.append(' ' + msg('refresh'));
             btn.disabled = true;
@@ -127,7 +122,7 @@ chrome.storage.local.get({ token: '', tokens: null, username: '' }, (settings) =
 function showSpinner() {
   app.textContent = '';
   const empty = h('div', { class: 'empty' });
-  empty.appendChild(htmlToNodes(getIcon('sync', 14)));
+  empty.appendChild(getIconElement('sync', 14));
   empty.append(' ' + msg('loading'));
   app.appendChild(empty);
 }
@@ -300,7 +295,7 @@ function renderPRItem(pr, username, showRepo) {
   const waitingOnChildren = reviewerChildren;
 
   const dot = h('span', { class: 'dot' });
-  dot.appendChild(htmlToNodes(getIcon(dotIcon, 10, color)));
+  dot.appendChild(getIconElement(dotIcon, 10, color));
 
   const dismissBtn = h('button', {
     class: 'dismiss-btn',
@@ -309,7 +304,7 @@ function renderPRItem(pr, username, showRepo) {
     'data-url': pr.url,
     'data-event-at': String(pr.lastEventAt || 0),
   });
-  dismissBtn.appendChild(htmlToNodes(getIcon('x', 14)));
+  dismissBtn.appendChild(getIconElement('x', 14));
   dismissBtn.onclick = (e) => {
     e.stopPropagation();
     dismissPR(pr.url, pr.lastEventAt || 0);
@@ -428,7 +423,7 @@ function renderDismissedItem(pr, dismissedData) {
   const seenNewActivity = hasNewActivity && clickedAt > pr.lastEventAt;
   const dotColor = hasNewActivity && !seenNewActivity ? '#0969da' : '#8b949e';
   const dot = h('span', { class: 'dot', title: hasNewActivity ? msg('newActivity') : '' });
-  dot.appendChild(htmlToNodes(getIcon('dot-fill', 10, dotColor)));
+  dot.appendChild(getIconElement('dot-fill', 10, dotColor));
 
   const restoreBtn = h(
     'button',
@@ -537,7 +532,7 @@ async function render(data, _isRefreshing) {
   const roleIcons = { incoming: 'eye', outgoing: 'git-pull-request', mentioned: 'mention' };
   function roleHeader(sec) {
     const iconSpan = document.createElement('span');
-    iconSpan.appendChild(htmlToNodes(getIcon(roleIcons[sec.label] || 'dot-fill', 12, '#8b949e')));
+    iconSpan.appendChild(getIconElement(roleIcons[sec.label] || 'dot-fill', 12, '#8b949e'));
     iconSpan.style.cssText = 'vertical-align: middle; margin-right: 4px;';
     const header = h('div', { class: 'role-subsection-title' });
     header.appendChild(iconSpan);
@@ -556,7 +551,7 @@ async function render(data, _isRefreshing) {
 
   // Build header
   const refreshBtn = h('button', { class: 'refresh-btn', id: 'refresh', 'aria-label': msg('refresh') });
-  refreshBtn.appendChild(htmlToNodes(getIcon('sync', 12)));
+  refreshBtn.appendChild(getIconElement('sync', 12));
   refreshBtn.append(' ' + msg('refresh'));
 
   const settingsBtn = h('button', {
@@ -565,7 +560,7 @@ async function render(data, _isRefreshing) {
     title: msg('settings'),
     'aria-label': msg('settings'),
   });
-  settingsBtn.appendChild(htmlToNodes(getIcon('gear', 14)));
+  settingsBtn.appendChild(getIconElement('gear', 14));
 
   const headerImg = h('img', {
     src: 'icons/icon48.png',
@@ -706,7 +701,7 @@ async function render(data, _isRefreshing) {
     const btn = document.getElementById('refresh');
     btn.textContent = '';
     const spinner = h('span', { class: 'spinner' });
-    spinner.appendChild(htmlToNodes(getIcon('sync', 12)));
+    spinner.appendChild(getIconElement('sync', 12));
     btn.appendChild(spinner);
     btn.append(' ' + msg('refresh'));
     btn.disabled = true;
@@ -715,7 +710,7 @@ async function render(data, _isRefreshing) {
         if (fresh && fresh.results) render(fresh, false);
         else {
           btn.textContent = '';
-          btn.appendChild(htmlToNodes(getIcon('sync', 12)));
+          btn.appendChild(getIconElement('sync', 12));
           btn.append(' ' + msg('refresh'));
           btn.disabled = false;
         }
