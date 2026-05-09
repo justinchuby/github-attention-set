@@ -724,7 +724,9 @@ describe('i18n locale completeness', () => {
       for (const key of badgeKeys) {
         const limit = maxBadgeLength[locale]?.[key] ?? maxBadgeLength.default;
         if (messages[key] && messages[key].message.length > limit) {
-          violations.push(`${locale}/${key}: "${messages[key].message}" (${messages[key].message.length} chars, max ${limit})`);
+          violations.push(
+            `${locale}/${key}: "${messages[key].message}" (${messages[key].message.length} chars, max ${limit})`,
+          );
         }
       }
     }
