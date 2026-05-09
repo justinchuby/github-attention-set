@@ -60,7 +60,7 @@
     "message": "Scalanie"
   },
   "stateStuck": {
-    "message": "Zablok."
+    "message": "Zablokowane"
   },
   "stateDraft": {
     "message": "Szkic"
@@ -132,7 +132,7 @@
     "message": "Nazwa"
   },
   "tokenValue": {
-    "message": "Twój token GitHub"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Otwórz ustawienia"
@@ -174,7 +174,7 @@
     "message": "Wycisz repozytorium"
   },
   "muteOwner": {
-    "message": "Wycisz właściciela"
+    "message": "Wycisz wszystko od"
   },
   "optMuted": {
     "message": "Wyciszone repozytoria / właściciele"
@@ -219,10 +219,10 @@
     "message": "Filtruj PR..."
   },
   "errorAuth": {
-    "message": "⚠️ Token wygasł lub jest nieprawidłowy."
+    "message": "⚠️ Token wygasł lub jest nieprawidłowy. Zaktualizuj w ustawieniach."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub nieosiągalny."
+    "message": "⚠️ GitHub nieosiągalny. Wyświetlanie danych z pamięci podręcznej."
   },
   "stateApproved": {
     "message": "Zatwierdzone"

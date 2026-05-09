@@ -120,7 +120,7 @@
     "message": "名字"
   },
   "tokenValue": {
-    "message": "侬个 GitHub token"
+    "message": "Token"
   },
   "optLanguage": {
     "message": "语言"
@@ -174,7 +174,7 @@
     "message": "静音仓庫"
   },
   "muteOwner": {
-    "message": "静音擁有者"
+    "message": "静音全部来自"
   },
   "optMuted": {
     "message": "静音个 Repos / 拥有者"
@@ -219,10 +219,10 @@
     "message": "过滤PR..."
   },
   "errorAuth": {
-    "message": "⚠️ 令牌过期或无效。"
+    "message": "⚠️ 令牌过期或无效。请到设置里更新。"
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub连勿上。"
+    "message": "⚠️ GitHub连勿上。显示缓存数据。"
   },
   "stateApproved": {
     "message": "批准了"

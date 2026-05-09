@@ -57,7 +57,7 @@
     "message": "Mergen"
   },
   "stateMerging": {
-    "message": "Zusammenf."
+    "message": "Zusammenführen"
   },
   "stateStuck": {
     "message": "Blockiert"
@@ -129,10 +129,10 @@
     "message": "Bug melden oder Feature anfragen"
   },
   "tokenName": {
-    "message": "Token-Name (z.B. Persönlich, Arbeit)"
+    "message": "Name"
   },
   "tokenValue": {
-    "message": "Dein GitHub-Token"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Einstellungen öffnen"
@@ -174,7 +174,7 @@
     "message": "Repo stummschalten"
   },
   "muteOwner": {
-    "message": "Eigentümer stummschalten"
+    "message": "Alle stummschalten von"
   },
   "optMuted": {
     "message": "Stummgeschaltete Repos / Besitzer"
@@ -219,10 +219,10 @@
     "message": "PRs filtern..."
   },
   "errorAuth": {
-    "message": "⚠️ Token abgelaufen oder ungültig."
+    "message": "⚠️ Token abgelaufen oder ungültig. In den Einstellungen aktualisieren."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub nicht erreichbar. Zwischengespeicherte Daten."
+    "message": "⚠️ GitHub nicht erreichbar. Zwischengespeicherte Daten werden angezeigt."
   },
   "stateApproved": {
     "message": "Genehmigt"

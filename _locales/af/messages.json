@@ -57,7 +57,7 @@
     "message": "Saamvoeg"
   },
   "stateMerging": {
-    "message": "Saamvoeg"
+    "message": "Besig om saam te voeg"
   },
   "stateStuck": {
     "message": "Vas"
@@ -132,7 +132,7 @@
     "message": "Naam"
   },
   "tokenValue": {
-    "message": "Jou GitHub-token"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Maak instellings oop"
@@ -174,7 +174,7 @@
     "message": "Demp repo"
   },
   "muteOwner": {
-    "message": "Demp eienaar"
+    "message": "Demp alles van"
   },
   "optMuted": {
     "message": "Stilgemaakte Repos / Eienaars"
@@ -219,10 +219,10 @@
     "message": "Filter PR'e..."
   },
   "errorAuth": {
-    "message": "⚠️ Token verval of ongeldig. Werk in instellings by."
+    "message": "⚠️ Token verval of ongeldig. Werk by in instellings."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub onbereikbaar. Wys gekas data."
+    "message": "⚠️ GitHub onbereikbaar. Wys gekasde data."
   },
   "stateApproved": {
     "message": "Goedgekeur"

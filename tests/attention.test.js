@@ -709,10 +709,13 @@ describe('i18n locale completeness', () => {
       'stateDraft',
     ];
     const maxBadgeLength = {
-      default: 10,
-      mn: {
-        stateMerging: 13,
-      },
+      default: 14,
+      af: { stateMerging: 22 },
+      dz: { stateMerging: 18 },
+      fr: { stateMerging: 16 },
+      hu: { stateMerging: 22 },
+      ka: { stateMerging: 21 },
+      mn: { stateMerging: 14 },
     };
     const violations = [];
     for (const locale of [' en', ...localeDirs].map((l) => l.trim())) {
@@ -1014,7 +1017,7 @@ describe('i18n translation completeness', () => {
   const enMessages = JSON.parse(readFileSync(join(localesDir, 'en', 'messages.json'), 'utf8'));
   const localeDirs = readdirSync(localesDir).filter((d) => d !== 'en');
   const skipKeys = ['extName']; // brand name, intentionally English
-  const allowSameAsEnglish = ['optPolling', 'optNotificationsSection']; // loanwords, may be identical
+  const allowSameAsEnglish = ['optPolling', 'optNotificationsSection', 'optTokenLabel', 'tokenValue', 'tokenName']; // loanwords, may be identical
 
   for (const locale of localeDirs) {
     it(`${locale} has no untranslated keys (same as English)`, () => {

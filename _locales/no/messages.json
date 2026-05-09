@@ -132,7 +132,7 @@
     "message": "Navn"
   },
   "tokenValue": {
-    "message": "GitHub-tokenet ditt"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Åpne innstillinger"
@@ -174,7 +174,7 @@
     "message": "Demp repo"
   },
   "muteOwner": {
-    "message": "Demp eier"
+    "message": "Demp alt fra"
   },
   "optMuted": {
     "message": "Dempede repoer / eiere"
@@ -219,10 +219,10 @@
     "message": "Filtrer PRer..."
   },
   "errorAuth": {
-    "message": "⚠️ Token utløpt eller ugyldig."
+    "message": "⚠️ Token utløpt eller ugyldig. Oppdater i innstillingene."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub utilgjengelig."
+    "message": "⚠️ GitHub utilgjengelig. Viser bufrede data."
   },
   "stateApproved": {
     "message": "Godkjent"
@@ -237,7 +237,7 @@
     "message": "Andre"
   },
   "optPolling": {
-    "message": "Polling"
+    "message": "Kontrollering"
   },
   "optDisplay": {
     "message": "Visning"

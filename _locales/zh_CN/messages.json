@@ -174,7 +174,7 @@
     "message": "静音仓库"
   },
   "muteOwner": {
-    "message": "静音所有者"
+    "message": "静音全部来自"
   },
   "optMuted": {
     "message": "已静音的仓库 / 所有者"

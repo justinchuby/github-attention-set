@@ -132,7 +132,7 @@
     "message": "ชื่อ"
   },
   "tokenValue": {
-    "message": "โทเค็น GitHub ของคุณ"
+    "message": "Token"
   },
   "openSettings": {
     "message": "เปิดการตั้งค่า"
@@ -174,7 +174,7 @@
     "message": "ปิดเสียง repo"
   },
   "muteOwner": {
-    "message": "ปิดเสียงเจ้าของ"
+    "message": "ปิดเสียงทั้งหมดจาก"
   },
   "optMuted": {
     "message": "รีโพ / เจ้าของที่ปิดเสียง"

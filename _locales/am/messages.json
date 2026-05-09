@@ -174,7 +174,7 @@
     "message": "ማከማቻ አጥፋ"
   },
   "muteOwner": {
-    "message": "ባለቤት አጥፋ"
+    "message": "ሁሉንም ከ ያጥፉ"
   },
   "optMuted": {
     "message": "የተዘጉ Repos / ባለቤቶች"
@@ -219,10 +219,10 @@
     "message": "PR-ዎችን ያጣሩ..."
   },
   "errorAuth": {
-    "message": "⚠️ ቶከን ጊዜው አልፏል ወይም ልክ አይደለም።"
+    "message": "⚠️ ቶከን ጊዜው አልፏል ወይም ልክ አይደለም። በቅንብሮች ውስጥ ያዘምኑ።"
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub ተደራሽ አይደለም።"
+    "message": "⚠️ GitHub ተደራሽ አይደለም። የተሸጎጠ ውሂብ በማሳየት ላይ።"
   },
   "stateApproved": {
     "message": "ጸድቋል"

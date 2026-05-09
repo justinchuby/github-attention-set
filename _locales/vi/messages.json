@@ -132,7 +132,7 @@
     "message": "Tên"
   },
   "tokenValue": {
-    "message": "Token GitHub của bạn"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Mở cài đặt"
@@ -174,7 +174,7 @@
     "message": "Tắt tiếng repo"
   },
   "muteOwner": {
-    "message": "Tắt tiếng chủ sở hữu"
+    "message": "Tắt tiếng tất cả từ"
   },
   "optMuted": {
     "message": "Repo / Chủ sở hữu đã tắt tiếng"
@@ -219,10 +219,10 @@
     "message": "Lọc PR..."
   },
   "errorAuth": {
-    "message": "⚠️ Token hết hạn hoặc không hợp lệ."
+    "message": "⚠️ Token hết hạn hoặc không hợp lệ. Cập nhật trong cài đặt."
   },
   "errorNetwork": {
-    "message": "⚠️ Không thể kết nối GitHub."
+    "message": "⚠️ Không thể kết nối GitHub. Hiển thị dữ liệu đã lưu."
   },
   "stateApproved": {
     "message": "Đã phê duyệt"

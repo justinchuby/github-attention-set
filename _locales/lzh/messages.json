@@ -174,7 +174,7 @@
     "message": "噤庫"
   },
   "muteOwner": {
-    "message": "噤主"
+    "message": "噤其所有"
   },
   "optMuted": {
     "message": "已噤之庫與主"
@@ -219,10 +219,10 @@
     "message": "篩PR..."
   },
   "errorAuth": {
-    "message": "⚠️ 令牌已逾或無效。"
+    "message": "⚠️ 令牌已逾或無效。請於設定中更新。"
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub不可達。"
+    "message": "⚠️ GitHub不可達。示快取之資料。"
   },
   "stateApproved": {
     "message": "已准"

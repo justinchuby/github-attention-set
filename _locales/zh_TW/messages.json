@@ -174,7 +174,7 @@
     "message": "靜音此儲存庫"
   },
   "muteOwner": {
-    "message": "靜音此擁有者"
+    "message": "靜音全部來自"
   },
   "optMuted": {
     "message": "已靜音的儲存庫 / 擁有者"

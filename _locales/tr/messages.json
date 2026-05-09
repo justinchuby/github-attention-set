@@ -132,7 +132,7 @@
     "message": "Ad"
   },
   "tokenValue": {
-    "message": "GitHub tokeniniz"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Ayarları aç"
@@ -174,7 +174,7 @@
     "message": "Depoyu sustur"
   },
   "muteOwner": {
-    "message": "Sahibi sustur"
+    "message": "Tümünü sustur:"
   },
   "optMuted": {
     "message": "Sessize alınan depolar / sahipler"
@@ -219,10 +219,10 @@
     "message": "PR'ları filtrele..."
   },
   "errorAuth": {
-    "message": "⚠️ Token süresi dolmuş veya geçersiz."
+    "message": "⚠️ Token süresi dolmuş veya geçersiz. Ayarlardan güncelleyin."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub'a erişilemiyor."
+    "message": "⚠️ GitHub'a erişilemiyor. Önbelleğe alınmış veriler gösteriliyor."
   },
   "stateApproved": {
     "message": "Onaylandı"

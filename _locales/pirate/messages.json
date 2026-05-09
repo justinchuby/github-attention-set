@@ -219,10 +219,10 @@
     "message": "Search th' loot..."
   },
   "errorAuth": {
-    "message": "⚠️ Yer token be expired, matey!"
+    "message": "⚠️ Yer token be expired or scuttled, matey! Update in yer settings."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub be lost at sea!"
+    "message": "⚠️ GitHub be lost at sea! Showin' cached booty."
   },
   "stateApproved": {
     "message": "Aye, approved!"

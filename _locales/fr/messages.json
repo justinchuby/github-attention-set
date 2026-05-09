@@ -57,13 +57,13 @@
     "message": "Merger"
   },
   "stateMerging": {
-    "message": "Fusion…"
+    "message": "Fusion en cours"
   },
   "stateStuck": {
     "message": "Bloqué"
   },
   "stateDraft": {
-    "message": "Brouill."
+    "message": "Brouillon"
   },
   "optTitle": {
     "message": "Paramètres GitHub Attention Set"
@@ -132,7 +132,7 @@
     "message": "Nom"
   },
   "tokenValue": {
-    "message": "Votre token GitHub"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Ouvrir les paramètres"
@@ -174,7 +174,7 @@
     "message": "Masquer le dépôt"
   },
   "muteOwner": {
-    "message": "Masquer le propriétaire"
+    "message": "Masquer tout de"
   },
   "optMuted": {
     "message": "Dépôts / Propriétaires muets"
@@ -219,10 +219,10 @@
     "message": "Filtrer les PRs..."
   },
   "errorAuth": {
-    "message": "⚠️ Token expiré ou invalide."
+    "message": "⚠️ Token expiré ou invalide. Mettre à jour dans les paramètres."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub inaccessible. Données en cache."
+    "message": "⚠️ GitHub inaccessible. Affichage des données en cache."
   },
   "stateApproved": {
     "message": "Approuvé"

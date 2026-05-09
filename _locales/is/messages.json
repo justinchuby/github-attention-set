@@ -132,7 +132,7 @@
     "message": "Nafn"
   },
   "tokenValue": {
-    "message": "GitHub-merkið þitt"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Opna stillingar"
@@ -174,7 +174,7 @@
     "message": "Þagga geymslu"
   },
   "muteOwner": {
-    "message": "Þagga eiganda"
+    "message": "Þagga allt frá"
   },
   "optMuted": {
     "message": "Þöguð Repos / Eigendur"
@@ -219,10 +219,10 @@
     "message": "Sía PR..."
   },
   "errorAuth": {
-    "message": "⚠️ Tóki útrunninn eða ógildur."
+    "message": "⚠️ Tóki útrunninn eða ógildur. Uppfærðu í stillingum."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub óaðgengilegt."
+    "message": "⚠️ GitHub óaðgengilegt. Sýni vistuð gögn."
   },
   "stateApproved": {
     "message": "Samþykkt"

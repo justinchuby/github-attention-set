@@ -174,7 +174,7 @@
     "message": "저장소 음소거"
   },
   "muteOwner": {
-    "message": "소유자 음소거"
+    "message": "모든 항목 음소거:"
   },
   "optMuted": {
     "message": "음소거된 저장소 / 소유자"
@@ -219,10 +219,10 @@
     "message": "PR 필터..."
   },
   "errorAuth": {
-    "message": "⚠️ 토큰이 만료되었거나 유효하지 않습니다."
+    "message": "⚠️ 토큰이 만료되었거나 유효하지 않습니다. 설정에서 업데이트하세요."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub에 연결할 수 없습니다."
+    "message": "⚠️ GitHub에 연결할 수 없습니다. 캐시된 데이터를 표시합니다."
   },
   "stateApproved": {
     "message": "승인됨"

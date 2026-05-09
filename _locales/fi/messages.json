@@ -57,7 +57,7 @@
     "message": "Yhdistä"
   },
   "stateMerging": {
-    "message": "Yhdist…"
+    "message": "Yhdistäminen"
   },
   "stateStuck": {
     "message": "Jumissa"
@@ -174,7 +174,7 @@
     "message": "Mykistä repo"
   },
   "muteOwner": {
-    "message": "Mykistä omistaja"
+    "message": "Mykistä kaikki käyttäjältä"
   },
   "optMuted": {
     "message": "Mykistetyt repot / omistajat"
@@ -219,10 +219,10 @@
     "message": "Suodata PR:t..."
   },
   "errorAuth": {
-    "message": "⚠️ Token vanhentunut tai virheellinen."
+    "message": "⚠️ Token vanhentunut tai virheellinen. Päivitä asetuksissa."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub ei saatavilla."
+    "message": "⚠️ GitHub ei saatavilla. Näytetään välimuistissa olevaa dataa."
   },
   "stateApproved": {
     "message": "Hyväksytty"

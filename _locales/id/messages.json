@@ -132,7 +132,7 @@
     "message": "Nama"
   },
   "tokenValue": {
-    "message": "Token GitHub Anda"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Buka pengaturan"
@@ -174,7 +174,7 @@
     "message": "Bisukan repo"
   },
   "muteOwner": {
-    "message": "Bisukan pemilik"
+    "message": "Bisukan semua dari"
   },
   "optMuted": {
     "message": "Repo / Pemilik yang dibisukan"
@@ -219,10 +219,10 @@
     "message": "Filter PR..."
   },
   "errorAuth": {
-    "message": "⚠️ Token kedaluwarsa atau tidak valid."
+    "message": "⚠️ Token kedaluwarsa atau tidak valid. Perbarui di pengaturan."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub tidak dapat dijangkau."
+    "message": "⚠️ GitHub tidak dapat dijangkau. Menampilkan data cache."
   },
   "stateApproved": {
     "message": "Disetujui"

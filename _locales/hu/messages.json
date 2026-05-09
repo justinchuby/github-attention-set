@@ -57,7 +57,7 @@
     "message": "Egyesítés"
   },
   "stateMerging": {
-    "message": "Egyesítés"
+    "message": "Egyesítés folyamatban"
   },
   "stateStuck": {
     "message": "Elakadt"
@@ -132,7 +132,7 @@
     "message": "Név"
   },
   "tokenValue": {
-    "message": "A GitHub tokened"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Beállítások megnyitása"
@@ -174,7 +174,7 @@
     "message": "Tároló némítása"
   },
   "muteOwner": {
-    "message": "Tulajdonos némítása"
+    "message": "Minden némítása innen:"
   },
   "optMuted": {
     "message": "Némított repók / tulajdonosok"
@@ -219,10 +219,10 @@
     "message": "PR-ek szűrése..."
   },
   "errorAuth": {
-    "message": "⚠️ Token lejárt vagy érvénytelen."
+    "message": "⚠️ Token lejárt vagy érvénytelen. Frissítsd a beállításokban."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub nem elérhető."
+    "message": "⚠️ GitHub nem elérhető. Gyorsítótárazott adatok megjelenítése."
   },
   "stateApproved": {
     "message": "Jóváhagyva"

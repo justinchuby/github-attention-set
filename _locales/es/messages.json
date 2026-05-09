@@ -132,7 +132,7 @@
     "message": "Nombre"
   },
   "tokenValue": {
-    "message": "Tu token de GitHub"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Abrir ajustes"
@@ -174,7 +174,7 @@
     "message": "Silenciar repo"
   },
   "muteOwner": {
-    "message": "Silenciar propietario"
+    "message": "Silenciar todo de"
   },
   "optMuted": {
     "message": "Repos / Propietarios silenciados"
@@ -219,10 +219,10 @@
     "message": "Filtrar PRs..."
   },
   "errorAuth": {
-    "message": "⚠️ Token expirado o inválido."
+    "message": "⚠️ Token expirado o inválido. Actualizar en ajustes."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub inaccesible. Datos en caché."
+    "message": "⚠️ GitHub inaccesible. Mostrando datos en caché."
   },
   "stateApproved": {
     "message": "Aprobado"

@@ -174,7 +174,7 @@
     "message": "リポジトリをミュート"
   },
   "muteOwner": {
-    "message": "オーナーをミュート"
+    "message": "すべてミュート："
   },
   "optMuted": {
     "message": "ミュート済みリポジトリ / オーナー"
@@ -219,10 +219,10 @@
     "message": "PRを検索..."
   },
   "errorAuth": {
-    "message": "⚠️ トークンが期限切れまたは無効です。"
+    "message": "⚠️ トークンが期限切れまたは無効です。設定で更新してください。"
   },
   "errorNetwork": {
-    "message": "⚠️ GitHubに接続できません。"
+    "message": "⚠️ GitHubに接続できません。キャッシュデータを表示中。"
   },
   "stateApproved": {
     "message": "承認済み"

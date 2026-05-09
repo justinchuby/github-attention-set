@@ -48,7 +48,7 @@
     "message": "Ревью"
   },
   "stateFix": {
-    "message": "Исправ."
+    "message": "Исправить"
   },
   "stateRespond": {
     "message": "Ответить"
@@ -57,7 +57,7 @@
     "message": "Слить"
   },
   "stateMerging": {
-    "message": "Merge…"
+    "message": "Слияние"
   },
   "stateStuck": {
     "message": "Застряло"
@@ -174,7 +174,7 @@
     "message": "Отключить репозиторий"
   },
   "muteOwner": {
-    "message": "Отключить владельца"
+    "message": "Заглушить всё от"
   },
   "optMuted": {
     "message": "Скрытые репозитории / владельцы"
@@ -219,10 +219,10 @@
     "message": "Фильтр PR..."
   },
   "errorAuth": {
-    "message": "⚠️ Токен истёк или недействителен."
+    "message": "⚠️ Токен истёк или недействителен. Обновите в настройках."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub недоступен."
+    "message": "⚠️ GitHub недоступен. Показаны кэшированные данные."
   },
   "stateApproved": {
     "message": "Одобрено"

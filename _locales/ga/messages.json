@@ -45,7 +45,7 @@
     "message": "Socruithe"
   },
   "stateReview": {
-    "message": "Athbhr."
+    "message": "Athbhreithniú"
   },
   "stateFix": {
     "message": "Ceartú"
@@ -57,7 +57,7 @@
     "message": "Cumaisc"
   },
   "stateMerging": {
-    "message": "Ag cum."
+    "message": "Ag cumasc"
   },
   "stateStuck": {
     "message": "I bhfostú"
@@ -120,7 +120,7 @@
     "message": "Ainm"
   },
   "tokenValue": {
-    "message": "Do tócáiste GitHub"
+    "message": "Token"
   },
   "optLanguage": {
     "message": "Teanga"
@@ -174,7 +174,7 @@
     "message": "Balbhaigh repo"
   },
   "muteOwner": {
-    "message": "Balbhaigh úinéir"
+    "message": "Balbhaigh gach rud ó"
   },
   "optMuted": {
     "message": "Repos / Úinéirí balbhaithe"
@@ -219,10 +219,10 @@
     "message": "Scag PRanna..."
   },
   "errorAuth": {
-    "message": "⚠️ Comhartha imithe in éag nó neamhbhailí. Nuashonraigh sna socruithe."
+    "message": "⚠️ Tóicéad as feidhm nó neamhbhailí. Nuashonraigh sna socruithe."
   },
   "errorNetwork": {
-    "message": "⚠️ Ní féidir GitHub a bhaint amach. Ag taispeáint sonraí taiscthe."
+    "message": "⚠️ Ní féidir GitHub a bhaint amach. Ag taispeáint sonraí taisce."
   },
   "stateApproved": {
     "message": "Faofa"

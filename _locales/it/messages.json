@@ -132,7 +132,7 @@
     "message": "Nome"
   },
   "tokenValue": {
-    "message": "Il tuo token GitHub"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Apri impostazioni"
@@ -174,7 +174,7 @@
     "message": "Silenzia repo"
   },
   "muteOwner": {
-    "message": "Silenzia proprietario"
+    "message": "Silenzia tutto da"
   },
   "optMuted": {
     "message": "Repo / Proprietari silenziati"
@@ -219,10 +219,10 @@
     "message": "Filtra PR..."
   },
   "errorAuth": {
-    "message": "⚠️ Token scaduto o non valido."
+    "message": "⚠️ Token scaduto o non valido. Aggiorna nelle impostazioni."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub irraggiungibile."
+    "message": "⚠️ GitHub irraggiungibile. Visualizzazione dati dalla cache."
   },
   "stateApproved": {
     "message": "Approvato"
@@ -237,7 +237,7 @@
     "message": "Altro"
   },
   "optPolling": {
-    "message": "Polling"
+    "message": "Sondaggio"
   },
   "optDisplay": {
     "message": "Visualizzazione"
