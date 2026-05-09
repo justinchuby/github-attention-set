@@ -241,7 +241,7 @@ async function pollAndCompute() {
         : currentRedPRs.filter((pr) => {
             const prev = lastNotifiedPRs[pr.url];
             if (prev && prev === 'red') return false; // already notified
-
+            if (pr.myRole === 'outgoing') return false; // don't notify for your own PRs
             return true;
           });
 
