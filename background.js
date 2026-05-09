@@ -242,7 +242,6 @@ async function pollAndCompute() {
         : currentRedPRs.filter((pr) => {
             const prev = lastNotifiedPRs[pr.url];
             if (prev && prev === 'red') return false; // already notified
-            if (pr.myRole === 'outgoing') return false; // don't notify for your own PRs
             if (pr.selfRequested) return false; // don't notify if you requested the review yourself
             return true;
           });
