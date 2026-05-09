@@ -366,8 +366,10 @@ export function computeAttentionSet(
 
   // --- Step 5: Compute incomingDetail for incoming PRs ---
   let incomingDetail = null;
+  let selfRequested = false;
   if (myRole === 'incoming') {
     let lastMyReviewTime = 0;
+    let lastReviewRequestedBy = '';
     let lastReviewRequestTime = 0;
     let hasSubmittedReview = false;
     let wasRerequested = false;
@@ -380,6 +382,7 @@ export function computeAttentionSet(
           wasRerequested = true;
         }
         lastReviewRequestTime = ts;
+        lastReviewRequestedBy = ev.actor?.login || ev.user?.login || '';
       }
       if (t === 'reviewed' && (ev.actor?.login === me || ev.user?.login === me)) {
         lastMyReviewTime = ts;
@@ -387,6 +390,7 @@ export function computeAttentionSet(
       }
     }
 
+    selfRequested = lastReviewRequestedBy === me;
     if (wasRerequested && lastReviewRequestTime > lastMyReviewTime) {
       incomingDetail = 'rereview';
     } else if (hasSubmittedReview) {
@@ -414,5 +418,15 @@ export function computeAttentionSet(
     }
   }
 
-  return { set, myStatus, prState, myReason, myRole, incomingDetail, allReviewers: [...allReviewers], reviewerStates };
+  return {
+    set,
+    myStatus,
+    prState,
+    myReason,
+    myRole,
+    incomingDetail,
+    selfRequested,
+    allReviewers: [...allReviewers],
+    reviewerStates,
+  };
 }
