@@ -1,0 +1,248 @@
+{
+  "extName": {
+    "message": "GitHub Attention Set"
+  },
+  "extDescription": {
+    "message": "PR་གང་ལུ་ཁྱོད་ཀྱི་དོ་དབྱངས་དགོཔ་ཨིན་ན་བལྟ — GitHub གི་དོན་ལུ་ Google Critique གི་ Attention Set བཟུམ།"
+  },
+  "needsAttention": {
+    "message": "ཁྱོད་ཀྱི་དོ་དབྱངས་དགོ"
+  },
+  "waitingOnOthers": {
+    "message": "གཞན་མི་ལུ་བསྒུག་སྡོད་དོ"
+  },
+  "refresh": {
+    "message": "གསར་བསྐྱར"
+  },
+  "dismiss": {
+    "message": "བཏང་བཞག"
+  },
+  "restore": {
+    "message": "སླར་གསོ"
+  },
+  "dismissed": {
+    "message": "བཏང་བཞག་ཡོདཔ"
+  },
+  "loading": {
+    "message": "བཀྲམ་སྟོན་འབདཝ་ཨིན..."
+  },
+  "noToken": {
+    "message": "ཊོ་ཀེན་གཞི་སྒྲིག་འབད་མེད།"
+  },
+  "goToSettings": {
+    "message": "སྒྲིག་སྟངས་ལུ་འགྱོ"
+  },
+  "noPRs": {
+    "message": "ཕྱེ་ཡོད་མི་ PR་གཅིག་ཡང་མ་ཐོབ།"
+  },
+  "allClear": {
+    "message": "ཆ་མཉམ་གསལ་ཡོདཔ! ཁྱོད་ལུ་བསྒུག་སྡོད་མི་ PR་མིན་འདུག།"
+  },
+  "waitingOn": {
+    "message": "བསྒུག་སྡོད་དོ:"
+  },
+  "settings": {
+    "message": "སྒྲིག་སྟངས"
+  },
+  "stateReview": {
+    "message": "བསྐྱར་ཞིབ"
+  },
+  "stateFix": {
+    "message": "བཟོ་བཅོས"
+  },
+  "stateRespond": {
+    "message": "ལན་འདེབས"
+  },
+  "stateMerge": {
+    "message": "མཉམ་བསྲེ"
+  },
+  "stateMerging": {
+    "message": "མཉམ་བསྲེ་འབདཝ་ཨིན"
+  },
+  "stateStuck": {
+    "message": "འགག་ཡོདཔ"
+  },
+  "stateDraft": {
+    "message": "ཟིན་བྲིས"
+  },
+  "optTitle": {
+    "message": "GitHub Attention Set སྒྲིག་སྟངས"
+  },
+  "optTokenLabel": {
+    "message": "GitHub Personal Access Tokens"
+  },
+  "optTokenHint": {
+    "message": "Fine-grained PAT་གཅིག་བཟོ། དབང་ཆ: Pull requests → Read, Issues → Read"
+  },
+  "optAddToken": {
+    "message": "+ ཊོ་ཀེན་ཁ་སྐོང"
+  },
+  "optSave": {
+    "message": "སྒྲིག་སྟངས་སྲུང་བཞག"
+  },
+  "optSaved": {
+    "message": "✓ སྲུང་བཞག་ཡོདཔ!"
+  },
+  "optDebounce": {
+    "message": "བསྒུག་ཡུན་ (སྐར་མ)"
+  },
+  "optDebounceHint": {
+    "message": "ནང་འཁོད་བརྡ་ལན་གྱིས་དོ་དབྱངས་བསྒྱུར་ནི་ཧེ་མ་ད་ཚད་བསྒུག།"
+  },
+  "optPoll": {
+    "message": "ཞིབ་བཤེར་མཚམས་ (སྐར་མ)"
+  },
+  "optPollHint": {
+    "message": "GitHub ནང་གསར་བསྐྱར་ཞིབ་བཤེར་ནམ་དང་ནམ་འབད་ནི་ཨིན།"
+  },
+  "optNotifications": {
+    "message": "ཌེཀ་སི་ཊོཔ་བརྡ་འཕྲིན་ལྕོགས་ཅན་བཟོ"
+  },
+  "optGroupByRepo": {
+    "message": "PR་ཚུ་ repository་ཀྱི་སྡེ་ཚན་བཟོ"
+  },
+  "optRepoFilter": {
+    "message": "Repository ཚགས་མ"
+  },
+  "optFilterAll": {
+    "message": "ཆ་མཉམ་སྟོན (སྔོན་སྒྲིག)"
+  },
+  "optFilterInclude": {
+    "message": "འ་ནི་ repos་ རྐྱངམ་ཅིག་སྟོན"
+  },
+  "optFilterExclude": {
+    "message": "འ་ནི་ repos་ ཚུ་སྦ་བཞག"
+  },
+  "optRepoPlaceholder": {
+    "message": "owner/repo (གྲལ་ཐིག་རེ་རེ་ལུ་གཅིག)"
+  },
+  "optRepoLabel": {
+    "message": "Repositories (གྲལ་ཐིག་རེ་རེ་ལུ་གཅིག, རྩ་སྒྲིག: owner/repo)"
+  },
+  "optSaveFilter": {
+    "message": "ཚགས་མ་སྲུང་བཞག"
+  },
+  "optFilterHint": {
+    "message": "ཁྱོད་ཀྱི་ attention set ནང་མངོན་མི་ repositories ཚགས་མ་རྐྱབས།"
+  },
+  "optReportBug": {
+    "message": "ནོར་འཁྲུལ་སྙན་ཞུ་འབད་ ཡང་ན་ ཁྱད་རྣམ་གསར་པ་ཞུ"
+  },
+  "tokenName": {
+    "message": "མིང"
+  },
+  "tokenValue": {
+    "message": "ཊོ་ཀེན"
+  },
+  "openSettings": {
+    "message": "སྒྲིག་སྟངས་ཕྱེ"
+  },
+  "tokenHintFull": {
+    "message": "GitHub Personal Access Tokens གཅིག་ ཡང་ན་ ལྷག་ཁ་སྐོང་འབད། ཊོ་ཀེན་ཚུའི་གྲུབ་འབྲས་མཉམ་བསྲེ་འབདཝ་ཨིན།"
+  },
+  "optLanguage": {
+    "message": "སྐད་ཡིག"
+  },
+  "optLanguageHint": {
+    "message": "extension འདི་གི་བཀོད་སྟོན་སྐད་ཡིག་གདམ་ཁ་རྐྱབས།"
+  },
+  "optLanguageAuto": {
+    "message": "རང་བཞིན (བཤུལ་ལྟ་བའི་རྗེས་སུ་འབྲང)"
+  },
+  "optLanguageSaved": {
+    "message": "སྐད་ཡིག་སྲུང་བཞག་ཡོདཔ། བསྒྱུར་བའི་ཕན་ནུས་མཐོང་ནིའི་དོན་ལུ་ popup བསྐྱར་ཕྱེ་གནང།"
+  },
+  "stateNew": {
+    "message": "གསར་པ"
+  },
+  "stateUpdated": {
+    "message": "གསར་བསྐྱར་ཡོདཔ"
+  },
+  "stateRereview": {
+    "message": "བསྐྱར་ཞིབ་ཡང་བསྐྱར"
+  },
+  "incoming": {
+    "message": "ནང་འོང"
+  },
+  "outgoing": {
+    "message": "ཕྱིར་འགྱོ"
+  },
+  "mentioned": {
+    "message": "འདྲེན་ཐོ་ཡོདཔ"
+  },
+  "muteRepo": {
+    "message": "repo འདི་སྒྲ་མེད་བཟོ"
+  },
+  "muteOwner": {
+    "message": "ཆ་མཉམ་སྒྲ་མེད་བཟོ"
+  },
+  "optMuted": {
+    "message": "སྒྲ་མེད་བཟོ་ཡོད་མི་ Repos / Owners"
+  },
+  "optMutedHint": {
+    "message": "སྒྲ་མེད་བཟོ་ཡོད་མི་ repos་དང་ owners་ ཚུ་ attention set དང་ badge གྱངས་ཀ་ནང་ སྦ་ཡོདཔ་ཨིན།"
+  },
+  "optUnmute": {
+    "message": "སྒྲ་ཡོད་བཟོ"
+  },
+  "optNoMuted": {
+    "message": "སྒྲ་མེད་བཟོ་ཡོད་མི་མིན་འདུག།"
+  },
+  "optNotifyNewCommits": {
+    "message": "PR་བཟོ་མི་གིས་ commits གསར་པ་ push འབད་བའི་སྐབས་ བརྡ་འཕྲིན་གཏང"
+  },
+  "optOnlyDirectRequests": {
+    "message": "ཐད་ཀར་ review ཞུ་བ་རྐྱངམ་ཅིག་ལུ་བརྡ་འཕྲིན་གཏང (ཚོགས་པའི་ཞུ་བ་བརྩི་མེད)"
+  },
+  "optWhitelistedTeams": {
+    "message": "ཆོག་མཆན་ཅན་ཚོགས་པ (ལྟག་གི་ tick་འབད་རུང་བརྡ་འཕྲིན་གཏང):"
+  },
+  "optWhitelistedTeamsHint": {
+    "message": "གྲལ་ཐིག་རེ་རེ་ལུ་ team slug་གཅིག (དཔེར་ན: my-org/my-team)"
+  },
+  "justNow": {
+    "message": "ད་ལྟོ"
+  },
+  "stateMerged": {
+    "message": "མཉམ་བསྲེ་ཡོདཔ"
+  },
+  "stateClosed": {
+    "message": "བསྡམས་ཡོདཔ"
+  },
+  "moreOptions": {
+    "message": "གདམ་ཁ་ལྷག"
+  },
+  "newActivity": {
+    "message": "བྱ་བ་གསར་པ"
+  },
+  "filterPlaceholder": {
+    "message": "PR་ཚགས་མ་རྐྱབས..."
+  },
+  "errorAuth": {
+    "message": "⚠️ ཊོ་ཀེན་དུས་ཡོལ་ ཡང་ན་ ནུས་མེད། སྒྲིག་སྟངས་ནང་གསར་བསྐྱར་འབད།"
+  },
+  "errorNetwork": {
+    "message": "⚠️ GitHub ལྷོད་མ་ཚུགས། cache་འབད་ཡོད་མི་གནས་སྡུད་སྟོན་དོ།"
+  },
+  "stateApproved": {
+    "message": "ཆོག་མཆན"
+  },
+  "optMutedDesc": {
+    "message": "སྒྲ་མེད་བཟོ་ཡོད་མི་ repos་དང་ owners་ ཚུ་ attention set དང་ badge གྱངས་ཀ་ནང་ སྦ་ཡོདཔ་ཨིན།"
+  },
+  "optNothingMuted": {
+    "message": "སྒྲ་མེད་བཟོ་ཡོད་མི་མིན་འདུག།"
+  },
+  "other": {
+    "message": "གཞན"
+  },
+  "optPolling": {
+    "message": "ཞིབ་བཤེར"
+  },
+  "optDisplay": {
+    "message": "བཀོད་སྟོན"
+  },
+  "optNotificationsSection": {
+    "message": "བརྡ་འཕྲིན"
+  }
+}

@@ -57,7 +57,7 @@
     "message": "Mergen"
   },
   "stateMerging": {
-    "message": "Samenvoeg."
+    "message": "Samenvoegen"
   },
   "stateStuck": {
     "message": "Vast"
@@ -132,7 +132,7 @@
     "message": "Naam"
   },
   "tokenValue": {
-    "message": "Je GitHub-token"
+    "message": "Token"
   },
   "openSettings": {
     "message": "Instellingen openen"
@@ -219,10 +219,10 @@
     "message": "PRs filteren..."
   },
   "errorAuth": {
-    "message": "⚠️ Token verlopen of ongeldig."
+    "message": "⚠️ Token verlopen of ongeldig. Werk bij in instellingen."
   },
   "errorNetwork": {
-    "message": "⚠️ GitHub onbereikbaar."
+    "message": "⚠️ GitHub onbereikbaar. Gecachte gegevens worden weergegeven."
   },
   "stateApproved": {
     "message": "Goedgekeurd"
